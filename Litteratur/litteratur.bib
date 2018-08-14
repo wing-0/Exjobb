@@ -101,7 +101,7 @@ Many references which might be useful in further information seeking. Most of th
 On the shape deformation described in the article: it might not be compatible with the current method of NDT, but if there is a way of making defects resonate acoustically it fits with what this article mainly covers. There is another article from this group detailing this method's use in NDT which might be interesting to read.},
   doi      = {10.1109/8.954927},
   file     = {:Lawrence2001.pdf:PDF},
-  groups   = {Acousto-electromagnetics},
+  groups   = {Michigan RadLab, Acousto-electromagnetics},
   keywords = {dielectric bodies, electromagnetic wave scattering, acoustic wave scattering, Doppler effect, perturbation techniques, buried object detection, acoustic resonance, acoustic-electromagnetic wave interaction, bistatic electromagnetic scattering, acousto-electromagnetic scattering, dielectric cylinder, analytical solution, acoustically excited vibrating dielectric circular cylinder, incident acoustic wave, boundary deformation, dielectric inhomogeneity, perturbation method, EM scattering, inhomogeneous dielectric cylinder, vibration frequency, incident EM wave, closed form expression, time-frequency response, bistatic scattered field, acoustic scattering, elastic cylinder, surface displacement, material density variation, dielectric constant fluctuation), Doppler frequencies, mechanical vibration frequencies, Doppler spectrum, acoustic resonance, buried object identification, Acoustic waves, Electromagnetic scattering, Electromagnetic analysis, Acoustic scattering, Frequency, Dielectrics, Vibrations, Surface acoustic waves, Resonance, Perturbation methods},
 }
 
@@ -119,14 +119,16 @@ On the shape deformation described in the article: it might not be compatible wi
 
 The article describes nondestructive evaluation using both electromagnetics and acoustics. The way this is done is by exciting the target (in this case a dielectric cylinder, but any geometry should be possible according to the authors) acoustically and imaging it electromagnetically. The target must resonate acoustically as this affects the electromagnetic waves by causing a Doppler shift in the scattered field. The Doppler component of the scattered field is highly sensitive to the shape of the acoustic resonance mode, and if there is a flaw in the target this can be measured as the acoustic mode then changes. The signal processing part is described more than the acousto-electromagnetic theory (time-reversal focusing is used), but this is less relevant to me.
 
-The relevance to our application could be in two parts:
+The relevance to our application:
 
 1. It might be possible to use the method described as is if acoustic resonance is obtained. However, there might be difficulties with using the existing mm-wave imaging together with this (more research is required to determine this). Also, the acoustic properties of honeycomb nomex composites are quite complex, so it may not be an efficient way forward due to this.
 
-2. The concept of acoustic resonance might be necessary to look into more even if another approach is taken with the imaging. If the acoustic properties of the sample are correct for it, resonance might occur in the sample. A more acousto-optical approach only takes into account the density modulation inside the sample (this is one of the two mechanisms described in the paper). An object in resonance should also have the second mechanism of surface movement being strong, which is not considered in acousto-optics.},
+2. The concept of acoustic resonance might be necessary to look into more even if another approach is taken with the imaging. If the acoustic properties of the sample are correct for it, resonance might occur in the sample. A more acousto-optical approach only takes into account the density modulation inside the sample (this is one of the two mechanisms described in the paper). An object in resonance should also have the second mechanism of surface movement being strong, which is not considered in acousto-optics.
+
+3. Would it be possible to excite the defects into acoustic resonance? That would be more like the ground penetrating radar described somewhat in Lawrence2001.},
   doi      = {10.1109/TAP.2009.2031903},
   file     = {:Buerkle2009.pdf:PDF},
-  groups   = {Acousto-electromagnetics},
+  groups   = {Michigan RadLab, Acousto-electromagnetics},
   keywords = {acoustic applications, electromagnetic wave scattering, nondestructive testing, non-destructive testing, elastic targets, acousto-electromagnetic wave interaction, reversal focusing, electromagnetic wave scattering, acoustic illumination, acoustic vibration, first Doppler component, Electromagnetic scattering, Acoustic waves, Acoustic scattering, Electromagnetic fields, Scattering parameters, Frequency modulation, Lighting, Vibrations, Predictive models, Bandwidth, Acoustic applications, electromagnetic scattering, focusing, nondestructive testing},
 }
 
@@ -145,15 +147,105 @@ The relevance to our application could be in two parts:
 The density modulation is basically the same as in Lawrence2001 but I think it is summarized somewhat better here (although they jump a bit when compared to the din Lawrence2001).},
   doi      = {10.1109/TAP.2008.926746},
   file     = {:Buerkle2008.pdf:PDF},
-  groups   = {Acousto-electromagnetics},
+  groups   = {Michigan RadLab, Acousto-electromagnetics},
   keywords = {electromagnetic wave propagation, electromagnetic wave scattering, finite difference time-domain analysis, acousto-electromagnetic wave interaction, finite-difference time-domain method, 2d objects, seismic illumination, acoustic illumination, object vibration, scattered electromagnetic field, Doppler component, boundary perturbation, density modulation, wave interaction analysis, finite element acoustic simulation, electromagnetic scattering simulation, computational modeling, complex geometry, Finite difference methods, Time domain analysis, Electromagnetic scattering, Computational modeling, Electromagnetic modeling, Lighting, Frequency modulation, Acoustic scattering, Electromagnetic fields, Surface acoustic waves, Acoustics, electromagnetic scattering, finite-difference time-domain (FDTD) methods},
+}
+
+@Unpublished{,
+  title   = {UOT Review Manuscript},
+  comment = {Do not use for citations.
+
+This is a review on different acoustic-optical tomography methods in medicine. Much of the paper discusses topics very unrelated to my work (specific ways of utilizing the interaction medically, optical detection methods etc.). The relevant parts might be the interaction mechanisms.
+
+All mechanisms of acousto-optical interaction are not necessarily relevant for my work. They present three mechanisms: one where ultrasound displaces scatterers which causes phase change in the light, one where ultrasound changes the index of refraction which causes phase change in the light, and one where ultrasound modulates the density which changes optical properties of the material. The third mechanism is very general and can be seen in many other texts such as Fundamentals of Photonics and the Michigan papers (Lawrence2001, Buerkle2008-2009). The two first mechanisms however, might not be as relevant to this work as it is to medical applications. The reason behind this is that while optical frequencies might scatter against molecules and other small-scale objects which can be displaced and such, these scatterers are too small to affect mm-waves in the same way. However, this should be explored further by reading more on those two interaction mechanisms.
+
+Especially the reference list could be important since it contains a lot.},
+  file    = {:UOT_Review_Manuscript_draft (1).pdf:PDF},
+  groups  = {Medical acousto-optics},
+}
+
+@Article{Elson2011,
+  author        = {Elson, Daniel S and Li, Rui and Dunsby, Christopher and Eckersley, Robert and Tang, Meng-Xing},
+  title         = {Ultrasound-mediated optical tomography: a review of current methods},
+  journal       = {Interface Focus},
+  year          = {2011},
+  volume        = {1},
+  number        = {4},
+  pages         = {632--648},
+  __markedentry = {[tfy13nwi:]},
+  comment       = {Related to UOT Rewiew Manuscript, but some descriptions are better (although less mathematics is shown). Also, it's published.
+
+One important detail to note from this article is in the interaction mechanism part. Here it is said that scatterer displacement is on the order of 1 nm, which is of course not relevant for mm-waves. The main idea of scatterers affecting photons as used in these medical applications should then not be relevant for mm-waves.},
+  groups        = {Medical acousto-optics},
+  publisher     = {Royal Society},
+}
+
+@InBook{Saleh2007,
+  chapter   = {19 Acousto-Optics},
+  pages     = {804--833},
+  title     = {Fundamentals of Photonics},
+  publisher = {John Wiley \& Sons},
+  year      = {2007},
+  author    = {B. E. A. Saleh and M. C. Teich},
+  edition   = {Second E},
+}
+
+@Article{Sarabandi2003,
+  author   = {K. Sarabandi and D. E. Lawrence},
+  title    = {Acoustic and electromagnetic wave interaction: estimation of Doppler spectrum from an acoustically vibrated metallic circular cylinder},
+  journal  = {IEEE Transactions on Antennas and Propagation},
+  year     = {2003},
+  volume   = {51},
+  number   = {7},
+  pages    = {1499-1507},
+  month    = {July},
+  issn     = {0018-926X},
+  comment  = {Similar to Lawrence2001 but considers a metallic cylinder instead of a dielectric one. Some parts of the derivations seem more straight-forward (both due to the change in material, but also due to different writing).
+
+Not much more info than in the other Michigan-articles, but might be nive to have?},
+  doi      = {10.1109/TAP.2003.813606},
+  file     = {:Sarabandi2003.pdf:PDF},
+  groups   = {Michigan RadLab, Acousto-electromagnetics},
+  keywords = {acoustic-electromagnetic wave interaction;acoustically vibrated object;acoustically induced Doppler spectra;target detection;target identification;bistatic scattered Doppler spectrum;vibrating metallic cylinder;electromagnetic scattering;perturbation method;vibration frequency;closed form expression;time-frequency response;buried object identification;mechanical resonance;ground penetrating radar;Acoustic waves;Electromagnetic scattering;Acoustic scattering;Vibrations;Frequency estimation;Surface acoustic waves;Buried object detection;Object detection;Perturbation methods;Time frequency analysis},
+}
+
+@Article{Zhao2008,
+  author   = {M. Zhao and J. D. Shea and S. C. Hagness and D. W. van der Weide and B. D. Van Veen and T. Varghese},
+  title    = {Numerical Study of Microwave Scattering in Breast Tissue via Coupled Dielectric and Elastic Contrasts},
+  journal  = {IEEE Antennas and Wireless Propagation Letters},
+  year     = {2008},
+  volume   = {7},
+  pages    = {247-250},
+  issn     = {1536-1225},
+  comment  = {Describes how mechanical vibrations can be used together with microwaves to detect anomalous tissue. Does not use ultrasound, but much lower frequencies of vibration. It works by utilizing that the anomalous tissue has different mechanical properties than normal tissue. This causes vibrations in regions of different tissue, which in turn leads to Doppler shifting of the scattered microwaves. Basically the same mechanism as the shape deformation mechanism described in Lawrence2001, Sarabandi2003, Buerkele2008, etc. No density modulation is included here.
+
+Might be good to search for more articles relating to this.},
+  doi      = {10.1109/LAWP.2008.920752},
+  file     = {:Zhao2008.pdf:PDF},
+  keywords = {microwave scattering;breast tissue;coupled dielectric contrast;elastic contrast;breast cancer detection;mechanical excitation;finite-difference time-domain method;Doppler component;sheet boundary condition;Breast tissue;Dielectrics;Acoustic scattering;Finite difference methods;Time domain analysis;Mechanical factors;Breast cancer;Acoustic signal detection;Cancer detection;Boundary conditions;Biomechanics;breast cancer detection;dielectric properties;elastic properties;finite-difference time-domain (FDTD);finite element method (FEM);microwave imaging;scattering;Biomechanics;breast cancer detection;dielectric properties;elastic properties;finite-difference time-domain (FDTD);finite element method (FEM);microwave imaging;scattering},
+}
+
+@Article{Gao2010,
+  author   = {F. Gao and S. C. Hagness and B. D. Van Veen},
+  title    = {Comments on “Numerical Study of Microwave Scattering in Breast Tissue via Coupled Dielectric and Elastic Contrasts”},
+  journal  = {IEEE Antennas and Wireless Propagation Letters},
+  year     = {2010},
+  volume   = {9},
+  pages    = {1283-1284},
+  issn     = {1536-1225},
+  comment  = {Corrections for some results in Zhao2008 which were not correct. Does not affect the theoretical background.},
+  doi      = {10.1109/LAWP.2010.2063450},
+  file     = {:Gao2010.pdf:PDF},
+  keywords = {numerical analysis;microwave scattering;breast tissue;coupled dielectric contrast;elastic contrast;FDTD method;finite-difference time-domain method;dielectric properties;Scattering;Breast tissue;Dielectrics;Capacitive sensors;Engine cylinders;Cancer;Finite difference methods;Time domain analysis;USA Councils;Jacobian matrices;},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
 
 @Comment{jabref-meta: grouping:
 0 AllEntriesGroup:;
-1 StaticGroup:Micro/mm-wave imaging\;0\;0\;\;\;\;;
-1 StaticGroup:Aerospace composites\;0\;1\;\;\;\;;
-1 StaticGroup:Acousto-electromagnetics\;0\;0\;\;\;\;;
+1 StaticGroup:Micro/mm-wave imaging\;0\;1\;\;signal_variant\;\;;
+1 StaticGroup:Aerospace composites\;0\;1\;\;airplane\;\;;
+1 StaticGroup:Acousto-electromagnetics\;0\;1\;\;speaker\;\;;
+1 StaticGroup:Medical acousto-optics\;0\;1\;\;hospital\;\;;
+1 StaticGroup:Michigan RadLab\;0\;1\;\;radio_tower\;\;;
 }

@@ -182,13 +182,16 @@ One important detail to note from this article is in the interaction mechanism p
 }
 
 @InBook{Saleh2007,
-  chapter   = {19 Acousto-Optics},
+  chapter   = {19},
   pages     = {804--833},
-  title     = {Fundamentals of Photonics},
-  publisher = {John Wiley \& Sons},
+  title     = {Acousto-Optics},
+  publisher = {John Wiley \& Sons, Inc.},
   year      = {2007},
   author    = {B. E. A. Saleh and M. C. Teich},
-  edition   = {Second E},
+  series    = {Fundamentals of Photonics},
+  address   = {Hoboken, New Jersey},
+  edition   = {2nd},
+  isbn      = {978-0-471-35832-9},
 }
 
 @Article{Sarabandi2003,
@@ -268,6 +271,7 @@ Might be good to search for more articles relating to this.},
   comment       = {The reflection of an electromagnetic wave against an acoustic wave might require pressure-dependent polarization (so that an acoustic wavefront affects the polarization). According to the article, this is the case for polar liquids. Aerospace composites are not made out of polar liquids (I think) so this might not be possible in those cases. But this, of course, depends on the parameters of the material in question which I don't know now.
 
 As in Banks2002, this article delves into variational calculus and lengthy derivations.},
+  doi           = {10.1088/0266-5611/18/6/330},
   file          = {:Albanese2002.pdf:PDF},
   groups        = {Acousto-electromagnetics},
   url           = {http://stacks.iop.org/0266-5611/18/i=6/a=330},
@@ -291,6 +295,47 @@ The described method uses focused ultrasound, which is one of the techniques we 
   file          = {:Top2016.pdf:PDF},
   groups        = {Acousto-electromagnetics, Medical microwave frequencies},
   keywords      = {biomedical ultrasonics;Doppler measurement;finite difference time-domain analysis;mammography;microwave imaging;numerical analysis;phantoms;tumours;microwave sensing;acoustically induced local harmonic motion;breast tumor detection;microwave transceiver system;nonpalpable tumors;harmonic motion microwave Doppler imaging method;phase modulated signal;dielectric properties;elastic properties;acoustic properties;phantom materials;electrical properties;fibroglandular region size;vibration frequency;numerical simulations;tumor phantom inclusion;ultrasound probe;spectrum analyzer;finite-difference time-domain method;imaging system design;Phantoms;Microwave oscillators;Microwave theory and techniques;Microwave imaging;Vibrations;Tumors;Breast tumor detection;elasticity imaging;focused ultrasound (FUS);harmonic motion imaging;microwave imaging},
+}
+
+@Article{Ammari2012,
+  author        = {Ammari, H. and Bossy, E. and Garnier, J. and Seppecher, L.},
+  title         = {Acousto-electromagnetic Tomography},
+  journal       = {SIAM Journal on Applied Mathematics},
+  year          = {2012},
+  volume        = {72},
+  number        = {5},
+  pages         = {1592-1617},
+  __markedentry = {[tfy13nwi:2]},
+  comment       = {It's clear that this paper was written by mathematicians. Lots of formalism and lengthy derivations. Lots of it seems to be related to the tomography part, which is not that relevant.
+
+The method is based around imaging permittivity in a sample. It seems like they use two measurements: one with only electromagnetism and one with both acoustics and electromagnetism. The second measurement is where the acoustic waves alter the distribution of permittivity inside of the sample. Based upon these measurements it is somehow possible to recover the unperturbed permittivity distribution with a higher resolution than a standard electromagnetic-only measurement would give.
+
+I can't find much information on interaction mechanisms in the paper, probably because they don't really rely on measuring the acousto-electromagnetic interaction directly (although this might be the case, but only hidden behind a massive amount of notation). The main mechanism is based on acoustic waves altering the permittivity, but I can't find anything more clear than that. While other papers usually look directly at a frequency shift caused by the interaction, this paper has a less direct method.
+
+I'm very unsure if the methods described here are even applicable to our problem. Need to read this paper more times to be even close to answering that.},
+  doi           = {10.1137/120863654},
+  eprint        = {https://doi.org/10.1137/120863654},
+  file          = {:Ammari2012.pdf:PDF},
+  groups        = {Medical microwave frequencies},
+}
+
+@Article{Konofagou2003,
+  author        = {Elisa E. Konofagou and Kullervo Hynynen},
+  title         = {Localized harmonic motion imaging: theory, simulations and experiments},
+  journal       = {Ultrasound in Medicine \& Biology},
+  year          = {2003},
+  volume        = {29},
+  number        = {10},
+  pages         = {1405 - 1413},
+  issn          = {0301-5629},
+  __markedentry = {[tfy13nwi:]},
+  comment       = {The article does not have any electromagnetic part, but is interesting anyway due to the ultrasonic techniques described. In the introduction the method of USAE (ultrasonic stimulated acoustic emission) is introduced. Here two ultrasound beams are used with slightly different frequencies f1 and f2. The two beams overlap in one spot where the interference leads to amplitude modulation fd = f2 - f1. This leads to objects becoming acoustic sources which is used in the article, which in itself is then used. But when objects in the intersection have a fd movement, there should be a fd doppler shift of EM waves in that region, but nowhere else. This is what is used in Top2016, but I think this article describes the acoustics better.
+
+More information on how the harmonic motion arises in the intersection: "Ultrasound-stimulated vibro-acoustic spectrography".},
+  doi           = {https://doi.org/10.1016/S0301-5629(03)00953-0},
+  file          = {:Konofagou2003.pdf:PDF},
+  keywords      = {Displacement, Harmonic, Localized, Modulus, Motion, Radiation force, Stiffness},
+  url           = {http://www.sciencedirect.com/science/article/pii/S0301562903009530},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

@@ -241,6 +241,7 @@ Might be good to search for more articles relating to this.},
   comment  = {Corrections for some results in Zhao2008 which were not correct. Does not affect the theoretical background.},
   doi      = {10.1109/LAWP.2010.2063450},
   file     = {:Gao2010.pdf:PDF},
+  groups   = {Acousto-electromagnetics, Medical microwave frequencies},
   keywords = {numerical analysis;microwave scattering;breast tissue;coupled dielectric contrast;elastic contrast;FDTD method;finite-difference time-domain method;dielectric properties;Scattering;Breast tissue;Dielectrics;Capacitive sensors;Engine cylinders;Cancer;Finite difference methods;Time domain analysis;USA Councils;Jacobian matrices;},
 }
 
@@ -349,6 +350,7 @@ More information on how the harmonic motion arises in the intersection: "Ultraso
   comment       = {Easier to understand than Ammari2012. That is the main merit of this article, even if the method seems to be changed somewhat from before.},
   doi           = {10.1090/conm/658/13132},
   file          = {:Alberti2016.pdf:PDF},
+  groups        = {Acousto-electromagnetics},
   publisher     = {American Mathematical Soc.},
 }
 
@@ -358,7 +360,7 @@ More information on how the harmonic motion arises in the intersection: "Ultraso
   school        = {University of Michigan},
   year          = {2007},
   type          = {phdthesis},
-  __markedentry = {[tfy13nwi:2]},
+  __markedentry = {[tfy13nwi:1]},
   comment       = {PhD thesis by Buerkle. The subject is the same as other articles from Radiation Laboratory at Univ. of Michigan.
 
 Since this is a thesis it contains much more information than the journal articles, and also more references.
@@ -367,27 +369,29 @@ Section 1.4 has a good overview of previous work where I can probably find good 
 
 Section 2.2 on tumour detection has lots of info on different ways ultrasound is used, and how it could be used together with EM waves. For example, ultrasound might be used to get depth resolution in samples which are not thin sheets (this was one other possible path for a thesis I could take within this project so it seems relevant). The possibility of using localized harmonic motion (as used in vibro-acoustography) is also explored.
 
-Section 2.3 discusses non destrutive evaluation, which is obviously of interest. The background is discussed more than in Buerkle2009, but the method is the same.},
+Section 2.3 discusses non destrutive evaluation, which is obviously of interest. The background is discussed more than in Buerkle2009, but the method is the same.
+
+In the later chapters it is much more focused on the specific implementation of their model. This is less relevant now in the beginning of my work than the general information in the earlier parts.},
   file          = {:Buerkle2007.pdf:PDF},
   groups        = {Michigan RadLab},
   url           = {http://www.eecs.umich.edu/radlab/html/NEWDISS/Buerkle.pdf},
 }
 
 @Article{Gong2015,
-  author        = {Gong, Shuhong and Yan, Daopu and Wang, Xuan},
-  title         = {A novel idea of purposefully affecting radio wave propagation by coherent acoustic source-induced atmospheric refractivity fluctuation},
-  journal       = {Radio Science},
-  year          = {2015},
-  volume        = {50},
-  number        = {10},
-  pages         = {983-996},
-  __markedentry = {[tfy13nwi:2]},
-  abstract      = {Abstract The mechanism generating the array-distributed atmospheric refractivity fluctuation by a coherent acoustic source is analyzed. The theoretical model is established, which is used to quantifiably analyze the array structure of the artificial dielectric irregularities. It is qualitatively validated that the array-distributed artificial dielectric irregularities really exist and that the array structure of the artificial dielectric irregularities and the scattering effect of the artificial dielectric irregularities on a radio wave can be controlled by adjusting and selecting the optimized parameters of the transmitted acoustic wave and the adopted acoustic antenna array. It can be concluded that the array-distributed artificial dielectric irregularities can be used to purposefully affect radio wave propagation. After radio acoustic sounding system, the idea of this paper is a novel development in the field of the tropospheric atmospheric refractivity artificial abnormality technique and its applications.},
-  doi           = {10.1002/2015RS005660},
-  eprint        = {https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1002/2015RS005660},
-  file          = {:Gong2015.pdf:PDF},
-  keywords      = {troposphere, atmospheric refractivity, acoustic wave perturbation, artificial abnormality},
-  url           = {https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1002/2015RS005660},
+  author   = {Gong, Shuhong and Yan, Daopu and Wang, Xuan},
+  title    = {A novel idea of purposefully affecting radio wave propagation by coherent acoustic source-induced atmospheric refractivity fluctuation},
+  journal  = {Radio Science},
+  year     = {2015},
+  volume   = {50},
+  number   = {10},
+  pages    = {983-996},
+  abstract = {Abstract The mechanism generating the array-distributed atmospheric refractivity fluctuation by a coherent acoustic source is analyzed. The theoretical model is established, which is used to quantifiably analyze the array structure of the artificial dielectric irregularities. It is qualitatively validated that the array-distributed artificial dielectric irregularities really exist and that the array structure of the artificial dielectric irregularities and the scattering effect of the artificial dielectric irregularities on a radio wave can be controlled by adjusting and selecting the optimized parameters of the transmitted acoustic wave and the adopted acoustic antenna array. It can be concluded that the array-distributed artificial dielectric irregularities can be used to purposefully affect radio wave propagation. After radio acoustic sounding system, the idea of this paper is a novel development in the field of the tropospheric atmospheric refractivity artificial abnormality technique and its applications.},
+  comment  = {Quite difficult to understand (poor english). Contains information related to RASS (radio acoustic sounding system) and how acoustic waves in the atmosphere can act as an array. Might need to read references to understand it better.},
+  doi      = {10.1002/2015RS005660},
+  eprint   = {https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1002/2015RS005660},
+  file     = {:Gong2015.pdf:PDF},
+  keywords = {troposphere, atmospheric refractivity, acoustic wave perturbation, artificial abnormality},
+  url      = {https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1002/2015RS005660},
 }
 
 @Patent{Merkel2006,
@@ -406,6 +410,57 @@ Section 2.3 discusses non destrutive evaluation, which is obviously of interest.
   __markedentry = {[tfy13nwi:2]},
   file          = {:Merkel2006.pdf:PDF},
   publisher     = {Google Patents},
+}
+
+@Article{Chen2003,
+  author        = {V. C. Chen and F. Li and S. -S. Ho and H. Wechsler},
+  title         = {Analysis of micro-Doppler signatures},
+  journal       = {IEE Proceedings - Radar, Sonar and Navigation},
+  year          = {2003},
+  volume        = {150},
+  number        = {4},
+  pages         = {271-},
+  month         = {Aug},
+  issn          = {1350-2395},
+  __markedentry = {[tfy13nwi:1]},
+  comment       = {Derives the basics of how rotating or vibrating targets affect Doppler frequencies in radar.
+
+Very interesting since the results from vibrating targets show that the frequency shift should vary with time, something that has not been stated in any of the articles on resonating objects. Maybe this is due to the fact that the derivation here uses point scatterers? Or maybe it has to do with what they actually mean when they say that the scatterer is rotating? Need to find more information on this so I can see what is actually the correct way of thinking here.},
+  doi           = {10.1049/ip-rsn:20030743},
+  file          = {:Chen2003.pdf:PDF},
+  keywords      = {Doppler effect ;radar signal processing ;time-frequency analysis ;vibrations ;signal representation ;micro-Doppler signature analysis;mechanical vibration;mechanical rotation;frequency modulation;returned radar signal;sidebands;Doppler frequency;micro-Doppler effect;computer simulations;joint time-frequency domain},
+}
+
+@Article{Korpel1981,
+  author        = {A. Korpel},
+  title         = {Acousto-optics—A review of fundamentals},
+  journal       = {Proceedings of the IEEE},
+  year          = {1981},
+  volume        = {69},
+  number        = {1},
+  pages         = {48-53},
+  month         = {Jan},
+  issn          = {0018-9219},
+  __markedentry = {[tfy13nwi:2]},
+  doi           = {10.1109/PROC.1981.11919},
+  file          = {:Korpel1981.pdf:PDF},
+  keywords      = {Acoustic diffraction;X-ray diffraction;Optical signal processing;Signal processing;Crystals;Optical reflection;Electromagnetic reflection;Acoustic reflection;Optical scattering;Frequency},
+}
+
+@Article{Chen2006,
+  author        = {V. C. Chen and F. Li and S. -. Ho and H. Wechsler},
+  title         = {Micro-Doppler effect in radar: phenomenon, model, and simulation study},
+  journal       = {IEEE Transactions on Aerospace and Electronic Systems},
+  year          = {2006},
+  volume        = {42},
+  number        = {1},
+  pages         = {2-21},
+  month         = {Jan},
+  issn          = {0018-9251},
+  __markedentry = {[tfy13nwi:2]},
+  doi           = {10.1109/TAES.2006.1603402},
+  file          = {:Chen2006.pdf:PDF},
+  keywords      = {radar signal processing;time-frequency analysis;Doppler radar;microDoppler effect;Doppler frequency shift;radar target;micromotion dynamics;mechanical vibrations;Doppler modulations;rotation motions;tumbling motions;coning motions;time-frequency transforms;Doppler radar;Diesel engines;Frequency;Vibrations;Laser radar;Electromagnetic scattering;Vehicles;Transmitters;Signal generators;Aircraft},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

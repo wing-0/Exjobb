@@ -14,7 +14,7 @@
   doi      = {10.1109/TAP.2017.2738034},
   file     = {:Helander2017.pdf:PDF},
   groups   = {Micro/mm-wave imaging},
-  keywords = {compressed sensing;Fourier transforms;image reconstruction;image resolution;image retrieval;millimetre wave imaging;nondestructive testing;compressive sensing technique;mm-Wave nondestructive testing;composite panel;industrially manufactured composite test panel measurement;planar near-field scanning setup;data postprocessing;signal separation;L1-minimization problem;image retrieval;Fourier transform;reference measurement removal;stable image quality;image resolution;illuminating source reconstruction;transmitter;frequency 50 GHz to 67 GHz;Imaging;Antenna measurements;Time measurement;Testing;Frequency measurement;Compressed sensing;Electromagnetics;Compressive sensing (CS);imaging;millimeter wave;nondestructive testing (NDT);planar scanning;source reconstruction},
+  keywords = {compressed sensing;Fourier transforms;image reconstruction;image resolution;image retrieval;millimetre wave imaging;nondestructive testing;compressive sensing technique;mm-Wave nondestructive testing;composite panel;industrially manufactured composite test panel measurement;planar near-field scanning setup;data postprocessing;signal separation;L1-minimization problem;image retrieval;Fourier transform;reference measurement removal;stable image quality;image resolution;illuminating source reconstruction;transmitter;frequency 50 GHz to 67 GHz;Imaging;Antenna measurements;Time measurement;Testing;Frequency measurement;Compressed sensing;Electromagnetics;Compressive sensing (CS);imaging;millimeter wave;nondestructive testing (NDT);planar scanning;source reconstruction, rank5},
 }
 
 @Article{Kharkovsky2007,
@@ -192,6 +192,10 @@ One important detail to note from this article is in the interaction mechanism p
   address   = {Hoboken, New Jersey},
   edition   = {2nd},
   isbn      = {978-0-471-35832-9},
+  comment   = {General derivation of acousto-optics.
+
+One interesting part is that of reflectance (p. 812), which seems to be inversely proportional to the fourth power of the frequency. This might be a problem if the acousto-optic principles are used at mm-wave instead of optical wavelengths. The reflectance can be seen as a measure of the interaction strength since zero reflectance leads to an optical wave not being affected at all by the acoustic wave. If it is too low, then the interaction cannot be measured anymore.},
+  groups    = {Acousto-optics},
 }
 
 @Article{Sarabandi2003,
@@ -246,17 +250,18 @@ Might be good to search for more articles relating to this.},
 }
 
 @Article{Banks2002,
-  author  = {H. T. Banks and J. K. Raye},
-  title   = {Well-posedness for Systems Representing Electromagnetic/Acoustic Wavefront Interaction},
-  journal = {ESAIM: COCV},
-  year    = {2002},
-  volume  = {8},
-  pages   = {105-125},
-  comment = {The article quickly delves into long and formal derivations using calculus of variations. Before that, the authors stated some end goal to substitute PEC for acoustic waves in reflection-based microwave imaging systems. This might be of interest since it would offer flexibility in where to put the "ground plane". However, this article is not the easiest one to understand so I need to find more information.},
-  doi     = {10.1051/cocv:2002019},
-  file    = {:Banks2002.pdf:PDF},
-  groups  = {Acousto-electromagnetics},
-  url     = {https://doi.org/10.1051/cocv:2002019},
+  author   = {H. T. Banks and J. K. Raye},
+  title    = {Well-posedness for Systems Representing Electromagnetic/Acoustic Wavefront Interaction},
+  journal  = {ESAIM: COCV},
+  year     = {2002},
+  volume   = {8},
+  pages    = {105-125},
+  comment  = {The article quickly delves into long and formal derivations using calculus of variations. Before that, the authors stated some end goal to substitute PEC for acoustic waves in reflection-based microwave imaging systems. This might be of interest since it would offer flexibility in where to put the "ground plane". However, this article is not the easiest one to understand so I need to find more information.},
+  doi      = {10.1051/cocv:2002019},
+  file     = {:Banks2002.pdf:PDF},
+  groups   = {Acousto-electromagnetics},
+  keywords = {rank1},
+  url      = {https://doi.org/10.1051/cocv:2002019},
 }
 
 @Article{Albanese2002,
@@ -275,6 +280,7 @@ As in Banks2002, this article delves into variational calculus and lengthy deriv
   doi           = {10.1088/0266-5611/18/6/330},
   file          = {:Albanese2002.pdf:PDF},
   groups        = {Acousto-electromagnetics},
+  keywords      = {rank1},
   url           = {http://stacks.iop.org/0266-5611/18/i=6/a=330},
 }
 
@@ -295,7 +301,7 @@ The described method uses focused ultrasound, which is one of the techniques we 
   doi           = {10.1109/TMTT.2016.2607713},
   file          = {:Top2016.pdf:PDF},
   groups        = {Acousto-electromagnetics, Medical microwave frequencies},
-  keywords      = {biomedical ultrasonics;Doppler measurement;finite difference time-domain analysis;mammography;microwave imaging;numerical analysis;phantoms;tumours;microwave sensing;acoustically induced local harmonic motion;breast tumor detection;microwave transceiver system;nonpalpable tumors;harmonic motion microwave Doppler imaging method;phase modulated signal;dielectric properties;elastic properties;acoustic properties;phantom materials;electrical properties;fibroglandular region size;vibration frequency;numerical simulations;tumor phantom inclusion;ultrasound probe;spectrum analyzer;finite-difference time-domain method;imaging system design;Phantoms;Microwave oscillators;Microwave theory and techniques;Microwave imaging;Vibrations;Tumors;Breast tumor detection;elasticity imaging;focused ultrasound (FUS);harmonic motion imaging;microwave imaging},
+  keywords      = {biomedical ultrasonics;Doppler measurement;finite difference time-domain analysis;mammography;microwave imaging;numerical analysis;phantoms;tumours;microwave sensing;acoustically induced local harmonic motion;breast tumor detection;microwave transceiver system;nonpalpable tumors;harmonic motion microwave Doppler imaging method;phase modulated signal;dielectric properties;elastic properties;acoustic properties;phantom materials;electrical properties;fibroglandular region size;vibration frequency;numerical simulations;tumor phantom inclusion;ultrasound probe;spectrum analyzer;finite-difference time-domain method;imaging system design;Phantoms;Microwave oscillators;Microwave theory and techniques;Microwave imaging;Vibrations;Tumors;Breast tumor detection;elasticity imaging;focused ultrasound (FUS);harmonic motion imaging;microwave imaging, rank5},
 }
 
 @Article{Ammari2012,
@@ -335,6 +341,7 @@ I'm very unsure if the methods described here are even applicable to our problem
 More information on how the harmonic motion arises in the intersection: "Ultrasound-stimulated vibro-acoustic spectrography".},
   doi           = {https://doi.org/10.1016/S0301-5629(03)00953-0},
   file          = {:Konofagou2003.pdf:PDF},
+  groups        = {Acoustics},
   keywords      = {Displacement, Harmonic, Localized, Modulus, Motion, Radiation force, Stiffness},
   url           = {http://www.sciencedirect.com/science/article/pii/S0301562903009530},
 }
@@ -374,6 +381,7 @@ Section 2.3 discusses non destrutive evaluation, which is obviously of interest.
 In the later chapters it is much more focused on the specific implementation of their model. This is less relevant now in the beginning of my work than the general information in the earlier parts.},
   file          = {:Buerkle2007.pdf:PDF},
   groups        = {Michigan RadLab},
+  keywords      = {rank5},
   url           = {http://www.eecs.umich.edu/radlab/html/NEWDISS/Buerkle.pdf},
 }
 
@@ -390,7 +398,7 @@ In the later chapters it is much more focused on the specific implementation of 
   doi      = {10.1002/2015RS005660},
   eprint   = {https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1002/2015RS005660},
   file     = {:Gong2015.pdf:PDF},
-  keywords = {troposphere, atmospheric refractivity, acoustic wave perturbation, artificial abnormality},
+  keywords = {troposphere, atmospheric refractivity, acoustic wave perturbation, artificial abnormality, rank1},
   url      = {https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1002/2015RS005660},
 }
 
@@ -407,28 +415,30 @@ In the later chapters it is much more focused on the specific implementation of 
   month         = may,
   monthfiled    = nov,
   url           = {https://patents.google.com/patent/US7040168B1/en},
-  __markedentry = {[tfy13nwi:2]},
+  __markedentry = {[tfy13nwi:1]},
+  comment       = {Since it is a patent it is quite difficult to read due to the format. At least, what it describes is a device using dielectric modulation due to ultrasound to induce a frequency shift in microwaves which is used for improved detection of some kind. Might have to return to this.},
   file          = {:Merkel2006.pdf:PDF},
   publisher     = {Google Patents},
 }
 
 @Article{Chen2003,
-  author        = {V. C. Chen and F. Li and S. -S. Ho and H. Wechsler},
-  title         = {Analysis of micro-Doppler signatures},
-  journal       = {IEE Proceedings - Radar, Sonar and Navigation},
-  year          = {2003},
-  volume        = {150},
-  number        = {4},
-  pages         = {271-},
-  month         = {Aug},
-  issn          = {1350-2395},
-  __markedentry = {[tfy13nwi:1]},
-  comment       = {Derives the basics of how rotating or vibrating targets affect Doppler frequencies in radar.
+  author   = {V. C. Chen and F. Li and S. -S. Ho and H. Wechsler},
+  title    = {Analysis of micro-Doppler signatures},
+  journal  = {IEE Proceedings - Radar, Sonar and Navigation},
+  year     = {2003},
+  volume   = {150},
+  number   = {4},
+  pages    = {271-},
+  month    = {Aug},
+  issn     = {1350-2395},
+  comment  = {Derives the basics of how rotating or vibrating targets affect Doppler frequencies in radar.
 
-Very interesting since the results from vibrating targets show that the frequency shift should vary with time, something that has not been stated in any of the articles on resonating objects. Maybe this is due to the fact that the derivation here uses point scatterers? Or maybe it has to do with what they actually mean when they say that the scatterer is rotating? Need to find more information on this so I can see what is actually the correct way of thinking here.},
-  doi           = {10.1049/ip-rsn:20030743},
-  file          = {:Chen2003.pdf:PDF},
-  keywords      = {Doppler effect ;radar signal processing ;time-frequency analysis ;vibrations ;signal representation ;micro-Doppler signature analysis;mechanical vibration;mechanical rotation;frequency modulation;returned radar signal;sidebands;Doppler frequency;micro-Doppler effect;computer simulations;joint time-frequency domain},
+Very interesting since the results from vibrating targets show that the frequency shift should vary with time, something that has not been stated in any of the articles on resonating objects. Maybe this is due to the fact that the derivation here uses point scatterers? Or maybe it has to do with what they actually mean when they say that the scatterer is rotating? Need to find more information on this so I can see what is actually the correct way of thinking here.
+
+See Chen2006 for a better derivation and explanation.},
+  doi      = {10.1049/ip-rsn:20030743},
+  file     = {:Chen2003.pdf:PDF},
+  keywords = {Doppler effect ;radar signal processing ;time-frequency analysis ;vibrations ;signal representation ;micro-Doppler signature analysis;mechanical vibration;mechanical rotation;frequency modulation;returned radar signal;sidebands;Doppler frequency;micro-Doppler effect;computer simulations;joint time-frequency domain, rank1},
 }
 
 @Article{Korpel1981,
@@ -441,9 +451,11 @@ Very interesting since the results from vibrating targets show that the frequenc
   pages         = {48-53},
   month         = {Jan},
   issn          = {0018-9219},
-  __markedentry = {[tfy13nwi:2]},
+  __markedentry = {[tfy13nwi:]},
+  comment       = {Information on the basics of acousto-optics, although not more than what is in Saleh2007.},
   doi           = {10.1109/PROC.1981.11919},
   file          = {:Korpel1981.pdf:PDF},
+  groups        = {Acousto-optics},
   keywords      = {Acoustic diffraction;X-ray diffraction;Optical signal processing;Signal processing;Crystals;Optical reflection;Electromagnetic reflection;Acoustic reflection;Optical scattering;Frequency},
 }
 
@@ -457,10 +469,85 @@ Very interesting since the results from vibrating targets show that the frequenc
   pages         = {2-21},
   month         = {Jan},
   issn          = {0018-9251},
-  __markedentry = {[tfy13nwi:2]},
+  __markedentry = {[tfy13nwi:1]},
+  comment       = {This article seems to clear up a few things when compared with Chen2003. It derives the micro-Doppler shift from rotation (not that interesting) and vibration (very interesting) in a better way and goes further in describing the sidebands created by vibration.
+
+In Chen2003 I was confused with how the vibration would cause a frequency modulation and thought this was different from what the other articles were saying. Here, there is much more clear mention of the actual sidebands which are created next to any regular Doppler line (or carrier if there is no bulk movement and corresponding Doppler shift). They also expand the frequency modulation into Bessel functions and show that the sidebands are separated by a frequency corresponding to the vibration frequency. This shows that there is agreement between this and the other articles where acoustic resonance was said to give a frequency shift of the acoustic frequency. The only difference is that all sidebands are considered here (there is an infinite amount), where the other articles only consider the first (and strongest) sidebands corresponding to Bessel functions of order 0 (no shift) and 1 (shift of +/- vibration frequency).
+
+Section II contains the derivation of the micro-Doppler model which is interesting. The later sections (III and onwards) are more on other subjects, and do not seem as important to my work at the moment.},
   doi           = {10.1109/TAES.2006.1603402},
   file          = {:Chen2006.pdf:PDF},
-  keywords      = {radar signal processing;time-frequency analysis;Doppler radar;microDoppler effect;Doppler frequency shift;radar target;micromotion dynamics;mechanical vibrations;Doppler modulations;rotation motions;tumbling motions;coning motions;time-frequency transforms;Doppler radar;Diesel engines;Frequency;Vibrations;Laser radar;Electromagnetic scattering;Vehicles;Transmitters;Signal generators;Aircraft},
+  keywords      = {radar signal processing;time-frequency analysis;Doppler radar;microDoppler effect;Doppler frequency shift;radar target;micromotion dynamics;mechanical vibrations;Doppler modulations;rotation motions;tumbling motions;coning motions;time-frequency transforms;Doppler radar;Diesel engines;Frequency;Vibrations;Laser radar;Electromagnetic scattering;Vehicles;Transmitters;Signal generators;Aircraft, rank5},
+}
+
+@Article{Wang2018,
+  author        = {Wang, Lulu},
+  title         = {Acoustic Radiation Force Based Ultrasound Elasticity Imaging for Biomedical Applications},
+  journal       = {Sensors (Basel, Switzerland)},
+  year          = {2018},
+  volume        = {18},
+  number        = {7},
+  __markedentry = {[tfy13nwi:1]},
+  comment       = {Good review of different medical techniques using acoustic radiation force (ARF). The article contains both a part describing how ARF works and a part describing different applications in medical instrumentation.
+
+Many references.},
+  doi           = {10.3390/s18072252},
+  file          = {:Wang2018.pdf:PDF},
+  groups        = {Acoustics},
+  publisher     = {Multidisciplinary Digital Publishing Institute (MDPI)},
+}
+
+@Article{Torr1984,
+  author        = {G. R. Torr},
+  title         = {The acoustic radiation force},
+  journal       = {American Journal of Physics},
+  year          = {1984},
+  volume        = {52},
+  number        = {5},
+  pages         = {402-408},
+  __markedentry = {[tfy13nwi:]},
+  comment       = {Gives the background to why acoustic radiation force happens. Not sure how relevant it is to my work? Now I at least know that the theoretical background is here if I need it later.
+
+Also, more here: https://www.comsol.com/blogs/how-to-compute-the-acoustic-radiation-force/},
+  doi           = {10.1119/1.13625},
+  file          = {:Torr1984.pdf:PDF},
+  groups        = {Acoustics},
+}
+
+@Article{Fatemi1998,
+  author    = {Fatemi, Mostafa and Greenleaf, James F.},
+  title     = {Ultrasound-Stimulated Vibro-Acoustic Spectrography},
+  journal   = {Science},
+  year      = {1998},
+  volume    = {280},
+  number    = {5360},
+  pages     = {82--85},
+  issn      = {0036-8075},
+  abstract  = {An ultrasound method based on radiation force is presented for imaging the acoustic response of a material to mechanical excitation. Acoustic energy was emitted from solids and tissues in response to an oscillatory radiation force produced by interfering focused beams of ultrasound. Frequency spectra of ultrasound-stimulated acoustic emission exhibited object resonances. Raster-scanning the radiation force over the object and recording the amplitude and phase of the emitted sound resulted in data from which images related to the elastic compositions of the acoustically emitting objects could be computed. Acoustic emission signals distinguished tuning-fork resonances, submillimeter glass spheres, and calcification in excised arteries and detected object motions on the order of nanometers.},
+  comment   = {More information on the technique of localized harmonic motion than what is described in Konofagou2003. Here, more equations and background is shown and it is described in more applications than just medical imaging.
+
+It does, however, not have any electromagnetic components so the conclusions leading to acoustic emission here need to be transferred to electromagnetic scattering somehow. What is seen here is that if a small part in an object has different acoustic properties than the rest of the object, its acoustic radiation force will be different. The way this is seen is by an acoustic emission that is different than that of the rest of the object when the focus of the ultrasonic beams is on the anomalus part. This should also be possible to see electromagnetically since the acoustic emission of the ultrasonic focus is connected to its vibration. Stronger vibrations give rise to stronger Doppler-components in the electromagnetic return signal, so if an object has different acoustic properties these should be visible electromagnetically as well.},
+  doi       = {10.1126/science.280.5360.82},
+  eprint    = {http://science.sciencemag.org/content/280/5360/82.full.pdf},
+  file      = {:Fatemi1998.pdf:PDF},
+  groups    = {Acoustics},
+  publisher = {American Association for the Advancement of Science},
+  url       = {http://science.sciencemag.org/content/280/5360/82},
+}
+
+@Article{Mitri2007,
+  author        = {Mitri,F. G. and Silva,G. T. and Greenleaf,J. F. and Fatemi,M.},
+  title         = {Simultaneous sum-frequency and vibro-acoustography imaging for nondestructive evaluation and testing applications},
+  journal       = {Journal of Applied Physics},
+  year          = {2007},
+  volume        = {102},
+  number        = {11},
+  pages         = {114911},
+  __markedentry = {[tfy13nwi:2]},
+  comment       = {Describes vibro-acoustography in NDT/E. The method in the article is not the standard method of using the difference frequency fd between f1 and f2 where f2 = f1 + fd. Here they also use the sum frequency. Not sure if that is actually relevant for my work, but the article can be used to understand how vibro-acoustography is used in NDT/E, and the references can also be useful there. Reading on acousto-vibrography in NDT/E is useful for understanding if the combination with electromagnetics can be used (as in Top2016 for medical).},
+  doi           = {10.1063/1.2821174},
+  file          = {:Mitri2007.pdf:PDF},
+  groups        = {Acoustics},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
@@ -473,4 +560,6 @@ Very interesting since the results from vibrating targets show that the frequenc
 1 StaticGroup:Medical optical frequencies\;0\;1\;\;hospital\;\;;
 1 StaticGroup:Medical microwave frequencies\;0\;1\;\;hospital\;\;;
 1 StaticGroup:Michigan RadLab\;0\;1\;\;radio_tower\;\;;
+1 StaticGroup:Acousto-optics\;0\;1\;\;speaker\;\;;
+1 StaticGroup:Acoustics\;0\;1\;\;\;\;;
 }

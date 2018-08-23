@@ -311,7 +311,7 @@ As in Banks2002, this article delves into variational calculus and lengthy deriv
 
 The described method uses focused ultrasound, which is one of the techniques we have been discussing before. The way it works is that a focused ultrasound beam is amplitude modulated to create sinusoidally varying acoustic radiation force in its focus. The force causes harmonic motion in the part of the sample in under ultrasonic focus. This harmonic motion casues incoming microwaves to be Doppler shifted by the vibration frequency (which is twice the AM frequency). The Doppler component of scattered microwaves can then be measured. If the ultrasonic beam is scanned, the Doppler readings will give information on properties of the scanned material. The different properties contributing to the level of the Doppler component are primarily acoustic, elastic and electromagnetic properties. However, if the material is not completely homogeneous different scattering parts inside of the material complicates the picture. The scatterer size then becomes important as well. Vibration frequency also plays a part in the Doppler level.
 
-Frequency of tissue vibration is twice the frequency of modulation in the ultrasonic beam. This is probably reasonable, but I need to be sure of why this is.
+Frequency of tissue vibration is twice the frequency of modulation in the ultrasonic beam. This is probably reasonable, but I need to be sure of why this is. After further reading it seems like they use different equations for this in different papers. Probably depends on how you define and generate your AM signal.
 
 Throughout the derivations it is assumed that reflections of ultrasound are small. This might not be the case for laminated composite materials since the interface between layers might be a cause of reflections (if the difference in acoustic properties is large enough). Something to think about if this method is considered.
 
@@ -398,7 +398,7 @@ Section 2.3 discusses non destrutive evaluation, which is obviously of interest.
 
 In the later chapters it is much more focused on the specific implementation of their model. This is less relevant now in the beginning of my work than the general information in the earlier parts.},
   file          = {:Buerkle2007.pdf:PDF},
-  groups        = {Michigan RadLab},
+  groups        = {Michigan RadLab, Acousto-electromagnetics},
   url           = {http://www.eecs.umich.edu/radlab/html/NEWDISS/Buerkle.pdf},
 }
 
@@ -416,6 +416,7 @@ In the later chapters it is much more focused on the specific implementation of 
   doi           = {10.1002/2015RS005660},
   eprint        = {https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1002/2015RS005660},
   file          = {:Gong2015.pdf:PDF},
+  groups        = {Acousto-electromagnetics},
   keywords      = {troposphere, atmospheric refractivity, acoustic wave perturbation, artificial abnormality},
   url           = {https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1002/2015RS005660},
 }
@@ -436,6 +437,7 @@ In the later chapters it is much more focused on the specific implementation of 
   __markedentry = {[tfy13nwi:1]},
   comment       = {Since it is a patent it is quite difficult to read due to the format. At least, what it describes is a device using dielectric modulation due to ultrasound to induce a frequency shift in microwaves which is used for improved detection of some kind. Might have to return to this.},
   file          = {:Merkel2006.pdf:PDF},
+  groups        = {Acousto-electromagnetics},
   publisher     = {Google Patents},
 }
 
@@ -457,6 +459,7 @@ Very interesting since the results from vibrating targets show that the frequenc
 See Chen2006 for a better derivation and explanation.},
   doi           = {10.1049/ip-rsn:20030743},
   file          = {:Chen2003.pdf:PDF},
+  groups        = {Electromagnetics},
   keywords      = {Doppler effect ;radar signal processing ;time-frequency analysis ;vibrations ;signal representation ;micro-Doppler signature analysis;mechanical vibration;mechanical rotation;frequency modulation;returned radar signal;sidebands;Doppler frequency;micro-Doppler effect;computer simulations;joint time-frequency domain},
 }
 
@@ -496,6 +499,7 @@ In Chen2003 I was confused with how the vibration would cause a frequency modula
 Section II contains the derivation of the micro-Doppler model which is interesting. The later sections (III and onwards) are more on other subjects, and do not seem as important to my work at the moment.},
   doi           = {10.1109/TAES.2006.1603402},
   file          = {:Chen2006.pdf:PDF},
+  groups        = {Electromagnetics},
   keywords      = {radar signal processing;time-frequency analysis;Doppler radar;microDoppler effect;Doppler frequency shift;radar target;micromotion dynamics;mechanical vibrations;Doppler modulations;rotation motions;tumbling motions;coning motions;time-frequency transforms;Doppler radar;Diesel engines;Frequency;Vibrations;Laser radar;Electromagnetic scattering;Vehicles;Transmitters;Signal generators;Aircraft},
 }
 
@@ -582,10 +586,15 @@ An interesting part is the transducer which is used. This is a confocal transduc
   volume        = {62},
   number        = {12},
   pages         = {4852},
-  __markedentry = {[tfy13nwi:3]},
-  comment       = {Continuation of the research in Top2016. The main improvement is that they are using a 2D scan here instead of 3D. Some other issues are also addressed.},
+  __markedentry = {[tfy13nwi:2]},
+  comment       = {Continuation of the research in Top2016. The main improvement is that they are using a 2D scan here instead of 3D. Some other issues are also addressed.
+
+Not much more details on theory or background if compared with Top2016. There is much information on the 2D results which are new, but for my work this doesn't add very much from Top2016.
+
+There is an appendix part on how two adjacent scatterers affect each other through shear wave propagation if they are under acoustic radiation force with the same frequency but different phase. Might be interesting since this is a source of distortion.},
   doi           = {10.1088/1361-6560/aa5de1},
   file          = {:Tafreshi2017.pdf:PDF},
+  groups        = {Medical microwave frequencies, Acousto-electromagnetics},
   publisher     = {IOP Publishing},
 }
 
@@ -597,10 +606,11 @@ An interesting part is the transducer which is used. This is a confocal transduc
   volume        = {51},
   number        = {3},
   pages         = {215--233},
-  __markedentry = {[tfy13nwi:3]},
-  comment       = {Review article on microwave imaging in breast cancer detection. Might have some relevant things? Found from Top articles on HMMDI.},
+  __markedentry = {[tfy13nwi:1]},
+  comment       = {Review article on microwave imaging in breast cancer detection. Initially I thought there might be interesting parts in it, mainly since it has a part on HMMDI (see Top2016). However, this was very small and not much else had relevance to my work.},
   doi           = {10.3233/JAE-150050},
   file          = {:Islam2016.pdf:PDF},
+  groups        = {Medical microwave frequencies},
   publisher     = {IOS Press},
 }
 
@@ -614,10 +624,13 @@ An interesting part is the transducer which is used. This is a confocal transduc
   pages         = {290-300},
   month         = {Feb},
   issn          = {0278-0062},
-  __markedentry = {[tfy13nwi:3]},
-  comment       = {Paper before Top2016 with more citations among other things. It seems to have more details on the analytical model of interaction than Top2016 or Tafreshi2017.},
+  __markedentry = {[tfy13nwi:2]},
+  comment       = {Paper before Top2016 with more citations among other things. It seems to have more details on the analytical model of interaction than Top2016 or Tafreshi2017.
+
+Contains some analytical work that might be interesting. However, there also seems to be a bit of a change in some of the formulas in this work when compared to newer papers by the same group. They also describe a simulation method quite well, though it is simpler than that described in Top2016. The simplicity might be good since it could be used to guide me with simple simulations of my own.},
   doi           = {10.1109/TMI.2013.2284234},
   file          = {:Top2014.pdf:PDF},
+  groups        = {Medical microwave frequencies, Acousto-electromagnetics},
   keywords      = {bioelectric potentials;biomechanics;biomedical ultrasonics;cancer;Doppler measurement;elasticity;finite element analysis;medical signal processing;microwave imaging;tumours;ultrasonic imaging;vibrations;harmonic motion microwave Doppler imaging;simulation study;tissue imaging;dielectric properties;elastic properties;simple bilayered breast model;local harmonic motion;focused ultrasound probe;narrow-band microwave signal;Doppler component;scattered signal;vibrating region;plane-wave spectrum technique;reciprocity theorem;vibrating electrically small spherical tumor;breast tissue;operating frequency;antenna alignment;tumor depth;received signal;harmonic motion frequency;displacement distribution;mechanical simulations;finite element method;ultrasound exposure;microwave exposure;tumors;fibroglandular breast tissue;Tumors;Ultrasonic imaging;Microwave imaging;Microwave oscillators;Microwave theory and techniques;Apertures;Breast cancer;elastography;microwave imaging;plane wave spectra;ultrasound elasticity imaging;vibrating scatterer;Breast;Breast Neoplasms;Elasticity Imaging Techniques;Female;Humans;Microwaves;Models, Biological;Transducers;Vibration},
 }
 
@@ -625,12 +638,14 @@ An interesting part is the transducer which is used. This is a confocal transduc
 
 @Comment{jabref-meta: grouping:
 0 AllEntriesGroup:;
-1 StaticGroup:Micro/mm-wave imaging\;0\;1\;\;signal_variant\;\;;
 1 StaticGroup:Aerospace composites\;0\;1\;\;airplane\;\;;
 1 StaticGroup:Acousto-electromagnetics\;0\;1\;\;speaker\;\;;
-1 StaticGroup:Medical optical frequencies\;0\;1\;\;hospital\;\;;
-1 StaticGroup:Medical microwave frequencies\;0\;1\;\;hospital\;\;;
 1 StaticGroup:Michigan RadLab\;0\;1\;\;radio_tower\;\;;
 1 StaticGroup:Acousto-optics\;0\;1\;\;speaker\;\;;
-1 StaticGroup:Acoustics\;0\;1\;\;\;\;;
+1 StaticGroup:Acoustics\;0\;1\;\;speaker\;\;;
+1 StaticGroup:Electromagnetics\;2\;1\;\;signal_variant\;\;;
+2 StaticGroup:Micro/mm-wave imaging\;0\;1\;\;signal_variant\;\;;
+1 StaticGroup:Medical\;2\;1\;\;hospital\;\;;
+2 StaticGroup:Medical microwave frequencies\;0\;1\;\;hospital\;\;;
+2 StaticGroup:Medical optical frequencies\;0\;1\;\;hospital\;\;;
 }

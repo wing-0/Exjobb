@@ -1,0 +1,52 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\author{Niklas Wingren}
+\title{Literature Review}
+\subtitle{Summary of activity}
+
+\begin{document}
+	
+	\maketitle
+	
+	\section{Introduction}
+	This document presents my work during the literature review.
+	
+	\section{Subjects}
+	Before beginning to search for information, some areas of interest were identified. These are listed below:
+	\begin{itemize}
+		\item Non-destructive testing
+		\item Micro/mm-wave imaging
+		\item Acousto-optics
+		\item Acousto-electromagnetism
+		\item Aerospace composites
+		\item Medical applications of acoustics/microwaves
+	\end{itemize}
+	
+	\subsection{Acousto-electromagnetism}
+	What is meant with the term "acousto-electromagnetism" is interaction between acoustics and electromagnetics in a more general sense than what is done in acousto-optics. The primary thought was that this would include phenomena which would occur at lower than optical frequencies (for example at mm-waves).
+	
+	Much work has been done at the University of Minnesota Radiation Lab when it comes to an electromagnetic view of the interaction \cite{Lawrence2001}\cite{Sarabandi2003}\cite{Buerkle2007}\cite{Buerkle2008}\cite{Buerkle2009}. The mechanism of interaction is based on both density modulation and boundary perturbation of a target \cite{Buerkle2007}. The approach is very much based on radar since they consider electromagnetic detection of a discrete target, and acoustic waves are used to better illuminate said target. Analytic solutions exist for dielectric \cite{Lawrence2001} and metallic \cite{Sarabandi2003} infinite cylinders. There are also numeric simulations using the same approach, but for more complex targets \cite{Buerkle2008}\cite{Buerkle2009}.
+	
+	\section{Identified mechanisms}
+	In the literature a number of mechanisms have been presented for interaction between acoustics and electromagnetics.
+	
+	\subsection{Boundary perturbation of target}
+	This mechanism is based on a discrete target under acoustic resonance. The resonance of the target leads to vibration, which is seen as a time-dependent boundary perturbation \cite{Buerkle2007}. Vibration causes a micro-Doppler shift in scattered electromagnetic waves, which corresponds to frequency modulation of the returned signal by the frequency of vibration \cite{Chen2006}. For a stationary target this corresponds to a signal with a strong frequency component at $f_c$ and weaker sidebands at $f_c \pm n f_v$ where $n=1$ are the strongest (carrier frequency $f_c$, variation frequency $f_v$, positive integers $n$).
+	
+	\subsection{Localized harmonic motion}
+	
+	\subsection{Density modulation of material}
+	
+	\subsection{Displacement of scatterers}
+	
+	
+	
+	\bibliographystyle{unsrt}
+	\bibliography{../../Litteratur/litteratur}
+	
+\end{document}

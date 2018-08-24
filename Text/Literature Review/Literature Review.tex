@@ -36,17 +36,37 @@
 	In the literature a number of mechanisms have been presented for interaction between acoustics and electromagnetics.
 	
 	\subsection{Boundary perturbation of target}
-	This mechanism is based on a discrete target under acoustic resonance. The resonance of the target leads to vibration, which is seen as a time-dependent boundary perturbation \cite{Buerkle2007}. Vibration causes a micro-Doppler shift in scattered electromagnetic waves, which corresponds to frequency modulation of the returned signal by the frequency of vibration \cite{Chen2006}. For a stationary target this corresponds to a signal with a strong frequency component at $f_c$ and weaker sidebands at $f_c \pm n f_v$ where $n=1$ are the strongest (carrier frequency $f_c$, variation frequency $f_v$, positive integers $n$).
+	This mechanism is based on a discrete target under acoustic resonance. The resonance of the target leads to vibration, which is seen as a time-dependent boundary perturbation \cite{Buerkle2007}. Vibration causes a micro-Doppler shift in scattered electromagnetic waves, which corresponds to frequency modulation of the returned signal by the frequency of vibration \cite{Chen2006}. For a stationary target this corresponds to a signal with a strong frequency component at $f_c$ and weaker sidebands at $f_c \pm n f_v$ where $n=1$ are the strongest (carrier frequency $f_c$, variation frequency $f_v$, positive integers $n$). The amplitudes of the spectral lines are given by Bessel functions $J_n(B)$, where $B \sim (4\pi/\lambda)D_v$ \cite{Chen2006}. $D_v$ is the amplitude of vibration which is usually small (on the order of $\mu$m) \cite{Buerkle2007}\cite{Top2014}. For small values of $B$ the central component will dominate, and the first Doppler component will be much more prominent than the others. Therefore it makes sense that this first component is the one considered in the literature \cite{Buerkle2007}.
 	
 	\subsection{Localized harmonic motion}
+	This mechanism is similar to boundary perturbation in that it is based on scattering from harmonic motion. The difference is that harmonic motion is introduced in a bulk material instead of a resonating discrete target. The mechanism has been utilized in the medical method of vibro-acoustography and harmonic motion imaging \cite{Wang2018}. Both techniques use amplitude modulated ultrasound to produce a time-harmonic acoustic radiation force in a localized region of a sample. This force then generates time-harmonic displacement, or vibration. In the acoustic methods the vibrating region emits acoustic waves which can be detected \cite{Fatemi1998}\cite{Konofagou2003}.
+	
+	An electromagnetic wave incident towards the vibrating region will scatter with a frequency shift which corresponds to the frequency of vibration \cite{Top2014}. This is very similar to the boundary perturbation mechanism described before.
+	
+	One detail omitted before is the two methods of generating radiation force locally. The first method uses amplitude modulated focused ultrasound with its focus on the region of interest \cite{Top2016}. Since amplitude modulated ultrasound exists throughout the beam a force is generated in that entire region. However, the intensity is much higher in the focus so the force is stronger there. The second method instead uses two single-frequency ultrasonic beams which intersect at the region of interest. The frequencies of the two beams differ by a small amount $\Delta \omega$. Superposition at the intersection will then generate localized amplitude modulation by the difference frequency $\Delta \omega$ \cite{Fatemi1998}.
 	
 	\subsection{Density modulation of material}
+	This mechanism is the one used in the theory of acousto-optics \cite{Saleh2007}\cite{Korpel1981}. The main idea is that there is a relation between the density of a material and its index of refraction. Since an acoustic wave consists of periodic compression and rarefaction in a medium, a consequence is that the index of refraction is modulated with the same period \cite{Saleh2007}. Due to Fresnel reflection, this periodic structure of varying index of refraction acts as a Bragg reflector scattering incident light. The Bragg condition determines the angle of incidence $\theta_B$ required for the light
+	\begin{equation*}
+		\sin{\theta_B} = \frac{\lambda}{2\Lambda}
+	\end{equation*}
+	where $\lambda$ is the light wavelength and $\Lambda$ is the acoustic wavelength \cite{Saleh2007}.
+	
+	There is nothing in the basic theory suggesting that optical frequencies are required for this interaction. At microwave frequencies premittivity is more common to use than index of refraction, but they are related and the principle is the same. An application which uses this principle and has been used for many years is the radio acoustic sounding system \cite{Buerkle2007}. Additionally, though not using the exact Bragg formulation for modeling interaction, some authors have explored other ways of using density modulation for microwave frequencies \cite{Lawrence2001}\cite{Merkel2006}. It has been stated, however, that this interaction is very small and resonance is often required (giving rise to boundary perturbation) \cite{Buerkle2007}. This can be understood by looking at the acousto-optic theory. The Bragg condition gives the angle for peak reflectance against the acoustic wave. When considering strength of the interaction, though, an actual value for the reflectance is of interest. This can be found as
+	\begin{equation*}
+		\mathcal{R} = \frac{\pi^2}{2\lambda_0^2} \left( \frac{L}{\sin{\theta}} \right) ^2 \mathcal{M}I_s
+	\end{equation*}
+	where $\lambda_0$ is vacuum light wavelength, $L/\sin{\theta}$ is the oblique distance of light penetration, $\mathcal{M}$ is a material parameter and $I_s$ is the acoustic intensity \cite{Saleh2007}. For intense acoustic waves a correction is necessary, giving $\mathcal{R}_e = \sin{^2\sqrt{\mathcal{R}}}$ \cite{Saleh2007}. The interesting part when it comes to microwave frequencies, however, is the denominator in the first equation. An inverse proportionality to the square of the wavelength might be a reason for concern when moving away from optics. For a simple comparison, visible light is around hundreds of nm in wavelength while microwaves are between 1 mm and 1 m. Considering only the approximate relation, the fractional change for changing from optics to microwaves would be
+	\begin{equation*}
+		\frac{\mathcal{R}_\text{microwave}}{\mathcal{R}_\text{optics}} = \frac{\left( 1/10^{-2} \text{ m}\right)^2}{\left( 1/10^{-7} \text{ m} \right)^2} = 10^{-10}
+	\end{equation*}
+	An approximately 10 order of magnitude difference between the two might explain why density modulation is used in acousto-optics, but rarely for lower frequencies.
 	
 	\subsection{Displacement of scatterers}
+	This is a mechanism presented in the field of ultrasound-optical tomography (UOT). The mechanism is based on dynamic multiple scattering of light, which occurs if many scatterers undergoing Brownian motion are considered \cite{Leutz1995}. If an ultrasonic beam is incident on such a sample the scatterers will move due to both Brownian motion and ultrasound, giving rise to a frequency shift in affected photons \cite{Leutz1995}\cite{Elson2011}.
 	
 	
-	
-	\bibliographystyle{unsrt}
+	\bibliographystyle{../../Litteratur/IEEEtran}
 	\bibliography{../../Litteratur/litteratur}
 	
 \end{document}

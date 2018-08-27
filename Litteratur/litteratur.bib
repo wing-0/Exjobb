@@ -53,7 +53,6 @@ Contains many references which might be useful in further searching.},
   doi           = {10.1007/BF03321153},
   file          = {:Dobmann2012.pdf:PDF},
   groups        = {Micro/mm-wave imaging},
-  url           = {https://doi.org/10.1007/BF03321153},
 }
 
 @Article{Garnier2011,
@@ -72,7 +71,6 @@ Might be useful as a starting point when searching for information on properties
   file          = {:Garnier2011.pdf:PDF},
   groups        = {Aerospace composites},
   keywords      = {NDT, NDE, Composites, Ultrasonic Testing, InfraRed Thermography, Shearography},
-  url           = {http://www.sciencedirect.com/science/article/pii/S0263822310003594},
 }
 
 @Article{Marklein1999,
@@ -186,6 +184,7 @@ Especially the reference list could be important since it contains a lot.},
 
 One important detail to note from this article is in the interaction mechanism part. Here it is said that scatterer displacement is on the order of 1 nm, which is of course not relevant for mm-waves. The main idea of scatterers affecting photons as used in these medical applications should then not be relevant for mm-waves.},
   doi           = {10.1098/rsfs.2011.0021},
+  file          = {:Elson2011.pdf:PDF},
   groups        = {Medical optical frequencies},
   publisher     = {Royal Society},
 }
@@ -274,7 +273,6 @@ Might be good to search for more articles relating to this.},
   doi           = {10.1051/cocv:2002019},
   file          = {:Banks2002.pdf:PDF},
   groups        = {Acousto-electromagnetics},
-  url           = {https://doi.org/10.1051/cocv:2002019},
 }
 
 @Article{Albanese2002,
@@ -293,7 +291,6 @@ As in Banks2002, this article delves into variational calculus and lengthy deriv
   doi           = {10.1088/0266-5611/18/6/330},
   file          = {:Albanese2002.pdf:PDF},
   groups        = {Acousto-electromagnetics},
-  url           = {http://stacks.iop.org/0266-5611/18/i=6/a=330},
 }
 
 @Article{Top2016,
@@ -361,7 +358,6 @@ More information on how the harmonic motion arises in the intersection: "Ultraso
   file          = {:Konofagou2003.pdf:PDF},
   groups        = {Acoustics},
   keywords      = {Displacement, Harmonic, Localized, Modulus, Motion, Radiation force, Stiffness},
-  url           = {http://www.sciencedirect.com/science/article/pii/S0301562903009530},
 }
 
 @Article{Alberti2016,
@@ -418,7 +414,6 @@ In the later chapters it is much more focused on the specific implementation of 
   file          = {:Gong2015.pdf:PDF},
   groups        = {Acousto-electromagnetics},
   keywords      = {troposphere, atmospheric refractivity, acoustic wave perturbation, artificial abnormality},
-  url           = {https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1002/2015RS005660},
 }
 
 @Patent{Merkel2006,
@@ -556,7 +551,6 @@ It does, however, not have any electromagnetic components so the conclusions lea
   file          = {:Fatemi1998.pdf:PDF},
   groups        = {Acoustics},
   publisher     = {American Association for the Advancement of Science},
-  url           = {http://science.sciencemag.org/content/280/5360/82},
 }
 
 @Article{Mitri2007,
@@ -643,11 +637,87 @@ Contains some analytical work that might be interesting. However, there also see
   number        = {1},
   pages         = {14 - 19},
   issn          = {0921-4526},
-  __markedentry = {[tfy13nwi:3]},
+  __markedentry = {[tfy13nwi:1]},
+  comment       = {Describes effect of ultrasound on dynamic multiple light scattering (DMLS). This is a mechanism based on Brownian motion of a large number of scatterers, which in itself might not be relevant to my work.
+
+The main assumptions are not valid for my work. They are: wavelength (1) << mean free path between scattering events (2) << total path (3). In the mm-wave case it would probably be more like (1) \approx (2) < (3).
+
+They assume movement due to ultrasound in a very direct manner. This might be the case for very small scatterers since an acoustic wave is nothing more than a mechanical movement. However, this does not hold for larger objects. Instead, one would have to look at acoustic radiation forcing in that case which is not an as direct effect.},
   doi           = {https://doi.org/10.1016/0921-4526(94)00238-Q},
   file          = {:Leutz1995.pdf:PDF},
   groups        = {Medical optical frequencies},
-  url           = {http://www.sciencedirect.com/science/article/pii/092145269400238Q},
+}
+
+@Article{DiMarzio2003,
+  author        = {DiMarzio, Charles A. and Murray, Todd W.},
+  title         = {Medical Imaging Techniques Combining Light and Ultrasound},
+  journal       = {Subsurface Sensing Technologies and Applications},
+  year          = {2003},
+  volume        = {4},
+  number        = {4},
+  pages         = {289--309},
+  month         = {Oct},
+  issn          = {1573-9317},
+  __markedentry = {[tfy13nwi:1]},
+  abstract      = {The combination of light and ultrasound can lead to new medical imaging techniques combining the spectroscopic capability of light with the spatial resolution of ultrasound. Spectroscopy can be used to measure blood volume and blood oxygen, but because most biological tissues are highly scattering at optical wavelengths, spatial resolution is poor. Ultrasound provides excellent resolution, but not good soft-tissue contrast. There are many techniques for combining light and ultrasound, but the two discussed in this paper have emerged as having the most promise for medical applications. In the first, optoacoustic imaging, an acoustic pulse is generated by a pulse of laser light, and the detected sound is used to produce an image. In the second, acousto-photonic imaging, ultrasound modulates laser light used for diffusive optical tomography. Both of these techniques show promise for a variety of medical applications.},
+  comment       = {Review article on both optoacoustic imaging and acousto-photonic imaging. The one of interest is acousto-photonic imaging, which is the same as ultrasound-optical imaging.
+
+There is some more theory in this review than in Elson2011, which can be good.},
+  day           = {01},
+  doi           = {10.1023/A:1026300631323},
+  file          = {:DiMarzio2003.pdf:PDF},
+  groups        = {Medical optical frequencies},
+}
+
+@Article{Kempe1997,
+  author        = {M. Kempe and M. Larionov and D. Zaslavsky and A. Z. Genack},
+  title         = {Acousto-optic tomography with multiply scattered light},
+  journal       = {J. Opt. Soc. Am. A},
+  year          = {1997},
+  volume        = {14},
+  number        = {5},
+  pages         = {1151--1158},
+  month         = {May},
+  __markedentry = {[tfy13nwi:1]},
+  abstract      = {We have investigated the modulation of the optical field transmitted through a colloid of polystyrene spheres by a narrow quasi-cw ultrasound beam. Measurements of the scale dependence of the heterodyne modulation signal at the acoustic frequency are obtained for samples that are up to 140 scattering lengths thick. A calculation of the modulation signal predicts the possibility of tomographic imaging, which is confirmed experimentally.},
+  comment       = {Similar to the reasoning in Leutz1995 when it comes to how an ultrasonic wave affects light.
+
+The main effect that is shown here has its foundation in a phase being the function of distances between different scatterers. An acoustic wave displaces scatterers in its beam, and this alters the phase. They then use different correlation functions to come to a conclusion of the final signal. Still, the result is a modulation by the acoustic frequency (and harmonics), so a very similar result of the interaction when compared to other mechanisms (which do not rely on the same fundamental interaction).
+
+The main issue when looking at the problem at hand is if it's even possible to consider these phase changes due to displacements. The displacement of scatterers is bound to not work in the same way for larger scatterers (think mm-size instead of molecular size), but they should still be displaced due to acoustic radiation force. But the results from all papers on UOT or similar methods are based on dynamic multiple scattering of the light, which might not be valid for the mm-wave imaging problem. When reading Helander2017 there is a basic assumption of sparse scatterers, which clearly should not require theory based on a large numbers of scattering events as in DMLS.},
+  doi           = {10.1364/JOSAA.14.001151},
+  file          = {:Kempe1997.pdf:PDF},
+  groups        = {Medical optical frequencies},
+  keywords      = {Medical imaging; Mie theory; Photon density waves; Scattering; Speckle patterns; Tomography},
+  publisher     = {OSA},
+}
+
+@Article{Abou‐Khousa2007,
+  author        = {Abou‐Khousa, M. A. and Ryley, A. and Kharkovsky, S. and Zoughi, R. and Daniels, D. and Kreitinger, N. and Steffes, G.},
+  title         = {Comparison of X‐Ray, Millimeter Wave, Shearography and Through‐Transmission Ultrasonic Methods for Inspection of Honeycomb Composites},
+  journal       = {AIP Conference Proceedings},
+  year          = {2007},
+  volume        = {894},
+  number        = {1},
+  pages         = {999-1006},
+  __markedentry = {[tfy13nwi:2]},
+  comment       = {Paper comparing some different NDT techniques for honeycomb core composites. Found as a reference in Helander2017.},
+  doi           = {10.1063/1.2718076},
+  file          = {:Abou‐Khousa2007.pdf:PDF},
+}
+
+@Article{Riegert2006,
+  author        = {Riegert, G. and Pfleiderer, K. and Gerhard, H. and Solodov, I. and Busse, G.},
+  title         = {Modern methods of NDT for inspection of aerospace structures},
+  journal       = {ECNDT, Berlin, Germany},
+  year          = {2006},
+  __markedentry = {[tfy13nwi:3]},
+  comment       = {Seems to be a conference paper which has been cited a number of times. Lots of references which can be nice.
+
+Might not be a good paper to cite since it seems difficult to find more info than just the pdf.},
+  file          = {:Riegert2006.pdf:PDF},
+  publisher     = {Citeseer},
+  url           = {http://www.ndt.net/?id=3560},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

@@ -1,9 +1,32 @@
-\documentclass[a4paper]{scrartcl}
+\documentclass[a4paper,twocolumn]{scrartcl}
 \usepackage[utf8]{inputenc}
+
+% Symbols
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+
+% Graphics
 \usepackage{graphicx}
+
+% Language localization
+\usepackage[english]{babel}
+
+% Improves float behavior (e.g. enables [H]) and puts captions on top
+\usepackage{float}
+\floatstyle{plaintop}
+
+% Includes todo-notes
+\usepackage[colorinlistoftodos]{todonotes}
+
+% Makes caption identifiers (i.e. Figure X:) bold
+\usepackage[labelfont=bf]{caption}
+
+% Gives \ref and \cite hyperlinks to what they refer to
+\usepackage[hidelinks]{hyperref}
+
+% Enables \begin{comment} comments
+\usepackage{comment}
 
 \author{Niklas Wingren}
 \title{Literature Review}
@@ -18,6 +41,7 @@
 	
 	\section{Subjects}
 	Before beginning to search for information, some areas of interest were identified. These are listed below:
+	
 	\begin{itemize}
 		\item Non-destructive testing
 		\item Micro/mm-wave imaging
@@ -60,12 +84,22 @@
 	\begin{equation*}
 		\frac{\mathcal{R}_\text{microwave}}{\mathcal{R}_\text{optics}} = \frac{\left( 1/10^{-2} \text{ m}\right)^2}{\left( 1/10^{-7} \text{ m} \right)^2} = 10^{-10}
 	\end{equation*}
-	An approximately 10 order of magnitude difference between the two might explain why density modulation is used in acousto-optics, but rarely for lower frequencies.
+	This reduction in reflectance between the two might explain why density modulation is used in acousto-optics, but rarely for lower frequencies.
 	
 	\subsection{Displacement of scatterers}
-	This is a mechanism presented in the field of ultrasound-optical tomography (UOT). The mechanism is based on dynamic multiple scattering of light, which occurs if many scatterers undergoing Brownian motion are considered \cite{Leutz1995}. If an ultrasonic beam is incident on such a sample the scatterers will move due to both Brownian motion and ultrasound, giving rise to a frequency shift in affected photons \cite{Leutz1995}\cite{Elson2011}.
+	This is a mechanism presented in the field of ultrasound-optical tomography (UOT). The mechanism is based on dynamic multiple scattering of light, which occurs if many scatterers undergoing Brownian motion are considered \cite{Leutz1995}. If an ultrasonic beam is incident on such a sample the scatterers will move due to both Brownian motion and ultrasound, giving rise to a frequency shift in affected photons \cite{Leutz1995}\cite{Elson2011}. In medical applications, movement of the scatterers due to acoustic waves is very straight-forward: their displacement directly follows the acoustic wave \cite{Leutz1995}. This might well be the case for small scatterers which are then part of the wave, but for larger scatterers it gets more complicated. In that case, acoustic radiation force has to be considered for scatterer movement \cite{Torr1984}.
 	
+	It is interesting to see if this mechanism holds any relevance when it comes to microwave frequencies. The assumption on which the theory rests is that of dynamic multiple light scattering \cite{Leutz1995}. In the existing mm-wave imaging system there is an assumption of sparse defects being the only scatterers \cite{Helander2017}. This is in complete contrast to the theory of dynamic multiple light scattering, which is based on a large number of moving scatterers \cite{Leutz1995}. Since the basic assumptions of the problem and theory are in such stark contrast, it seems likely that this interaction mechanism holds little relevance to the problem at hand.
 	
+	\begin{comment}
+	\begin{figure}
+		\centering
+		\includegraphics[width = 0.5\columnwidth]{C:/Users/tfy13nwi/Documents/Capture.png}
+		\caption{Error message}
+	\end{figure}
+	\end{comment}
+	
+	\small
 	\bibliographystyle{../../Litteratur/IEEEtran}
 	\bibliography{../../Litteratur/litteratur}
 	

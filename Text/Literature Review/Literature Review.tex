@@ -80,10 +80,14 @@
 	\begin{equation*}
 		\mathcal{R} = \frac{\pi^2}{2\lambda_0^2} \left( \frac{L}{\sin{\theta}} \right) ^2 \mathcal{M}I_s
 	\end{equation*}
-	where $\lambda_0$ is vacuum light wavelength, $L/\sin{\theta}$ is the oblique distance of light penetration, $\mathcal{M}$ is a material parameter and $I_s$ is the acoustic intensity \cite{Saleh2007}. For intense acoustic waves a correction is necessary, giving $\mathcal{R}_e = \sin{^2\sqrt{\mathcal{R}}}$ \cite{Saleh2007}. The interesting part when it comes to microwave frequencies, however, is the denominator in the first equation. An inverse proportionality to the square of the wavelength might be a reason for concern when moving away from optics. For a simple comparison, visible light is around hundreds of nm in wavelength while microwaves are between 1 mm and 1 m. Considering only the approximate relation, the fractional change for changing from optics to microwaves would be
+	where $\lambda_0$ is vacuum light wavelength, $L/\sin{\theta}$ is the oblique distance of light penetration (approximately), $\mathcal{M}$ is a material parameter and $I_s$ is the acoustic intensity \cite{Saleh2007}.
+	\todo{This is all a bit strange since L is included...}
+	% This is a strange length that depends on how strong the reflection is among other things. Also, L/sin(theta) is NOT always the oblique distance of light penetration. L/sin(theta) is always larger than the actual blique distance of light penetration, but how close they are depends on some other things. Might need to derive some more to fully understand how it works...
+	For intense acoustic waves a correction is necessary, giving $\mathcal{R}_e = \sin{^2\sqrt{\mathcal{R}}}$ \cite{Saleh2007}. The interesting part when it comes to microwave frequencies, however, is the denominator in the first equation. An inverse proportionality to the square of the wavelength might be a reason for concern when moving away from optics. For a simple comparison, visible light is around hundreds of nm in wavelength while microwaves are between 1 mm and 1 m. Considering only the approximate relation, the fractional change for changing from optics to microwaves would be
 	\begin{equation*}
 		\frac{\mathcal{R}_\text{microwave}}{\mathcal{R}_\text{optics}} = \frac{\left( 1/10^{-2} \text{ m}\right)^2}{\left( 1/10^{-7} \text{ m} \right)^2} = 10^{-10}
 	\end{equation*}
+	\todo{Might need to change this as well due to stuff above}
 	This reduction in reflectance between the two might explain why density modulation is used in acousto-optics, but rarely for lower frequencies.
 	
 	\subsection{Displacement of scatterers}

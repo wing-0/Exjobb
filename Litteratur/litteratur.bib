@@ -672,7 +672,7 @@ There is some more theory in this review than in Elson2011, which can be good.},
 @Article{Kempe1997,
   author        = {M. Kempe and M. Larionov and D. Zaslavsky and A. Z. Genack},
   title         = {Acousto-optic tomography with multiply scattered light},
-  journal       = {J. Opt. Soc. Am. A},
+  journal       = {Journal of the Optical Society of America A, Optics and Image Science},
   year          = {1997},
   volume        = {14},
   number        = {5},
@@ -700,7 +700,7 @@ The main issue when looking at the problem at hand is if it's even possible to c
   volume        = {894},
   number        = {1},
   pages         = {999-1006},
-  __markedentry = {[tfy13nwi:2]},
+  __markedentry = {[tfy13nwi:1]},
   comment       = {Paper comparing some different NDT techniques for honeycomb core composites. Found as a reference in Helander2017.},
   doi           = {10.1063/1.2718076},
   file          = {:Abou‐Khousa2007.pdf:PDF},
@@ -712,7 +712,7 @@ The main issue when looking at the problem at hand is if it's even possible to c
   title         = {Modern methods of NDT for inspection of aerospace structures},
   journal       = {ECNDT, Berlin, Germany},
   year          = {2006},
-  __markedentry = {[tfy13nwi:2]},
+  __markedentry = {[tfy13nwi:1]},
   comment       = {Seems to be a conference paper which has been cited a number of times. Lots of references which can be nice.
 
 Might not be a good paper to cite since it seems difficult to find more info than just the pdf.
@@ -767,7 +767,7 @@ Describes some types of inspection causes, defects and NDT techniques. These are
   number        = {6087},
   pages         = {426},
   month         = oct,
-  __markedentry = {[tfy13nwi:3]},
+  __markedentry = {[tfy13nwi:1]},
   comment       = {Mostly about the actual results of a RASS experiment, but also contains some technical background which is good.},
   doi           = {10.1038/323426a0},
   file          = {:Matuura1986.pdf:PDF},
@@ -786,7 +786,9 @@ Describes some types of inspection causes, defects and NDT techniques. These are
   month         = {Jan},
   issn          = {0196-2892},
   __markedentry = {[tfy13nwi:3]},
-  comment       = {Paper mostly focused on applications of RASS (obviously), but there is a theory part as well.},
+  comment       = {Paper mostly focused on applications of RASS (obviously), but there is a theory part as well.
+
+As Marshall1972, this mentions focusing due to spherical waves (both acoustic and electromagnetic presumably?). This might be a key to understanding how they get an acceptable SNR even though the theory in Saleh2007 indicates that longer EM wavelengths should be very difficult to detect.},
   doi           = {10.1109/36.45742},
   file          = {:May1990.pdf:PDF},
   groups        = {Radio acoustic sounding system, Density variation},
@@ -803,9 +805,11 @@ Describes some types of inspection causes, defects and NDT techniques. These are
   pages         = {401--421},
   month         = {Dec},
   issn          = {0365-7140},
-  __markedentry = {[tfy13nwi:3]},
+  __markedentry = {[tfy13nwi:1]},
   abstract      = {The variations in density associated with an acoustic wave are shown to influence the propagation of an electromagnetic wave. The variation in electric permittivity of the atmosphere caused by an acoustic wave is expressed by the power density of the wave. Under the assumption that the acoustic waves are spherical, the scattered field at large distances is given in terms of definite integrals which are evaluated by means of the method of Stationary Phase. The limiting case of plane acoustic waves is discussed, and two numerical examples are given.},
   comment       = {Old paper giving a complete derivation of density variation based interaction between acoustics and radio waves in the atmosphere. Basis for much of RASS which came later on.
+
+Uses spherical acoustic waves, which might not the case for our application. There might still be interesting details in the text though. There should be better references out there though (hopefully).
 
 Weird use of differentials... other mathematical notation also seems strange, maybe it just shows its age?},
   day           = {01},
@@ -817,19 +821,87 @@ Weird use of differentials... other mathematical notation also seems strange, ma
 @Article{Marshall1972,
   author        = {J. M. Marshall and A. M. Peterson and A. A. Barnes},
   title         = {Combined Radar-Acoustic Sounding System},
-  journal       = {Appl. Opt.},
+  journal       = {Applied Optics},
   year          = {1972},
   volume        = {11},
   number        = {1},
   pages         = {108--112},
   month         = {Jan},
-  __markedentry = {[tfy13nwi:3]},
+  __markedentry = {[tfy13nwi:1]},
   abstract      = {Acoustic pulses at 85 Hz (4 m) directed vertically into the lower atmosphere have been tracked by a 36.8-MHz (8-m) pulse doppler radar. Signal-to-noise power ratios in excess of 10 dB were obtained to a height of 1.5 km in the initial tests under conditions of calm winds. This technique has the potential of providing temperature soundings of the lower atmosphere for pollution studies and short-range terminal weather forecasts.},
+  comment       = {Paper from the origins of RASS at Stanford.
+
+They don't delve into very much theoretical derivation, but still present some good points. There are also references to other works with more theoretical backgound.
+
+The interaction in RASS works by transmitting acoustic and electromagnetic waves in the same direction from the same point. This corresponds to theta=pi/2 using the notation from Saleh2007. In that case the Bragg condition for maximum reflection is lambda_a = lambda_e/2 (which is written in the paper). They describe a usage of spherical acoustic and electromagnetic waves with a common origin, which should focus the scattered electromagnetic waves back to the origin. This might be the reason why they show an equation for received power which is quite different from the equation for reflectance shown in Saleh2007. However, there are no derivations for this formula so it is hard to follow why it is so.},
   doi           = {10.1364/AO.11.000108},
   file          = {:Marshall1972.pdf:PDF},
   groups        = {Radio acoustic sounding system, Density variation},
   keywords      = {Atmospheric turbulence; Doppler effect; Phase velocity; Reflection coefficient; Remote sensing; Shock waves},
   publisher     = {OSA},
+}
+
+@Article{Derr1970,
+  author        = {V. E. Derr and C. G. Little},
+  title         = {A Comparison of Remote Sensing of the Clear Atmosphere by Optical, Radio, and Acoustic Radar Techniques},
+  journal       = {Applied Optics},
+  year          = {1970},
+  volume        = {9},
+  number        = {9},
+  pages         = {1976--1992},
+  month         = {Sep},
+  __markedentry = {[tfy13nwi:3]},
+  abstract      = {The considerable utility of ultrasensitive microwave radar in atmospheric studies can now be augmented by lidar and acoustic echo-sounding techniques. The current and potential capabilities, and limitations, of these methods of remote atmospheric probing are discussed and the techniques are compared. From this analysis the conclusion emerges that a remote sensing facility consisting of these instruments probing the same volume of the atmosphere can measure many of the meteorologically significant parameters necessary to increase our understanding of the structure and dynamics of the clear lower atmosphere, and provide the spatial and temporal density of measurements necessary for weather forecasting.},
+  doi           = {10.1364/AO.9.001976},
+  file          = {:Derr1970.pdf:PDF},
+  groups        = {Radio acoustic sounding system, Density variation},
+  keywords      = {Electromagnetic scattering; Forward scattering; Laser energy; Mie theory; Remote sensing; Wave propagation},
+  publisher     = {OSA},
+}
+
+@TechReport{Allen1963,
+  author        = {Allen, Clayton H. and Weiner, Stephen D.},
+  title         = {Study Directed Toward Optimization of Operating Parameters of the EMAC Probe for the Remote Measurement of Atmospheric Parameters},
+  institution   = {BOLT BERANEK AND NEWMAN INC CAMBRIDGE MA},
+  year          = {1963},
+  __markedentry = {[tfy13nwi:3]},
+  file          = {:Allen1963.pdf:PDF},
+  groups        = {Radio acoustic sounding system, Density variation},
+  url           = {http://www.dtic.mil/dtic/tr/fulltext/u2/629996.pdf},
+}
+
+@Article{Gjessing2001,
+  author        = {D. T. Gjessing and R. Hansen and J. Saebboe},
+  title         = {Characterisation of wind field with high resolution in time and space by the use of electromagnetic and acoustic waves},
+  journal       = {IEE Proceedings - Radar, Sonar and Navigation},
+  year          = {2001},
+  volume        = {148},
+  number        = {2},
+  pages         = {49-55},
+  month         = {April},
+  issn          = {1350-2395},
+  __markedentry = {[tfy13nwi:3]},
+  doi           = {10.1049/ip-rsn:20010095},
+  file          = {:Gjessing2001.pdf:PDF},
+  groups        = {Radio acoustic sounding system, Density variation},
+  keywords      = {atmospheric electromagnetic wave propagation;acoustic wave propagation;electromagnetic wave scattering;acoustic wave scattering;atmospheric turbulence;radio applications;wind;atmospheric techniques;vortices;wind field characterisation;high resolution;electromagnetic waves;acoustic waves;bistatic radioacoustic system;height interval;spherical pressure wave;forward scattering;EM phase front;3D wind parameters measurement;vortex parameters;scattering characteristics;acoustic Bragg grid;scattering volume;radio beam;acoustic beam;horizontal direction;Bragg-criteria limitations;vertical direction;acoustic frequency tuning;spatial resolution;continuously received signal;real-time cross-path wind;coherent integration;turbulence parameters;vortex structures},
+}
+
+@Article{Gurvich1987,
+  author        = {Gurvich, A. S. and Kon, A. I. and Tatarskii, V. I.},
+  title         = {Scattering of electromagnetic waves on sound in connection with problems of atmospheric sounding (review)},
+  journal       = {Radiophysics and Quantum Electronics},
+  year          = {1987},
+  volume        = {30},
+  number        = {4},
+  pages         = {347--366},
+  month         = {Apr},
+  issn          = {1573-9120},
+  __markedentry = {[tfy13nwi:3]},
+  day           = {01},
+  doi           = {10.1007/BF01034959},
+  file          = {:Gurvich1987.pdf:PDF},
+  groups        = {Radio acoustic sounding system, Density variation},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

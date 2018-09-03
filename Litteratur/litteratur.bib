@@ -785,10 +785,12 @@ Describes some types of inspection causes, defects and NDT techniques. These are
   pages         = {19-28},
   month         = {Jan},
   issn          = {0196-2892},
-  __markedentry = {[tfy13nwi:3]},
+  __markedentry = {[tfy13nwi:2]},
   comment       = {Paper mostly focused on applications of RASS (obviously), but there is a theory part as well.
 
-As Marshall1972, this mentions focusing due to spherical waves (both acoustic and electromagnetic presumably?). This might be a key to understanding how they get an acceptable SNR even though the theory in Saleh2007 indicates that longer EM wavelengths should be very difficult to detect.},
+As Marshall1972, this mentions focusing due to acoustic spherical waves (I think the point is that they act as a spherical reflector when electromagnetic waves are scattered). This might be a key to understanding how they get an acceptable SNR even though the theory in Saleh2007 indicates that longer EM wavelengths should be very difficult to detect.
+
+There is a discussion on acoustic and electromagnetic pulse lengths and their impact on the frequency shift. Since a CW acoustic wave only has one frequency the shift will be there regardless of the Bragg condition. However, for a short pulse the spectrum contains many frequencies and the Bragg frequency will correspond to the largest interaction and also the largest shift. There are also cases in between these two for longer pulses. FMCW acoustic sweep is also discussed as a way of guaranteeing Bragg matching at all altitudes even when temperature changes with altitude (and this is at different frequencies which allows for easy temperature measuring from the frequency, which is the point of RASS).},
   doi           = {10.1109/36.45742},
   file          = {:May1990.pdf:PDF},
   groups        = {Radio acoustic sounding system, Density variation},
@@ -850,8 +852,9 @@ The interaction in RASS works by transmitting acoustic and electromagnetic waves
   number        = {9},
   pages         = {1976--1992},
   month         = {Sep},
-  __markedentry = {[tfy13nwi:3]},
+  __markedentry = {[tfy13nwi:1]},
   abstract      = {The considerable utility of ultrasensitive microwave radar in atmospheric studies can now be augmented by lidar and acoustic echo-sounding techniques. The current and potential capabilities, and limitations, of these methods of remote atmospheric probing are discussed and the techniques are compared. From this analysis the conclusion emerges that a remote sensing facility consisting of these instruments probing the same volume of the atmosphere can measure many of the meteorologically significant parameters necessary to increase our understanding of the structure and dynamics of the clear lower atmosphere, and provide the spatial and temporal density of measurements necessary for weather forecasting.},
+  comment       = {Describes some different methods of atmospheric remote sensing. RASS is not presented, but there is some information on radar-acoustic interaction based on turbulence in the atmosphere. Predates the Marshall1972 paper which has more relevant information than this (since there is no acoustic emission here).},
   doi           = {10.1364/AO.9.001976},
   file          = {:Derr1970.pdf:PDF},
   groups        = {Radio acoustic sounding system, Density variation},
@@ -880,7 +883,8 @@ The interaction in RASS works by transmitting acoustic and electromagnetic waves
   pages         = {49-55},
   month         = {April},
   issn          = {1350-2395},
-  __markedentry = {[tfy13nwi:3]},
+  __markedentry = {[tfy13nwi:1]},
+  comment       = {Not very much detail on the interaction theory, but instead this paper focuses on the effects of wind. This makes it less useful in my work (at least according to my current understanding of it).},
   doi           = {10.1049/ip-rsn:20010095},
   file          = {:Gjessing2001.pdf:PDF},
   groups        = {Radio acoustic sounding system, Density variation},
@@ -897,7 +901,10 @@ The interaction in RASS works by transmitting acoustic and electromagnetic waves
   pages         = {347--366},
   month         = {Apr},
   issn          = {1573-9120},
-  __markedentry = {[tfy13nwi:3]},
+  __markedentry = {[tfy13nwi:2]},
+  comment       = {Old review of the basics of RASS. Contains a derivation which uses electromagnetic scattering to come to the same conclusion as acousto-optics theory. However, they also have some more conclusions which correspond to non-standard cases which is interesting (and is not considered in Saleh2007).
+
+The derivation can a bit hard to follow since all variables are not described very well. Contains a lengthy derivation of the spectrum of scattered electromagnetic waves. This is interesting if the acoustic and electromagnetic pulses are not infinite. There is also a power budget which is of great interest since this is one of the larger questions when it comes to interaction due to density variation. Might need to read this more to understand it fully, but one important conclusion is the direct relation between the received power and the square of the number of acoustic wavelengths in an acoustic pulse. Assuming CW EM waves, the number of acoustic wavelengths in a pulse is a parameter directly determining the interaction length. The focusing from sperical acoustic wavefronts is also included in the derivation, which leads to a r^(-2) decay instead of a r^(-4) one in regular radar. This is of great importance in RASS, but maybe not in NDT since the distances are so much smaller. If the only effect of the spherical wavefront focusing is a slower distance decay, it might be possible to use other acoustic beam shapes in NDT.},
   day           = {01},
   doi           = {10.1007/BF01034959},
   file          = {:Gurvich1987.pdf:PDF},

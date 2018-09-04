@@ -771,7 +771,7 @@ Describes some types of inspection causes, defects and NDT techniques. These are
   comment       = {Mostly about the actual results of a RASS experiment, but also contains some technical background which is good.},
   doi           = {10.1038/323426a0},
   file          = {:Matuura1986.pdf:PDF},
-  groups        = {Radio acoustic sounding system, Density variation},
+  groups        = {Radio acoustic sounding system},
   publisher     = {Nature Publishing Group},
 }
 
@@ -793,7 +793,7 @@ As Marshall1972, this mentions focusing due to acoustic spherical waves (I think
 There is a discussion on acoustic and electromagnetic pulse lengths and their impact on the frequency shift. Since a CW acoustic wave only has one frequency the shift will be there regardless of the Bragg condition. However, for a short pulse the spectrum contains many frequencies and the Bragg frequency will correspond to the largest interaction and also the largest shift. There are also cases in between these two for longer pulses. FMCW acoustic sweep is also discussed as a way of guaranteeing Bragg matching at all altitudes even when temperature changes with altitude (and this is at different frequencies which allows for easy temperature measuring from the frequency, which is the point of RASS).},
   doi           = {10.1109/36.45742},
   file          = {:May1990.pdf:PDF},
-  groups        = {Radio acoustic sounding system, Density variation},
+  groups        = {Radio acoustic sounding system},
   keywords      = {atmospheric acoustics;atmospheric techniques;atmospheric temperature;backscatter;radar applications;radar measurement;remote sensing;remote sensing;United States;wind profiler radars;radio acoustic sounding system;atmospheric temperature profiles;Colorado;height coverage;accuracy;acoustic source functions;FM-CW acoustic signals;error;pulsed acoustic systems;pulsed radars;Acoustic pulses;Acoustic waves;Radar measurements;Temperature measurement;Acoustic measurements;Atmospheric measurements;Doppler radar;Velocity measurement;Backscatter},
 }
 
@@ -817,7 +817,7 @@ Weird use of differentials... other mathematical notation also seems strange, ma
   day           = {01},
   doi           = {10.1007/BF02920397},
   file          = {:Tonning1957.pdf:PDF},
-  groups        = {Radio acoustic sounding system, Density variation},
+  groups        = {Radio acoustic sounding system},
 }
 
 @Article{Marshall1972,
@@ -838,7 +838,7 @@ They don't delve into very much theoretical derivation, but still present some g
 The interaction in RASS works by transmitting acoustic and electromagnetic waves in the same direction from the same point. This corresponds to theta=pi/2 using the notation from Saleh2007. In that case the Bragg condition for maximum reflection is lambda_a = lambda_e/2 (which is written in the paper). They describe a usage of spherical acoustic and electromagnetic waves with a common origin, which should focus the scattered electromagnetic waves back to the origin. This might be the reason why they show an equation for received power which is quite different from the equation for reflectance shown in Saleh2007. However, there are no derivations for this formula so it is hard to follow why it is so.},
   doi           = {10.1364/AO.11.000108},
   file          = {:Marshall1972.pdf:PDF},
-  groups        = {Radio acoustic sounding system, Density variation},
+  groups        = {Radio acoustic sounding system},
   keywords      = {Atmospheric turbulence; Doppler effect; Phase velocity; Reflection coefficient; Remote sensing; Shock waves},
   publisher     = {OSA},
 }
@@ -857,7 +857,7 @@ The interaction in RASS works by transmitting acoustic and electromagnetic waves
   comment       = {Describes some different methods of atmospheric remote sensing. RASS is not presented, but there is some information on radar-acoustic interaction based on turbulence in the atmosphere. Predates the Marshall1972 paper which has more relevant information than this (since there is no acoustic emission here).},
   doi           = {10.1364/AO.9.001976},
   file          = {:Derr1970.pdf:PDF},
-  groups        = {Radio acoustic sounding system, Density variation},
+  groups        = {Radio acoustic sounding system},
   keywords      = {Electromagnetic scattering; Forward scattering; Laser energy; Mie theory; Remote sensing; Wave propagation},
   publisher     = {OSA},
 }
@@ -865,11 +865,14 @@ The interaction in RASS works by transmitting acoustic and electromagnetic waves
 @TechReport{Allen1963,
   author        = {Allen, Clayton H. and Weiner, Stephen D.},
   title         = {Study Directed Toward Optimization of Operating Parameters of the EMAC Probe for the Remote Measurement of Atmospheric Parameters},
-  institution   = {BOLT BERANEK AND NEWMAN INC CAMBRIDGE MA},
+  institution   = {Bolt Beranek and Newman Inc.},
   year          = {1963},
-  __markedentry = {[tfy13nwi:3]},
+  type          = {techreport},
+  number        = {Report No. 1056 (AFCRL-63-596)},
+  __markedentry = {[tfy13nwi:1]},
+  comment       = {Focuses on reflections against shock waves instead of regular acoustic waves. Much of the work also details phenomena specific to the atmosphere.},
   file          = {:Allen1963.pdf:PDF},
-  groups        = {Radio acoustic sounding system, Density variation},
+  groups        = {Radio acoustic sounding system},
   url           = {http://www.dtic.mil/dtic/tr/fulltext/u2/629996.pdf},
 }
 
@@ -887,7 +890,7 @@ The interaction in RASS works by transmitting acoustic and electromagnetic waves
   comment       = {Not very much detail on the interaction theory, but instead this paper focuses on the effects of wind. This makes it less useful in my work (at least according to my current understanding of it).},
   doi           = {10.1049/ip-rsn:20010095},
   file          = {:Gjessing2001.pdf:PDF},
-  groups        = {Radio acoustic sounding system, Density variation},
+  groups        = {Radio acoustic sounding system},
   keywords      = {atmospheric electromagnetic wave propagation;acoustic wave propagation;electromagnetic wave scattering;acoustic wave scattering;atmospheric turbulence;radio applications;wind;atmospheric techniques;vortices;wind field characterisation;high resolution;electromagnetic waves;acoustic waves;bistatic radioacoustic system;height interval;spherical pressure wave;forward scattering;EM phase front;3D wind parameters measurement;vortex parameters;scattering characteristics;acoustic Bragg grid;scattering volume;radio beam;acoustic beam;horizontal direction;Bragg-criteria limitations;vertical direction;acoustic frequency tuning;spatial resolution;continuously received signal;real-time cross-path wind;coherent integration;turbulence parameters;vortex structures},
 }
 
@@ -908,7 +911,46 @@ The derivation can a bit hard to follow since all variables are not described ve
   day           = {01},
   doi           = {10.1007/BF01034959},
   file          = {:Gurvich1987.pdf:PDF},
-  groups        = {Radio acoustic sounding system, Density variation},
+  groups        = {Radio acoustic sounding system},
+}
+
+@Article{Tonning2003,
+  author        = {A. Tonning},
+  title         = {Electro-acoustic scattering in an atmosphere with wind},
+  journal       = {IEEE Transactions on Antennas and Propagation},
+  year          = {2003},
+  volume        = {51},
+  number        = {6},
+  pages         = {1242-1250},
+  month         = {June},
+  issn          = {0018-926X},
+  __markedentry = {[tfy13nwi:2]},
+  comment       = {Similar to Tonning1957 but with wind as well. The derivations in this also seem to be easier to follow than in the old one.
+
+The first part of the paper describes the interaction between acoustic and electromagnetic waves without wind which is interesting. The later part with wind is not as useful for my work. The first part might prove to be very useful since it is a derivation leading to the same Bragg condition seen elsewhere, but this derivation is easy to understand when compared to many others.},
+  doi           = {10.1109/TAP.2003.812268},
+  file          = {:Tonning2003.pdf:PDF},
+  groups        = {Radio acoustic sounding system},
+  keywords      = {electromagnetic wave scattering;acoustic wave scattering;atmospheric electromagnetic wave propagation;wind;atmospheric techniques;velocity measurement;phase measurement;acoustic arrays;atmospheric temperature;temperature measurement;phase control;electro-acoustic scattering;electromagnetic wave propagation;atmosphere;electromagnetic wave scattering;EM wave scattering;acoustic waves;wind velocity measurement;temperature measurement;scattering characteristics;resonance;interference;spherical waves;nonplanar waves;acoustic beam;phase controlled elementary acoustic sources;acoustic array;phase measurement;horizontal wind components measurement;Atmosphere;Electromagnetic scattering;Acoustic scattering;Acoustic beams;Acoustic measurements;Resonance;Atmospheric measurements;Temperature;Phased arrays;Phase measurement},
+}
+
+@Article{Rapoport1997,
+  author        = {Rapoport, V. O. and Mityakov, N. A. and Zinichev, V. A. and Belova, N. I.},
+  title         = {The role of atmospheric temperature gradients and winds for estimating the energy potential of radio-acoustic sounding systems},
+  journal       = {Radiophysics and Quantum Electronics},
+  year          = {1997},
+  volume        = {40},
+  number        = {5},
+  pages         = {408--413},
+  month         = {May},
+  issn          = {1573-9120},
+  __markedentry = {[tfy13nwi:3]},
+  abstract      = {We present the theory of radio-acoustic sounding (RAS) of the atmosphere allowing for the dependence on temperature, altitude, and wind. For the case of a linear temperature profile, we obtained expressions for the received signal power. Since the acoustic wave front differs from the sphere if the temperature gradient is allowed for, we can introduce the notion of projector (Fresnel) and Fraunhofer regions. In the Fresnel region, the size of the diffraction spot on the earth is determined by radar antenna dimensions and the received signal power is proportional to z−2. In the Fraunhofer region, the spot size is greater than the antenna dimensions and the power is proportional to z−6. The existing RAS facilities work in the projector region. This can be used as a basis for developing a new method of diagnostics of a large-scale inhomogeneous atmospheric structure, including wave disturbances.},
+  comment       = {More russian derivations since they seem to be the only ones doing it properly.},
+  day           = {01},
+  doi           = {10.1007/BF02676205},
+  file          = {:Rapoport1997.pdf:PDF},
+  groups        = {Radio acoustic sounding system},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
@@ -926,7 +968,7 @@ The derivation can a bit hard to follow since all variables are not described ve
 2 StaticGroup:Medical microwave frequencies\;0\;1\;\;hospital\;\;;
 2 StaticGroup:Medical optical frequencies\;0\;1\;\;hospital\;\;;
 1 StaticGroup:Non-destructive testing\;0\;1\;\;\;\;;
-1 StaticGroup:Radio acoustic sounding system\;0\;1\;\;\;\;;
 1 StaticGroup:Localized harmonic motion\;0\;1\;\;blur\;\;;
-1 StaticGroup:Density variation\;0\;1\;\;shuffle\;\;;
+1 StaticGroup:Density variation\;2\;1\;\;shuffle\;\;;
+2 StaticGroup:Radio acoustic sounding system\;0\;1\;\;\;\;;
 }

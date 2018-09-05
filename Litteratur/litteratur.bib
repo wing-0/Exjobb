@@ -203,7 +203,9 @@ One important detail to note from this article is in the interaction mechanism p
   __markedentry = {[tfy13nwi:1]},
   comment       = {General derivation of acousto-optics.
 
-One interesting part is that of reflectance (p. 812), which seems to be inversely proportional to the fourth power of the frequency. This might be a problem if the acousto-optic principles are used at mm-wave instead of optical wavelengths. The reflectance can be seen as a measure of the interaction strength since zero reflectance leads to an optical wave not being affected at all by the acoustic wave. If it is too low, then the interaction cannot be measured anymore.},
+One interesting part is that of reflectance (p. 812), which seems to be inversely proportional to the fourth power of the frequency. This might be a problem if the acousto-optic principles are used at mm-wave instead of optical wavelengths. The reflectance can be seen as a measure of the interaction strength since zero reflectance leads to an optical wave not being affected at all by the acoustic wave. If it is too low, then the interaction cannot be measured anymore. However, it might not be as big an issue as initially thought since other parameters are related to lambda. If the acoustic wavelength and interaction distance (acoustic/EM overlap) are scaled together with the EM wavelength the value should stay constant.
+
+In part B* Coupled-Wave Theory there might be a problem in assumptions. It is supposed to be another derivation, and looks more general at first glance since it's based on Maxwell and not wave optics. However, one assumption which is seen in the derivation in section 5.2B (which is directly used in this section) relies on a dielectric variation slow enough that it can be seen as constant within distances on the order of an EM wavelength. This might be the case for acoustic and EM beams at nearly normal incidence which is used much in acousto-optics. But it might be more interesting for me to have nearly coincidential beams which would lead to the acoustic wavelength actually being smaller than the EM one. In that case the assumption in section 5.2B is completely false. I might need to redo the derivation with correct assumptions if I end up using this.},
   groups        = {Acousto-optics, Density variation},
 }
 
@@ -946,11 +948,31 @@ The first part of the paper describes the interaction between acoustic and elect
   issn          = {1573-9120},
   __markedentry = {[tfy13nwi:3]},
   abstract      = {We present the theory of radio-acoustic sounding (RAS) of the atmosphere allowing for the dependence on temperature, altitude, and wind. For the case of a linear temperature profile, we obtained expressions for the received signal power. Since the acoustic wave front differs from the sphere if the temperature gradient is allowed for, we can introduce the notion of projector (Fresnel) and Fraunhofer regions. In the Fresnel region, the size of the diffraction spot on the earth is determined by radar antenna dimensions and the received signal power is proportional to z−2. In the Fraunhofer region, the spot size is greater than the antenna dimensions and the power is proportional to z−6. The existing RAS facilities work in the projector region. This can be used as a basis for developing a new method of diagnostics of a large-scale inhomogeneous atmospheric structure, including wave disturbances.},
-  comment       = {More russian derivations since they seem to be the only ones doing it properly.},
+  comment       = {Contains a derivation similar to Gurvich1987 but also considers wind. Wind is not of any concern to me, but at least this paper was scanned better than Gurvich1987 and the formulas are not half-invisible.
+
+The very start of the derivation has a definition of permittivity which is only true in air. It is that the relative permittivity is "epsilon = 1 + epsilon1" where epsilon1 is a small perturbation. Air has relative permittivity ~1, but for other values of relative permittivity (let's call it er) the relation should be "epsilon = er + epsilon1". I need to analyze what would happen to the rest of the results if a change like this is introduced.
+
+There is a pretty nice equation for the received power (analogous to the radar equation), although it contains a bunch of stuff related to wind. If I read the paper well enough I should be able to understand which variables are important and which are negligible. The size of both the acoustic and EM antennas seem to be important (relating to the beamwidth obviously). In the "radar equation" there is an exponential with a bunch of rho's and a vind velocity integral. I'm fairly sure this entire exponential is equal to one without wind and in a homogeneous material. If that is the case the equation is even more like a radar equation.},
   day           = {01},
   doi           = {10.1007/BF02676205},
   file          = {:Rapoport1997.pdf:PDF},
   groups        = {Radio acoustic sounding system},
+}
+
+@Book{Korpel1988,
+  title         = {Acousto-optics},
+  publisher     = {Marcel Dekker Inc},
+  year          = {1988},
+  author        = {Adrian Korpel},
+  series        = {Optical engineering, 16},
+  address       = {New York},
+  edition       = {1st},
+  isbn          = {0-8247-7891-X},
+  __markedentry = {[tfy13nwi:3]},
+  comment       = {Book detailing the acousto-optics theory in much greater detail than Saleh2007.
+
+What is of great interest is chapter 4 (the formal approach). This is where derivations are done in a more electromagnetic fashion. In particular, section 4.2.7 (polarization) starts at Maxwell's equations to later arrive at conclusions regarding the electromagnetic wave equation (4.158) which is very similar to the one used in Rapoport1997 (though this reference has a better equation since any material can be used). However, there are some arguments regarding polarization (p. 135 at bottom) used in the derivation which may or may not be fulfilled for the angles and/or planes of incidence used in my application. These need to be kept in mind! Also, there is a scattering integral (4.152) which might be useful in calculating the scattered field directly if applicable (it is subject to the same polarization arguments). In the book, both of these equations are then reverted to equations derived earlier in the text under other assumptions (as a way of showing that the theory described before actually works even when deriving from first principles). It might be good to also look at those earlier stages, even though this first principle derivation is very nice.},
+  groups        = {Acousto-optics, Density variation},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

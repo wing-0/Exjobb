@@ -1,5 +1,8 @@
-\documentclass[a4paper,twocolumn]{scrartcl}
+\documentclass[10pt,a4paper,twocolumn]{scrartcl}
 \usepackage[utf8]{inputenc}
+
+\usepackage[a4paper, total={17.5cm,24cm}]{geometry}
+\setlength{\columnsep}{0.5cm}
 
 % Symbols
 \usepackage{amsmath}
@@ -27,6 +30,9 @@
 
 % Enables \begin{comment} comments
 \usepackage{comment}
+
+% Bold math style, useful for vectors
+\usepackage{bm}
 
 \author{Niklas Wingren}
 \title{Literature Review}
@@ -72,6 +78,8 @@
 	One detail omitted before is the two methods of generating radiation force locally. The first method uses amplitude modulated focused ultrasound with its focus on the region of interest \cite{Top2016}. Since amplitude modulated ultrasound exists throughout the beam a force is generated in that entire region. However, the intensity is much higher in the focus so the force is stronger there. The second method instead uses two single-frequency ultrasonic beams which intersect at the region of interest. The frequencies of the two beams differ by a small amount $\Delta \omega$. Superposition at the intersection will then generate localized amplitude modulation by the difference frequency $\Delta \omega$ \cite{Fatemi1998}.
 	
 	\subsection{Density variation in material}
+	
+	\subsubsection{Optics-based theory}
 	This mechanism is the one used in the theory of acousto-optics \cite{Saleh2007}\cite{Korpel1981}. The main idea is that there is a relation between the density of a material and its index of refraction. Since an acoustic wave consists of periodic compression and rarefaction in a medium, a consequence is that the index of refraction varies with the same period \cite{Saleh2007}. Due to Fresnel reflection, this periodic structure of varying index of refraction acts as a Bragg reflector scattering incident light. The Bragg condition determines the angle of incidence $\theta_B$ required for the light
 	\begin{equation*}
 		\sin{\theta_B} = \frac{\lambda}{2\Lambda}
@@ -90,15 +98,79 @@
 	
 	The interesting part when it comes to microwave frequencies, however, is the denominator in the first equation. The factor $1/\lambda_0^4$ might be a reason of concern when moving away from the optical regime. Since the wavelength is much longer for mm-waves there should be a large decrease in reflectance, and if too large the scattered signal could be undetectable. However, some examples for optical wavelengths give $\mathcal{R}_e = 0.192$ \cite{Saleh2007}, which is very large when compared with what can be detected in radar \todo{reference?}. There are also other variables such as $L$ and $\Lambda$ which might be changed to give a higher reflectance. If the different parameters can be selected to give a scattered signal above the noise floor is a very interesting question which needs to be investigated.
 	
-	This mechanism has not only been used in optics, but also in radio meteorology through the Radio ACoustic Sounding System (RASS) \cite{Buerkle2007}. This indicates that the wavelength dependence described above can be offset by other factors to still give a measurable scattered signal. The system is used for temperature sounding since the speed of sound depends on temperature. The Bragg scattering condition is thus affected by a temperature change \cite{Marshall1972}. The systems are usually designed with electromagnetic and acoustic wave sources approximately co-located \cite{Marshall1972}. This corresponds to an angle $\theta \approx 90^\circ$, which changes the Bragg condition to
+	\subsubsection{Radio Acoustic Sounding}
+	This mechanism has not only been used in optics, but also in radio meteorology through the Radio Acoustic Sounding System (RASS) \cite{Buerkle2007}. This indicates that the wavelength dependence described above can be offset by other factors to still give a measurable scattered signal. The system is used for temperature sounding since the speed of sound depends on temperature. The Bragg scattering condition is thus affected by a temperature change \cite{Marshall1972}. The systems are usually designed with electromagnetic and acoustic wave sources approximately co-located \cite{Marshall1972}. This corresponds to an angle $\theta \approx 90^\circ$, which changes the Bragg condition to
 	\begin{equation*}
 		\Lambda = \frac{\lambda}{2}
 	\end{equation*}
+	
+	\subsubsection{Electromagnetics-based theory}
+	Instead of using ray and wave optics to explain the interaction (as in \cite{Saleh2007}) it is possible to use electromagnetism. This comes naturally in the field of radio acoustic sounding due to its frequency range, but is also useful in acousto-optics \cite{Korpel1988}. 
+	
+	From the perspective of radio acoustic sounding, an equation for the electromagnetic scattering against a dielectric disturbance is given by \cite{Gurvich1987}:
+	\begin{equation*}
+		E_{sc}(\bm{r},t) = \frac{k^2}{4\pi} \int_{V_{sc}} \frac{e^{ik \left| \bm{r}-\bm{r'} \right| }}{ \left| \bm{r}-\bm{r'} \right| } \varepsilon_s (\bm{r'},t) E_0 (\bm{r'},t) \mathrm{d}^3r'
+	\end{equation*}
+	where $k$ is the wavenumber, $V_{sc}$ is the scattering volume, $\bm{r}$ is the observation point, $\varepsilon_s$ is the variation in relative permittivity and $E_0$ is the incident electric field. The equation is only valid for scattering with no polarization change since polarization is not considered in the electric field. It is also only valid for single scattering \cite{Gurvich1987}.
 	
 	\subsection{Displacement of scatterers}
 	This is a mechanism presented in the field of ultrasound-optical tomography (UOT). The mechanism is based on dynamic multiple scattering of light, which occurs if many scatterers undergoing Brownian motion are considered \cite{Leutz1995}. If an ultrasonic beam is incident on such a sample the scatterers will move due to both Brownian motion and ultrasound, giving rise to a frequency shift in affected photons \cite{Leutz1995}\cite{Elson2011}. In medical applications, movement of the scatterers due to acoustic waves is very straight-forward: their displacement directly follows the acoustic wave \cite{Leutz1995}. This might well be the case for small scatterers which are then part of the wave, but for larger scatterers it gets more complicated. In that case, acoustic radiation force has to be considered for scatterer movement \cite{Torr1984}.
 	
 	It is interesting to see if this mechanism holds any relevance when it comes to microwave frequencies. The assumption on which the theory rests is that of dynamic multiple light scattering \cite{Leutz1995}. In the existing mm-wave imaging system there is an assumption of sparse defects being the only scatterers \cite{Helander2017}. This is in complete contrast to the theory of dynamic multiple light scattering, which is based on a large number of moving scatterers \cite{Leutz1995}. Since the basic assumptions of the problem and theory are in such stark contrast, it seems likely that this interaction mechanism holds little relevance to the problem at hand.
+	
+	\section{Focus of investigations}
+	After an initial overview of the different interaction mechanisms a decision had to be made concerning the relevance of said mechanisms. Those deemed interesting enough for the problem at hand would be studied further while the others would not.
+	
+	The boundary perturbation mechanism is based on acoustic resonance in the target. Proposed NDT methods using this mechanism are based on the entire device under test being in acoustic resonance and using Doppler components to find defects \cite{Buerkle2009}. An issue with this is that the resonance frequencies of complex objects are difficult to know beforehand. A possibility would be to scan the acoustic frequency in order to find a resonance, but with an already time-consuming electromagnetic measurement this might be less desirable. Additionally, the mechanism is very similar to localized harmonic motion with one main difference being that the latter does not require resonance. The boundary perturbation mechanism was therefore decided not to be a focus point in further investigations.
+	
+	As stated above, the localized harmonic motion mechanism has an advantage over boundary perturbation as it does not require resonance. Since the ultrasonic focus can be moved to any point in the device under test, a method using this mechanism is not nearly as dependent on geometry-specific parameters such as resonance frequency. The interaction strength depends on both acoustic, mechanic and electromagnetic properties which should give contrast enhancement when compared with a method using only one phenomenon \cite{Top2016}. This would allow for detection of deviation from the normal in any modality, which could indicate a defect when used in NDT. The freedom in focus selection together with obvious possibilities for contrast made this mechanism worth investigating further.
+	
+	The density variation mechanism was found in two distinct frequency ranges: acousto-optics and radio acoustic sounding. Even though they are quite different in detail, they use the same interaction mechanism which in itself makes it an interesting topic. It is an indication of some scaling ability, and the big question was to find scaling laws and apply them to the ranges of the NDT problem.
+	
+	The scatterer displacement mechanism is based on dynamic multiple scattering of light. As explained earlier, this is not very applicable at microwave frequencies, and especially not for the NDT problem. Therefore, this mechanism was not investigated any further.
+	
+	To summarize, the mechanisms in focus of further investigations were:
+	\begin{itemize}
+		\item Localized harmonic motion
+		\item Density variation in material
+	\end{itemize}
+	
+	\section{Miscellaneous}
+	This section is for stuff I don't know where to put yet.
+	
+	\subsection{Derivation of Gurvich scattering equation}
+	Here follows a derivation of equation (2) in \cite{Gurvich1987} from equation (15) in the same. Equation 15 is
+	\begin{multline*}
+		E_{sc} (\bm{r},t) = -\frac{1}{4\pi c^2} \frac{\partial^2}{\partial t^2} \int_{V_{sc}}
+		\varepsilon_s\left( \bm{r}, t - \frac{\left|\bm{r}-\bm{r'}\right|}{c} \right)\\
+		\cdot E_0 \left( \bm{r}, t - \frac{\left|\bm{r}-\bm{r'}\right|}{c} \right)
+		\frac{\mathrm{d}^3r'}{\left|\bm{r}-\bm{r'}\right|}
+	\end{multline*}
+	A time-dependence is assumed as
+	\begin{align*}
+		&\varepsilon_s(\bm{r}, t) = \varepsilon_s(\bm{r}) e^{-i\Omega_0 t} \\
+		&E_0(\bm{r},t) = E_0(\bm{r}) e^{-i\omega_0 t}
+	\end{align*}
+	The original equation can now be rewritten as
+	\begin{multline*}
+	E_{sc} (\bm{r},t) = -\frac{1}{4\pi c^2}
+	\frac{\partial^2}{\partial t^2} \left( e^{-i(\omega_0 + \Omega_0)t} \right) \\
+	\cdot \int_{V_{sc}} e^{i\frac{\omega_0 + \Omega_0}{c} |\bm{r}-\bm{r'}|}
+	\varepsilon_s(\bm{r}) E_0 (\bm{r})
+	\frac{\mathrm{d}^3r'}{\left|\bm{r}-\bm{r'}\right|}
+	\end{multline*}
+	Differentiation and combination of the fields and time-dependencies again gives
+	\begin{multline*}
+	E_{sc} (\bm{r},t) = -\frac{(\omega_0 + \Omega_0)^2}{4\pi c^2}
+	\int_{V_{sc}} e^{i\frac{\omega_0 + \Omega_0}{c} |\bm{r}-\bm{r'}|}\\
+	\cdot \varepsilon_s(\bm{r},t) E_0 (\bm{r},t)
+	\frac{\mathrm{d}^3r'}{\left|\bm{r}-\bm{r'}\right|}
+	\end{multline*}
+	If $\omega_0 \gg \Omega_0$ an approximation can be done as $(\omega_0 + \Omega_0)/c \approx k$ where $k$ is the incident wavenumber. This gives
+	\begin{equation*}
+	E_{sc}(\bm{r},t) \approx \frac{k^2}{4\pi} \int_{V_{sc}} \frac{e^{ik \left| \bm{r}-\bm{r'} \right| }}{ \left| \bm{r}-\bm{r'} \right| } \varepsilon_s (\bm{r'},t) E_0 (\bm{r'},t) \mathrm{d}^3r'
+	\end{equation*}
+	which is equation (2) in \cite{Gurvich1987}.
 	
 	\begin{comment}
 	\begin{figure}

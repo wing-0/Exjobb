@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper,twocolumn]{scrartcl}
+\documentclass[10pt,a4paper,twocolumn,draft]{scrartcl}
 \usepackage[utf8]{inputenc}
 
 \usepackage[a4paper, total={17.5cm,24cm}]{geometry}
@@ -20,7 +20,7 @@
 \floatstyle{plaintop}
 
 % Includes todo-notes
-\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[obeyDraft]{todonotes}
 
 % Makes caption identifiers (i.e. Figure X:) bold
 \usepackage[labelfont=bf]{caption}
@@ -96,7 +96,7 @@
 	\end{equation*}
 	where $n$ is the unperturbed index of refraction, $L$ is the distance of overlap between light and acoustic waves in the acoustic wave direction, $\Lambda$ is the acoustic wavelength, $\lambda_0$ is the vacuum light wavelength, $\mathcal{M}$ is a material parameter and $I_s$ is the acoustic intensity \cite{Saleh2007}. For intense acoustic waves a correction is necessary, giving $\mathcal{R}_e = \sin{^2\sqrt{\mathcal{R}}}$ \cite{Saleh2007}.
 	
-	The interesting part when it comes to microwave frequencies, however, is the denominator in the first equation. The factor $1/\lambda_0^4$ might be a reason of concern when moving away from the optical regime. Since the wavelength is much longer for mm-waves there should be a large decrease in reflectance, and if too large the scattered signal could be undetectable. However, some examples for optical wavelengths give $\mathcal{R}_e = 0.192$ \cite{Saleh2007}, which is very large when compared with what can be detected in radar \todo{reference?}. There are also other variables such as $L$ and $\Lambda$ which might be changed to give a higher reflectance. If the different parameters can be selected to give a scattered signal above the noise floor is a very interesting question which needs to be investigated.
+	The interesting part when it comes to microwave frequencies, however, is the denominator in the first equation. The factor $1/\lambda_0^4$ might be a reason of concern when moving away from the optical regime. Since the wavelength is much longer for mm-waves there should be a large decrease in reflectance, and if too large the scattered signal could be undetectable. However, some examples for optical wavelengths give $\mathcal{R}_e = 0.192$ \cite{Saleh2007}, which is very large when compared with what can be detected in radar \todo[inline]{reference?}. There are also other variables such as $L$ and $\Lambda$ which might be changed to give a higher reflectance. If the different parameters can be selected to give a scattered signal above the noise floor is a very interesting question which needs to be investigated.
 	
 	\subsubsection{Radio Acoustic Sounding}
 	This mechanism has not only been used in optics, but also in radio meteorology through the Radio Acoustic Sounding System (RASS) \cite{Buerkle2007}. This indicates that the wavelength dependence described above can be offset by other factors to still give a measurable scattered signal. The system is used for temperature sounding since the speed of sound depends on temperature. The Bragg scattering condition is thus affected by a temperature change \cite{Marshall1972}. The systems are usually designed with electromagnetic and acoustic wave sources approximately co-located \cite{Marshall1972}. This corresponds to an angle $\theta \approx 90^\circ$, which changes the Bragg condition to
@@ -112,6 +112,15 @@
 		E_{sc}(\bm{r},t) = \frac{k^2}{4\pi} \int_{V_{sc}} \frac{e^{ik \left| \bm{r}-\bm{r'} \right| }}{ \left| \bm{r}-\bm{r'} \right| } \varepsilon_s (\bm{r'},t) E_0 (\bm{r'},t) \mathrm{d}^3r'
 	\end{equation*}
 	where $k$ is the wavenumber, $V_{sc}$ is the scattering volume, $\bm{r}$ is the observation point, $\varepsilon_s$ is the variation in relative permittivity and $E_0$ is the incident electric field. The equation is only valid for scattering with no polarization change since polarization is not considered in the electric field. It is also only valid for single scattering \cite{Gurvich1987}.
+	
+	Since the equation above was derived for a relative permittivity of 1 it is good to investigate the effect of a higher permittivity. The result is a very similar integral: \todo[inline]{derivation?}
+	\begin{equation*}
+	E_{s}(\bm{r},t) = \frac{k^2}{4\pi\varepsilon_r} \int_{V_{sc}} \frac{e^{ik \left| \bm{r}-\bm{r'} \right| }}{ \left| \bm{r}-\bm{r'} \right| } \varepsilon_1 (\bm{r'},t) E_0 (\bm{r'},t) \mathrm{d}^3r'
+	\end{equation*}
+	Here $k$ is the wavenumber in the material, $\varepsilon_r$ is the unperturbed relative permittivity of the material and $\varepsilon_1 (\bm{r},t)$ is defined as $\varepsilon (\bm{r},t) = \varepsilon_0 (\varepsilon_r + \varepsilon_1 (\bm{r},t))$.
+	
+	\subsubsection{Photoelasticity}
+	The primary mechanism behind this interaction is, as stated earlier, a variation of density leading to a change in refractive index (or permittivity). To get a full picture of the interaction, the relationship between acoustic intensity and refractive index must be known. This is given from the photoelastc constant \todo[inline]{p. 807 in Saleh, many different pages in Korpel. Relate to both refractive index, but also permittivity. Problems with delta?}
 	
 	\subsection{Displacement of scatterers}
 	This is a mechanism presented in the field of ultrasound-optical tomography (UOT). The mechanism is based on dynamic multiple scattering of light, which occurs if many scatterers undergoing Brownian motion are considered \cite{Leutz1995}. If an ultrasonic beam is incident on such a sample the scatterers will move due to both Brownian motion and ultrasound, giving rise to a frequency shift in affected photons \cite{Leutz1995}\cite{Elson2011}. In medical applications, movement of the scatterers due to acoustic waves is very straight-forward: their displacement directly follows the acoustic wave \cite{Leutz1995}. This might well be the case for small scatterers which are then part of the wave, but for larger scatterers it gets more complicated. In that case, acoustic radiation force has to be considered for scatterer movement \cite{Torr1984}.

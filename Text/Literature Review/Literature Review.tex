@@ -113,14 +113,50 @@
 	\end{equation*}
 	where $k$ is the wavenumber, $V_{sc}$ is the scattering volume, $\bm{r}$ is the observation point, $\varepsilon_s$ is the variation in relative permittivity and $E_0$ is the incident electric field. The equation is only valid for scattering with no polarization change since polarization is not considered in the electric field. It is also only valid for single scattering \cite{Gurvich1987}.
 	
-	Since the equation above was derived for a relative permittivity of 1 it is good to investigate the effect of a higher permittivity. The result is a very similar integral: \todo[inline]{derivation?}
+	Since the equation above was derived for a relative permittivity of 1 it is good to investigate the effect of a higher permittivity. The result is a very similar integral: \todo[inline]{Derivation? Also, should this even be time-dependent? And E is not a vector while it could be}
 	\begin{equation*}
 	E_{s}(\bm{r},t) = \frac{k^2}{4\pi\varepsilon_r} \int_{V_{sc}} \frac{e^{ik \left| \bm{r}-\bm{r'} \right| }}{ \left| \bm{r}-\bm{r'} \right| } \varepsilon_1 (\bm{r'},t) E_0 (\bm{r'},t) \mathrm{d}^3r'
 	\end{equation*}
 	Here $k$ is the wavenumber in the material, $\varepsilon_r$ is the unperturbed relative permittivity of the material and $\varepsilon_1 (\bm{r},t)$ is defined as $\varepsilon (\bm{r},t) = \varepsilon_0 (\varepsilon_r + \varepsilon_1 (\bm{r},t))$.
 	
 	\subsubsection{Photoelasticity}
-	The primary mechanism behind this interaction is, as stated earlier, a variation of density leading to a change in refractive index (or permittivity). To get a full picture of the interaction, the relationship between acoustic intensity and refractive index must be known. This is given from the photoelastc constant \todo[inline]{p. 807 in Saleh, many different pages in Korpel. Relate to both refractive index, but also permittivity. Problems with delta?}
+	The primary mechanism behind this interaction is, as stated earlier, a variation of density leading to a change in refractive index (or permittivity). To get a full picture of the interaction, the relationship between acoustic intensity and refractive index must be known. For a one-dimensional, longitudinal sound wave the change in refractive index is given by \cite{Saleh2007}
+	\begin{equation*}
+		\Delta n (x,t) = -\frac{1}{2} \mathfrak{p} n^3 s(x,t)
+	\end{equation*}
+	where $\mathfrak{p}$ is the photoelastic constant (also called strain-optic coefficient or elasto-optic coefficient \cite{Korpel1988}), $n$ is the unperturbed refractive index and $s(x,t)$ is the acoustic strain. Singe it is negative, a positive strain decreases the refractive index \cite{Saleh2007}.
+	
+	It is also possible to write this change depending on the acoustic intensity instead of the actual wave. This is done as \cite{Saleh2007}
+	\begin{equation*}
+		\Delta n_0 = \sqrt{\frac{1}{2} \mathcal{M} I_s} \: , \quad
+		\mathcal{M} = \frac{\mathfrak{p}^2 n^6}{\rho v_s^3}
+	\end{equation*}
+	where $I_s$ is the acoustic intensity (W/m$^2$), $\rho$ is the mass density and $v_s$ is the speed of sound. The amplitude is related to the total refractive index as \cite{Saleh2007}
+	\begin{equation*}
+		n(x,t) = n - \Delta n_0 \cos(\Omega t - qx)
+	\end{equation*}
+	where $\cos(\Omega t - qx)$ is the phase part of the sound wave. \todo[inline]{Is this an ok description of the cos part?}
+	
+	The refractive index and relative permittivity are related by $\varepsilon_r = n^2$ in a non-magnetic material. To obtain the change in relative permittivity instead of refractive index
+	\begin{equation*}
+		\Delta \varepsilon_r(x,t) = \frac{\mathrm{d}\varepsilon_r}{\mathrm{d}n} \Delta n(x,t) = 2n \Delta n(x,t) = -\mathfrak{p} \varepsilon_r^2 s(x,t)
+	\end{equation*}
+	
+	For a simple case of isotropic solids, the relation between acoustic strain and refractive index can be determined from $\Delta n (x,t) = C' s(x,t)$ where $C'$ is given by \cite{Korpel1988}
+	\begin{equation*}
+		C' = \left[ \frac{(n^2-1)(n^2+2)}{6n^4} \right](1-\Lambda_0)
+	\end{equation*}
+	The factor $\Lambda_0$ is given by \cite{Korpel1988}
+	\begin{equation*}
+		\Lambda_0 = - \left( \frac{\rho}{\alpha} \right) \frac{\mathrm{d}\alpha}{\mathrm{d} \rho}
+	\end{equation*}
+	where $\rho$ is the density and $\alpha$ is the molecular polarizability. One complication is that $\Lambda_0$ is polarization-sensitive \cite{Korpel1988}.
+	
+	However, if the material in question is anisotropic, the simple relation above does not hold. This is also the case for shear waves, which do not cause a density change. In these cases it becomes important to consider the tensor properties from solid mechanics (for acoustics) and optical anisotropy (for electromagnetism) \cite{Korpel1988}. For this treatment, the photoelastic constant described earlier is not enough, but is instead extended to a photoelastic tensor. The relation is then given as \cite{Korpel1988}
+	\begin{equation*}
+		\Delta \left( \frac{1}{n_i^2} \right) = p_{ij} S_j
+	\end{equation*}
+	where $S_j$ are strains and $i,j = 1,...,6$. The double indexation of $j$ in both $p$ and $S$ indicates a summation over $j$. The notation here is a simplified form of standard tensor notation described by the 1949 IRE standards \cite{Korpel1988}.
 	
 	\subsection{Displacement of scatterers}
 	This is a mechanism presented in the field of ultrasound-optical tomography (UOT). The mechanism is based on dynamic multiple scattering of light, which occurs if many scatterers undergoing Brownian motion are considered \cite{Leutz1995}. If an ultrasonic beam is incident on such a sample the scatterers will move due to both Brownian motion and ultrasound, giving rise to a frequency shift in affected photons \cite{Leutz1995}\cite{Elson2011}. In medical applications, movement of the scatterers due to acoustic waves is very straight-forward: their displacement directly follows the acoustic wave \cite{Leutz1995}. This might well be the case for small scatterers which are then part of the wave, but for larger scatterers it gets more complicated. In that case, acoustic radiation force has to be considered for scatterer movement \cite{Torr1984}.

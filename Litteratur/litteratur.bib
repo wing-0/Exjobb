@@ -946,7 +946,7 @@ The first part of the paper describes the interaction between acoustic and elect
   pages         = {408--413},
   month         = {May},
   issn          = {1573-9120},
-  __markedentry = {[tfy13nwi:3]},
+  __markedentry = {[tfy13nwi:1]},
   abstract      = {We present the theory of radio-acoustic sounding (RAS) of the atmosphere allowing for the dependence on temperature, altitude, and wind. For the case of a linear temperature profile, we obtained expressions for the received signal power. Since the acoustic wave front differs from the sphere if the temperature gradient is allowed for, we can introduce the notion of projector (Fresnel) and Fraunhofer regions. In the Fresnel region, the size of the diffraction spot on the earth is determined by radar antenna dimensions and the received signal power is proportional to z−2. In the Fraunhofer region, the spot size is greater than the antenna dimensions and the power is proportional to z−6. The existing RAS facilities work in the projector region. This can be used as a basis for developing a new method of diagnostics of a large-scale inhomogeneous atmospheric structure, including wave disturbances.},
   comment       = {Contains a derivation similar to Gurvich1987 but also considers wind. Wind is not of any concern to me, but at least this paper was scanned better than Gurvich1987 and the formulas are not half-invisible.
 
@@ -981,7 +981,7 @@ What is of great interest is chapter 4 (the formal approach). This is where deri
   year          = {1971},
   author        = {Tatarskii, Valerian Ilitch},
   address       = {Jerusalem},
-  __markedentry = {[tfy13nwi:3]},
+  __markedentry = {[tfy13nwi:1]},
   comment       = {Book which presumably contains a derivation of scattering equations applicable in this problem.
 
 Much of the book is on completely unrelated things, but chapter 2 has a nice derivation on how a dielectric perturbation affects an electromagnetic wave. This is done from first principles (Maxwell) and reaches a scattering integral without too many assumptions and in a clear manner. The same derivation was redone by me with some of the assumptions changed for more relevant ones. The derivation continues into a section on power density, but when it comes to power there are better thigs to find in Gurvich1987 than here. After this it gets more irrelevant for me. But the derivation into a scattering integral is really good, and it is in good agreement with those in Gurvich1987 and Korpel1988. My own derivation clears up questions if parameters such as wavenumber and speed of light are in material or in vacuum, which is really good.
@@ -999,6 +999,60 @@ Explanatory list of abbreviated names of USSR institutions and periodicals appea
   file          = {:Tatarskii1971.pdf:PDF},
   groups        = {Density variation},
   url           = {https://ui.adsabs.harvard.edu/#abs/1971etaw.book.....T},
+}
+
+@Article{Nelson1971,
+  author        = {Nelson, D. F. and Lax, M.},
+  title         = {Theory of the Photoelastic Interaction},
+  journal       = {Physical Review B},
+  year          = {1971},
+  volume        = {3},
+  pages         = {2778--2794},
+  month         = {Apr},
+  __markedentry = {[tfy13nwi:3]},
+  comment       = {Contains a big derivation of the photoelastic interaction which details even more anisotropic things than described in Korpel1988.},
+  doi           = {10.1103/PhysRevB.3.2778},
+  file          = {:Nelson1971.pdf:PDF},
+  groups        = {Photoelasticity},
+  issue         = {8},
+  numpages      = {0},
+  publisher     = {American Physical Society},
+}
+
+@Article{Smith1999,
+  author        = {F. C. Smith},
+  title         = {Effective permittivity of dielectric honeycombs},
+  journal       = {IEE Proceedings - Microwaves, Antennas and Propagation},
+  year          = {1999},
+  volume        = {146},
+  number        = {1},
+  pages         = {55-59},
+  month         = {Feb},
+  issn          = {1350-2417},
+  __markedentry = {[tfy13nwi:3]},
+  comment       = {Describes anisotropy in permittivity for honeycomb structures. Could be really important to consider for photoelasticity.},
+  doi           = {10.1049/ip-map:19990392},
+  file          = {:Smith1999.pdf:PDF},
+  groups        = {Aerospace composites},
+  keywords      = {permittivity;dielectric honeycombs;effective permittivity;diagonal permittivity tensor;empirical equation;FD-TD method;complex permittivity;diagonal components;electrically large honeycomb cells;effective permittivity failure;honeycomb orientation;incident plane wave;Poynting vector;radar cross-section;planar reflectivity;RCS;radar absorbing materials;polarised incident field;EM wave propagation},
+}
+
+@Article{Smith2017,
+  author        = {Smith, M. J. A. and de Sterke, C. Martijn and Wolff, C. and Lapine, M. and Poulton, C. G.},
+  title         = {Enhanced acousto-optic properties in layered media},
+  journal       = {Physical Review B},
+  year          = {2017},
+  volume        = {96},
+  pages         = {064114},
+  month         = {Aug},
+  __markedentry = {[tfy13nwi:3]},
+  comment       = {Considers photoelasticity in layered media, which is of interest in composites.},
+  doi           = {10.1103/PhysRevB.96.064114},
+  file          = {:Smith2017.pdf:PDF},
+  groups        = {Photoelasticity},
+  issue         = {6},
+  numpages      = {10},
+  publisher     = {American Physical Society},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
@@ -1019,4 +1073,5 @@ Explanatory list of abbreviated names of USSR institutions and periodicals appea
 1 StaticGroup:Localized harmonic motion\;0\;1\;\;blur\;\;;
 1 StaticGroup:Density variation\;2\;1\;\;shuffle\;\;;
 2 StaticGroup:Radio acoustic sounding system\;0\;1\;\;\;\;;
+2 StaticGroup:Photoelasticity\;0\;1\;\;\;\;;
 }

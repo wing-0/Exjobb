@@ -190,15 +190,33 @@
 	\end{equation*}
 	where $\sigma$ is the radar cross section. For this case it can be written as
 	\begin{multline*}
-		\sigma(\theta,\phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L^6 ( \Phi_+(\theta,\phi)^2 + \Phi_-(\theta,\phi)^2 + \\
-		+ 2\Phi_+(\theta,\phi) \Phi_-(\theta,\phi) \cos(2\Omega t) )
+		\sigma(\theta,\phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L^6 ( \Phi^+(\theta,\phi)^2 + \Phi^-(\theta,\phi)^2 \\
+		+ 2\Phi^+(\theta,\phi) \Phi^-(\theta,\phi) \cos(2\Omega t) )
 	\end{multline*}
-	where $\Phi_\pm(\theta,\phi)$ is given by
+	where $\Phi^\pm(\theta,\phi)$ is given by
 	\begin{multline*}
-	\Phi_\pm(\theta,\phi) = \text{sinc} \left( \frac{L}{2\pi} \left( k - k\sin(\theta)\cos(\phi) \pm q\cos(\alpha) \right) \right) \cdot \\
-	\cdot \text{sinc} \left( \frac{L}{2\pi} \left( -k\sin(\theta)\sin(\phi) \pm q\sin(\alpha) \right) \right) \cdot \\
+	\Phi^\pm(\theta,\phi) = \text{sinc} \left( \frac{L}{2\pi} \left( k - k\sin(\theta)\cos(\phi) \pm q\cos(\alpha) \right) \right) \\
+	\cdot \text{sinc} \left( \frac{L}{2\pi} \left( -k\sin(\theta)\sin(\phi) \pm q\sin(\alpha) \right) \right) \\
 	\cdot \text{sinc} \left( -\frac{L}{2\pi} k\cos(\theta) \right)
 	\end{multline*}
+	The variables used are:
+	\begin{itemize}
+		\item $P_R$: power received by the receiving antenna
+		\item $P_T$: power accepted by the transmitting antenna
+		\item $G_T$: transmitting antenna gain
+		\item $G_T$: receiving antenna gain
+		\item $\lambda_R$: electromagnetic wavelength at the receiving antenna
+		\item $R_T$: distance between the transmitting antenna and the center of the scattering volume
+		\item $R_R$: distance between the center of the scattering volume and the receiving antenna
+		\item $\varepsilon_r$: unperturbed relative permittivity in the scattering medium
+		\item $k$: wavenumber in the unperturbed medium before scattering
+		\item $\mathfrak{p}$: photoelasticity coefficient (scalar)
+		\item $S_0$: acoustic amplitude at the center of the scattering volume
+		\item $L$: width of the scattering volume cube
+		\item $\Omega$: acoustic angular frequency
+		\item $q$: acoustic wavenumber
+		\item $\alpha$: angle between the electromagnetic and acoustic propagation directions
+	\end{itemize}
 	The basic assumptions are:
 	\begin{itemize}
 		\item Scattering volume in far-field compared with EM tx antenna.
@@ -206,6 +224,16 @@
 		\item Spherical waves from EM and acoustic tx antennas can be approximated by plane waves in the scattering volume.
 		\item The scattering volume is approximated by a cube with volume $L^3$.
 	\end{itemize}
+	
+	A perhaps better way to present the received power would be to also consider the frequency shifts caused by the interaction. There are two distinct components of the scattered field: one which is frequency shifted by $+\Omega$ and one which is shifted by $-\Omega$. These received power for the two frequency components are denoted $P_R^+$ and $P_R^-$. A radar equation can be written for each frequency component as
+	\begin{equation*}
+	P_R^\pm(\theta,\phi) = \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm(\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2}
+	\end{equation*}
+	where $\sigma^\pm$ differs between the two frequency components as
+	\begin{equation*}
+	\sigma^\pm(\theta,\phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L^6 \Phi^\pm(\theta,\phi)^2
+	\end{equation*}
+	If the power for both components are added, the previous radar equation is almost obtained. The difference is the term containing $\cos(2\Omega t)$ in $\sigma$ which is not present if $P_R^+$ and $P_R^-$ are added. That term is explained as the amplitude modulation term obtained from two overlapping fields with a difference in frequency $2\Omega$. However, for most cases this term is not significant since the two components often have their main lobes in different directions. This can be seen by detailed inspection of $\Phi^\pm$.
 	
 	\subsection{Displacement of scatterers}
 	This is a mechanism presented in the field of ultrasound-optical tomography (UOT). The mechanism is based on dynamic multiple scattering of light, which occurs if many scatterers undergoing Brownian motion are considered \cite{Leutz1995}. If an ultrasonic beam is incident on such a sample the scatterers will move due to both Brownian motion and ultrasound, giving rise to a frequency shift in affected photons \cite{Leutz1995}\cite{Elson2011}. In medical applications, movement of the scatterers due to acoustic waves is very straight-forward: their displacement directly follows the acoustic wave \cite{Leutz1995}. This might well be the case for small scatterers which are then part of the wave, but for larger scatterers it gets more complicated. In that case, acoustic radiation force has to be considered for scatterer movement \cite{Torr1984}.

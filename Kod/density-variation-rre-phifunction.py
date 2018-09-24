@@ -8,11 +8,13 @@ Created on Thu Sep 20 10:21:46 2018
 import numpy as np
 import matplotlib.pyplot as plt
 
+plt.close('all')
+
 # Phi angular function
 def pphi(pm,theta,phi,alpha):
     L = 1e-2
     k = 2*np.pi/5e-3
-    q = 2*np.pi/3e-3
+    q = 2*np.pi/2.5e-3
     A = np.sinc(L/2/np.pi*(k-k*np.sin(theta)*np.cos(phi) \
                            + np.sign(pm)*q*np.cos(np.radians(alpha))))
     B = np.sinc(L/2/np.pi*(-k*np.sin(theta)*np.sin(phi) \
@@ -23,27 +25,40 @@ def pphi(pm,theta,phi,alpha):
 theta = np.pi/2
 phi = np.linspace(0,2*np.pi,500)
 
-# %% Angle sweep
+# %% Various alpha, plot function value for all phi,alpha combinations
+plt.close('all')
+plt.figure()
 alpha = np.linspace(0,180,100)
-mainlobep = np.zeros(100)
-mainlobem = np.zeros(100)
 
-aind = 0
-for a in alpha:
-    p = pphi(1,theta,phi,a)**2
-    m = pphi(-1,theta,phi,a)**2
-    maxindexp, = np.where(p==np.max(p))
-    maxindexm, = np.where(m==np.max(m))
-    mainlobep[aind] = phi[maxindexp[0]]
-    mainlobem[aind] = phi[maxindexm[0]]
-    if(len(maxindexp) > 1 or len(maxindexm) > 1):
-        print("Multiple")
-    aind = aind + 1
+[phi_m,alpha_m] = np.meshgrid(phi,alpha)
 
-plt.plot(alpha,mainlobep)
-plt.plot(alpha,mainlobem)
+p = pphi(1,theta,phi_m,alpha_m)**2
+m = pphi(-1,theta,phi_m,alpha_m)**2
+
+plt.pcolormesh(alpha_m,np.degrees(phi_m),p)
+plt.xlabel(r'$\alpha$ [$^\circ$]')
+plt.ylabel(r'$\varphi$ [$^\circ$]')
+plt.colorbar(label=r'$\Phi^{+^2}$')
+plt.yticks(np.linspace(0,360,10))
+plt.clim(0,1)
+plt.suptitle('$\\Phi$ angular function $\\varphi$ and $\\alpha$ dependence ' + \
+             '($\\theta = \\pi/2$)')
+plt.title('EM prop.dir. at $\\varphi = 180^\\circ$, acoustic prop.dir. at ' + \
+          '$\\varphi = 180^\\circ + \\alpha$',fontsize=10)
+plt.figure()
+plt.pcolormesh(alpha_m,np.degrees(phi_m),m)
+plt.xlabel(r'$\alpha$ [$^\circ$]')
+plt.ylabel(r'$\varphi$ [$^\circ$]')
+plt.colorbar(label=r'$\Phi^{-^2}$')
+plt.yticks(np.linspace(0,360,10))
+plt.clim(0,1)
+plt.suptitle('$\\Phi$ angular function $\\varphi$ and $\\alpha$ dependence ' + \
+             '($\\theta = \\pi/2$)')
+plt.title('EM prop.dir. at $\\varphi = 180^\\circ$, acoustic prop.dir. at ' + \
+          '$\\varphi = 180^\\circ + \\alpha$',fontsize=10)
 
 # %% Some angles
+plt.figure()
 alpha = np.array([15,30,60,180])
 
 plt.polar(np.pi*np.ones(2),np.arange(2),'k')

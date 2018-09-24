@@ -190,14 +190,14 @@
 	\end{equation*}
 	where $\sigma$ is the radar cross section. For this case it can be written as
 	\begin{multline*}
-		\sigma(\theta,\phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L^6 ( \Phi^+(\theta,\phi)^2 + \Phi^-(\theta,\phi)^2 \\
+		\sigma(\theta,\phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 ( \Phi^+(\theta,\phi)^2 + \Phi^-(\theta,\phi)^2 \\
 		+ 2\Phi^+(\theta,\phi) \Phi^-(\theta,\phi) \cos(2\Omega t) )
 	\end{multline*}
 	where $\Phi^\pm(\theta,\phi)$ is given by
 	\begin{multline*}
-	\Phi^\pm(\theta,\phi) = \text{sinc} \left( \frac{L}{2\pi} \left( k - k\sin(\theta)\cos(\phi) \pm q\cos(\alpha) \right) \right) \\
-	\cdot \text{sinc} \left( \frac{L}{2\pi} \left( -k\sin(\theta)\sin(\phi) \pm q\sin(\alpha) \right) \right) \\
-	\cdot \text{sinc} \left( -\frac{L}{2\pi} k\cos(\theta) \right)
+	\Phi^\pm(\theta,\phi) = \text{sinc} \left( \frac{L_x}{2\pi} \left( k - k\sin(\theta)\cos(\phi) \pm q\cos(\alpha) \right) \right) \\
+	\cdot \text{sinc} \left( \frac{L_y}{2\pi} \left( -k\sin(\theta)\sin(\phi) \pm q\sin(\alpha) \right) \right) \\
+	\cdot \text{sinc} \left( -\frac{L_z}{2\pi} k\cos(\theta) \right)
 	\end{multline*}
 	The variables used are:
 	\begin{itemize}
@@ -212,7 +212,7 @@
 		\item $k$: wavenumber in the unperturbed medium before scattering
 		\item $\mathfrak{p}$: photoelasticity coefficient (scalar)
 		\item $S_0$: acoustic amplitude at the center of the scattering volume
-		\item $L$: width of the scattering volume cube
+		\item $L_{x,y,z}$: width of the scattering volume in $x,y,z$
 		\item $\Omega$: acoustic angular frequency
 		\item $q$: acoustic wavenumber
 		\item $\alpha$: angle between the electromagnetic and acoustic propagation directions
@@ -222,7 +222,7 @@
 		\item Scattering volume in far-field compared with EM tx antenna.
 		\item EM rx antenna in the far-field compared with the scattering volume.
 		\item Spherical waves from EM and acoustic tx antennas can be approximated by plane waves in the scattering volume.
-		\item The scattering volume is approximated by a cube with volume $L^3$.
+		\item The scattering volume is approximated by a cuboid with sides $L_x$, $L_y$, $L_z$.
 	\end{itemize}
 	
 	A perhaps better way to present the received power would be to also consider the frequency shifts caused by the interaction. There are two distinct components of the scattered field: one which is frequency shifted by $+\Omega$ and one which is shifted by $-\Omega$. These received power for the two frequency components are denoted $P_R^+$ and $P_R^-$. A radar equation can be written for each frequency component as
@@ -231,7 +231,7 @@
 	\end{equation*}
 	where $\sigma^\pm$ differs between the two frequency components as
 	\begin{equation*}
-	\sigma^\pm(\theta,\phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L^6 \Phi^\pm(\theta,\phi)^2
+	\sigma^\pm(\theta,\phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm(\theta,\phi)^2
 	\end{equation*}
 	If the power for both components are added, the previous radar equation is almost obtained. The difference is the term containing $\cos(2\Omega t)$ in $\sigma$ which is not present if $P_R^+$ and $P_R^-$ are added. That term is explained as the amplitude modulation term obtained from two overlapping fields with a difference in frequency $2\Omega$. However, for most cases this term is not significant since the two components often have their main lobes in different directions. This can be seen by detailed inspection of $\Phi^\pm$.
 	

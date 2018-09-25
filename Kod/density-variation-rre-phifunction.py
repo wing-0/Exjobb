@@ -14,7 +14,7 @@ plt.close('all')
 def pphi(pm,theta,phi,alpha):
     L = 1e-2
     k = 2*np.pi/5e-3
-    q = 2*np.pi/2.5e-3
+    q = 2*np.pi/3e-3
     A = np.sinc(L/2/np.pi*(k-k*np.sin(theta)*np.cos(phi) \
                            + np.sign(pm)*q*np.cos(np.radians(alpha))))
     B = np.sinc(L/2/np.pi*(-k*np.sin(theta)*np.sin(phi) \

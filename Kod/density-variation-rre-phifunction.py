@@ -9,12 +9,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 plt.close('all')
+lam = 5e-3
+Lam = 3e-3
+k = 2*np.pi/lam
+q = 2*np.pi/Lam
 
 # Phi angular function
 def pphi(pm,theta,phi,alpha):
     L = 1e-2
-    k = 2*np.pi/5e-3
-    q = 2*np.pi/3e-3
     A = np.sinc(L/2/np.pi*(k-k*np.sin(theta)*np.cos(phi) \
                            + np.sign(pm)*q*np.cos(np.radians(alpha))))
     B = np.sinc(L/2/np.pi*(-k*np.sin(theta)*np.sin(phi) \
@@ -28,7 +30,7 @@ phi = np.linspace(0,2*np.pi,500)
 # %% Various alpha, plot function value for all phi,alpha combinations
 plt.close('all')
 plt.figure()
-alpha = np.linspace(0,180,100)
+alpha = np.linspace(0,180,500)
 
 [phi_m,alpha_m] = np.meshgrid(phi,alpha)
 
@@ -45,6 +47,14 @@ plt.suptitle('$\\Phi$ angular function $\\varphi$ and $\\alpha$ dependence ' + \
              '($\\theta = \\pi/2$)')
 plt.title('EM prop.dir. at $\\varphi = 180^\\circ$, acoustic prop.dir. at ' + \
           '$\\varphi = 180^\\circ + \\alpha$',fontsize=10)
+
+#plt.figure()
+#plt.pcolormesh(alpha_m,np.degrees(phi_m),np.abs(np.sin(phi_m/2)-lam/2/Lam) \
+#               + np.abs(np.sin(np.radians(alpha_m))+np.cos(phi_m/2))\
+#               ,vmin=-0.5,vmax=0.5,cmap='seismic')
+#plt.yticks(np.linspace(0,360,10))
+#plt.colorbar()
+
 plt.figure()
 plt.pcolormesh(alpha_m,np.degrees(phi_m),m)
 plt.xlabel(r'$\alpha$ [$^\circ$]')

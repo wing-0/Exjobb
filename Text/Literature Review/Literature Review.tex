@@ -1,8 +1,8 @@
-\documentclass[10pt,a4paper,twocolumn,draft]{scrartcl}
+\documentclass[10pt,a4paper,draft]{scrartcl}
 \usepackage[utf8]{inputenc}
 
-\usepackage[a4paper, total={17.5cm,24cm}]{geometry}
-\setlength{\columnsep}{0.5cm}
+%\usepackage[a4paper, total={17.5cm,24cm}]{geometry}
+%\setlength{\columnsep}{0.5cm}
 
 % Symbols
 \usepackage{amsmath}
@@ -104,12 +104,36 @@
 		\Lambda = \frac{\lambda}{2}
 	\end{equation*}
 	
-	\subsubsection{Electromagnetics-based theory}
+	\subsection{Displacement of scatterers}
+	This is a mechanism presented in the field of ultrasound-optical tomography (UOT). The mechanism is based on dynamic multiple scattering of light, which occurs if many scatterers undergoing Brownian motion are considered \cite{Leutz1995}. If an ultrasonic beam is incident on such a sample the scatterers will move due to both Brownian motion and ultrasound, giving rise to a frequency shift in affected photons \cite{Leutz1995}\cite{Elson2011}. In medical applications, movement of the scatterers due to acoustic waves is very straight-forward: their displacement directly follows the acoustic wave \cite{Leutz1995}. This might well be the case for small scatterers which are then part of the wave, but for larger scatterers it gets more complicated. In that case, acoustic radiation force has to be considered for scatterer movement \cite{Torr1984}.
+	
+	It is interesting to see if this mechanism holds any relevance when it comes to microwave frequencies. The assumption on which the theory rests is that of dynamic multiple light scattering \cite{Leutz1995}. In the existing mm-wave imaging system there is an assumption of sparse defects being the only scatterers \cite{Helander2017}. This is in complete contrast to the theory of dynamic multiple light scattering, which is based on a large number of moving scatterers \cite{Leutz1995}. Since the basic assumptions of the problem and theory are in such stark contrast, it seems likely that this interaction mechanism holds little relevance to the problem at hand.
+	
+	\section{Focus of investigations}
+	After an initial overview of the different interaction mechanisms a decision had to be made concerning the relevance of said mechanisms. Those deemed interesting enough for the problem at hand would be studied further while the others would not.
+	
+	The boundary perturbation mechanism is based on acoustic resonance in the target. Proposed NDT methods using this mechanism are based on the entire device under test being in acoustic resonance and using Doppler components to find defects \cite{Buerkle2009}. An issue with this is that the resonance frequencies of complex objects are difficult to know beforehand. A possibility would be to scan the acoustic frequency in order to find a resonance, but with an already time-consuming electromagnetic measurement this might be less desirable. Additionally, the mechanism is very similar to localized harmonic motion with one main difference being that the latter does not require resonance. The boundary perturbation mechanism was therefore decided not to be a focus point in further investigations.
+	
+	As stated above, the localized harmonic motion mechanism has an advantage over boundary perturbation as it does not require resonance. Since the ultrasonic focus can be moved to any point in the device under test, a method using this mechanism is not nearly as dependent on geometry-specific parameters such as resonance frequency. The interaction strength depends on both acoustic, mechanic and electromagnetic properties which should give contrast enhancement when compared with a method using only one phenomenon \cite{Top2016}. This would allow for detection of deviation from the normal in any modality, which could indicate a defect when used in NDT. The freedom in focus selection together with obvious possibilities for contrast made this mechanism worth investigating further.
+	
+	The density variation mechanism was found in two distinct frequency ranges: acousto-optics and radio acoustic sounding. Even though they are quite different in detail, they use the same interaction mechanism which in itself makes it an interesting topic. It is an indication of some scaling ability, and the big question was to find scaling laws and apply them to the ranges of the NDT problem.
+	
+	The scatterer displacement mechanism is based on dynamic multiple scattering of light. As explained earlier, this is not very applicable at microwave frequencies, and especially not for the NDT problem. Therefore, this mechanism was not investigated any further.
+	
+	To summarize, the mechanisms in focus of further investigations were:
+	\begin{itemize}
+		\item Density variation in material
+		\item Localized harmonic motion
+	\end{itemize}
+	
+	\section{Density variation in material - further investigation}
+	
+	\subsection{Electromagnetics-based theory}
 	Instead of using ray and wave optics to explain the interaction (as in \cite{Saleh2007}) it is possible to use electromagnetism. This comes naturally in the field of radio acoustic sounding due to its frequency range, but is also useful in acousto-optics \cite{Korpel1988}. 
 	
 	From the perspective of radio acoustic sounding, an equation for the electromagnetic scattering against a dielectric disturbance is given by \cite{Gurvich1987}:
 	\begin{equation*}
-		E_{sc}(\bm{r},t) = \frac{k^2}{4\pi} \int_{V_{sc}} \frac{e^{ik \left| \bm{r}-\bm{r'} \right| }}{ \left| \bm{r}-\bm{r'} \right| } \varepsilon_s (\bm{r'},t) E_0 (\bm{r'},t) \mathrm{d}^3r'
+	E_{sc}(\bm{r},t) = \frac{k^2}{4\pi} \int_{V_{sc}} \frac{e^{ik \left| \bm{r}-\bm{r'} \right| }}{ \left| \bm{r}-\bm{r'} \right| } \varepsilon_s (\bm{r'},t) E_0 (\bm{r'},t) \mathrm{d}^3r'
 	\end{equation*}
 	where $k$ is the wavenumber, $V_{sc}$ is the scattering volume, $\bm{r}$ is the observation point, $\varepsilon_s$ is the variation in relative permittivity and $E_0$ is the incident electric field. The equation is only valid for scattering with no polarization change since polarization is not considered in the electric field. It is also only valid for single scattering \cite{Gurvich1987}.
 	
@@ -119,56 +143,56 @@
 	\end{equation*}
 	Here $k$ is the wavenumber in the material, $\varepsilon_r$ is the unperturbed relative permittivity of the material and $\varepsilon_1 (\bm{r},t)$ is defined as $\varepsilon (\bm{r},t) = \varepsilon_0 (\varepsilon_r + \varepsilon_1 (\bm{r},t))$.
 	
-	\subsubsection{Photoelasticity}
+	\subsection{Photoelasticity}
 	The primary mechanism behind this interaction is, as stated earlier, a variation of density leading to a change in refractive index (or permittivity). To get a full picture of the interaction, the relationship between acoustic intensity and refractive index must be known. For a one-dimensional, longitudinal sound wave the change in refractive index is given by \cite{Saleh2007}
 	\begin{equation*}
-		\Delta n (x,t) = -\frac{1}{2} \mathfrak{p} n^3 s(x,t)
+	\Delta n (x,t) = -\frac{1}{2} \mathfrak{p} n^3 s(x,t)
 	\end{equation*}
 	where $\mathfrak{p}$ is the photoelastic constant (also called strain-optic coefficient or elasto-optic coefficient \cite{Korpel1988}), $n$ is the unperturbed refractive index and $s(x,t)$ is the acoustic strain. Singe it is negative, a positive strain decreases the refractive index \cite{Saleh2007}.
 	
 	It is also possible to write this change depending on the acoustic intensity instead of the actual wave. This is done as \cite{Saleh2007}
 	\begin{equation*}
-		\Delta n_0 = \sqrt{\frac{1}{2} \mathcal{M} I_s} \quad , \quad
-		\mathcal{M} = \frac{\mathfrak{p}^2 n^6}{\rho v_s^3}
+	\Delta n_0 = \sqrt{\frac{1}{2} \mathcal{M} I_s} \quad , \quad
+	\mathcal{M} = \frac{\mathfrak{p}^2 n^6}{\rho v_s^3}
 	\end{equation*}
 	where $I_s$ is the acoustic intensity (W/m$^2$), $\rho$ is the mass density and $v_s$ is the speed of sound. The amplitude is related to the total refractive index as \cite{Saleh2007}
 	\begin{equation*}
-		n(x,t) = n - \Delta n_0 \cos(\Omega t - qx)
+	n(x,t) = n - \Delta n_0 \cos(\Omega t - qx)
 	\end{equation*}
 	where $\cos(\Omega t - qx)$ is the phase part of the sound wave. \todo[inline]{Is this an ok description of the cos part?}
 	
 	The refractive index and relative permittivity are related by $\varepsilon_r = n^2$ in a non-magnetic material. To obtain the change in relative permittivity instead of refractive index
 	\begin{equation*}
-		\Delta \varepsilon_r(x,t) = \frac{\mathrm{d}\varepsilon_r}{\mathrm{d}n} \Delta n(x,t) = 2n \Delta n(x,t) = -\mathfrak{p} \varepsilon_r^2 s(x,t)
+	\Delta \varepsilon_r(x,t) = \frac{\mathrm{d}\varepsilon_r}{\mathrm{d}n} \Delta n(x,t) = 2n \Delta n(x,t) = -\mathfrak{p} \varepsilon_r^2 s(x,t)
 	\end{equation*}
 	
 	However, the photoelastic constant described above is really a simplification of the mechanism. For a full picture it is important to consider the tensor properties from solid mechanics (for acoustics) and optical anisotropy (for electromagnetism) \cite{Korpel1988}. This gives rise to a photoelastic tensor instead of a simple constant. The relation is then given as \cite{Korpel1988}
 	\begin{equation*}
-		\Delta \left( \frac{1}{n_i^2} \right) = p_{ij} S_j
+	\Delta \left( \frac{1}{n_i^2} \right) = p_{ij} S_j
 	\end{equation*}
 	where $S_j$ are strains and $i,j = 1,...,6$. The double indexation of $j$ in both $p$ and $S$ indicates a summation over $j$. This can seem a bit troublesome to use since the LHS is the difference of an inverse quantity. This can be rewritten as shown below
 	\begin{align*}
-		\alpha &= \frac{1}{n_i^2},\ n_i = \alpha^{-1/2} \\
-		\Delta n_i &= \frac{\mathrm{d}n_i}{\mathrm{d}\alpha} \Delta \alpha = -\frac{1}{2} \alpha^{-3/2} \Delta \alpha = -\frac{1}{2} n_i^3 p_{ij} S_j
+	\alpha &= \frac{1}{n_i^2},\ n_i = \alpha^{-1/2} \\
+	\Delta n_i &= \frac{\mathrm{d}n_i}{\mathrm{d}\alpha} \Delta \alpha = -\frac{1}{2} \alpha^{-3/2} \Delta \alpha = -\frac{1}{2} n_i^3 p_{ij} S_j
 	\end{align*}
 	This is similar to the simple relation, but it now has tensor quantities instead of scalar ones. As before this can also be written as permittivity:
 	\begin{equation*}
-		\Delta \varepsilon_{r_i} = 2n_i\Delta n_i = -n_i^4 p_{ij} S_j = -\varepsilon_{r_i}^2 p_{ij} S_j
+	\Delta \varepsilon_{r_i} = 2n_i\Delta n_i = -n_i^4 p_{ij} S_j = -\varepsilon_{r_i}^2 p_{ij} S_j
 	\end{equation*}
 	
 	The tensor notation here is a simplified form of standard tensor notation and is described by the 1949 IRE standards \cite{Korpel1988}. \todo[inline]{Cite the standards?} The relation to full tensor notation is shown below for refractive indices and strains \cite{Korpel1988}
 	\begin{align*}
-		n_1 &= n_{11},\ n_2 = n_{22},\ n_3 = n_{33}, \\
-		n_4 &= n_{23},\ n_5 = n_{31},\ n_6 = n_{12} \\
-		S_1 &= \delta_{11},\ S_2 = \delta_{22},\ S_3 = \delta_{33}, \\
-		S_4 &= \delta_{23},\ S_5 = \delta_{31},\ S_6 = \delta_{12}
+	n_1 &= n_{11},\ n_2 = n_{22},\ n_3 = n_{33}, \\
+	n_4 &= n_{23},\ n_5 = n_{31},\ n_6 = n_{12} \\
+	S_1 &= \delta_{11},\ S_2 = \delta_{22},\ S_3 = \delta_{33}, \\
+	S_4 &= \delta_{23},\ S_5 = \delta_{31},\ S_6 = \delta_{12}
 	\end{align*}
 	where $\delta_{kl}$ are the strains in standard tensor notation. It is clear that indices 1-3 are tensile and 4-6 are shear. The photoelastic tensor in standard notation is then clearly of rank 4, being $p_{ijkl}$.
 	
 	The photoelastic tensor can have up to 36 independent components, but for the simple case of an isotropic solid the tensor simplifies to \cite{Korpel1988}
 	\begin{align*}
-		p_{11} &= p_{22} = p_{33}, \ p_{12} = p_{21} = p_{13} = p_{23} = p_{32}\\
-		p_{44} &= p_{55} = p_{66} = \frac{1}{2} (p_{11} - p_{22}), \ p_{ij} = 0 \text{ for others}
+	p_{11} &= p_{22} = p_{33}, \ p_{12} = p_{21} = p_{13} = p_{23} = p_{32}\\
+	p_{44} &= p_{55} = p_{66} = \frac{1}{2} (p_{11} - p_{22}), \ p_{ij} = 0 \text{ for others}
 	\end{align*}
 	
 	The simplest material to consider would be an isotropic solid with isotropic permittivity $\varepsilon_r$. There is then no preferred axis and a coordinate system can be selected arbitrarily. A longitudinal acoustic wave is defined by \begin{equation*}
@@ -176,27 +200,43 @@
 	\end{equation*}
 	It is propagating in the $x_1$ direction and is thus a strain $S_1$, and all other strains are assumed to be zero. The relation $\Delta \varepsilon_{r_i} = -\varepsilon_{r_i}^2 p_{ij} S_j$ together with the photoelastic tensor for isotropic solids then gives
 	\begin{align*}
-		\varepsilon_{r_1} &= -\varepsilon_r^2 p_{11} S_0 \cos(\Omega t - qx_1) \\
-		\varepsilon_{r_2} &= \varepsilon_{r_3} = -\varepsilon_r^2 p_{12} S_0 \cos(\Omega t - qx_1)
+	\varepsilon_{r_1} &= -\varepsilon_r^2 p_{11} S_0 \cos(\Omega t - qx_1) \\
+	\varepsilon_{r_2} &= \varepsilon_{r_3} = -\varepsilon_r^2 p_{12} S_0 \cos(\Omega t - qx_1)
 	\end{align*}
 	It is clear that the permittivity now has an axis $x_1$ where it has another value than in $x_2$ and $x_3$. So even for a material which is nominally completely isotropic, a preferred axis arises for the permittivity! This type of anisotropy is called birefringence in optics, and in this case it is caused by dipoles aligning themselves parallel to the strain \cite{Korpel1988}. Practically, the effect of this is that the interaction strength of this mechanism depends on the EM polarization with respect to the acoustic wave polarization. In longitudinal acoustic waves the polarization and propagation direction coincide, which makes analysis easier.
 	
+	But for a very simple model which does not take any anisotropic effect into consideration, the Lorentz-Lorenz relation leads to the equations \cite{Korpel1988}
+	\begin{align*}
+	\Delta n &= C' s \\
+	C' &= \left[ \frac{(n^2-1)(n^2+2)}{6n} \right](1-\Lambda_0) \\
+	\Lambda_0 &= -\left( \frac{\rho}{\alpha} \right) \frac{\mathrm{d} \alpha}{\mathrm{d} \rho}
+	\end{align*}
+	where $\rho$ is the density and $\alpha$ is the molecular polarizability. Since the current goal is a very simple model, $\Lambda_0$ is neglected. This is usually the case for liquids, but solids do not always have this behavior \cite{Korpel1988}. Furthermore, solids often have anisotropic $\Lambda_0$ \cite{Korpel1988}, but in that case the tensor-based model might be of more use. For our very simple case, the relation can be written for permittivity (using $\varepsilon_r = n^2$ and $\Delta \varepsilon_r = 2n \Delta n$) as
+	\begin{equation*}
+	\Delta \varepsilon_r = \frac{1}{3} (\varepsilon_r - 1)(\varepsilon_r + 2) s
+	\end{equation*}
+	This can be compared with the previous relation $\Delta \varepsilon_r = -\mathfrak{p}\varepsilon_r^2 s$ to obtain an equivalent photoelasticity
+	\begin{equation*}
+	\mathfrak{p} = -\frac{(\varepsilon_r - 1)(\varepsilon_r + 2)}{3\varepsilon_r^2}
+	\end{equation*}
+	This can then be used in all equations derived with $\mathfrak{p}$ relating permittivity and strain. However, it should be noted that this model is extremely simplistic and will probably give faulty results in many cases.
+	
 	\todo[inline]{Shear waves? They do not cause density variation, but still cause photoelastic interaction. Maybe this entire mechanism should be called photoelastic interaction?}
 	
-	\subsubsection{Radar range equation}
+	\subsection{Radar range equation}
 	If a scalar photoelastic relationship is assumed a radar range equation can be derived on the form of the bistatic radar range equation:
 	\begin{equation*}
-		P_R(\theta,\phi) = \frac{P_T G_T G_R \lambda_R^2 \sigma(\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2}
+	P_R(\theta,\phi) = \frac{P_T G_T G_R \lambda_R^2 \sigma(\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2}
 	\end{equation*}
 	where $\sigma$ is the radar cross section. For this case it can be written as
-	\begin{multline*}
-		\sigma(\theta,\phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 ( \Phi^+(\theta,\phi)^2 + \Phi^-(\theta,\phi)^2 \\
-		+ 2\Phi^+(\theta,\phi) \Phi^-(\theta,\phi) \cos(2\Omega t) )
-	\end{multline*}
+	\begin{equation*}
+	\sigma(\theta,\phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 ( \Phi^+(\theta,\phi)^2 + \Phi^-(\theta,\phi)^2 \\
+	+ 2\Phi^+(\theta,\phi) \Phi^-(\theta,\phi) \cos(2\Omega t) )
+	\end{equation*}
 	where $\Phi^\pm(\theta,\phi)$ is given by
 	\begin{multline*}
 	\Phi^\pm(\theta,\phi) = \text{sinc} \left( \frac{L_x}{2\pi} \left( k - k\sin(\theta)\cos(\phi) \pm q\cos(\alpha) \right) \right) \\
-	\cdot \text{sinc} \left( \frac{L_y}{2\pi} \left( -k\sin(\theta)\sin(\phi) \pm q\sin(\alpha) \right) \right) \\
+	\cdot \text{sinc} \left( \frac{L_y}{2\pi} \left( -k\sin(\theta)\sin(\phi) \pm q\sin(\alpha) \right) \right) 
 	\cdot \text{sinc} \left( -\frac{L_z}{2\pi} k\cos(\theta) \right)
 	\end{multline*}
 	The variables used are:
@@ -235,72 +275,114 @@
 	\end{equation*}
 	If the power for both components are added, the previous radar equation is almost obtained. The difference is the term containing $\cos(2\Omega t)$ in $\sigma$ which is not present if $P_R^+$ and $P_R^-$ are added. That term is explained as the amplitude modulation term obtained from two overlapping fields with a difference in frequency $2\Omega$. However, for most cases this term is not significant since the two components often have their main lobes in different directions. This can be seen by detailed inspection of $\Phi^\pm$.
 	
-	\subsection{Displacement of scatterers}
-	This is a mechanism presented in the field of ultrasound-optical tomography (UOT). The mechanism is based on dynamic multiple scattering of light, which occurs if many scatterers undergoing Brownian motion are considered \cite{Leutz1995}. If an ultrasonic beam is incident on such a sample the scatterers will move due to both Brownian motion and ultrasound, giving rise to a frequency shift in affected photons \cite{Leutz1995}\cite{Elson2011}. In medical applications, movement of the scatterers due to acoustic waves is very straight-forward: their displacement directly follows the acoustic wave \cite{Leutz1995}. This might well be the case for small scatterers which are then part of the wave, but for larger scatterers it gets more complicated. In that case, acoustic radiation force has to be considered for scatterer movement \cite{Torr1984}.
-	
-	It is interesting to see if this mechanism holds any relevance when it comes to microwave frequencies. The assumption on which the theory rests is that of dynamic multiple light scattering \cite{Leutz1995}. In the existing mm-wave imaging system there is an assumption of sparse defects being the only scatterers \cite{Helander2017}. This is in complete contrast to the theory of dynamic multiple light scattering, which is based on a large number of moving scatterers \cite{Leutz1995}. Since the basic assumptions of the problem and theory are in such stark contrast, it seems likely that this interaction mechanism holds little relevance to the problem at hand.
-	
-	\section{Focus of investigations}
-	After an initial overview of the different interaction mechanisms a decision had to be made concerning the relevance of said mechanisms. Those deemed interesting enough for the problem at hand would be studied further while the others would not.
-	
-	The boundary perturbation mechanism is based on acoustic resonance in the target. Proposed NDT methods using this mechanism are based on the entire device under test being in acoustic resonance and using Doppler components to find defects \cite{Buerkle2009}. An issue with this is that the resonance frequencies of complex objects are difficult to know beforehand. A possibility would be to scan the acoustic frequency in order to find a resonance, but with an already time-consuming electromagnetic measurement this might be less desirable. Additionally, the mechanism is very similar to localized harmonic motion with one main difference being that the latter does not require resonance. The boundary perturbation mechanism was therefore decided not to be a focus point in further investigations.
-	
-	As stated above, the localized harmonic motion mechanism has an advantage over boundary perturbation as it does not require resonance. Since the ultrasonic focus can be moved to any point in the device under test, a method using this mechanism is not nearly as dependent on geometry-specific parameters such as resonance frequency. The interaction strength depends on both acoustic, mechanic and electromagnetic properties which should give contrast enhancement when compared with a method using only one phenomenon \cite{Top2016}. This would allow for detection of deviation from the normal in any modality, which could indicate a defect when used in NDT. The freedom in focus selection together with obvious possibilities for contrast made this mechanism worth investigating further.
-	
-	The density variation mechanism was found in two distinct frequency ranges: acousto-optics and radio acoustic sounding. Even though they are quite different in detail, they use the same interaction mechanism which in itself makes it an interesting topic. It is an indication of some scaling ability, and the big question was to find scaling laws and apply them to the ranges of the NDT problem.
-	
-	The scatterer displacement mechanism is based on dynamic multiple scattering of light. As explained earlier, this is not very applicable at microwave frequencies, and especially not for the NDT problem. Therefore, this mechanism was not investigated any further.
-	
-	To summarize, the mechanisms in focus of further investigations were:
-	\begin{itemize}
-		\item Localized harmonic motion
-		\item Density variation in material
-	\end{itemize}
-	
-	\section{Miscellaneous}
-	This section is for stuff I don't know where to put yet.
+	\section{Miscellaneous/appendix}
+	This section is for stuff I don't know where to put yet or stuff not fitting elsewhere.
 	
 	\subsection{Derivation of Gurvich scattering equation}
 	Here follows a derivation of equation (2) in \cite{Gurvich1987} from equation (15) in the same. Equation 15 is
-	\begin{multline*}
+	\begin{equation*}
 		E_{sc} (\bm{r},t) = -\frac{1}{4\pi c^2} \frac{\partial^2}{\partial t^2} \int_{V_{sc}}
 		\varepsilon_s\left( \bm{r}, t - \frac{\left|\bm{r}-\bm{r'}\right|}{c} \right)\\
 		\cdot E_0 \left( \bm{r}, t - \frac{\left|\bm{r}-\bm{r'}\right|}{c} \right)
 		\frac{\mathrm{d}^3r'}{\left|\bm{r}-\bm{r'}\right|}
-	\end{multline*}
+	\end{equation*}
 	A time-dependence is assumed as
 	\begin{align*}
 		&\varepsilon_s(\bm{r}, t) = \varepsilon_s(\bm{r}) e^{-i\Omega_0 t} \\
 		&E_0(\bm{r},t) = E_0(\bm{r}) e^{-i\omega_0 t}
 	\end{align*}
 	The original equation can now be rewritten as
-	\begin{multline*}
+	\begin{equation*}
 	E_{sc} (\bm{r},t) = -\frac{1}{4\pi c^2}
 	\frac{\partial^2}{\partial t^2} \left( e^{-i(\omega_0 + \Omega_0)t} \right) \\
 	\cdot \int_{V_{sc}} e^{i\frac{\omega_0 + \Omega_0}{c} |\bm{r}-\bm{r'}|}
 	\varepsilon_s(\bm{r}) E_0 (\bm{r})
 	\frac{\mathrm{d}^3r'}{\left|\bm{r}-\bm{r'}\right|}
-	\end{multline*}
+	\end{equation*}
 	Differentiation and combination of the fields and time-dependencies again gives
-	\begin{multline*}
+	\begin{equation*}
 	E_{sc} (\bm{r},t) = -\frac{(\omega_0 + \Omega_0)^2}{4\pi c^2}
 	\int_{V_{sc}} e^{i\frac{\omega_0 + \Omega_0}{c} |\bm{r}-\bm{r'}|}\\
 	\cdot \varepsilon_s(\bm{r},t) E_0 (\bm{r},t)
 	\frac{\mathrm{d}^3r'}{\left|\bm{r}-\bm{r'}\right|}
-	\end{multline*}
+	\end{equation*}
 	If $\omega_0 \gg \Omega_0$ an approximation can be done as $(\omega_0 + \Omega_0)/c \approx k$ where $k$ is the incident wavenumber. This gives
 	\begin{equation*}
 	E_{sc}(\bm{r},t) \approx \frac{k^2}{4\pi} \int_{V_{sc}} \frac{e^{ik \left| \bm{r}-\bm{r'} \right| }}{ \left| \bm{r}-\bm{r'} \right| } \varepsilon_s (\bm{r'},t) E_0 (\bm{r'},t) \mathrm{d}^3r'
 	\end{equation*}
 	which is equation (2) in \cite{Gurvich1987}.
 	
-	\begin{comment}
-	\begin{figure}
-		\centering
-		\includegraphics[width = 0.5\columnwidth]{C:/Users/tfy13nwi/Documents/Capture.png}
-		\caption{Error message}
-	\end{figure}
-	\end{comment}
+	\subsection{Derivation of scattering integral in density variation}
+	Here follows a formal derivation of the scattering of electromagnetic waves against a perturbation in relative permittivity. This is useful in photoelastic interaction since an acoustic wave in that case causes a periodic dielectric perturbation.
+	
+	First, Maxwell's equations for a linear, non-magnetic, source-free, isotropic dielectric are presented. Note that the permittivity is not homogeneous.
+	\begin{align*}
+		&\nabla \times \bm{\mathcal{E}} = -\mu_0 \frac{\partial \bm{\mathcal{H}}}{\partial t} \\
+		&\nabla \times \bm{\mathcal{H}} = \frac{\partial (\varepsilon \bm{\mathcal{E}})}{\partial t} \\
+		&\nabla \cdot (\varepsilon \bm{\mathcal{E}}) = 0 \\
+		&\nabla \cdot \bm{\mathcal{H}} = 0
+	\end{align*}
+	The script letters are used here to indicate a time dependence as
+	\begin{align*}
+		&\bm{\mathcal{E}}(\bm{r},t) = \bm{E}(\bm{r},t) \text{e}^{-i\omega t} \\
+		&\bm{\mathcal{H}}(\bm{r},t) = \bm{H}(\bm{r},t) \text{e}^{-i\omega t} \\
+	\end{align*}
+	This is used to remove the e$^{-i\omega t}$ dependence in the equations and only keep "slower" time dependencies. The new equations are
+	\begin{align*}
+		&\nabla \times \bm{E} = i\omega \mu_0 \bm{H} - \mu_0 \frac{\partial \bm{H}}{\partial t} \\
+		&\nabla \times \bm{H} = -i\omega \varepsilon \bm{E} + \mu_0 \frac{\partial \bm{E}}{\partial t} \\
+		&\nabla \cdot (\varepsilon \bm{E}) = 0 \\
+		&\nabla \cdot \bm{H} = 0
+	\end{align*}
+	Now $\nabla \times$ is applied to $\nabla \times \bm{E}$ and it is combined with $\nabla \times \bm{H}$, giving
+	\begin{equation*}
+		\nabla \times (\nabla \times \bm{E}) = \omega^2 \mu_0 \varepsilon \bm{E} + 2i\omega \mu_0 \frac{\partial \bm{E}}{\partial t} - \mu_0 \frac{\partial^2 \bm{E}}{\partial t^2}
+	\end{equation*}
+	The relation $\nabla \times (\nabla \times \bm{E}) = -\nabla^2\bm{E} + \nabla(\nabla \cdot \bm{E})$ is now used
+	\begin{equation*}
+		\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon \bm{E} = \nabla(\nabla \cdot \bm{E}) - 2i\omega \mu_0 \frac{\partial \bm{E}}{\partial t} + \mu_0 \frac{\partial^2 \bm{E}}{\partial t^2}
+	\end{equation*}
+	Gauss' law $\nabla \cdot (\varepsilon \bm{E}) = 0$ is now expanded to $\varepsilon(\nabla \cdot \bm{E}) + (\nabla \varepsilon) \cdot \bm{E} = 0$. This can be rewritten as
+	\begin{equation*}
+		\nabla \cdot \bm{E} = -\bm{E} \cdot \frac{\nabla \varepsilon}{\varepsilon} = -\bm{E} \cdot \nabla (\ln{\varepsilon})
+	\end{equation*}
+	Inserting this into the previous equation gives
+	\begin{equation*}
+		\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon \bm{E} = -\nabla(\bm{E} \cdot \nabla (\ln{\varepsilon})) - 2i\omega \mu_0 \frac{\partial \bm{E}}{\partial t} + \mu_0 \frac{\partial^2 \bm{E}}{\partial t^2}
+	\end{equation*}
+	Now, the dielectric perturbation is defined as
+	\begin{equation*}
+	\varepsilon = \varepsilon_0(\varepsilon_r + \varepsilon_1)
+	\end{equation*}
+	where $\varepsilon_0$ is the permittivity of free space, $\varepsilon_r$ is the unperturbed value for relative permittivity in the material and $\varepsilon_1$ is a small perturbation around $\varepsilon_r$. For $|\varepsilon_1| \ll \varepsilon_r$ $\ln{\varepsilon}$ can be approximated as
+	\begin{equation*}
+		\ln{\varepsilon} = \ln(\varepsilon_0 \varepsilon_r) + \ln(1 + \frac{\varepsilon_1}{\varepsilon_r}) \approx \ln(\varepsilon_0 \varepsilon_r) + \frac{\varepsilon_1}{\varepsilon_r}
+	\end{equation*}
+	Since $\ln(\varepsilon_0 \varepsilon_r)$ is constant, the gradient can be written as
+	\begin{equation*}
+		\nabla(\ln{\varepsilon}) = \nabla \left( \frac{\varepsilon_1}{\varepsilon_r} \right) = \frac{1}{\varepsilon_r} \nabla \varepsilon_1
+	\end{equation*}
+	This is now inserted in the equation for the electric field together with the definition of the perturbation:
+	\begin{equation*}
+		\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon_0 \varepsilon_r \bm{E} = \\
+		 -\omega^2 \mu_0 \varepsilon_0 \varepsilon_1 \bm{E} -\frac{1}{\varepsilon_r}\nabla(\bm{E} \cdot \nabla \varepsilon_1) - 2i\omega \mu_0 \frac{\partial \bm{E}}{\partial t} + \mu_0 \frac{\partial^2 \bm{E}}{\partial t^2}
+	\end{equation*}
+	Now $k$ is defined as $k = \omega/c$ where $c$ is the speed of light in the material
+	\begin{equation*}
+		c = \frac{1}{\sqrt{\mu_0 \varepsilon_0 \varepsilon_r}} = \frac{c_0}{\sqrt{\varepsilon_r}}
+	\end{equation*}
+	Now the equation for $\bm{E}$ is written as
+	\begin{equation*}
+	\boxed{
+		\nabla^2\bm{E} + k^2 \bm{E} = \\
+		-k^2 \frac{\varepsilon_1}{\varepsilon_r} \bm{E} -\frac{1}{\varepsilon_r}\nabla(\bm{E} \cdot \nabla \varepsilon_1) - \frac{2ik}{c\varepsilon_0\varepsilon_r} \frac{\partial \bm{E}}{\partial t} + \frac{1}{c_0 \varepsilon_0 \varepsilon_r} \frac{\partial^2 \bm{E}}{\partial t^2}
+	}
+	\end{equation*}
+	To simplify this equation even more, approximations concerning the nature of the perturbation must be done. The dielectric perturbation is thus assumed to have the following behavior:
+	\begin{equation*}
+		\varepsilon_1 (\bm{r},t) = |\varepsilon_1| \cos(\bm{q} \cdot \bm{r} - \Omega t)
+	\end{equation*}
+	where $|\varepsilon_1|$ is the amplitude, $q$ is the acoustic wavevector and $\Omega$ is the acoustic frequency. Furthermore, the relations between wavenumbers and wavelengths are introduced as $k = 2\pi/\lambda$ for electromagnetics and $q = |\bm{q}| = 2\pi/\Lambda$ for acoustics.
 	
 	\small
 	\bibliographystyle{../../Litteratur/IEEEtran}

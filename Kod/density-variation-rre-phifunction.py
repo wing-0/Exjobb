@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 plt.close('all')
 lam = 5e-3
-Lam = 3e-3
+Lam = 2.5e-3
 k = 2*np.pi/lam
 q = 2*np.pi/Lam
 

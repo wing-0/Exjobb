@@ -11,6 +11,7 @@
 
 % Graphics
 \usepackage{graphicx}
+\usepackage{tikz}
 
 % Language localization
 \usepackage[english]{babel}
@@ -313,7 +314,7 @@
 	which is equation (2) in \cite{Gurvich1987}.
 	
 	\subsection{Derivation of scattering integral in density variation}
-	Here follows a formal derivation of the scattering of electromagnetic waves against a perturbation in relative permittivity. This is useful in photoelastic interaction since an acoustic wave in that case causes a periodic dielectric perturbation.
+	Here follows a formal derivation of the scattering of electromagnetic waves against a perturbation in relative permittivity. This is useful in photoelastic interaction since an acoustic wave in that case causes a periodic dielectric perturbation. Most of this derivation is based on a similar derivation by Tatarskii which considers scattering from turbulence in air \cite{Tatarskii1971}.
 	
 	First, Maxwell's equations for a linear, non-magnetic, source-free, isotropic dielectric are presented. Note that the permittivity is not homogeneous.
 	\begin{align*}
@@ -330,17 +331,17 @@
 	This is used to remove the e$^{-i\omega t}$ dependence in the equations and only keep "slower" time dependencies. The new equations are
 	\begin{align*}
 		&\nabla \times \bm{E} = i\omega \mu_0 \bm{H} - \mu_0 \frac{\partial \bm{H}}{\partial t} \\
-		&\nabla \times \bm{H} = -i\omega \varepsilon \bm{E} + \mu_0 \frac{\partial \bm{E}}{\partial t} \\
+		&\nabla \times \bm{H} = -i\omega \varepsilon \bm{E} + \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} \\
 		&\nabla \cdot (\varepsilon \bm{E}) = 0 \\
 		&\nabla \cdot \bm{H} = 0
 	\end{align*}
 	Now $\nabla \times$ is applied to $\nabla \times \bm{E}$ and it is combined with $\nabla \times \bm{H}$, giving
 	\begin{equation*}
-		\nabla \times (\nabla \times \bm{E}) = \omega^2 \mu_0 \varepsilon \bm{E} + 2i\omega \mu_0 \frac{\partial \bm{E}}{\partial t} - \mu_0 \frac{\partial^2 \bm{E}}{\partial t^2}
+		\nabla \times (\nabla \times \bm{E}) = \omega^2 \mu_0 \varepsilon \bm{E} + 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} - \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
 	\end{equation*}
 	The relation $\nabla \times (\nabla \times \bm{E}) = -\nabla^2\bm{E} + \nabla(\nabla \cdot \bm{E})$ is now used
 	\begin{equation*}
-		\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon \bm{E} = \nabla(\nabla \cdot \bm{E}) - 2i\omega \mu_0 \frac{\partial \bm{E}}{\partial t} + \mu_0 \frac{\partial^2 \bm{E}}{\partial t^2}
+		\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon \bm{E} = \nabla(\nabla \cdot \bm{E}) - 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} + \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
 	\end{equation*}
 	Gauss' law $\nabla \cdot (\varepsilon \bm{E}) = 0$ is now expanded to $\varepsilon(\nabla \cdot \bm{E}) + (\nabla \varepsilon) \cdot \bm{E} = 0$. This can be rewritten as
 	\begin{equation*}
@@ -348,7 +349,7 @@
 	\end{equation*}
 	Inserting this into the previous equation gives
 	\begin{equation*}
-		\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon \bm{E} = -\nabla(\bm{E} \cdot \nabla (\ln{\varepsilon})) - 2i\omega \mu_0 \frac{\partial \bm{E}}{\partial t} + \mu_0 \frac{\partial^2 \bm{E}}{\partial t^2}
+		\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon \bm{E} = -\nabla(\bm{E} \cdot \nabla (\ln{\varepsilon})) - 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} + \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
 	\end{equation*}
 	Now, the dielectric perturbation is defined as
 	\begin{equation*}
@@ -365,7 +366,7 @@
 	This is now inserted in the equation for the electric field together with the definition of the perturbation:
 	\begin{equation*}
 		\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon_0 \varepsilon_r \bm{E} = \\
-		 -\omega^2 \mu_0 \varepsilon_0 \varepsilon_1 \bm{E} -\frac{1}{\varepsilon_r}\nabla(\bm{E} \cdot \nabla \varepsilon_1) - 2i\omega \mu_0 \frac{\partial \bm{E}}{\partial t} + \mu_0 \frac{\partial^2 \bm{E}}{\partial t^2}
+		 -\omega^2 \mu_0 \varepsilon_0 \varepsilon_1 \bm{E} -\frac{1}{\varepsilon_r}\nabla(\bm{E} \cdot \nabla \varepsilon_1) - 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} + \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
 	\end{equation*}
 	Now $k$ is defined as $k = \omega/c$ where $c$ is the speed of light in the material
 	\begin{equation*}
@@ -375,7 +376,7 @@
 	\begin{equation*}
 	\boxed{
 		\nabla^2\bm{E} + k^2 \bm{E} = \\
-		-k^2 \frac{\varepsilon_1}{\varepsilon_r} \bm{E} -\frac{1}{\varepsilon_r}\nabla(\bm{E} \cdot \nabla \varepsilon_1) - \frac{2ik}{c\varepsilon_0\varepsilon_r} \frac{\partial \bm{E}}{\partial t} + \frac{1}{c_0 \varepsilon_0 \varepsilon_r} \frac{\partial^2 \bm{E}}{\partial t^2}
+		-k^2 \frac{\varepsilon_1}{\varepsilon_r} \bm{E} -\frac{1}{\varepsilon_r}\nabla(\bm{E} \cdot \nabla \varepsilon_1) - \frac{2ik}{c\varepsilon_0\varepsilon_r} \frac{\partial (\varepsilon \bm{E})}{\partial t} + \frac{1}{c^2 \varepsilon_0 \varepsilon_r} \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
 	}
 	\end{equation*}
 	To simplify this equation even more, approximations concerning the nature of the perturbation must be done. The dielectric perturbation is thus assumed to have the following behavior:
@@ -383,6 +384,41 @@
 		\varepsilon_1 (\bm{r},t) = |\varepsilon_1| \cos(\bm{q} \cdot \bm{r} - \Omega t)
 	\end{equation*}
 	where $|\varepsilon_1|$ is the amplitude, $q$ is the acoustic wavevector and $\Omega$ is the acoustic frequency. Furthermore, the relations between wavenumbers and wavelengths are introduced as $k = 2\pi/\lambda$ for electromagnetics and $q = |\bm{q}| = 2\pi/\Lambda$ for acoustics.
+	
+	Now the terms on the right-hand side (RHS) are estimated to see which terms are dominant. The terms are denoted $T_n$ where $n$ begins at 1 and is the order in which they appear at the RHS. Note that these estimations are only to find orders of magnitude. For the first term:
+	\begin{equation*}
+		T_1 \sim \frac{|\varepsilon_1| |\bm{E}|}{\varepsilon_r \lambda^2}
+	\end{equation*}
+	For term 2 $\nabla \varepsilon_1 \sim \Lambda^{-1} |\varepsilon_1| \bm{v}$ where $\bm{v}$ is a vector with components $\sim \sin(\bm{q} \cdot \bm{r} - \Omega t)$. Then $\nabla (\bm{\hat{E}} \cdot \bm{v}) \sim \nabla(|\bm{\hat{E}}| \sin(\bm{q} \cdot \bm{r} - \Omega t)) \sim \nabla(|\bm{\hat{E}}|) + \nabla(\sin(\bm{q} \cdot \bm{r} - \Omega t)) \sim \lambda^{-1} + \Lambda^{-1}$. The resulting estimation of the term is then
+	\begin{equation*}
+		T_2 \sim \frac{|\varepsilon_1| |\bm{E}|}{\varepsilon_r \Lambda} \left( \frac{1}{\lambda} + \frac{1}{\Lambda} \right)
+	\end{equation*}
+	Term 3 can be expanded using the perturbation definition and the chain rule:
+	\begin{multline*}
+		T_3 \sim \frac{k}{c\varepsilon_0\varepsilon_r} \frac{\partial (\varepsilon \bm{E})}{\partial t} = \frac{k}{c\varepsilon_0\varepsilon_r} \left( \varepsilon_0\varepsilon_r \frac{\partial \bm{E}}{\partial t} + \varepsilon_0\varepsilon_1 \frac{\partial \bm{E}}{\partial t} + \varepsilon_0\bm{E} \frac{\partial \varepsilon_1}{\partial t}\right) \\
+		\sim \frac{1}{c\lambda} \left( \frac{\partial \bm{E}}{\partial t} + \frac{\varepsilon_1}{\varepsilon_r} \frac{\partial \bm{E}}{\partial t} + \frac{\bm{E}}{\varepsilon_r} \frac{\partial \varepsilon_1}{\partial t} \right)
+	\end{multline*}
+	The derivatives can be approximated as
+	\begin{align*}
+		\frac{\partial \varepsilon_1}{\partial t} &\sim |\varepsilon_1|\Omega \sim \frac{|\varepsilon_1| v}{\Lambda} \\
+		\frac{\partial \bm{E}}{\partial t} &\sim \bm{E} v \left( \frac{1}{\lambda} + \frac{1}{\Lambda} \right)
+	\end{align*}
+	where $v$ is the speed of sound in the material. The second equation comes from a similar equation in \cite{Tatarskii1971} which takes into account the Doppler effect and changes in $\varepsilon_1$. These are inserted to give
+	\begin{equation*}
+		T_3 \sim \frac{1}{c\lambda} \left( |\bm{E}| v \left( \frac{1}{\lambda} + \frac{1}{\Lambda} \right) \left( 1 + \frac{|\varepsilon_1|}{\varepsilon_r} \right) + \frac{|\bm{E}| |\varepsilon_1| v}{\varepsilon_r \Lambda} \right)
+	\end{equation*}
+	
+	\subsection{Drawing of coordinate system for RRE}
+
+	\begin{tikzpicture}
+		\draw (0,0) circle (0.15);
+		\filldraw[black] circle (0.03);
+		\draw[->] (0.15,0) -- (4,0);
+		\draw[->] (0,.150) -- (0,4);
+		\draw (4,-0.25) node{$x$} (0.25,4) node{$y$} (0.25,0.25) node{$z$};
+		\draw (-5,-0.5) node{EM tx} (-5,0) -- (-4.8,0) -- (-4.6,0.15)
+			(-4.8,0) -- (-4.6,-0.15);
+	\end{tikzpicture}
 	
 	\small
 	\bibliographystyle{../../Litteratur/IEEEtran}

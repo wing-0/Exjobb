@@ -56,4 +56,36 @@ sigma = er**2*k**4/16/np.pi*p**2*s0**2*Lx**2*Ly**2*Lz**2
 Pfrac = G**2*lr**2*sigma/(4*np.pi)**3/R**4
 
 # Display this ratio in dB
-print(10*np.log10(Pfrac))
+print('Pr/Pt =', 10*np.log10(Pfrac), 'dB')
+
+# Signal to noise ratio
+
+T0 = 290                        # Standard temperature, 290 K
+NF = 5                          # Noise figure in dB
+F = 10**(NF/10)                 # Noise factor, linear
+
+# Receiver bandwidth - based on 1 MHz acoustic frequency
+# This acoustic frequency gives a 1 MHz EM frequency shift. If the entire
+# EM transmitter bandwidth should fit in the receiver after frequency shifting
+# but there should be no leakage from the transmitter into the receiver, the
+# frequency difference between transmitter center and receiver center must be
+# at least the bandwidth of the transmitter/receiver (if they are equal)
+# So the receiver bandwidth should then be at maximum 1 MHz
+# Since bandwidths are usually defined by 3 dB, and the transmitted power
+# is much larger than the scattered power, the bandwidth might need to be
+# smaller so that the receiver is in the stop-band of the transmitter
+B = 1e6
+
+# Transmitted power - based on the power in Helander2017 (-7 dBm)
+Pt = 10**(-7/10)*1e-3
+
+# Calculation of SNR with one sample
+SNR = Pt*G**2*lr**2*sigma/(4*np.pi)**3/R**4/con.k/T0/(F-1)/B
+
+print('Without integration: SNR =', 10*np.log10(SNR), 'dB')
+
+# Calculation of samples needed for SNR > 0 dB with coherent integration
+N = np.ceil(1/SNR)
+
+print('Min. integration samples: N =', N)
+

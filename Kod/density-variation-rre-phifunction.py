@@ -50,7 +50,7 @@ plt.title('EM prop.dir. at $\\varphi = 180^\\circ$, acoustic prop.dir. at ' + \
 
 plt.figure()
 plt.pcolormesh(np.degrees(alpha_m),np.degrees(phi_m),\
-               np.abs(np.cos(alpha_m)+q/2/k) + np.abs(np.tan(phi_m/2)+1/np.tan(alpha_m)) ,\
+               np.abs(np.cos(alpha_m)+q/2/k) + np.abs(np.tan(phi_m/2)-np.sqrt(q**2/(4*k**2-q**2))) ,\
                vmin=-0.2,vmax=0.2,cmap='seismic')
 plt.yticks(np.linspace(0,360,10))
 plt.colorbar()
@@ -67,6 +67,7 @@ plt.suptitle('$\\Phi$ angular function $\\varphi$ and $\\alpha$ dependence ' + \
 plt.title('EM prop.dir. at $\\varphi = 180^\\circ$, acoustic prop.dir. at ' + \
           '$\\varphi = 180^\\circ + \\alpha$',fontsize=10)
 
+stop
 # %% Some angles
 plt.figure()
 alpha = np.radians(np.array([15,30,60,180]))

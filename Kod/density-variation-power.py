@@ -80,7 +80,7 @@ B = 1e6
 Pt = 10**(-7/10)*1e-3
 
 # Calculation of SNR with one sample
-SNR = Pt*G**2*lr**2*sigma/(4*np.pi)**3/R**4/con.k/T0/(F-1)/B
+SNR = Pt*G**2*lr**2*sigma/(4*np.pi)**3/R**4/con.k/T0/F/B
 
 print('Without integration: SNR =', 10*np.log10(SNR), 'dB')
 

@@ -138,7 +138,7 @@
 	\end{equation*}
 	where $k$ is the wavenumber, $V_{sc}$ is the scattering volume, $\bm{r}$ is the observation point, $\varepsilon_s$ is the variation in relative permittivity and $E_0$ is the incident electric field. The equation is only valid for scattering with no polarization change since polarization is not considered in the electric field. It is also only valid for single scattering \cite{Gurvich1987}.
 	
-	A more rigorous derivation of electromagnetic scattering against a dielectric perturbation is presented in \cite{Tatarskii1971}. This was used to derive a more general scattering integral than the one presented above (see appendix for derivation). This is shown below
+	A more rigorous derivation of electromagnetic scattering against a dielectric perturbation is presented in \cite{Tatarskii1971}. This was used to derive a more general scattering integral than the one presented above (see \ref{app:scatterint} for derivation). This is shown below
 	\begin{equation*}
 		\bm{E}_{sc}(\bm{r},t) = \frac{1}{4\pi\varepsilon_r} \int_{V_{sc}} \frac{e^{ik |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \left( k^2 \bm{E}_i (\bm{r'},t) \varepsilon_1 (\bm{r'},t) + \nabla (\bm{E}_i (\bm{r'},t) \cdot \nabla \varepsilon_1 (\bm{r'},t)) \right) \mathrm{d}v'
 	\end{equation*}
@@ -225,56 +225,59 @@
 	\todo[inline]{Shear waves? They do not cause density variation, but still cause photoelastic interaction. Maybe this entire mechanism should be called photoelastic interaction?}
 	
 	\subsection{Radar equation}
-	If a scalar photoelastic relationship is assumed a radar range equation can be derived on the form of the bistatic radar equation:
+	If a scalar photoelastic relationship is assumed, the scattering integral can be calculated for a simple geometry. This is done in \ref{app:radareq}, but the results are presented here.
+%	The variables used are:
+%	\begin{itemize}
+%		\item $P_R$: power received by the receiving antenna
+%		\item $P_T$: power accepted by the transmitting antenna
+%		\item $G_T$: transmitting antenna gain
+%		\item $G_T$: receiving antenna gain
+%		\item $\lambda_R$: electromagnetic wavelength at the receiving antenna
+%		\item $R_T$: distance between the transmitting antenna and the center of the scattering volume
+%		\item $R_R$: distance between the center of the scattering volume and the receiving antenna
+%		\item $\varepsilon_r$: unperturbed relative permittivity in the scattering medium
+%		\item $k$: wavenumber in the unperturbed medium before scattering
+%		\item $\mathfrak{p}$: photoelasticity coefficient (scalar)
+%		\item $S_0$: acoustic amplitude at the center of the scattering volume
+%		\item $L_{x,y,z}$: width of the scattering volume in $x,y,z$
+%		\item $\Omega$: acoustic angular frequency
+%		\item $q$: acoustic wavenumber
+%		\item $\alpha$: angle between the electromagnetic and acoustic propagation directions
+%	\end{itemize}
+%	The basic assumptions are:
+%	\begin{itemize}
+%		\item Scattering volume in far-field compared with EM tx antenna.
+%		\item EM rx antenna in the far-field compared with the scattering volume.
+%		\item Spherical waves from EM and acoustic tx antennas can be approximated by plane waves in the scattering volume.
+%		\item The scattering volume is approximated by a cuboid with sides $L_x$, $L_y$, $L_z$.
+%	\end{itemize}
+
+	An equation for the received power is written as
 	\begin{equation*}
-	P_R(\theta,\phi) = \frac{P_T G_T G_R \lambda_R^2 \sigma(\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2}
+	P_R^\pm = \frac{P_T R_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2}
 	\end{equation*}
-	where $\sigma$ is the radar cross section. For this case it can be written as
+	with the radar cross-section given by
 	\begin{equation*}
-	\sigma(\theta,\phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 ( \Phi^+(\theta,\phi)^2 + \Phi^-(\theta,\phi)^2 \\
-	+ 2\Phi^+(\theta,\phi) \Phi^-(\theta,\phi) \cos(2\Omega t) )
+	\sigma^\pm (\theta, \phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\pi)^2
 	\end{equation*}
-	where $\Phi^\pm(\theta,\phi)$ is given by
+	and the angular dependence is contained in $\Phi^\pm$ which is given by
 	\begin{multline*}
-	\Phi^\pm(\theta,\phi) = \text{sinc} \left( \frac{L_x}{2\pi} \left( k - k\sin(\theta)\cos(\phi) \pm q\cos(\alpha) \right) \right) 
-	\cdot \text{sinc} \left( \frac{L_y}{2\pi} \left( -k\sin(\theta)\sin(\phi) \pm q\sin(\alpha) \right) \right) \\
-	\cdot \text{sinc} \left( -\frac{L_z}{2\pi} k\cos(\theta) \right)
+	\Phi^\pm(\theta,\phi) = \text{sinc} \left( \frac{L_x}{2\pi} \left( k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} \right) \right) 
+	\cdot \text{sinc} \left( \frac{L_y}{2\pi} \left( -k\sin{\theta}\sin{\phi} \pm q\sin{\alpha} \right) \right) \\
+	\cdot \text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right)
 	\end{multline*}
-	The variables used are:
-	\begin{itemize}
-		\item $P_R$: power received by the receiving antenna
-		\item $P_T$: power accepted by the transmitting antenna
-		\item $G_T$: transmitting antenna gain
-		\item $G_T$: receiving antenna gain
-		\item $\lambda_R$: electromagnetic wavelength at the receiving antenna
-		\item $R_T$: distance between the transmitting antenna and the center of the scattering volume
-		\item $R_R$: distance between the center of the scattering volume and the receiving antenna
-		\item $\varepsilon_r$: unperturbed relative permittivity in the scattering medium
-		\item $k$: wavenumber in the unperturbed medium before scattering
-		\item $\mathfrak{p}$: photoelasticity coefficient (scalar)
-		\item $S_0$: acoustic amplitude at the center of the scattering volume
-		\item $L_{x,y,z}$: width of the scattering volume in $x,y,z$
-		\item $\Omega$: acoustic angular frequency
-		\item $q$: acoustic wavenumber
-		\item $\alpha$: angle between the electromagnetic and acoustic propagation directions
-	\end{itemize}
-	The basic assumptions are:
-	\begin{itemize}
-		\item Scattering volume in far-field compared with EM tx antenna.
-		\item EM rx antenna in the far-field compared with the scattering volume.
-		\item Spherical waves from EM and acoustic tx antennas can be approximated by plane waves in the scattering volume.
-		\item The scattering volume is approximated by a cuboid with sides $L_x$, $L_y$, $L_z$.
-	\end{itemize}
+	The received power has two frequency components: $\omega + \Omega$ and $\omega - \Omega$. The $\pm$-sign in the equations is used to differentiate between the two components. The equations strictly holds only for frequency components separated in space. If the two components overlap, the total received power will be comprised of the power for both components as well as a time-dependent mixing term. This will behave as an amplitude modulated signal. However, as will be shown there is usually no overlap between the two components. To see this, the function for angular angular dependence, $\Phi$ is considered. Only here in the equation for received power do the two components differ. This function varies between 0 and 1 and depends only on the geometry of the problem. The $\theta$, $\phi$ and $\alpha$ where this function is maximized gives the geometry at which maximum scattering is produced. The maximum is derived in \ref{app:braggmax} and is described by the equations
+	\begin{align*}
+		\theta &= \pi/2 \\
+		\cos{\alpha} = \mp \frac{q}{2k} &= \mp \frac{\lambda}{2\Lambda} \\
+		\tan{\frac{\phi}{2}} = \pm \sqrt{\frac{q^2}{4k^2-q^2}} &= \pm \sqrt{\frac{\lambda^2}{4\Lambda^2-\lambda^2}}
+	\end{align*}
+	The equation for $\alpha$ shows what the angle between the incident electromagnetic and acoustic waves should be, and the equations for $\theta$ and $\phi$ show where the receiver should be placed. The first equation shows clearly that the interaction occurs in a plane since $\theta = \pi/2$ is the $xy$-plane defined by the incident waves. The second equation corresponds directly to the Bragg condition presented in acousto-optic theory (see \ref{app:braggmax}). The third equation is not present in acousto-optics since it is implied that an incident light wave is reflected corresponding to optical laws (incident angle equals reflected angle) \cite{Saleh2007}. The equation is nevertheless in agreement with acousto-optics if suitable variable substitutions are used (see \ref{app:braggmax}).
 	
-	A perhaps better way to present the received power would be to also consider the frequency shifts caused by the interaction. There are two distinct components of the scattered field: one which is frequency shifted by $+\Omega$ and one which is shifted by $-\Omega$. These received power for the two frequency components are denoted $P_R^+$ and $P_R^-$. A radar equation can be written for each frequency component as
-	\begin{equation*}
-	P_R^\pm(\theta,\phi) = \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm(\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2}
-	\end{equation*}
-	where $\sigma^\pm$ differs between the two frequency components as
-	\begin{equation*}
-	\sigma^\pm(\theta,\phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm(\theta,\phi)^2
-	\end{equation*}
-	If the power for both components are added, the previous radar equation is almost obtained. The difference is the term containing $\cos(2\Omega t)$ in $\sigma$ which is not present if $P_R^+$ and $P_R^-$ are added. That term is explained as the amplitude modulation term obtained from two overlapping fields with a difference in frequency $2\Omega$. However, for most cases this term is not significant since the two components often have their main lobes in different directions. This can be seen by detailed inspection of $\Phi^\pm$.
+	If the equations for maximization of $\Phi$ are studied, it becomes clear that the only times the two components overlap are when $\phi = 0$ or $\phi = \pi$. The first case is when $\lambda/\Lambda \rightarrow 0$, giving $\tan{\frac{\phi}{2}} \rightarrow \pm 0$ or $\phi \rightarrow 0$. The second case is when $\lambda \rightarrow 2\Lambda$, giving $\tan{\frac{\phi}{2}} \rightarrow \pm \infty$, or $\phi \rightarrow \pi$. It was assumed that $0 \leq \phi < 2\pi$ in both cases.
+	\todo[inline]{Continue here}
+	
+	\appendix
 	
 	\section{Miscellaneous/appendix}
 	This section is for stuff I don't know where to put yet or stuff not fitting elsewhere.
@@ -313,7 +316,7 @@
 %	\end{equation*}
 %	which is equation (2) in \cite{Gurvich1987}.
 	
-	\subsection{Derivation of scattering integral in density variation}
+	\subsection{Derivation of scattering integral in density variation \label{app:scatterint}}
 	Here follows a formal derivation of the scattering of electromagnetic waves against a perturbation in relative permittivity. This is useful in photoelastic interaction since an acoustic wave in that case causes a periodic dielectric perturbation. Most of this derivation is based on a similar derivation by Tatarskii which considers scattering from turbulence in air \cite{Tatarskii1971}.
 	
 	First, Maxwell's equations for a linear, non-magnetic, source-free, isotropic dielectric are presented. Note that the permittivity is not homogeneous.
@@ -446,9 +449,10 @@
 			}
 	\end{equation*}
 	
-	\subsection{Derivation of radar equation}
+	\subsection{Derivation of radar equation \label{app:radareq}}
 	The scattering integral is now solved for a simple geometry and material model to obtain a radar equation.
 	
+	\subsubsection{Geometry and solution of scattering integral}
 	First, the geometry is defined as shown in \todo[inline]{Finish the drawing of the geometry...}
 	
 	The $xy$-plane is defined as the plane formed by the acoustic and electromagnetic wavevectors (they are assumed to be non-parallel). The scattering volume is centered in the origin of the coordinate system, and both the acoustic and electromagnetic waves are approximated as plane waves close to the origin. Thus, the electromagnetic and dielectric perturbation fields near the origin are defined as
@@ -456,7 +460,7 @@
 		\bm{E}_i (\bm{r}',t) &= \bm{E}_i (\bm{r}') = \bm{E}_{i0} e^{i\bm{k}\cdot\bm{r}'} \\
 		\varepsilon_1 (\bm{r}',t) &= -\mathfrak{p} \varepsilon_r^2 S_0 \cos(\bm{q} \cdot \bm{r}' - \Omega t)
 	\end{align*}
-	Here, $\bm{E}_{i0}$ is the field at the origin (with $-i\omega t$ time-dependence separated) and $\bm{k}$ is the electromagnetic wavevector. A scalar photoelastic relation has been assumed, where $\mathfrak{p}$ is the photoelastic constant, $S_0$ is the acoustic strain amplitude, $\bm{q}$ is the acoustic wavevector and $\Omega$ the acoustic frequency.
+	Here, $\bm{E}_{i0}$ is the complex field amplitude at the origin ($-i\omega t$ time-dependence separated) and $\bm{k}$ is the electromagnetic wavevector. A scalar photoelastic relation has been assumed, where $\mathfrak{p}$ is the photoelastic constant, $S_0$ is the acoustic strain amplitude, $\bm{q}$ is the acoustic wavevector and $\Omega$ the acoustic frequency.
 	
 	For simplicity, the electromagnetic polarization is assumed to be perpendicular to the acoustic propagation direction, $\bm{E}_{i0} \cdot \bm{\hat{q}} = 0$. This is done to avoid polarization changes in the scattered field \cite{Korpel1988}. Due to this $\nabla(\bm{E}_i \cdot \nabla \varepsilon_1) = \bm{0}$ which simplifies the scattering integral to
 	\begin{equation*}
@@ -488,134 +492,254 @@
 	\end{multline*}
 	where sinc$(x) = \sin(\pi x)/(\pi x)$. To apply this result to $\bm{A} = k(\bm{\hat{k}} - \bm{\hat{r}}) \pm \bm{q}$ this is first simplified using the geometry defined earlier.
 	\begin{equation*}
-		k(\bm{\hat{k}} - \bm{\hat{r}}) \pm \bm{q} = k\bm{\hat{x}} - k(x\bm{\hat{x}} + y\bm{\hat{y}} + z\bm{\hat{v}})/r \pm q(\cos(\alpha) \bm{\hat{x}} + \sin(\alpha) \bm{\hat{x}})
+		k(\bm{\hat{k}} - \bm{\hat{r}}) \pm \bm{q} = k\bm{\hat{x}} - k(\bm{\hat{x}} x + \bm{\hat{y}} y + \bm{\hat{z}} z)/r \pm q(\bm{\hat{x}} \cos{\alpha} + \bm{\hat{x}} \sin{\alpha})
 	\end{equation*}
 	where r is not written out fully. The solution to the integral with this choice of $\bm{A}$ is now written as
 	\begin{multline*}
 		\int_{V_{sc}} e^{i(	k(\bm{\hat{k}} - \bm{\hat{r}}) \pm \bm{q}) \cdot \bm{r}'} \mathrm{d}v' =
-		L_x \text{sinc} \left( \frac{L_x}{2\pi} ( k - kx/r \pm q\cos(\alpha) ) \right) \cdot
-		L_y \text{sinc} \left( \frac{L_y}{2\pi} ( - ky/r \pm q\sin(\alpha) ) \right) \\
-		\cdot L_z \text{sinc} \left( -\frac{L_z}{2\pi} kz/r ) \right)
+		L_x \text{sinc} \left( \frac{L_x}{2\pi} ( k - kx/r \pm q\cos{\alpha} ) \right) \cdot
+		L_y \text{sinc} \left( \frac{L_y}{2\pi} ( - ky/r \pm q\sin{\alpha} ) \right) \\
+		\cdot L_z \text{sinc} \left( -\frac{L_z}{2\pi} kz/r \right)
 	\end{multline*}
 	Changing to spherical coordinates gives:
 	\begin{multline*}
 	\int_{V_{sc}} e^{i(	k(\bm{\hat{k}} - \bm{\hat{r}}) \pm \bm{q}) \cdot \bm{r}'} \mathrm{d}v' =
-	L_x \text{sinc} \left( \frac{L_x}{2\pi} ( k - k\sin(\theta)\cos(\phi) \pm q\cos(\alpha) ) \right) \\
-	\cdot L_y \text{sinc} \left( \frac{L_y}{2\pi} ( - k\sin(\theta)\sin(\phi) \pm q\sin(\alpha) ) \right)
-	\cdot L_z \text{sinc} \left( -\frac{L_z}{2\pi} k\cos(\theta) ) \right) = L_x L_y L_z \Phi^\pm (\theta,\phi)
+	L_x \text{sinc} \left( \frac{L_x}{2\pi} ( k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} ) \right) \\
+	\cdot L_y \text{sinc} \left( \frac{L_y}{2\pi} ( - k\sin{\theta}\sin{\phi} \pm q\sin{\alpha} ) \right)
+	\cdot L_z \text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right) = L_x L_y L_z \Phi^\pm (\theta,\phi)
 	\end{multline*}
 	where all angular dependence has been gathered in the function $\Phi^\pm (\theta,\phi)$. This result is now inserted into the scattered field, giving
 	\begin{equation*}
 		\bm{E}_{sc}(\bm{r},t) = -\bm{E}_{i0} \frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \mathfrak{p} S_0 L_x L_y L_z \left( e^{-i\Omega t} \Phi^+ (\theta,\phi)  + e^{i\Omega t} \Phi^- (\theta,\phi) \right) = -\bm{E}_{i0} E_A(\bm{r},t)
 	\end{equation*}
 	
-	\subsection{Geometry for maximum scattering}
+	By inspecting $E_A(\bm{r},t)$ it is clear that two frequency-shifted components arise. Since the implied time-dependence is $e^{-i\omega t}$, the factors $e^{\mp i\Omega t}$ give a frequency shift of $\pm \Omega$. The scattered field is written using two distinct components as
+	\begin{equation*}
+		\bm{E}_{sc} (\bm{r},t) = -\bm{E}_{i0} \left( E_A^+ (\bm{r},t) + E_A^- (\bm{r},t) \right)
+	\end{equation*}
+	where
+	\begin{equation*}
+		E_A^\pm (\bm{r},t) = \frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \mathfrak{p} S_0 L_x L_y L_z e^{\mp i\Omega t} \Phi^\pm (\theta,\phi)
+	\end{equation*}
+	
+	\subsubsection{Solution in terms of power}
+	This treatment has primarily been focused around the electric field. To obtain a more practical expression, this is not transformed into power. The scattered power density is given by
+	\begin{equation*}
+		\bm{S}_{sc} = \frac{1}{2} \bm{E}_{sc} \times \bm{H}_{sc}^*
+	\end{equation*}
+	with the magnetic field $\bm{H}_{sc}$ given by
+	\begin{equation*}
+		\bm{H}_{sc} \approx \frac{1}{ik \eta_0 \eta} \nabla \times \bm{E}_{sc}
+	\end{equation*}
+	where $\eta_0$ is the wave impedance of free space and $\eta_0 \eta$ the wave impedance in the material. An approximation has been made for $k$, where this is assumed to have the same value as before scattering. Since there is a frequency shift this is known to not be the case, but given a small acoustic frequency compared to the electromagnetic frequency, the error is small. The rotation of $\bm{E}_{sc}$ is now written as
+	\begin{equation*}
+		\nabla \times \bm{E}_{sc} = -\nabla \times (\bm{E}_{i0} E_A (\bm{r},t)) = -\nabla E_A (\bm{r},t) \times \bm{E}_{i0}
+	\end{equation*}
+	In spherical coordinates the gradient is written
+	\begin{equation*}
+		\nabla E_A = \frac{\partial E_A}{\partial r} \bm{\hat{r}} + \frac{1}{r} \frac{\partial E_A}{\partial \theta} \bm{\hat{\theta}} + \frac{1}{r\sin{\theta}} \frac{\partial E_A}{\partial \phi} \bm{\hat{\phi}}
+	\end{equation*}
+	$E_A$ contains a factor $1/r$, so the two last terms in the gradient will be $\sim 1/r^2$ and are neglected. The gradient is now written as
+	\begin{equation*}
+		\nabla E_A \approx \frac{\partial E_A}{\partial r} \bm{\hat{r}} = \left( \frac{ike^{ikr}}{r} - \frac{e^{ikr}}{r^2} \right) \frac{\varepsilon_r k^2}{8\pi} \mathfrak{p} S_0 L_x L_y L_z \left( e^{- i\Omega t} \Phi^+ (\theta,\phi) + e^{ i\Omega t} \Phi^- (\theta,\phi) \right) \bm{\hat{r}} \approx ikE_A \bm{\hat{r}}
+	\end{equation*}
+	where the $1/r^2$ term was neglected. These results are inserted into the expression for the magnetic field, giving
+	\begin{equation*}
+		\bm{H}_{sc} = \frac{1}{ik \eta_0 \eta} (-ikE_A \bm{\hat{r}} \times \bm{E}_{i0}) = \frac{E_A}{ \eta_0 \eta} \bm{\hat{r}} \times \bm{E}_{i0}
+	\end{equation*}
+	Now, the power density is written as
+	\begin{equation*}
+		\bm{S}_{sc} = \frac{1}{2} E_A \bm{E}_{i0} \times \left( \frac{E_A}{ \eta_0 \eta} \bm{\hat{r}} \times \bm{E}_{i0} \right)^* = \frac{|E_A|^2}{2\eta_0 \eta} \left( \bm{\hat{r}} (\bm{E}_{i0} \cdot \bm{E}_{i0}^*) - \bm{E}_{i0}^* (\bm{E}_{i0} \cdot \bm{\hat{r}}) \right)
+	\end{equation*}
+	In the far-field $\bm{E}_{sc} \cdot \bm{\hat{r}} = 0$ and since $\bm{E}_{sc} \parallel \bm{E}_{i0}$ the power density is simplified to
+	\begin{equation*}
+	\bm{S}_{sc} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{i0}|^2 |E_A (\bm{r},t)|^2
+	\end{equation*}
+	Since there is an implied $e^{-\omega t}$ time-dependence, this is added back in to obtain a time-average on the short time-scale ($\omega$ and not $\Omega$). This is
+	\begin{equation*}
+		\left< \bm{S}_{sc} e^{-i\omega t} \right> = \mathrm{Re}\left\{ \bm{S}_{sc} e^{-i\omega t} \right\} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{i0}|^2 |E_A (\bm{r},t)|^2
+	\end{equation*}
+	If the two frequency components are now considered individually,
+	\begin{equation*}
+		|E_A^\pm (\bm{r},t)|^2 =\frac{\varepsilon_r^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
+	\end{equation*}
+	
+	To find an expression for $|\bm{E}_{i0}|^2$, the field from the transmitter antenna is written as (adapted from \cite{Orfanidis2016})
+	\begin{equation*}
+		\bm{E}_T (\bm{r}) = ik\eta_0\eta \frac{e^{ikr}}{4\pi r} \bm{F}_\perp (\bm{\hat{r}})
+	\end{equation*}
+	where $\bm{F}_\perp$ is the far-field amplitude. Now the coordinate system is not the same as earlier in the derivation! Here it is a spherical coordinate system with origin at the transmitting antenna. This corresponds to a translation in $-\bm{\hat{x}}$ of the original coordinate system. Let $R_T$ be the distance between the two coordinate systems, or equivalently the distance from the transmitter to the scattering center. The direction to the scattering center in this new system is denoted $\bm{\hat{r}}_{sc} = \bm{r}_{sc}/R_T$. Assuming that the orientations of the transmitter and scattering coordinate systems are the same, $|\bm{E}_{i0}|^2$ can be written in the transmitter system as \cite{Orfanidis2016}
+	\begin{equation*}
+		|\bm{E}_{i0}|^2 = |\bm{E}_T(\bm{r}_{sc})|^2 = \left| ik\eta_0\eta \frac{e^{ikR_T}}{4\pi R_T} \bm{F}_\perp (\bm{\hat{r}}_{sc}) \right|^2 = \frac{k^2 \eta_0^2 \eta^2}{16 \pi^2 R_T^2} |\bm{F}_\perp (\bm{\hat{r}}_{sc})|^2 = 2\eta_0 \eta \mathcal{P}(\bm{\hat{r}}_{sc})
+	\end{equation*}
+	If the maximum gain $G_T$ of the antenna is in the direction $\hat{r}_{sc}$, it holds that \cite{Orfanidis2016}
+	\begin{equation*}
+		\mathcal{P}(\bm{\hat{r}}_{sc}) = \frac{P_T G_T}{4\pi R_T^2}
+	\end{equation*}
+	where $P_T$ is the power accepted by the antenna. This is used to write
+	\begin{equation*}
+		|\bm{E}_{i0}|^2 = 2\eta_0 \eta \frac{P_T G_T}{4\pi R_T^2}
+	\end{equation*}
+	Now this is inserted into the time-average of the power density
+	\begin{equation*}
+		\left< \bm{S}_{sc} e^{-i\omega t} \right>^\pm = \bm{\hat{r}} \frac{P_T G_T}{4\pi R_T^2} \frac{\varepsilon_r^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
+	\end{equation*}
+	
+	Now the effects of the receiving antenna are considered. It is assumed that this antenna is optimally directed towards the scattering center. The received power is then
+	\begin{equation*}
+		P_R^\pm = \left| \left< \bm{S}_{sc} e^{-i\omega t} \right>^\pm \right| A_e
+	\end{equation*}
+	where $A_e$ is the effective area of the antenna, which can be rewritten as
+	\begin{equation*}
+		A_e = \frac{\lambda_R^2 G_R}{4\pi}
+	\end{equation*}
+	where $G_R$ is the gain of the receiving antenna. $\lambda_R$ should be the wavelength at the antenna here, which is not necessarily the same as in the material. Combining this with earlier results gives a received power of
+	\begin{equation*}
+		P_R^\pm = \frac{\lambda_R^2 G_R}{4\pi} \frac{P_T G_T}{4\pi R_T^2} \frac{\varepsilon_r^2 k^4}{64 \pi^2 R_R^2} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
+	\end{equation*}
+	where $R_R$ is the distance between the scattering center and the receiver, and the receiver is located in the direction $(\theta,\phi)$ as seen from the scattering center. For a more traditional bistatic radar equation this can be written as
+	\begin{equation*}
+	P_R^\pm = \frac{P_T R_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2}
+	\end{equation*}
+	with the radar cross-section given by
+	\begin{equation*}
+		\sigma^\pm (\theta, \phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\pi)^2
+	\end{equation*}
+	
+	\subsubsection{Signal-to-noise ratio and coherent integration}
+	A more practical measurement than received power is signal-to-noise ratio (SNR). For this, the average noise power is described as \cite{Young2004}
+	\begin{equation*}
+		P_n = kTB
+	\end{equation*}
+	where $k$ is Boltzmann's constant, $T$ is the temperature and $B$ is the utilized receiver bandwidth. The noise power picked up by the antenna is calculated using the standard temperature $T_0 = 290$ K. The SNR directly at the antenna can thus be written as
+	\begin{equation*}
+		\mathit{SNR}^\pm_{ant} \frac{P_T R_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 kT_0 B}
+	\end{equation*}
+	After the antenna is the RF front-end which usually contains a bandpass filter, low-noise amplifier (LNA), and mixer. Here the received signal is amplified so that it can be further processed. The amplification affects both the signal and noise, but the electronic components add more noise which causes the SNR to deteriorate. To quantify this, the concept of noise ratio and noise figure is used. The noise ratio is defined as \cite{Young2004}
+	\begin{equation*}
+		\mathit{NR} = \frac{\mathit{SNR}_i}{\mathit{SNR}_o}
+	\end{equation*}
+	where the SNR's are in linear units, $i$ denotes input and $o$ denotes output. It is more common to use noise figure, which is simply the noise ratio expressed in dB units, $\mathit{NF} = 10\log_{10}(\mathit{NR})$. Most of the noise is added at the RF front-end, so it is usually sufficient to use a noise ratio/figure for that part of the receiver. The SNR after the receiver can now be written using the noise ratio as
+	\begin{equation*}
+		\mathit{SNR}^\pm = \frac{P_T R_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 kT_0 B \cdot \mathit{NR}}
+	\end{equation*}
+	One more effect is added to this, and that is signal integration in the signal processing following the receiver. Noise can often be modeled as a random process, and if multiple samples are added together the noise can be averaged out. If coherent demodulation is used, $N$ samples added together will cause the SNR to improve by a factor $N$ \cite{Richards2012}. The SNR can then be written as
+	\begin{equation*}
+		\textit{SNR}^\pm_N = \frac{P_T R_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 kT_0 B \cdot \mathit{NR}} N
+	\end{equation*}
+	
+	\subsection{Geometry for maximum scattering \label{app:braggmax}}
 	Let us begin with the $\Phi$ angular dependence function:
 	\begin{multline*}
-	\Phi^\pm(\theta,\phi) = \text{sinc} \left( \frac{L_x}{2\pi} \left( k - k\sin(\theta)\cos(\phi) \pm q\cos(\alpha) \right) \right) 
-	\cdot \text{sinc} \left( \frac{L_y}{2\pi} \left( -k\sin(\theta)\sin(\phi) \pm q\sin(\alpha) \right) \right) \\
-	\cdot \text{sinc} \left( -\frac{L_z}{2\pi} k\cos(\theta) \right)
+	\Phi^\pm(\theta,\phi) = \text{sinc} \left( \frac{L_x}{2\pi} \left( k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} \right) \right) 
+	\cdot \text{sinc} \left( \frac{L_y}{2\pi} \left( -k\sin{\theta}\sin{\phi} \pm q\sin{\alpha} \right) \right) \\
+	\cdot \text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right)
 	\end{multline*}
 	The maximum of this function mush be where all sinc-functions are maximum. For a sinc the maximum is given when the argument is equal to 0, which simplifies the process. Firstly, consider the third sinc:
 	\begin{equation*}
-		\text{sinc} \left( -\frac{L_z}{2\pi} k\cos(\theta) \right)
+		\text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right)
 	\end{equation*}
-	The argument of this is obviously zero when $\cos(\theta) = 0$, which for $0 \leq \theta \leq \pi$ is when $\theta = \pi/2$. This fixes the maximum to the plane formed by the incident electromagnetic and acoustic wavevectors. What it means is that the scattering occurs primarily in one single interaction plane, which simplifies analysis. Now the arguments of the two other sinc functions are set to zero with the value for $\theta$ being set to $\pi/2$:
+	The argument of this is obviously zero when $\cos{\theta} = 0$, which for $0 \leq \theta \leq \pi$ is when $\theta = \pi/2$. This fixes the maximum to the plane formed by the incident electromagnetic and acoustic wavevectors. What it means is that the scattering occurs primarily in one single interaction plane, which simplifies analysis. Now the arguments of the two other sinc functions are set to zero with the value for $\theta$ being set to $\pi/2$:
 	\begin{align}
-		k - k\cos(\phi) \pm q\cos(\alpha) &= 0 \label{eq:bragg-sinc1} \\
-		-k\sin(\phi) \pm q\sin(\alpha) &= 0 \label{eq:bragg-sinc2}
+		k - k\cos{\phi} \pm q\cos{\alpha} &= 0 \label{eq:bragg-sinc1} \\
+		-k\sin{\phi} \pm q\sin{\alpha} &= 0 \label{eq:bragg-sinc2}
 	\end{align}
 	This system of equations is now used to find the direction of the maximum. TO avoid confusion, the positive and negative versions of the system are considered separately.
 	
 	\subsubsection{(+) case}
 	Begin with equation \ref{eq:bragg-sinc1}:
 	\begin{equation*}
-		\cos(\alpha) = \frac{k}{q}\left( \cos(\phi) - 1 \right) = \frac{k}{q}\left( \pm \sqrt{1-\sin^2(\phi)} - 1 \right)
+		\cos{\alpha} = \frac{k}{q}\left( \cos{\phi} - 1 \right) = \frac{k}{q}\left( \pm \sqrt{1-\sin^2{\phi}} - 1 \right)
 	\end{equation*}
 	Now equation \ref{eq:bragg-sinc2} is inserted in the above as
 	\begin{equation*}
-		\cos(\alpha) = \frac{k}{q}\left( \pm \sqrt{1-\frac{q^2}{k^2}\sin^2(\alpha)} - 1 \right)
+		\cos{\alpha} = \frac{k}{q}\left( \pm \sqrt{1-\frac{q^2}{k^2}\sin^2{\alpha}} - 1 \right)
 	\end{equation*}
 	This is rewritten as
 	\begin{equation*}
-		\pm \sqrt{k^2-q^2\sin^2(\alpha)} = q\cos(\alpha) + k
+		\pm \sqrt{k^2-q^2\sin^2{\alpha}} = q\cos{\alpha} + k
 	\end{equation*}
 	And squared
 	\begin{equation*}
-		k^2 - q^2\sin^2(\alpha) = q^2\cos^2(\alpha) + 2kq\cos(\alpha) + k^2
+		k^2 - q^2\sin^2{\alpha} = q^2\cos^2{\alpha} + 2kq\cos{\alpha} + k^2
 	\end{equation*}
 	After some simplification, the following equation is obtained:
 	\begin{equation*}
-		\cos(\alpha) = -\frac{q}{2k}
+		\cos{\alpha} = -\frac{q}{2k}
 	\end{equation*}
 	This is now inserted in equation \ref{eq:bragg-sinc1} and \ref{eq:bragg-sinc2}:
 	\begin{align*}
-		k - k\cos(\phi) - \frac{q^2}{2k} &= 0 \\
-		-k\sin(\phi) \pm q\sqrt{1-\frac{q^2}{4k^2}} &= 0
+		k - k\cos{\phi} - \frac{q^2}{2k} &= 0 \\
+		-k\sin{\phi} \pm q\sqrt{1-\frac{q^2}{4k^2}} &= 0
 	\end{align*}
 	Rearranging gives
 	\begin{align*}
-		\cos(\phi) &= 1 - \frac{q^2}{2k^2} \\
-		\sin(\phi) &= \pm \frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}
+		\cos{\phi} &= 1 - \frac{q^2}{2k^2} \\
+		\sin{\phi} &= \pm \frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}
 	\end{align*}
-	The second equation can be further constrained by utilizing $0 \leq \alpha \leq \pi$. This gives $\sin(\alpha) \geq 0$. With $k,q \geq 0$ and equation \ref{eq:bragg-sinc2}: $\sin(\phi) = \frac{q}{k}\sin(\alpha) \geq 0$. Thus, the only valid solution is the positive one. Now, the cos and sin equations are combined into a tan equation:
+	The second equation can be further constrained by utilizing $0 \leq \alpha \leq \pi$. This gives $\sin{\alpha} \geq 0$. With $k,q \geq 0$ and equation \ref{eq:bragg-sinc2}: $\sin{\phi} = \frac{q}{k}\sin{\alpha} \geq 0$. Thus, the only valid solution is the positive one. Now, the cos and sin equations are combined into a tan equation:
 	\begin{equation*}
-		\tan(\phi/2) = \frac{1 - \cos(\phi)}{\sin(\phi)} = \frac{1 - \left( 1 - \frac{q^2}{2k^2} \right)}{\frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}} = \frac{\frac{q^2}{2k^2} }{\frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}} = \frac{q}{2k\sqrt{1-\frac{q^2}{4k^2}}} = \sqrt{\frac{q^2}{4k^2-q^2}}
+		\tan{\frac{\phi}{2}} = \frac{1 - \cos{\phi}}{\sin{\phi}} = \frac{1 - \left( 1 - \frac{q^2}{2k^2} \right)}{\frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}} = \frac{\frac{q^2}{2k^2} }{\frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}} = \frac{q}{2k\sqrt{1-\frac{q^2}{4k^2}}} = \sqrt{\frac{q^2}{4k^2-q^2}}
 	\end{equation*}
 	
 	\subsubsection{(-) case}
 	This case is the same as the (+) case, but with some sign changes. Begin with equation \ref{eq:bragg-sinc1}:
 	\begin{equation*}
-	\cos(\alpha) = \frac{k}{q}\left( 1 - \cos(\phi) \right) = \frac{k}{q}\left( 1 \pm \sqrt{1-\sin^2(\phi)} \right)
+	\cos{\alpha} = \frac{k}{q}\left( 1 - \cos{\phi} \right) = \frac{k}{q}\left( 1 \pm \sqrt{1-\sin^2{\phi}} \right)
 	\end{equation*}
 	Now equation \ref{eq:bragg-sinc2} is inserted in the above as
 	\begin{equation*}
-	\cos(\alpha) = \frac{k}{q}\left( 1 \pm \sqrt{1-\frac{q^2}{k^2}\sin^2(\alpha)} \right)
+	\cos{\alpha} = \frac{k}{q}\left( 1 \pm \sqrt{1-\frac{q^2}{k^2}\sin^2{\alpha}} \right)
 	\end{equation*}
 	This is rewritten as
 	\begin{equation*}
-	\pm \sqrt{k^2-q^2\sin^2(\alpha)} = q\cos(\alpha) - k
+	\pm \sqrt{k^2-q^2\sin^2{\alpha}} = q\cos{\alpha} - k
 	\end{equation*}
 	And squared
 	\begin{equation*}
-	k^2 - q^2\sin^2(\alpha) = q^2\cos^2(\alpha) - 2kq\cos(\alpha) + k^2
+	k^2 - q^2\sin^2{\alpha} = q^2\cos^2{\alpha} - 2kq\cos{\alpha} + k^2
 	\end{equation*}
 	After some simplification, the following equation is obtained:
 	\begin{equation*}
-	\cos(\alpha) = \frac{q}{2k}
+	\cos{\alpha} = \frac{q}{2k}
 	\end{equation*}
 	This is now inserted in equation \ref{eq:bragg-sinc1} and \ref{eq:bragg-sinc2}:
 	\begin{align*}
-	k - k\cos(\phi) - \frac{q^2}{2k} &= 0 \\
-	-k\sin(\phi) \pm q\sqrt{1-\frac{q^2}{4k^2}} &= 0
+	k - k\cos{\phi} - \frac{q^2}{2k} &= 0 \\
+	-k\sin{\phi} \pm q\sqrt{1-\frac{q^2}{4k^2}} &= 0
 	\end{align*}
 	Rearranging gives
 	\begin{align*}
-	\cos(\phi) &= 1 - \frac{q^2}{2k^2} \\
-	\sin(\phi) &= \pm \frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}
+	\cos{\phi} &= 1 - \frac{q^2}{2k^2} \\
+	\sin{\phi} &= \pm \frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}
 	\end{align*}
-	The second equation can be further constrained by utilizing $0 \leq \alpha \leq \pi$. This gives $\sin(\alpha) \geq 0$. With $k,q \geq 0$ and equation \ref{eq:bragg-sinc2}: $\sin(\phi) = -\frac{q}{k}\sin(\alpha) \leq 0$. Thus, the only valid solution is the negative one. Now, the cos and sin equations are combined into a tan equation:
+	The second equation can be further constrained by utilizing $0 \leq \alpha \leq \pi$. This gives $\sin{\alpha} \geq 0$. With $k,q \geq 0$ and equation \ref{eq:bragg-sinc2}: $\sin{\phi} = -\frac{q}{k}\sin{\alpha} \leq 0$. Thus, the only valid solution is the negative one. Now, the cos and sin equations are combined into a tan equation:
 	\begin{equation*}
-	\tan(\phi/2) = \frac{1 - \cos(\phi)}{\sin(\phi)} = \frac{1 - \left( 1 - \frac{q^2}{2k^2} \right)}{-\frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}} = -\sqrt{\frac{q^2}{4k^2-q^2}}
+	\tan{\frac{\phi}{2}} = \frac{1 - \cos{\phi}}{\sin{\phi}} = \frac{1 - \left( 1 - \frac{q^2}{2k^2} \right)}{-\frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}} = -\sqrt{\frac{q^2}{4k^2-q^2}}
 	\end{equation*}
 	
 	\subsubsection{Summary}
 	The equations for both the (+) and (-) case are very similar, and can be written in a simple way using $\pm$ signs. The conditions define the geometry which gives the maximum scattering through the angle $\alpha$ between EM and acoustic incident waves and the angles $\theta$ and $\phi$ for the receiver direction. They are summarized below:
 	\begin{align*}
 			\theta &= \pi/2 \\
-			\cos(\alpha) = \mp \frac{q}{2k} &= \mp \frac{\lambda}{2\Lambda} \\
-			\tan(\phi/2) = \pm \sqrt{\frac{q^2}{4k^2-q^2}} &= \pm \sqrt{\frac{\lambda^2}{4\Lambda^2-\lambda^2}}
+			\cos{\alpha} = \mp \frac{q}{2k} &= \mp \frac{\lambda}{2\Lambda} \\
+			\tan{\frac{\phi}{2}} = \pm \sqrt{\frac{q^2}{4k^2-q^2}} &= \pm \sqrt{\frac{\lambda^2}{4\Lambda^2-\lambda^2}}
 	\end{align*}
 	
-	In acousto-optics there is a Bragg condition defining the angle between an acoustic and optic wave which is required for maximum reflection. This is presented in \cite{Saleh2007} as
+	In acousto-optics the interaction occurs in a single plane, which is what the first equation describes. There is also a Bragg condition defining the angle between an acoustic and optic wave which is required for maximum reflection. This is presented in \cite{Saleh2007} as
 	\begin{equation*}
 		\sin{\theta_B} = \frac{\lambda}{2\Lambda}
 	\end{equation*}
 	where $\theta_B$ relates to this geometry as $\alpha = \pi/2 \pm \theta_B$ (see figures 19.1-2 and 19.1-5 in \cite{Saleh2007}). Here, the second equation in the conditions is used to obtain the optimal angle between electromagnetic and acoustic waves, and the transformation between $\alpha$ and $\theta_B$ can be inserted as
 	\begin{equation*}
-		\cos(\alpha) = \cos(\pi/2 \pm \theta_B) = \mp \sin(\theta_B) = \mp\frac{\lambda}{2\Lambda}
+		\cos{\alpha} = \cos(\pi/2 \pm \theta_B) = \mp \sin{\theta_B} = \mp\frac{\lambda}{2\Lambda}
 	\end{equation*}
-	So, from a simple variable substitution the same Bragg condition can be obtained. This gives the model presented here some validation since it agrees with a well established result.
+	In acousto-optics there is no separate equation for the scattering angle as the third equation here. This is simply assumed to be the same as the incident angle, which gives $\phi = \pm 2\theta_B$ (again, see figures 19.1-2 and 19.1-5 in \cite{Saleh2007}). This is inserted into the third equation, giving
+	\begin{equation*}
+		\tan{\frac{\phi}{2}} = \tan(\pm \theta_B) = \pm \frac{\sin{\theta_B}}{\cos{\theta_B}} = \pm \sqrt{\frac{\sin^2{\theta_B}}{1-\sin^2{\theta_B}}} = \pm \sqrt{\frac{\lambda^2/4\Lambda^2}{1-\lambda^2/4\Lambda^2}} = \pm \sqrt{\frac{\lambda^2}{4\Lambda^2-\lambda^2}}
+	\end{equation*}
+	which is the same equation as presented above.
+	So, from simple variable substitutions the same results as in acousto-optics are obtained. This gives the model some validation since it is in agreement with an already established theory.
 	
 	\subsection{Drawing of coordinate system for RRE}
 

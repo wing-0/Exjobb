@@ -12,6 +12,7 @@
 % Graphics
 \usepackage{graphicx}
 \usepackage{tikz}
+\usepackage{tikz-3dplot}
 
 % Language localization
 \usepackage[english]{babel}
@@ -319,6 +320,7 @@
 	\subsection{Derivation of scattering integral in density variation \label{app:scatterint}}
 	Here follows a formal derivation of the scattering of electromagnetic waves against a perturbation in relative permittivity. This is useful in photoelastic interaction since an acoustic wave in that case causes a periodic dielectric perturbation. Most of this derivation is based on a similar derivation by Tatarskii which considers scattering from turbulence in air \cite{Tatarskii1971}.
 	
+	\subsubsection{General equation for electric field in perturbated dielectric}
 	First, Maxwell's equations for a linear, non-magnetic, source-free, isotropic dielectric are presented. Note that the permittivity is not homogeneous.
 	\begin{align*}
 		&\nabla \times \bm{\mathcal{E}} = -\mu_0 \frac{\partial \bm{\mathcal{H}}}{\partial t} \\
@@ -382,6 +384,8 @@
 		-k^2 \frac{\varepsilon_1}{\varepsilon_r} \bm{E} -\frac{1}{\varepsilon_r}\nabla(\bm{E} \cdot \nabla \varepsilon_1) - \frac{2ik}{c\varepsilon_0\varepsilon_r} \frac{\partial (\varepsilon \bm{E})}{\partial t} + \frac{1}{c^2 \varepsilon_0 \varepsilon_r} \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
 	}
 	\end{equation*}
+	
+	\subsubsection{Approximating the right hand side}
 	To simplify this equation even more, approximations concerning the nature of the perturbation must be done. The dielectric perturbation is thus assumed to have the following behavior:
 	\begin{equation*}
 		\varepsilon_1 (\bm{r},t) = |\varepsilon_1| \cos(\bm{q} \cdot \bm{r} - \Omega t)
@@ -438,6 +442,7 @@
 	}
 	\end{equation*}
 	
+	\subsubsection{Born approximation and solution}
 	Now the electric field is split up into an incident field $\bm{E}_i$ and a scattered field $\bm{E}_{sc}$. The scattered field is considered to be small compared to the incident field (Born approximation), and the resulting equation is
 	\begin{equation*}
 		\nabla^2 \bm{E}_{sc} + k^2 \bm{E}_{sc} = -\frac{1}{\varepsilon_r} \left( k^2 \bm{E}_i \varepsilon_1 + \nabla (\bm{E}_i \cdot \nabla \varepsilon_1) \right)
@@ -453,8 +458,61 @@
 	The scattering integral is now solved for a simple geometry and material model to obtain a radar equation.
 	
 	\subsubsection{Geometry and solution of scattering integral}
-	First, the geometry is defined as shown in \todo[inline]{Finish the drawing of the geometry...}
-	
+	First, the geometry is defined as shown in figure \ref{fig:radareq-geom}.
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}
+			% Draw coordinate axes
+			\draw (0,0) circle(0.15);
+			\filldraw[black] circle(0.03);
+			\draw[->] (0.15,0) -- (3,0);
+			\draw[->] (0,.150) -- (0,3);
+			\draw (3,-0.25) node{$\bm{\hat{x}}$} (0.25,3) node{$\bm{\hat{y}}$} (0.25,0.25) node{$\bm{\hat{z}}$};
+			
+			% Draw scattering cube (or rectangle in this case)
+			\draw[fill=gray,opacity=0.2] (-1,-0.5) rectangle(1,0.5);
+			\draw (1,-0.1) -- (1,0.1) node[anchor= north west]{$L_x/2$} (-0.1,0.5) -- (0.1,0.5) node[anchor= south east]{$L_y/2$} (1,0.5) node[anchor=south west]{$V_{sc}$};
+			
+			% Draw EM tx and spherical waves
+			\draw[shift = {(-5,0)}] (0,-0.5) node{EM tx} (0,0) -- (0.2,0) -- (0.4,0.15)
+			(0.2,0) -- (0.4,-0.15);
+			\draw[shift = {(-5,0)}] ([shift={(-30:0.6)}] 0,0) arc(-30:30:0.6) ([shift={(-30:0.9)}] 0,0) arc(-30:30:0.9);
+			
+			% Draw EM "long distance" lines
+			\draw[shift = {(-4.1,0)},dotted] (0,0) -- (0.5,0) (0.7,0) -- (1.2,0);
+			\draw[shift = {(-4.1,0)}] (0.4,-0.2) -- (0.6,0.2) (0.6,-0.2) -- (0.8,0.2);
+			
+			% Draw EM plane waves
+			\draw[shift = {(-2.9,0)}] (0,-0.5) -- (0,0.5) (0.3,-0.5) -- (0.3,0.5);
+			\draw[shift = {(-2.6,0)}, ->] (0,0) -- (0.5,0);
+			\draw[shift = {(-2.6,0)}] (0.5,0.3) node{$\bm{k}$};
+			\draw[dotted] (-0.15,0) -- (-2.1,0);
+			
+			% Draw AO tx and spherical waves
+			\draw[shift = {(210:5)}, rotate = 30] (0,-0.5) node{AO tx} (0,0) -- (0.2,0) -- (0.4,0.15) (0.2,0) -- (0.4,-0.15);
+			\draw[shift = {(210:5)}, rotate = 30] ([shift={(-30:0.6)}] 0,0) arc(-30:30:0.6) ([shift={(-30:0.9)}] 0,0) arc(-30:30:0.9);
+			
+			% Draw AO "long distance" lines
+			\draw[shift = {(210:4.1)}, rotate = 30,dotted] (0,0) -- (0.5,0) (0.7,0) -- (1.2,0);
+			\draw[shift = {(210:4.1)}, rotate = 30] (0.4,-0.2) -- (0.6,0.2) (0.6,-0.2) -- (0.8,0.2);
+			
+			% Draw AO plane waves
+			\draw[shift = {(210:2.9)}, rotate = 30] (0,-0.5) -- (0,0.5) (0.3,-0.5) -- (0.3,0.5);
+			\draw[shift = {(210:2.6)}, rotate = 30, ->] (0,0) -- (0.5,0);
+			\draw[shift = {(210:2.6)}, rotate = 30] (0.5,-0.3) node{$\bm{q}$};
+			\draw[rotate = 30, dotted] (-0.15,0) -- (-2.1,0);
+			
+			% Draw angle alpha
+			\draw ([shift={(180:1.5)}] 0,0) arc(180:210:1.5) (195:1.8) node{$\alpha$};
+			
+			% Draw line towards receiver
+			\draw[->] (310:0.15) -- (310:5) node[anchor=south west]{$\bm{r} = x\bm{\hat{x}} + y\bm{\hat{y}} + z\bm{\hat{z}}$};
+			
+			% Draw EM rx
+			\draw[shift = {(310:5.5)}, rotate = 130] (0,0.5) node{EM rx} (0,0) -- (0.2,0) -- (0.4,0.15) (0.2,0) -- (0.4,-0.15);
+		\end{tikzpicture}
+		\caption{\label{fig:radareq-geom} Geometry for the scattering problem.}
+	\end{figure}
 	The $xy$-plane is defined as the plane formed by the acoustic and electromagnetic wavevectors (they are assumed to be non-parallel). The scattering volume is centered in the origin of the coordinate system, and both the acoustic and electromagnetic waves are approximated as plane waves close to the origin. Thus, the electromagnetic and dielectric perturbation fields near the origin are defined as
 	\begin{align*}
 		\bm{E}_i (\bm{r}',t) &= \bm{E}_i (\bm{r}') = \bm{E}_{i0} e^{i\bm{k}\cdot\bm{r}'} \\
@@ -741,18 +799,24 @@
 	which is the same equation as presented above.
 	So, from simple variable substitutions the same results as in acousto-optics are obtained. This gives the model some validation since it is in agreement with an already established theory.
 	
-	\subsection{Drawing of coordinate system for RRE}
-
-	\begin{tikzpicture}
-		\draw (0,0) circle (0.15);
-		\filldraw[black] circle (0.03);
-		\draw[->] (0.15,0) -- (4,0);
-		\draw[->] (0,.150) -- (0,4);
-		\draw (4,-0.25) node{$x$} (0.25,4) node{$y$} (0.25,0.25) node{$z$};
-		\draw (-5,-0.5) node{EM tx} (-5,0) -- (-4.8,0) -- (-4.6,0.15)
-			(-4.8,0) -- (-4.6,-0.15);
-	\end{tikzpicture}
-	
+	\subsection{Drawing for spherical coordinates}
+	\begin{figure}[H]
+		\centering
+		\tdplotsetmaincoords{60}{100}
+		\begin{tikzpicture}[tdplot_main_coords,scale=5]
+		% Draw cartesian coordinate axes
+		\coordinate (0) at (0,0,0);
+		\tdplotsetcoord{P}{1}{30}{45}
+		\draw[->] (0) -- (1,0,0) node[anchor=north east]{$x$};
+		\draw[->] (0) -- (0,1,0) node[anchor=north west]{$y$};
+		\draw[->] (0) -- (0,0,1) node[anchor=south]{$z$};
+		\tdplotdrawarc{(0)}{0.3}{0}{45}{anchor=north}{$\phi$}
+		\tdplotsetthetaplanecoords{45}
+		\tdplotdrawarc[tdplot_rotated_coords]{(0)}{0.3}{0}{30}{anchor=south}{$\theta$}
+		\draw[dashed] (0) -- (Pxy) (0) -- (P) -- (Pxy) (P) node[anchor=south west]{$(r,\theta,\phi)$};
+		\draw[shift = {(P)}] (0,-0.03,-0.03) -- (0,0.03,0.03) (0,0.03,-0.03) -- (0,-0.03,0.03);
+		\end{tikzpicture}
+	\end{figure}
 	
 	\small
 	\bibliographystyle{../../Litteratur/IEEEtran}

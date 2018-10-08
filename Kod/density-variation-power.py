@@ -27,9 +27,15 @@ rho = 80                        # Nomex honeycomb HRH-10 density 80 kg/m3
 s0 = np.sqrt(2*Is/rho/vs**3)    # Acoustic strain amplitude (from Saleh)
 
 # Dimensions
-Lx = 10e-2
-Ly = 5e-3
-Lz = 5e-3
+Lx = 6e-3
+Ly = 6e-3
+Lz = 6e-3
+
+# Scattering volume based dimensions
+#Vsc = 2.5e-6
+#Lx = Vsc**(1/3)
+#Ly = Lx
+#Lz = Lx
 
 # Radar equation related properties
 G = 10**(20/10)                 # Gain (both T and R) of 20 dB

@@ -98,7 +98,7 @@
 	\end{equation*}
 	where $n$ is the unperturbed index of refraction, $L$ is the distance of overlap between light and acoustic waves in the acoustic wave direction, $\Lambda$ is the acoustic wavelength, $\lambda_0$ is the vacuum light wavelength, $\mathcal{M}$ is a material parameter and $I_s$ is the acoustic intensity \cite{Saleh2007}. For intense acoustic waves a correction is necessary, giving $\mathcal{R}_e = \sin{^2\sqrt{\mathcal{R}}}$ \cite{Saleh2007}.
 	
-	The interesting part when it comes to microwave frequencies, however, is the denominator in the first equation. The factor $1/\lambda_0^4$ might be a reason of concern when moving away from the optical regime. Since the wavelength is much longer for mm-waves there should be a large decrease in reflectance, and if too large the scattered signal could be undetectable. However, some examples for optical wavelengths give $\mathcal{R}_e = 0.192$ \cite{Saleh2007}, which is very large when compared with what can be detected in radar \todo[inline]{reference?}. There are also other variables such as $L$ and $\Lambda$ which might be changed to give a higher reflectance. If the different parameters can be selected to give a scattered signal above the noise floor is a very interesting question which needs to be investigated.
+	The interesting part when it comes to microwave frequencies, however, is the denominator in the first equation. The factor $1/\lambda_0^4$ might be a reason of concern when moving away from the optical regime. Since the wavelength is much longer for mm-waves there should be a large decrease in reflectance, and if too large the scattered signal could be undetectable. However, some examples for optical wavelengths give $\mathcal{R}_e = 0.192$ \cite{Saleh2007}, which is very large when compared with what can be detected in radar \cite{Richards2012}. There are also other variables such as $L$ and $\Lambda$ which might be changed to give a higher reflectance. If the different parameters can be selected to give a scattered signal above the noise floor is a very interesting question which needs to be investigated.
 	
 	\subsubsection{Radio Acoustic Sounding}
 	This mechanism has not only been used in optics, but also in radio meteorology through the Radio Acoustic Sounding System (RASS) \cite{Buerkle2007}. This indicates that the wavelength dependence described above can be offset by other factors to still give a measurable scattered signal. The system is used for temperature sounding since the speed of sound depends on temperature. The Bragg scattering condition is thus affected by a temperature change \cite{Marshall1972}. The systems are usually designed with electromagnetic and acoustic wave sources approximately co-located \cite{Marshall1972}. This corresponds to an angle $\theta \approx 90^\circ$, which changes the Bragg condition to
@@ -161,7 +161,7 @@
 	\begin{equation*}
 	n(x,t) = n - \Delta n_0 \cos(\Omega t - qx)
 	\end{equation*}
-	where $\cos(\Omega t - qx)$ is the phase part of the sound wave. \todo[inline]{Is this an ok description of the cos part?}
+	where $\cos(\Omega t - qx)$ comes from a plane acoustic wave.
 	
 	The refractive index and relative permittivity are related by $\varepsilon_r = n^2$ in a non-magnetic material. To obtain the change in relative permittivity instead of refractive index
 	\begin{equation*}
@@ -182,7 +182,7 @@
 	\Delta \varepsilon_{r_i} = 2n_i\Delta n_i = -n_i^4 p_{ij} S_j = -\varepsilon_{r_i}^2 p_{ij} S_j
 	\end{equation*}
 	
-	The tensor notation here is a simplified form of standard tensor notation and is described by the 1949 IRE standards \cite{Korpel1988}. \todo[inline]{Cite the standards?} The relation to full tensor notation is shown below for refractive indices and strains \cite{Korpel1988}
+	The tensor notation here is a simplified form described by the 1949 IRE standards. The relation to full tensor notation is shown below for refractive indices and strains \cite{Korpel1988}
 	\begin{align*}
 	n_1 &= n_{11},\ n_2 = n_{22},\ n_3 = n_{33}, \\
 	n_4 &= n_{23},\ n_5 = n_{31},\ n_6 = n_{12} \\
@@ -207,13 +207,13 @@
 	\end{align*}
 	It is clear that the permittivity now has an axis $x_1$ where it has another value than in $x_2$ and $x_3$. So even for a material which is nominally completely isotropic, a preferred axis arises for the permittivity! This type of anisotropy is called birefringence in optics, and in this case it is caused by dipoles aligning themselves parallel to the strain \cite{Korpel1988}. Practically, the effect of this is that the interaction strength of this mechanism depends on the EM polarization with respect to the acoustic wave polarization. In longitudinal acoustic waves the polarization and propagation direction coincide, which makes analysis easier.
 	
-	But for a very simple model which does not take any anisotropic effect into consideration, the Lorentz-Lorenz relation leads to the equations \cite{Korpel1988}
+	Another starting point for the interaction is the Lorentz-Lorenz relation, which leads to the equations \cite{Korpel1988}
 	\begin{align*}
 	\Delta n &= C' s \\
 	C' &= \left[ \frac{(n^2-1)(n^2+2)}{6n} \right](1-\Lambda_0) \\
 	\Lambda_0 &= -\left( \frac{\rho}{\alpha} \right) \frac{\mathrm{d} \alpha}{\mathrm{d} \rho}
 	\end{align*}
-	where $\rho$ is the density and $\alpha$ is the molecular polarizability. Since the current goal is a very simple model, $\Lambda_0$ is neglected. This is usually the case for liquids, but solids do not always have this behavior \cite{Korpel1988}. Furthermore, solids often have anisotropic $\Lambda_0$ \cite{Korpel1988}, but in that case the tensor-based model might be of more use. For our very simple case, the relation can be written for permittivity (using $\varepsilon_r = n^2$ and $\Delta \varepsilon_r = 2n \Delta n$) as
+	where $\rho$ is the density and $\alpha$ is the molecular polarizability. Here the anisotropic effects are contained in the parameter $\Lambda_0$ \cite{Korpel1988}. If anisotropy should be considered, the tensor model is probably better to use, but if $\Lambda_0$ is neglected a simplified model is obtained. This type of model is usually accurate for liquids, but many solids do not have this behavior \cite{Korpel1988}. Nevertheless, the simplified relation can be written for permittivity (using $\varepsilon_r = n^2$ and $\Delta \varepsilon_r = 2n \Delta n$) as
 	\begin{equation*}
 	\Delta \varepsilon_r = \frac{1}{3} (\varepsilon_r - 1)(\varepsilon_r + 2) s
 	\end{equation*}
@@ -226,32 +226,61 @@
 	\todo[inline]{Shear waves? They do not cause density variation, but still cause photoelastic interaction. Maybe this entire mechanism should be called photoelastic interaction?}
 	
 	\subsection{Radar equation}
-	If a scalar photoelastic relationship is assumed, the scattering integral can be calculated for a simple geometry. This is done in \ref{app:radareq}, but the results are presented here.
-%	The variables used are:
-%	\begin{itemize}
-%		\item $P_R$: power received by the receiving antenna
-%		\item $P_T$: power accepted by the transmitting antenna
-%		\item $G_T$: transmitting antenna gain
-%		\item $G_T$: receiving antenna gain
-%		\item $\lambda_R$: electromagnetic wavelength at the receiving antenna
-%		\item $R_T$: distance between the transmitting antenna and the center of the scattering volume
-%		\item $R_R$: distance between the center of the scattering volume and the receiving antenna
-%		\item $\varepsilon_r$: unperturbed relative permittivity in the scattering medium
-%		\item $k$: wavenumber in the unperturbed medium before scattering
-%		\item $\mathfrak{p}$: photoelasticity coefficient (scalar)
-%		\item $S_0$: acoustic amplitude at the center of the scattering volume
-%		\item $L_{x,y,z}$: width of the scattering volume in $x,y,z$
-%		\item $\Omega$: acoustic angular frequency
-%		\item $q$: acoustic wavenumber
-%		\item $\alpha$: angle between the electromagnetic and acoustic propagation directions
-%	\end{itemize}
-%	The basic assumptions are:
-%	\begin{itemize}
-%		\item Scattering volume in far-field compared with EM tx antenna.
-%		\item EM rx antenna in the far-field compared with the scattering volume.
-%		\item Spherical waves from EM and acoustic tx antennas can be approximated by plane waves in the scattering volume.
-%		\item The scattering volume is approximated by a cuboid with sides $L_x$, $L_y$, $L_z$.
-%	\end{itemize}
+	If a scalar photoelastic relationship is assumed, the scattering integral can be calculated for a simple geometry. This is done in \ref{app:radareq}, but the results are presented here. The geometry of the problem is shown in figure \ref{fig:radareq-geom-main}. This shows a Cartesian coordinate system, but in the following equations this is transformed into a spherical coordinate system. The reason for this is that a Cartesian system is more suitable to the problem definition and integral calculation, while a spherical system is more suitable to writing the results as a radar equation.
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}
+			% Draw coordinate axes
+			\draw (0,0) circle(0.15);
+			\filldraw[black] circle(0.03);
+			\draw[->] (0.15,0) -- (3,0);
+			\draw[->] (0,.150) -- (0,3);
+			\draw (3,-0.25) node{$\bm{\hat{x}}$} (0.25,3) node{$\bm{\hat{y}}$} (0.25,0.25) node{$\bm{\hat{z}}$};
+			
+			% Draw scattering cube (or rectangle in this case)
+			\draw[fill=gray,opacity=0.2] (-1,-0.5) rectangle(1,0.5);
+			\draw (1,-0.1) -- (1,0.1) node[anchor= north west]{$L_x/2$} (-0.1,0.5) -- (0.1,0.5) node[anchor= south east]{$L_y/2$} (1,0.5) node[anchor=south west]{$V_{sc}$};
+			
+			% Draw EM tx and spherical waves
+			\draw[shift = {(-5,0)}] (0,0) node[anchor=north east]{EM tx} -- (0.4,0) (0.2,0) -- (0.4,0.15)
+			(0.2,0) -- (0.4,-0.15);
+			\draw[shift = {(-5,0)}] ([shift={(-30:0.6)}] 0,0) arc(-30:30:0.6) ([shift={(-30:0.9)}] 0,0) arc(-30:30:0.9);
+			
+			% Draw EM "long distance" lines
+			\draw[shift = {(-4.1,0)},dotted] (0,0) -- (0.5,0) (0.7,0) -- (1.2,0);
+			\draw[shift = {(-4.1,0)}] (0.4,-0.2) -- (0.6,0.2) (0.6,-0.2) -- (0.8,0.2);
+			
+			% Draw EM plane waves
+			\draw[shift = {(-2.9,0)}] (0,-0.5) -- (0,0.5) (0.3,-0.5) -- (0.3,0.5);
+			\draw[shift = {(-2.6,0)}, ->] (0,0) -- (0.5,0);
+			\draw[shift = {(-2.6,0)}] (0.5,0.3) node{$\bm{k}$};
+			\draw[dotted] (-0.15,0) -- (-2.1,0);
+			
+			% Draw AO tx and spherical waves
+			\draw[shift = {(210:5)}, rotate = 30] (0,-0.15) node[anchor=north east]{AO tx} rectangle (0.2,0.15) -- (0.4,0.3) -- (0.4,-0.3) -- (0.2,-0.15);
+			\draw[shift = {(210:5)}, rotate = 30] ([shift={(-30:0.6)}] 0,0) arc(-30:30:0.6) ([shift={(-30:0.9)}] 0,0) arc(-30:30:0.9);
+			
+			% Draw AO "long distance" lines
+			\draw[shift = {(210:4.1)}, rotate = 30,dotted] (0,0) -- (0.5,0) (0.7,0) -- (1.2,0);
+			\draw[shift = {(210:4.1)}, rotate = 30] (0.4,-0.2) -- (0.6,0.2) (0.6,-0.2) -- (0.8,0.2);
+			
+			% Draw AO plane waves
+			\draw[shift = {(210:2.9)}, rotate = 30] (0,-0.5) -- (0,0.5) (0.3,-0.5) -- (0.3,0.5);
+			\draw[shift = {(210:2.6)}, rotate = 30, ->] (0,0) -- (0.5,0);
+			\draw[shift = {(210:2.6)}, rotate = 30] (0.5,-0.3) node{$\bm{q}$};
+			\draw[rotate = 30, dotted] (-0.15,0) -- (-2.1,0);
+			
+			% Draw angle alpha
+			\draw ([shift={(180:1.5)}] 0,0) arc(180:210:1.5) (195:1.8) node{$\alpha$};
+			
+			% Draw line towards receiver
+			\draw[->] (310:0.15) -- (310:5) node[anchor=south west]{$\bm{r} = x\bm{\hat{x}} + y\bm{\hat{y}} + z\bm{\hat{z}}$};
+			
+			% Draw EM rx
+			\draw[shift = {(310:5.5)}, rotate = 130] (0,0) node[anchor=north east]{EM rx} -- (0.4,0) (0.2,0) -- (0.4,0.15) (0.2,0) -- (0.4,-0.15);
+		\end{tikzpicture}
+		\caption{\label{fig:radareq-geom-main} Geometry for the scattering problem.}
+	\end{figure}
 
 	An equation for the received power is written as
 	\begin{equation*}
@@ -275,8 +304,15 @@
 	\end{align*}
 	The equation for $\alpha$ shows what the angle between the incident electromagnetic and acoustic waves should be, and the equations for $\theta$ and $\phi$ show where the receiver should be placed. The first equation shows clearly that the interaction occurs in a plane since $\theta = \pi/2$ is the $xy$-plane defined by the incident waves. The second equation corresponds directly to the Bragg condition presented in acousto-optic theory (see \ref{app:braggmax}). The third equation is not present in acousto-optics since it is implied that an incident light wave is reflected corresponding to optical laws (incident angle equals reflected angle) \cite{Saleh2007}. The equation is nevertheless in agreement with acousto-optics if suitable variable substitutions are used (see \ref{app:braggmax}).
 	
-	If the equations for maximization of $\Phi$ are studied, it becomes clear that the only times the two components overlap are when $\phi = 0$ or $\phi = \pi$. The first case is when $\lambda/\Lambda \rightarrow 0$, giving $\tan{\frac{\phi}{2}} \rightarrow \pm 0$ or $\phi \rightarrow 0$. The second case is when $\lambda \rightarrow 2\Lambda$, giving $\tan{\frac{\phi}{2}} \rightarrow \pm \infty$, or $\phi \rightarrow \pi$. It was assumed that $0 \leq \phi < 2\pi$ in both cases.
-	\todo[inline]{Continue here}
+	If the equations for maximization of $\Phi$ are studied, the angles where there is overlap between the two components can be found. For overlap to happen, it must hold that $\theta = \pi/2$, $\cos{\alpha} = -\cos{\alpha}$ and $\tan{\frac{\phi}{2}} = -\tan{\frac{\phi}{2}}$. First, $\alpha$ is considered. The angle is defined between 0 and $\pi$, and in this range $\cos{\alpha} = -\cos{\alpha}$ holds only for $\alpha = \pi/2$. This gives $\lambda/2\Lambda = 0$. If this is inserted in the equation for $\phi$, $\tan{\frac{\phi}{2}} = 0$ is obtained, which gives $\phi = 0$. The only time overlap is a concern is therefore when $\lambda/\Lambda \rightarrow 0$. However, this is not very practical since the acoustic wavelength must be very large (assuming a limited range of possible electromagnetic wavelengths) and the scattering angle approaches zero.
+	
+	For practical applications, it is usually more reasonable to use signal-to-noise ratio (SNR) than received power. The radar equation using this quantity is instead written as
+	\begin{equation*}
+	\textit{SNR}^\pm_N = \frac{P_T R_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 kT_0 B \cdot \mathit{NR}} N
+	\end{equation*}
+	This also includes a coherent integration of $N$ samples to improve the SNR.
+	
+	\subsubsection{Numerical example}
 	
 	\appendix
 	
@@ -474,7 +510,7 @@
 			\draw (1,-0.1) -- (1,0.1) node[anchor= north west]{$L_x/2$} (-0.1,0.5) -- (0.1,0.5) node[anchor= south east]{$L_y/2$} (1,0.5) node[anchor=south west]{$V_{sc}$};
 			
 			% Draw EM tx and spherical waves
-			\draw[shift = {(-5,0)}] (0,-0.5) node{EM tx} (0,0) -- (0.2,0) -- (0.4,0.15)
+			\draw[shift = {(-5,0)}] (0,0) node[anchor=north east]{EM tx} -- (0.4,0) (0.2,0) -- (0.4,0.15)
 			(0.2,0) -- (0.4,-0.15);
 			\draw[shift = {(-5,0)}] ([shift={(-30:0.6)}] 0,0) arc(-30:30:0.6) ([shift={(-30:0.9)}] 0,0) arc(-30:30:0.9);
 			
@@ -489,7 +525,7 @@
 			\draw[dotted] (-0.15,0) -- (-2.1,0);
 			
 			% Draw AO tx and spherical waves
-			\draw[shift = {(210:5)}, rotate = 30] (0,-0.5) node{AO tx} (0,0) -- (0.2,0) -- (0.4,0.15) (0.2,0) -- (0.4,-0.15);
+			\draw[shift = {(210:5)}, rotate = 30] (0,-0.15) node[anchor=north east]{AO tx} rectangle (0.2,0.15) -- (0.4,0.3) -- (0.4,-0.3) -- (0.2,-0.15);
 			\draw[shift = {(210:5)}, rotate = 30] ([shift={(-30:0.6)}] 0,0) arc(-30:30:0.6) ([shift={(-30:0.9)}] 0,0) arc(-30:30:0.9);
 			
 			% Draw AO "long distance" lines
@@ -509,7 +545,7 @@
 			\draw[->] (310:0.15) -- (310:5) node[anchor=south west]{$\bm{r} = x\bm{\hat{x}} + y\bm{\hat{y}} + z\bm{\hat{z}}$};
 			
 			% Draw EM rx
-			\draw[shift = {(310:5.5)}, rotate = 130] (0,0.5) node{EM rx} (0,0) -- (0.2,0) -- (0.4,0.15) (0.2,0) -- (0.4,-0.15);
+			\draw[shift = {(310:5.5)}, rotate = 130] (0,0) node[anchor=north east]{EM rx} -- (0.4,0) (0.2,0) -- (0.4,0.15) (0.2,0) -- (0.4,-0.15);
 		\end{tikzpicture}
 		\caption{\label{fig:radareq-geom} Geometry for the scattering problem.}
 	\end{figure}
@@ -518,7 +554,7 @@
 		\bm{E}_i (\bm{r}',t) &= \bm{E}_i (\bm{r}') = \bm{E}_{i0} e^{i\bm{k}\cdot\bm{r}'} \\
 		\varepsilon_1 (\bm{r}',t) &= -\mathfrak{p} \varepsilon_r^2 S_0 \cos(\bm{q} \cdot \bm{r}' - \Omega t)
 	\end{align*}
-	Here, $\bm{E}_{i0}$ is the complex field amplitude at the origin ($-i\omega t$ time-dependence separated) and $\bm{k}$ is the electromagnetic wavevector. A scalar photoelastic relation has been assumed, where $\mathfrak{p}$ is the photoelastic constant, $S_0$ is the acoustic strain amplitude, $\bm{q}$ is the acoustic wavevector and $\Omega$ the acoustic frequency.
+	Here, $\bm{E}_{i0}$ is the complex field amplitude at the origin ($-i\omega t$ time-dependence separated) and $\bm{k}$ is the electromagnetic wavevector. A scalar photoelastic relation has been assumed, where $\mathfrak{p}$ is the photoelastic constant, $S_0$ is the acoustic strain amplitude at the origin, $\bm{q}$ is the acoustic wavevector and $\Omega$ the acoustic frequency.
 	
 	For simplicity, the electromagnetic polarization is assumed to be perpendicular to the acoustic propagation direction, $\bm{E}_{i0} \cdot \bm{\hat{q}} = 0$. This is done to avoid polarization changes in the scattered field \cite{Korpel1988}. Due to this $\nabla(\bm{E}_i \cdot \nabla \varepsilon_1) = \bm{0}$ which simplifies the scattering integral to
 	\begin{equation*}
@@ -816,6 +852,7 @@
 		\draw[dashed] (0) -- (Pxy) (0) -- (P) -- (Pxy) (P) node[anchor=south west]{$(r,\theta,\phi)$};
 		\draw[shift = {(P)}] (0,-0.03,-0.03) -- (0,0.03,0.03) (0,0.03,-0.03) -- (0,-0.03,0.03);
 		\end{tikzpicture}
+		\caption{\label{fig:spherical-coords} Spherical coordinate system used.}
 	\end{figure}
 	
 	\small

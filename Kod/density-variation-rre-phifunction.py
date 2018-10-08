@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 plt.close('all')
 lam = 5e-3
-Lam = 4e-3
+Lam = 2.5e-3
 k = 2*np.pi/lam
 q = 2*np.pi/Lam
 
@@ -48,12 +48,12 @@ plt.suptitle('$\\Phi$ angular function $\\varphi$ and $\\alpha$ dependence ' + \
 plt.title('EM prop.dir. at $\\varphi = 180^\\circ$, acoustic prop.dir. at ' + \
           '$\\varphi = 180^\\circ + \\alpha$',fontsize=10)
 
-plt.figure()
-plt.pcolormesh(np.degrees(alpha_m),np.degrees(phi_m),\
-               np.abs(np.cos(alpha_m)+q/2/k) + np.abs(np.tan(phi_m/2)-np.sqrt(q**2/(4*k**2-q**2))) ,\
-               vmin=-0.2,vmax=0.2,cmap='seismic')
-plt.yticks(np.linspace(0,360,10))
-plt.colorbar()
+#plt.figure()
+#plt.pcolormesh(np.degrees(alpha_m),np.degrees(phi_m),\
+#               np.abs(np.cos(alpha_m)+q/2/k) + np.abs(np.tan(phi_m/2)-np.sqrt(q**2/(4*k**2-q**2))) ,\
+#               vmin=-0.2,vmax=0.2,cmap='seismic')
+#plt.yticks(np.linspace(0,360,10))
+#plt.colorbar()
 
 plt.figure()
 plt.pcolormesh(np.degrees(alpha_m),np.degrees(phi_m),m)

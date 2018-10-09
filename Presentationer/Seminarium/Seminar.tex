@@ -26,13 +26,19 @@
 \begin{document}
 	\author{Niklas Wingren}
 	\title{Acousto-electromagnetic interaction}
-	\subtitle{An overview focused on non-destructive testing}
+	\subtitle{Basic mechanisms with a focus on non-destructive testing}
 	\date{October 11, 2018}
 	\frame[plain]{\maketitle}
 	
-	\begin{frame}{Contents}
+	\begin{frame}{Overview}
 		\tableofcontents
 	\end{frame}
+	
+	\AtBeginSection[]{
+	\begin{frame}{Overview}
+		\tableofcontents[currentsection]
+	\end{frame}
+	}
 	
 	\section{Background}
 	\begin{frame}{Background}{Non-destructive testing}
@@ -59,6 +65,19 @@
 	
 	\section{Localized harmonic motion}
 	\begin{frame}{Localized harmonic motion}{Generating localized harmonic motion}
+		\resizebox{!}{0.8\textheight}{
+			\begin{tikzpicture}
+				% Blue beam
+				\draw[shift={(2.5,0)},rotate={90+30}] (0,-0.15) rectangle (0.2,0.15) -- (0.4,0.3) -- (0.4,-0.3) -- (0.2,-0.15) (0,0) node[anchor=west]{$\Omega_0 - \Delta \Omega/2$};
+				\fill[blue,shift={(2.5,0)},rotate=30,opacity=0.5] (-0.25,0.4) rectangle (0.25,10);
+				
+				% Red beam
+				\draw[shift={(-2.5,0)},rotate={90-30}] (0,-0.15) rectangle (0.2,0.15) -- (0.4,0.3) -- (0.4,-0.3) -- (0.2,-0.15) (0,0) node[anchor=east]{$\Omega_0 - \Delta \Omega/2$};
+				\fill[red,shift={(-2.5,0)},rotate=-30,opacity=0.5] (-0.25,0.4) rectangle (0.25,10);
+
+				%\draw (0,0) -- (0,10) (-5,0) -- (5,0);
+			\end{tikzpicture}
+		}
 		
 	\end{frame}
 	
@@ -97,24 +116,36 @@
 			}
 		\end{column}
 		\begin{column}{0.6\textwidth}
-			\begin{equation*}
-				\sin{\theta_B} = \frac{\lambda}{2\Lambda}
-			\end{equation*}
+			\begin{itemize}
+				\pause
+				\item Acoustic wave affects refractive index
+				\begin{equation*}
+					\Delta n(x,t) \sim \cos(qx - \Omega t)
+				\end{equation*}
+				\pause
+				\item Light is diffracted if the Bragg condition is fulfilled
+				\begin{equation*}
+					\sin{\theta_B} = \frac{\lambda}{2\Lambda}
+				\end{equation*}
+			\end{itemize}
 		\end{column}
 		\end{columns}
 	\end{frame}
 	
 	\begin{frame}{Photoelastic interaction}{Photoelasticity}
+		\pause
 		\begin{itemize}
 			\item Tensor relation between strain and change in relative permittivity
 			\begin{equation*}
 				\Delta \varepsilon_{r_i} = -\varepsilon_{r_i}^2 p_{ij} S_j
 			\end{equation*}
+			\pause
 			\item Relation to standard tensor notation for a quantity $x$
 			\begin{align*}
 				x_1 &= x_{11},\ x_2 = x_{22},\ x_3 = x_{33}, \\
 				x_4 &= x_{23},\ x_5 = x_{31},\ x_6 = x_{12}
 			\end{align*}
+			\pause
 			\item $p_{ij}$ can have 36 independent components, but for isotropic solids it simplifies to
 			\begin{align*}
 				p_{11} &= p_{22} = p_{33}, \ p_{12} = p_{21} = p_{13} = p_{23} = p_{32}\\
@@ -126,13 +157,15 @@
 	\begin{frame}{Photoelastic interaction}{Photoelasticity}
 		\begin{itemize}
 			\item Anisotropy in $\varepsilon_r$ arises even in isotropic solids
-			\begin{itemize}
-				\item $\varepsilon_r$ depends on $p_{11}$ parallel to, and $p_{12}$ perpendicular to acoustic axis
-			\end{itemize}
+			\begin{equation*}
+				\Delta \varepsilon_{r_\parallel} \sim p_{11} s(x_1,t), \quad \Delta \varepsilon_{r_\perp} \sim p_{12} s(x_1,t)
+			\end{equation*}
+			\pause
 			\item If  $p_{11} \approx p_{12}$ a scalar approximation is
 			\begin{equation*}
 				\Delta \varepsilon_r(x,t) = -\mathfrak{p} \varepsilon_r^2 s(x,t), \quad \mathfrak{p} = \frac{p_{11} + p_{12}}{2}
 			\end{equation*}
+			\pause
 			\item A very simplistic model for $\mathfrak{p}$ based on the Lorentz-Lorenz relation is
 			\begin{equation*}
 				\mathfrak{p} = -\frac{(\varepsilon_r - 1)(\varepsilon_r + 2)}{3\varepsilon_r^2}
@@ -140,34 +173,37 @@
 		\end{itemize}
 	\end{frame}
 		
-	\begin{frame}{Photoelastic interaction}{Scattering against dielectric perturbation}
-		\begin{itemize}
-			\item Time dependence related to incident fields separated
-			\begin{align*}
-				&\bm{\mathcal{E}}(\bm{r},t) = \bm{E}(\bm{r},t) \text{e}^{-i\omega t} \\
-				&\bm{\mathcal{H}}(\bm{r},t) = \bm{H}(\bm{r},t) \text{e}^{-i\omega t} \\
-			\end{align*}
-			\item Maxwell's equations
-			\begin{align*}
-				&\nabla \times \bm{E} = i\omega \mu_0 \bm{H} - \mu_0 \frac{\partial \bm{H}}{\partial t} \\
-				&\nabla \times \bm{H} = -i\omega \varepsilon \bm{E} + \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} \\
-				&\nabla \cdot (\varepsilon \bm{E}) = 0 \\
-				&\nabla \cdot \bm{H} = 0
-			\end{align*}
-		\end{itemize}
-	\end{frame}
+%	\begin{frame}{Photoelastic interaction}{Scattering against dielectric perturbation}
+%		\begin{itemize}
+%			\item Time dependence related to incident fields separated
+%			\begin{align*}
+%				&\bm{\mathcal{E}}(\bm{r},t) = \bm{E}(\bm{r},t) \text{e}^{-i\omega t} \\
+%				&\bm{\mathcal{H}}(\bm{r},t) = \bm{H}(\bm{r},t) \text{e}^{-i\omega t} \\
+%			\end{align*}
+%			\item Maxwell's equations
+%			\begin{align*}
+%				&\nabla \times \bm{E} = i\omega \mu_0 \bm{H} - \mu_0 \frac{\partial \bm{H}}{\partial t} \\
+%				&\nabla \times \bm{H} = -i\omega \varepsilon \bm{E} + \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} \\
+%				&\nabla \cdot (\varepsilon \bm{E}) = 0 \\
+%				&\nabla \cdot \bm{H} = 0
+%			\end{align*}
+%		\end{itemize}
+%	\end{frame}
 		
 	\begin{frame}{Photoelastic interaction}{Scattering against dielectric perturbation}
+		\pause
 		\begin{itemize}
 			\item Definition for a small dielectric perturbation $\varepsilon_1$
 			\begin{equation*}
 				\varepsilon = \varepsilon_0(\varepsilon_r + \varepsilon_1)
 			\end{equation*}
-			\item Approximate equation for the electric field
+			\pause
+			\item Approximate equation for the electric field ($e^{-i\omega t}$ time dependence separated)
 			\begin{equation*}
 				\nabla^2\bm{E} + k^2 \bm{E} =
 				-k^2 \frac{\varepsilon_1}{\varepsilon_r} \bm{E} -\frac{1}{\varepsilon_r}\nabla(\bm{E} \cdot \nabla \varepsilon_1)
 			\end{equation*}
+			\pause
 			\item Scattering integral for weak scattering
 			{\footnotesize \begin{equation*}
 				\bm{E}_{sc}(\bm{r},t) = \frac{1}{4\pi\varepsilon_r} \int_{V_{sc}} \frac{e^{ik |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \left( k^2 \bm{E}_i (\bm{r'},t) \varepsilon_1 (\bm{r'},t) + \nabla (\bm{E}_i (\bm{r'},t) \cdot \nabla \varepsilon_1 (\bm{r'},t)) \right) \mathrm{d}v'
@@ -228,37 +264,135 @@
 			\draw[shift = {(310:5.5)}, rotate = 130] (0,0) node[anchor=north east]{EM rx} -- (0.4,0) (0.2,0) -- (0.4,0.15) (0.2,0) -- (0.4,-0.15);
 			\end{tikzpicture}
 		}
-		
-		Fields close to the scattering center:
-		\begin{align*}
-			\bm{E}_i (\bm{r}',t) &= \bm{E}_i (\bm{r}') = \bm{E}_{i0} e^{i\bm{k}\cdot\bm{r}'} \\
-			\varepsilon_1 (\bm{r}',t) &= -\mathfrak{p} \varepsilon_r^2 S_0 \cos(\bm{q} \cdot \bm{r}' - \Omega t)
-		\end{align*}
+		\pause
+		\begin{columns}
+			\begin{column}{0.6\textwidth}
+				Fields close to the scattering center:
+				\begin{align*}
+					\bm{E}_i (\bm{r}',t) &= \bm{E}_i (\bm{r}') = \bm{E}_{i0} e^{i\bm{k}\cdot\bm{r}'} \\
+					\varepsilon_1 (\bm{r}',t) &= -\mathfrak{p} \varepsilon_r^2 S_0 \cos(\bm{q} \cdot \bm{r}' - \Omega t)
+				\end{align*}
+			\end{column}
+			\begin{column}{0.4\textwidth}
+				\begin{equation*}
+					\text{with assumption } \bm{E}_{i0} \cdot \bm{q} = 0
+				\end{equation*}
+			\end{column}
+		\end{columns}
 	\end{frame}
 	
 	\begin{frame}{Photoelastic interaction}{Radar equation}
-		\begin{equation*}
-			\textit{SNR}^\pm_N = \frac{P_T R_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 kT_0 B \cdot \mathit{NR}} N
-		\end{equation*}
-		\small
-		\begin{equation*}
-			\sigma^\pm (\theta, \phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\pi)^2
-		\end{equation*}
-		\begin{multline*}
-			\Phi^\pm(\theta,\phi) = \text{sinc} \left( \frac{L_x}{2\pi} \left( k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} \right) \right) \\
-			\cdot \text{sinc} \left( \frac{L_y}{2\pi} \left( -k\sin{\theta}\sin{\phi} \pm q\sin{\alpha} \right) \right) 
-			\text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right)
-		\end{multline*}
+		\pause
+		\begin{itemize}
+			\item Signal-to-noise ratio with coherent integration of $N$ samples
+			\begin{equation*}
+				\textit{SNR}^\pm_N = \frac{P_T R_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 kT_0 B \cdot \mathit{NR}} N
+			\end{equation*}
+			\begin{itemize}
+				\item Two components frequency shifted by $\pm \Omega$
+			\end{itemize} \pause
+			\item Equivalent radar cross-section
+			\begin{equation*}
+				\sigma^\pm (\theta, \phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\pi)^2
+			\end{equation*} \pause
+			\item Function containing all angular dependence
+			\begin{multline*}
+				\Phi^\pm(\theta,\phi) = \text{sinc} \left( \frac{L_x}{2\pi} \left( k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} \right) \right) \\
+				\cdot \text{sinc} \left( \frac{L_y}{2\pi} \left( -k\sin{\theta}\sin{\phi} \pm q\sin{\alpha} \right) \right) 
+				\text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right)
+			\end{multline*}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Photoelastic interaction}{Angular dependence}
+		\begin{itemize}
+			\item $\Lambda = 2.5$ mm, $\lambda = 5$ mm, $L_x = L_y = L_z = 1$ cm
+		\end{itemize}
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\begin{figure}
+					\centering
+					\includegraphics[width=\textwidth]{Phi+-limitcase.eps}
+				\end{figure}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{figure}
+					\centering
+					\includegraphics[width=\textwidth]{Phi--limitcase.eps}
+				\end{figure}
+			\end{column}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}{Photoelastic interaction}{Angular dependence}
+		\begin{itemize}
+			\item $\Lambda = \lambda = 5$ mm, $L_x = L_y = L_z = 1$ cm
+		\end{itemize}
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\begin{figure}
+					\centering
+					\includegraphics[width=\textwidth]{Phi+-equal.eps}
+				\end{figure}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{figure}
+					\centering
+					\includegraphics[width=\textwidth]{Phi--equal.eps}
+				\end{figure}
+			\end{column}
+		\end{columns}
 	\end{frame}
 	
 	\begin{frame}{Photoelastic interaction}{Geometry for maximum scattering}
-		\begin{equation*}
-			\begin{cases}
-				\theta = \pi/2 \\
-				\cos{\alpha} = \mp \frac{q}{2k} = \mp \frac{\lambda}{2\Lambda} \\
-				\tan{\frac{\phi}{2}} = \pm \sqrt{\frac{q^2}{4k^2-q^2}} = \pm \sqrt{\frac{\lambda^2}{4\Lambda^2-\lambda^2}}
-			\end{cases}
-		\end{equation*}
+		\pause
+		\begin{itemize}
+			\item Maximum scattering when sincs have argument 1 in $\Phi^\pm(\theta,\phi)$ \pause
+			\item Conditions on $\alpha$, $\theta$ and $\phi$
+			\begin{equation*}
+				\begin{cases}
+					\theta = \pi/2 \\
+					\cos{\alpha} = \mp \frac{q}{2k} = \mp \frac{\lambda}{2\Lambda} \\
+					\tan{\frac{\phi}{2}} = \pm \sqrt{\frac{q^2}{4k^2-q^2}} = \pm \sqrt{\frac{\lambda^2}{4\Lambda^2-\lambda^2}}
+				\end{cases}
+			\end{equation*} \pause
+			\item Equations simplify to the acousto-optic Bragg condition $\sin{\theta_B} = \lambda/2\Lambda$
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Photoelastic interaction}{Geometry for maximum scattering - examples}
+		\begin{itemize}
+			\item $\lambda/\Lambda$ can take on values between 0 and 2
+		\end{itemize}
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\begin{figure}
+					\centering
+					\includegraphics[width=\textwidth]{scattergeom+.eps}
+				\end{figure}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{figure}
+					\centering
+					\includegraphics[width=\textwidth]{scattergeom-.eps}
+				\end{figure}
+			\end{column}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}{Photoelastic interaction}{Possibilities for NDT}
+		\pause
+		\begin{itemize}
+			\item Increased resolution
+			\begin{itemize}
+				\item Scattered signal shifted in frequency and space compared to incident signal
+				\item Receiver placement and frequency filtering allows for separation of signal from scattering region
+			\end{itemize} \pause
+			\item Increased contrast
+			\begin{itemize}
+				\item Change in either $\lambda$ or $\Lambda$ affects scattering geometry
+			\end{itemize}
+		\end{itemize}
 	\end{frame}
 	
 \end{document}

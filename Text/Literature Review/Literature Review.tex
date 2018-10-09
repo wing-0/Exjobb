@@ -814,25 +814,31 @@
 	
 	\subsubsection{Summary}
 	The equations for both the (+) and (-) case are very similar, and can be written in a simple way using $\pm$ signs. The conditions define the geometry which gives the maximum scattering through the angle $\alpha$ between EM and acoustic incident waves and the angles $\theta$ and $\phi$ for the receiver direction. They are summarized below:
-	\begin{align*}
-			\theta &= \pi/2 \\
-			\cos{\alpha} = \mp \frac{q}{2k} &= \mp \frac{\lambda}{2\Lambda} \\
-			\tan{\frac{\phi}{2}} = \pm \sqrt{\frac{q^2}{4k^2-q^2}} &= \pm \sqrt{\frac{\lambda^2}{4\Lambda^2-\lambda^2}}
-	\end{align*}
+	\begin{align}
+			\theta &= \pi/2 \label{eq:bragg-theta}\\
+			\cos{\alpha} = \mp \frac{q}{2k} &= \mp \frac{\lambda}{2\Lambda} \label{eq:bragg-alpha}\\
+			\tan{\frac{\phi}{2}} = \pm \sqrt{\frac{q^2}{4k^2-q^2}} &= \pm \sqrt{\frac{\lambda^2}{4\Lambda^2-\lambda^2}} \label{eq:bragg-phi}
+	\end{align}
 	
-	In acousto-optics the interaction occurs in a single plane, which is what the first equation describes. There is also a Bragg condition defining the angle between an acoustic and optic wave which is required for maximum reflection. This is presented in \cite{Saleh2007} as
+	In acousto-optics the interaction occurs in a single plane, which is what (\ref{eq:bragg-theta}) describes. There is also a Bragg condition defining the angle between an acoustic and optic wave which is required for maximum reflection. This is presented in \cite{Saleh2007} as
 	\begin{equation*}
 		\sin{\theta_B} = \frac{\lambda}{2\Lambda}
 	\end{equation*}
-	where $\theta_B$ relates to this geometry as $\alpha = \pi/2 \pm \theta_B$ (see figures 19.1-2 and 19.1-5 in \cite{Saleh2007}). Here, the second equation in the conditions is used to obtain the optimal angle between electromagnetic and acoustic waves, and the transformation between $\alpha$ and $\theta_B$ can be inserted as
+	where $\theta_B$ relates to this geometry as $\alpha = \pi/2 \pm \theta_B$ (see figures 19.1-2 and 19.1-5 in \cite{Saleh2007}). Here, (\ref{eq:bragg-alpha}) is used to obtain the optimal angle between electromagnetic and acoustic waves, and the transformation between $\alpha$ and $\theta_B$ can be inserted as
 	\begin{equation*}
-		\cos{\alpha} = \cos(\pi/2 \pm \theta_B) = \mp \sin{\theta_B} = \mp\frac{\lambda}{2\Lambda}
+		\cos{\alpha} = \cos(\pi/2 \pm \theta_B) = \mp \sin{\theta_B}
 	\end{equation*}
-	In acousto-optics there is no separate equation for the scattering angle as the third equation here. This is simply assumed to be the same as the incident angle, which gives $\phi = \pm 2\theta_B$ (again, see figures 19.1-2 and 19.1-5 in \cite{Saleh2007}). This is inserted into the third equation, giving
+	The RHS of (\ref{eq:bragg-alpha}) is $\mp \lambda/2\Lambda$. This should be equal to the RHS above, which directly gives the Bragg condition.
+	
+	In acousto-optics there is no separate equation for the scattering angle as in (\ref{eq:bragg-phi}) above. This is simply assumed to be the same as the incident angle, which gives $\phi = \pm 2\theta_B$ (again, see figures 19.1-2 and 19.1-5 in \cite{Saleh2007}). This is inserted, giving
 	\begin{equation*}
-		\tan{\frac{\phi}{2}} = \tan(\pm \theta_B) = \pm \frac{\sin{\theta_B}}{\cos{\theta_B}} = \pm \sqrt{\frac{\sin^2{\theta_B}}{1-\sin^2{\theta_B}}} = \pm \sqrt{\frac{\lambda^2/4\Lambda^2}{1-\lambda^2/4\Lambda^2}} = \pm \sqrt{\frac{\lambda^2}{4\Lambda^2-\lambda^2}}
+		\tan{\frac{\phi}{2}} = \tan(\pm \theta_B) = \pm \frac{\sin{\theta_B}}{\cos{\theta_B}} = \pm \sqrt{\frac{\sin^2{\theta_B}}{1-\sin^2{\theta_B}}}
 	\end{equation*}
-	which is the same equation as presented above.
+	The RHS of (\ref{eq:bragg-phi}) is
+	\begin{equation*}
+		\pm \sqrt{\frac{\lambda^2}{4\Lambda^2-\lambda^2}} = \pm \sqrt{\frac{(\lambda/2/\Lambda)^2}{1-(\lambda/2\Lambda)^2}}
+	\end{equation*}
+	If this is compared with the RHS above, the Bragg condition is once again obtained.
 	So, from simple variable substitutions the same results as in acousto-optics are obtained. This gives the model some validation since it is in agreement with an already established theory.
 	
 	\subsection{Drawing for spherical coordinates}

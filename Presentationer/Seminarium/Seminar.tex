@@ -6,6 +6,7 @@
 % Graphics
 \usepackage{graphicx}
 \usepackage{tikz}
+\usepackage{pgfplots}
 
 % Language localization
 \usepackage[english]{babel}
@@ -42,51 +43,105 @@
 	
 	\section{Background}
 	\begin{frame}{Background}{Non-destructive testing}
-		
-	\end{frame}
-	
-	\begin{frame}{Background}{Interaction mechanisms}
+		\pause
 		\begin{itemize}
-			\item Boundary perturbation of discrete objects
-			\item Localized harmonic motion inside object
-			\item Photoelastic interaction
-			\item Displacement of scatterers by acoustic wave
-		\end{itemize}
-	\end{frame}
-	
-	\begin{frame}{Background}{Interaction mechanisms}
-		\begin{itemize}
-			\item \sout{Boundary perturbation of discrete objects}
-			\item Localized harmonic motion inside object
-			\item Photoelastic interaction
-			\item \sout{Displacement of scatterers by acoustic wave}
+			\item EKAS-project: mm-wave imaging of aerospace composites
+			\pause
+			\item Electromagnetic and acoustic phenomena used in NDT
+			\begin{itemize}
+				\pause
+				\item Ultrasonic methods old and well proven
+				\pause
+				\item Microwave imaging relatively new in NDT
+			\end{itemize}
+			\pause
+			\item Why combine?
+			\pause
+			\begin{itemize}
+				\item Improved localization
+				\pause
+				\item Improved contrast
+			\end{itemize}
 		\end{itemize}
 	\end{frame}
 	
 	\section{Localized harmonic motion}
 	\begin{frame}{Localized harmonic motion}{Generating localized harmonic motion}
-		\resizebox{!}{0.8\textheight}{
-			\begin{tikzpicture}
-				% Blue beam
-				\draw[shift={(2.5,0)},rotate={90+30}] (0,-0.15) rectangle (0.2,0.15) -- (0.4,0.3) -- (0.4,-0.3) -- (0.2,-0.15) (0,0) node[anchor=west]{$\Omega_0 - \Delta \Omega/2$};
-				\fill[blue,shift={(2.5,0)},rotate=30,opacity=0.5] (-0.25,0.4) rectangle (0.25,10);
-				
-				% Red beam
-				\draw[shift={(-2.5,0)},rotate={90-30}] (0,-0.15) rectangle (0.2,0.15) -- (0.4,0.3) -- (0.4,-0.3) -- (0.2,-0.15) (0,0) node[anchor=east]{$\Omega_0 - \Delta \Omega/2$};
-				\fill[red,shift={(-2.5,0)},rotate=-30,opacity=0.5] (-0.25,0.4) rectangle (0.25,10);
-
-				%\draw (0,0) -- (0,10) (-5,0) -- (5,0);
-			\end{tikzpicture}
-		}
+		\begin{columns}
+			\begin{column}{0.6\textwidth}
+				\resizebox{!}{0.8\textheight}{
+					\begin{tikzpicture}
+						% Blue beam
+						\draw[shift={(2.5,0)},rotate={90+30}] (0,-0.15) rectangle (0.2,0.15) -- (0.4,0.3) -- (0.4,-0.3) -- (0.2,-0.15);
+						\fill[blue,shift={(2.5,0)},rotate=30,opacity=0.5] (-0.25,0.4) rectangle (0.25,10);
+						\draw (2.6,0) node[anchor=west]{$\cos((\Omega_0 - \Delta \Omega)t)$};
+						
+						% Red beam
+						\draw[shift={(-2.5,0)},rotate={90-30}] (0,-0.15) rectangle (0.2,0.15) -- (0.4,0.3) -- (0.4,-0.3) -- (0.2,-0.15);
+						\fill[red,shift={(-2.5,0)},rotate=-30,opacity=0.5] (-0.25,0.4) rectangle (0.25,10);
+						\draw (-2.2,0) node[anchor=west]{$\cos((\Omega_0 + \Delta \Omega)t)$};
 		
+						\draw[->] (1,4.33) node[anchor=west]{$2\cos(\Omega_0 t)\cos(\Delta \Omega t)$} -- (0,4.33);
+					\end{tikzpicture}
+				}
+			\end{column}
+			\begin{column}{0.4\textwidth}
+				\resizebox{!}{0.8\textheight}{
+					\begin{tikzpicture}
+						% Draw array with 4 elements
+						\foreach \x in {0,1,...,3}
+							\draw[shift={({0.5+\x},0.2)},rotate={90}] (0,-0.15) rectangle (0.2,0.15) -- (0.4,0.3) -- (0.4,-0.3) -- (0.2,-0.15);
+							
+						\draw (2,-0.25) node{Focusing transducer};
+							
+						% Draw beam outline
+						\begin{axis}[x=1cm,y=1cm,xticklabels={},yticklabels={},xmin=-2,xmax=2,axis line style={draw=none},tick style={draw=none}]
+						\addplot[domain=0.5:7.5,smooth,variable=\y,dotted]  ({-2*sqrt(0.1+0.1*(\y-4)^2)+0.5},{\y});
+						\addplot[domain=0.5:7.5,smooth,variable=\y,dotted]  ({2*sqrt(0.1+0.1*(\y-4)^2)-0.5},{\y});
+						\addplot[domain=0.5:7.5,variable=\y,samples=500,smooth,red]  ({cos(\y*80 r)*(1+0.5*cos(\y*8 r))/1.5*(2*sqrt(0.1+0.1*(\y-4)^2)-0.5)},{\y});
+						\end{axis} 
+					\end{tikzpicture}
+				}
+			\end{column}
+		\end{columns}
 	\end{frame}
 	
 	\begin{frame}{Localized harmonic motion}{Micro-Doppler effect}
-		
+		\begin{itemize}
+			\pause
+			\item Scattering of an electromagnetic wave from a vibrating or rotating target
+			\begin{itemize}
+				\item Vibration primary interest here
+			\end{itemize}
+			\pause
+			\item Received signal for stationary target, with vibration $D_v \sin(\omega_v t)$
+			\begin{equation*}
+				s_R(t) \sim \sum_{k=-\infty}^{+\infty} J_k(B) e^{-i(\omega_c +k \omega_v)t}, \quad B \sim (4\pi/\lambda)D_v
+			\end{equation*}
+			\parbox{\linewidth}{\tiny (Chen et al., “Micro-Doppler effect in radar: phenomenon, model, and simulation study,” \emph{IEEE Transactions on Aerospace and Electronic Systems}, 2006.)}
+			\pause
+			\item For small $B$, sidebands $|k|=1$ dominate those with $|k|>1$
+		\end{itemize}
 	\end{frame}
 	
 	\begin{frame}{Localized harmonic motion}{Harmonic motion microwave Doppler imaging (HMMDI)}
-		
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\begin{figure}
+					\centering
+					\includegraphics[width=\textwidth]{Tafreshi_fig.PNG}
+				\end{figure}
+				\parbox{\linewidth}{\tiny (Tafreshi et al., “Two-dimensional multi-frequency imaging of a tumor inclusion in a homogeneous breast phantom using the harmonic motion Doppler imaging method,” \emph{Physics in Medicine \& Biology}, 2017.)}
+			\end{column}
+			\pause
+			\begin{column}{0.5\textwidth}
+				\begin{itemize}
+					\item Medical microwave imaging of local vibration
+					\pause
+					\item Sensitive to changes in both mechanical and electromagnetic properties
+				\end{itemize}
+			\end{column}
+		\end{columns}
 	\end{frame}
 	
 	\section{Photoelastic interaction}
@@ -122,11 +177,13 @@
 				\begin{equation*}
 					\Delta n(x,t) \sim \cos(qx - \Omega t)
 				\end{equation*}
+				\parbox{\linewidth}{\tiny (Saleh and Teich, \emph{Fundamentals of Photonics}, 2007.)}
 				\pause
 				\item Light is diffracted if the Bragg condition is fulfilled
 				\begin{equation*}
 					\sin{\theta_B} = \frac{\lambda}{2\Lambda}
 				\end{equation*}
+				\parbox{\linewidth}{\tiny (Saleh and Teich, \emph{Fundamentals of Photonics}, 2007.)}
 			\end{itemize}
 		\end{column}
 		\end{columns}
@@ -139,18 +196,23 @@
 			\begin{equation*}
 				\Delta \varepsilon_{r_i} = -\varepsilon_{r_i}^2 p_{ij} S_j
 			\end{equation*}
+			\parbox{\linewidth}{\tiny (Korpel, \emph{Acousto-optics}, 1988.)}
 			\pause
-			\item Relation to standard tensor notation for a quantity $x$
-			\begin{align*}
-				x_1 &= x_{11},\ x_2 = x_{22},\ x_3 = x_{33}, \\
-				x_4 &= x_{23},\ x_5 = x_{31},\ x_6 = x_{12}
-			\end{align*}
+			\begin{itemize}
+				\item Relation to standard tensor notation for a quantity $x$
+				\begin{align*}
+					x_1 &= x_{11},\ x_2 = x_{22},\ x_3 = x_{33}, \\
+					x_4 &= x_{23},\ x_5 = x_{31},\ x_6 = x_{12}
+				\end{align*}
+			\parbox{\linewidth}{\tiny (Korpel, \emph{Acousto-optics}, 1988.)}
+			\end{itemize}
 			\pause
 			\item $p_{ij}$ can have 36 independent components, but for isotropic solids it simplifies to
 			\begin{align*}
 				p_{11} &= p_{22} = p_{33}, \ p_{12} = p_{21} = p_{13} = p_{23} = p_{32}\\
-				p_{44} &= p_{55} = p_{66} = \frac{1}{2} (p_{11} - p_{22}), \ p_{ij} = 0 \text{ for others}
+				p_{44} &= p_{55} = p_{66} = \frac{1}{2} (p_{11} - p_{12}), \ p_{ij} = 0 \text{ for others}
 			\end{align*}
+			\parbox{\linewidth}{\tiny (Korpel, \emph{Acousto-optics}, 1988.)}
 		\end{itemize}
 	\end{frame}
 	
@@ -170,6 +232,7 @@
 			\begin{equation*}
 				\mathfrak{p} = -\frac{(\varepsilon_r - 1)(\varepsilon_r + 2)}{3\varepsilon_r^2}
 			\end{equation*}
+			\parbox{\linewidth}{\tiny (Korpel, \emph{Acousto-optics}, 1988.)}
 		\end{itemize}
 	\end{frame}
 		
@@ -275,7 +338,7 @@
 			\end{column}
 			\begin{column}{0.4\textwidth}
 				\begin{equation*}
-					\text{with assumption } \bm{E}_{i0} \cdot \bm{q} = 0
+					\text{with assumption } \bm{E}_{i0} \parallel \bm{z}
 				\end{equation*}
 			\end{column}
 		\end{columns}
@@ -286,14 +349,14 @@
 		\begin{itemize}
 			\item Signal-to-noise ratio with coherent integration of $N$ samples
 			\begin{equation*}
-				\textit{SNR}^\pm_N = \frac{P_T R_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 kT_0 B \cdot \mathit{NR}} N
+				\textit{SNR}^\pm_N = \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 k_B T_0 B F} N
 			\end{equation*}
 			\begin{itemize}
 				\item Two components frequency shifted by $\pm \Omega$
 			\end{itemize} \pause
 			\item Equivalent radar cross-section
 			\begin{equation*}
-				\sigma^\pm (\theta, \phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\pi)^2
+				\sigma^\pm (\theta, \phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
 			\end{equation*} \pause
 			\item Function containing all angular dependence
 			\begin{multline*}
@@ -347,7 +410,7 @@
 	\begin{frame}{Photoelastic interaction}{Geometry for maximum scattering}
 		\pause
 		\begin{itemize}
-			\item Maximum scattering when sincs have argument 1 in $\Phi^\pm(\theta,\phi)$ \pause
+			\item Maximum scattering when sincs have argument 0 in $\Phi^\pm(\theta,\phi)$ \pause
 			\item Conditions on $\alpha$, $\theta$ and $\phi$
 			\begin{equation*}
 				\begin{cases}
@@ -383,7 +446,7 @@
 	\begin{frame}{Photoelastic interaction}{Possibilities for NDT}
 		\pause
 		\begin{itemize}
-			\item Increased resolution
+			\item Improved localization
 			\begin{itemize}
 				\item Scattered signal shifted in frequency and space compared to incident signal
 				\item Receiver placement and frequency filtering allows for separation of signal from scattering region

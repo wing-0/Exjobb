@@ -88,10 +88,14 @@ Pt = 10**(-7/10)*1e-3
 # Calculation of SNR with one sample
 SNR = Pt*G**2*lr**2*sigma/(4*np.pi)**3/R**4/con.k/T0/F/B
 
-print('Without integration: SNR =', 10*np.log10(SNR), 'dB')
+print('\nWithout integration: SNR =', 10*np.log10(SNR), 'dB')
 
 # Calculation of samples needed for SNR > 0 dB with coherent integration
 N = np.ceil(1/SNR)
 
 print('Min. integration samples: N =', N)
+
+# Calculation of normalized RCS
+sigma_n = er**2*k**4/16/np.pi*p**2*s0**2*Lx**2*Ly*Lz
+print('\nNormalized RCS =', sigma_n)
 

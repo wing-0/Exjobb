@@ -55,13 +55,7 @@
 				\item Microwave imaging relatively new in NDT
 			\end{itemize}
 			\pause
-			\item Why combine?
-			\pause
-			\begin{itemize}
-				\item Improved localization
-				\pause
-				\item Improved contrast
-			\end{itemize}
+			\item Combination gives more information
 		\end{itemize}
 	\end{frame}
 	
@@ -109,10 +103,7 @@
 	\begin{frame}{Localized harmonic motion}{Micro-Doppler effect}
 		\begin{itemize}
 			\pause
-			\item Scattering of an electromagnetic wave from a vibrating or rotating target
-			\begin{itemize}
-				\item Vibration primary interest here
-			\end{itemize}
+			\item Additional effect for vibrating or rotating targets
 			\pause
 			\item Received signal for stationary target, with vibration $D_v \sin(\omega_v t)$
 			\begin{equation*}
@@ -120,7 +111,7 @@
 			\end{equation*}
 			\parbox{\linewidth}{\tiny (Chen et al., “Micro-Doppler effect in radar: phenomenon, model, and simulation study,” \emph{IEEE Transactions on Aerospace and Electronic Systems}, 2006.)}
 			\pause
-			\item For small $B$, sidebands $|k|=1$ dominate those with $|k|>1$
+			\item For small $B$, only $k = -1, 0, 1$ are considered
 		\end{itemize}
 	\end{frame}
 	
@@ -207,11 +198,7 @@
 			\parbox{\linewidth}{\tiny (Korpel, \emph{Acousto-optics}, 1988.)}
 			\end{itemize}
 			\pause
-			\item $p_{ij}$ can have 36 independent components, but for isotropic solids it simplifies to
-			\begin{align*}
-				p_{11} &= p_{22} = p_{33}, \ p_{12} = p_{21} = p_{13} = p_{23} = p_{32}\\
-				p_{44} &= p_{55} = p_{66} = \frac{1}{2} (p_{11} - p_{12}), \ p_{ij} = 0 \text{ for others}
-			\end{align*}
+			\item $p_{ij}$ can have 36 independent components, but for isotropic solids this simplifies to just $p_{11}$ and $p_{12}$
 			\parbox{\linewidth}{\tiny (Korpel, \emph{Acousto-optics}, 1988.)}
 		\end{itemize}
 	\end{frame}
@@ -338,7 +325,7 @@
 			\end{column}
 			\begin{column}{0.4\textwidth}
 				\begin{equation*}
-					\text{with assumption } \bm{E}_{i0} \parallel \bm{z}
+					\text{with assumption } \bm{E}_{i0} \parallel \bm{\hat{z}}
 				\end{equation*}
 			\end{column}
 		\end{columns}
@@ -369,39 +356,19 @@
 	
 	\begin{frame}{Photoelastic interaction}{Angular dependence}
 		\begin{itemize}
-			\item $\Lambda = 2.5$ mm, $\lambda = 5$ mm, $L_x = L_y = L_z = 1$ cm
-		\end{itemize}
-		\begin{columns}
-			\begin{column}{0.5\textwidth}
-				\begin{figure}
-					\centering
-					\includegraphics[width=\textwidth]{Phi+-limitcase.eps}
-				\end{figure}
-			\end{column}
-			\begin{column}{0.5\textwidth}
-				\begin{figure}
-					\centering
-					\includegraphics[width=\textwidth]{Phi--limitcase.eps}
-				\end{figure}
-			\end{column}
-		\end{columns}
-	\end{frame}
-	
-	\begin{frame}{Photoelastic interaction}{Angular dependence}
-		\begin{itemize}
 			\item $\Lambda = \lambda = 5$ mm, $L_x = L_y = L_z = 1$ cm
 		\end{itemize}
 		\begin{columns}
 			\begin{column}{0.5\textwidth}
 				\begin{figure}
 					\centering
-					\includegraphics[width=\textwidth]{Phi+-equal.eps}
+					\includegraphics[width=\textwidth]{Phi+equal.png}
 				\end{figure}
 			\end{column}
 			\begin{column}{0.5\textwidth}
 				\begin{figure}
 					\centering
-					\includegraphics[width=\textwidth]{Phi--equal.eps}
+					\includegraphics[width=\textwidth]{Phi-equal.png}
 				\end{figure}
 			\end{column}
 		\end{columns}
@@ -431,13 +398,21 @@
 			\begin{column}{0.5\textwidth}
 				\begin{figure}
 					\centering
-					\includegraphics[width=\textwidth]{scattergeom+.eps}
+					\begin{overprint}
+						\onslide<1>\includegraphics[width=\textwidth]{scgeom0+.eps}
+						\onslide<2>\includegraphics[width=\textwidth]{scgeom1+.eps}
+						\onslide<3>\includegraphics[width=\textwidth]{scgeom2+.eps}
+					\end{overprint}
 				\end{figure}
 			\end{column}
 			\begin{column}{0.5\textwidth}
 				\begin{figure}
 					\centering
-					\includegraphics[width=\textwidth]{scattergeom-.eps}
+					\begin{overprint}
+						\onslide<1>\includegraphics[width=\textwidth]{scgeom0-.eps}
+						\onslide<2>\includegraphics[width=\textwidth]{scgeom1-.eps}
+						\onslide<3>\includegraphics[width=\textwidth]{scgeom2-.eps}
+					\end{overprint}
 				\end{figure}
 			\end{column}
 		\end{columns}

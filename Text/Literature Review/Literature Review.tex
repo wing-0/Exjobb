@@ -13,6 +13,7 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{tikz-3dplot}
+\usepackage{pgf}
 
 % Language localization
 \usepackage[english]{babel}
@@ -221,7 +222,12 @@
 	\begin{equation*}
 	\mathfrak{p} = -\frac{(\varepsilon_r - 1)(\varepsilon_r + 2)}{3\varepsilon_r^2}
 	\end{equation*}
-	This can then be used in all equations derived with $\mathfrak{p}$ relating permittivity and strain. However, it should be noted that this model is extremely simplistic and will probably give faulty results in many cases.
+	This can then be used in all equations derived with $\mathfrak{p}$ relating permittivity and strain. A plot of $\mathfrak{p}$ as a function of $\varepsilon_r$ is shown in figure \ref{fig:photoelastic-liquid}. It can be seen clearly that the interaction strength increases with $\varepsilon_r$ close to 1. However, at around $\varepsilon_r = 4$ an extreme is reached, and further on $\mathfrak{p}$ planes out. Thus, there is a bound on the interaction strength for this relation. It should be noted that this model is extremely simplistic and will probably give faulty results in many cases. \todo{Maybe write about the figure more in detail}
+	\begin{figure}[h]
+		\centering
+		\input{photoelastic-liquid.pgf}
+		\caption{\label{fig:photoelastic-liquid} Simplified photoelastic constant $\mathfrak{p}$ as a function of $\varepsilon_r$.}
+	\end{figure}
 	
 	\todo[inline]{Shear waves? They do not cause density variation, but still cause photoelastic interaction. Maybe this entire mechanism should be called photoelastic interaction?}
 	

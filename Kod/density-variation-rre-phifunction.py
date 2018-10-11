@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 plt.close('all')
 lam = 5e-3
-Lam = 2.89e-3
+Lam = 5e-3
 k = 2*np.pi/lam
 q = 2*np.pi/Lam
 
@@ -32,6 +32,7 @@ phi = np.linspace(0,2*np.pi,500)
 
 # %% Various alpha, plot function value for all phi,alpha combinations
 plt.close('all')
+namestr = 'equal'
 alpha = np.radians(np.linspace(0,180,500))
 
 [phi_m,alpha_m] = np.meshgrid(phi,alpha)
@@ -57,6 +58,8 @@ alpham = np.arccos(-lam/2/Lam)
 plt.scatter(np.degrees(alpham),np.degrees(phim),marker='.')
 plt.xlim([0,180])
 
+#plt.savefig('Phi+'+namestr+'.png',dpi=300)
+
 #plt.figure()
 #plt.pcolormesh(np.degrees(alpha_m),np.degrees(phi_m),\
 #               np.abs(np.cos(alpha_m)-q/2/k) + np.abs(np.tan(phi_m/2)+np.sqrt(q**2/(4*k**2-q**2))) ,\
@@ -81,6 +84,8 @@ phim = 2*np.arctan(-np.sqrt(lam**2/(4*Lam**2-lam**2+eps))) + 2*np.pi
 alpham = np.arccos(lam/2/Lam)
 plt.scatter(np.degrees(alpham),np.degrees(phim),marker='.')
 plt.xlim([0,180])
+
+#plt.savefig('Phi-'+namestr+'.png',dpi=300)
 
 # %% Variation of max with changing wavelength fraction - polar plot (+)
 plt.close('all')
@@ -153,6 +158,49 @@ for i in range(0,len(lamfr)):
           np.array([phi[i]-0.03,phi[i]]),np.array([0.9,1]),c[i])
 
 plt.title('Optimal scattering geometry for different $\lambda/\Lambda$ (- case)')
+plt.ylim(0,1)
+plt.yticks(np.linspace(0,1,5),[])
+
+plt.figlegend(loc=4,framealpha=1)
+
+# %% Polar plot of max scattering geometry - all cases
+plt.close('all')
+plt.figure()
+
+# (+) or (-) case
+pm = -1
+pmch = '+'
+if(pm is -1):
+    pmch = '-'
+
+# Fraction EM lambda/AO lambda
+lamfr = 0
+alpha = np.arccos(-pm*lamfr/2)
+phi = 2*np.arctan(pm*np.sqrt(lamfr**2/4/(1-lamfr**2/4+eps))) + np.pi*(1-pm)
+
+# Incident EM
+plt.polar(np.pi*np.ones(2),np.arange(2),'k',label='$\mathbf{\hat{k}}$')
+# Arrow for incident EM
+plt.polar((np.pi-0.2)*np.ones(2),np.array([0,0.1]),'k',\
+          (np.pi+0.2)*np.ones(2),np.array([0,0.1]),'k')
+
+# Incident sound
+plt.polar((np.pi+alpha)*np.ones(2),np.arange(2),':b',\
+          label='$\mathbf{\hat{q}}$')
+plt.polar(alpha*np.ones(2),np.arange(2),'b:')
+# Arrow for sound
+plt.polar(np.array([alpha+0.03,alpha]),np.array([0.9,1]),'b',\
+      np.array([alpha-0.03,alpha]),np.array([0.9,1]),'b')
+
+#Scattered EM
+plt.polar(phi*np.ones(2),np.arange(2),'r',\
+          label='$\mathbf{\hat{k}}_{sc}$')
+# Arrow for scattered EM
+plt.polar(np.array([phi+0.03,phi]),np.array([0.9,1]),'r',\
+      np.array([phi-0.03,phi]),np.array([0.9,1]),'r')
+
+plt.title('Optimal scattering geometry for $\lambda/\Lambda = $' + str(lamfr) +\
+          ' (' + pmch + ' case)')
 plt.ylim(0,1)
 plt.yticks(np.linspace(0,1,5),[])
 

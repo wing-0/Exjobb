@@ -17,5 +17,5 @@ plt.plot(er,p)
 plt.xlabel('er')
 plt.ylabel('p')
 
-plt.rcParams['axes.unicode_minus'] = False
-plt.savefig('../Text/Literature Review/photoelastic-liquid.pgf')
+#plt.rcParams['axes.unicode_minus'] = False
+#plt.savefig('../Text/Literature Review/photoelastic-liquid.pgf')

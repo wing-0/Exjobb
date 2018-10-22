@@ -324,8 +324,38 @@
 	This subject is of interest to both phenomena of localized harmonic motion and photoelastic interaction. Since ultrasound is used for some type of interaction with electromagnetic waves, it is important to understand that part of the problem. In many NDT applications the ultrasonic waves are generated in some transducer, coupled into a fluid medium and then coupled further into the solid medium of the test object \cite{Schmerr2016}. This requires knowledge of wave propagation in both fluid and solid media, which requires two different approaches: acoustics and elastodynamics.
 	
 	\subsection{Acoustic waves}
+	In a compressible fluid ultrasound can be described by a fully acoustic model. The main variable for describing the wave motion is pressure in this case. In turn, this can be converted into other variables such as displacement or strain. The acoustic wave equation which describes the phenomena is
+	\begin{equation*}
+		\nabla^2 p - \frac{1}{c_f^2} \frac{\partial^2 p}{\partial t^2} + f = 0
+	\end{equation*}
+	where $p$ is pressure, $c_f$ is the speed of sound in the fluid and $f$ is a scalar body force \cite{Schmerr2016}. The speed of sound can be written as $c_f = \sqrt{K/\rho_0}$ where $K$ is the bulk modulus of the fluid and $\rho_0$ is the unperturbed density of the fluid \cite{Kaufman2000}. The scalar body force is related to a vector body force dy the divergence: $f = -\nabla \cdot \bm{f}$ \cite{Schmerr2016}.
+	
+	This model is directly useful for NDT in some cases. One is in immersion testing, where a test object is immersed in water and ultrasound propagates through the water into the object \cite{Schmerr2016}. The other is in coupling ultrasound from a transducer to an object through a thin layer of coupling fluid \cite{Schmerr2016}. However, this model is also useful for understanding one special case of propagation in an elastic solid. This will be described in the following part.
 	
 	\subsection{Elastic waves}
+	In an elastic medium the acoustic model is no longer sufficient. The acoustic model considers only pressure since one main assumption for volume elements in the fluid is that they only transmit force in the direction of the force \cite{Kaufman2000}. The volume elements in an elastic solid are more strongly coupled to each other, and this assumption does not hold anymore \cite{Kaufman2005}. The equations for elastic waves are instead based on solid mechanics. There is no simple wave equation as in acoustics, instead the complete model is described by Navier's equations
+	\begin{equation*}
+		\mu \nabla^2 \bm{u} + (\lambda+\mu) \nabla (\nabla \cdot \bm{u}) + \bm{f} = \rho_0 \frac{\partial^2 \bm{u}}{\partial t^2}
+	\end{equation*}
+	where $\bm{u}$ is the displacement vector and $\lambda$ and $\mu$ are the Lamé parameters of the material \cite{Schmerr2016}. To obtain wave equations from this, a Helmholtz decomposition is made as
+	\begin{equation*}
+		\bm{u} = \nabla \phi + \nabla \times \bm{\psi}
+	\end{equation*}
+	where $\phi$ is a scalar potential and $\bm{\psi}$ is a vector potential \cite{Schmerr2016}. For Navier's equations to be fulfilled, the following must hold for the potentials \cite{Schmerr2016}:
+	\begin{align*}
+		&\nabla^2 \phi - \frac{1}{c_p^2} \frac{\partial^2 \phi}{\partial t^2} = 0 \\
+		&\nabla^2 \bm{\psi} - \frac{1}{c_s^2} \frac{\partial^2 \bm{\psi}}{\partial t^2} = 0
+	\end{align*}
+	These are two wave equations with the wave speeds \cite{Schmerr2016}
+	\begin{align*}
+		c_p &= \sqrt{(\lambda + 2\mu)/\rho_0} \\
+		c_s &= \sqrt{\mu/\rho_0}
+	\end{align*}
+	By further investigation, the waves can be identified as p-waves with speed $c_p$ and s-waves with speed $c_s$ \cite{Schmerr2016}. The p-waves are very similar to acoustic waves, and it can be shown that the dilatation of the solid follows the p-wave equation \cite{Schmerr2016}. The s-waves on the other hand, do not have an analogy in acoustics. The rotation of the solid follows the s-wave equation \cite{Schmerr2016}, and as discussed before this type of motion does not propagate in a compressible fluid. When it comes to actually generating ultrasonic elastic waves, transducers are available both for generation of p-waves and s-waves \cite{Schmerr2016}. A simple model for determining strain is then based on calculating only one potential and setting the other to zero. This is common when working with p-waves \cite{Kaufman2000}.
+	
+	The elastic waves described above are called bulk waves since they are only fully describe waves in the bulk of an elastic solid \cite{Kaufman2005}. Other wave phenomena exist such as surface waves (Rayleigh, Stoneley, Love) \cite{Kaufman2005} and plate waves (SH, Lamb) \cite{Schmerr2016}. These waves are not insignificant and are used in some branches of ultrasonic testing \cite{Schmerr2016}. However, only bulk waves are considered here and then mostly p-waves.
+	
+	\todo[inline]{Mode conversion is probably important to mention}
 	
 	\appendix
 	

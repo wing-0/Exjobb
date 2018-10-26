@@ -1,0 +1,64 @@
+% Use 'final' for a nicer preview
+\documentclass[10pt,a4paper]{eitExjobb}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Symbols
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% Graphics
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{pgf}
+
+% Language localization
+\usepackage[english]{babel}
+
+% Improves float behavior (e.g. enables [H]) and puts captions on top
+\usepackage{float}
+\floatstyle{plaintop}
+
+% Includes todo-notes
+\usepackage{todonotes}
+
+% Makes caption identifiers (i.e. Figure X:) bold
+\usepackage[labelfont=bf]{caption}
+
+% Gives \ref and \cite hyperlinks to what they refer to
+\usepackage[hidelinks]{hyperref}
+
+% Enables \begin{comment} comments
+\usepackage{comment}
+
+% Bold math style, useful for vectors
+\usepackage{bm}
+
+\begin{document}
+	
+	\Title{Acousto-electromagnetic interaction}
+	\Author{Niklas Wingren\\\texttt{tfy13nwi@student.lu.se}}
+	\Supervisor{Daniel Sj\"oberg}
+	\Examiner{Mats Gustafsson}
+	
+	\MakeTitlePage  % Print title page and copyright page
+	
+	\frontmatter    % Page numbering for front pages (small roman)
+	
+	\chapter*{Abstract}
+	
+	\chapter*{Popular Science Summary}
+	\tableofcontents
+	\listoffigures
+	\listoftables
+	\chapter*{List of Abbreviations}
+	\chapter*{List of Symbols}
+	\cleardoublepage
+	
+	\mainmatter		% Page numbering for the main thesis (arabic)
+	
+	\chapter{Introduction}
+	
+\end{document}

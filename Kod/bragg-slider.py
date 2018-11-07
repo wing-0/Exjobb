@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+ # -*- coding: utf-8 -*-
 """
 Created on Wed Oct 10 19:02:06 2018
 
@@ -36,6 +36,9 @@ slf = Slider(axlf, '$\lambda/\Lambda$', 0, 2, valinit=lamfr_0)
 rax = plt.axes([0.025, 0.5, 0.15, 0.15], facecolor=axcolor)
 radio = RadioButtons(rax, ('+', '-'), active=0)
 
+# The red line shows acoustic wave directed towards origin
+# The blue line shows scattered EM wave directed from origin
+
 def update(val):
     pm_s = radio.value_selected
     pm = 1
@@ -44,7 +47,7 @@ def update(val):
     lamfr = slf.val
     alpha = np.arccos(-pm*lamfr/2)
     phi = 2*np.arctan(pm*np.sqrt(lamfr**2/4/(1-lamfr**2/4+eps))) + np.pi*(1-pm)
-    l_s.set_xdata(alpha*np.ones(2))
+    l_s.set_xdata((np.pi+alpha)*np.ones(2))
     l_em.set_xdata(phi*np.ones(2))
     fig.canvas.draw_idle()
 slf.on_changed(update)

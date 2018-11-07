@@ -235,56 +235,7 @@
 	If a scalar photoelastic relationship is assumed, the scattering integral can be calculated for a simple geometry. This is done in \ref{app:radareq}, but the results are presented here. The geometry of the problem is shown in figure \ref{fig:radareq-geom-main}. This shows a Cartesian coordinate system, but in the following equations this is transformed into a spherical coordinate system. The reason for this is that a Cartesian system is more suitable to the problem definition and integral calculation, while a spherical system is more suitable to writing the results as a radar equation.
 	\begin{figure}[h]
 		\centering
-		\begin{tikzpicture}
-			% Draw coordinate axes
-			\draw (0,0) circle(0.15);
-			\filldraw[black] circle(0.03);
-			\draw[->] (0.15,0) -- (3,0);
-			\draw[->] (0,.150) -- (0,3);
-			\draw (3,-0.25) node{$\bm{\hat{x}}$} (0.25,3) node{$\bm{\hat{y}}$} (0.25,0.25) node{$\bm{\hat{z}}$};
-			
-			% Draw scattering cube (or rectangle in this case)
-			\draw[fill=gray,opacity=0.2] (-1,-0.5) rectangle(1,0.5);
-			\draw (1,-0.1) -- (1,0.1) node[anchor= north west]{$L_x/2$} (-0.1,0.5) -- (0.1,0.5) node[anchor= south east]{$L_y/2$} (1,0.5) node[anchor=south west]{$V_{sc}$};
-			
-			% Draw EM tx and spherical waves
-			\draw[shift = {(-5,0)}] (0,0) node[anchor=north east]{EM tx} -- (0.4,0) (0.2,0) -- (0.4,0.15)
-			(0.2,0) -- (0.4,-0.15);
-			\draw[shift = {(-5,0)}] ([shift={(-30:0.6)}] 0,0) arc(-30:30:0.6) ([shift={(-30:0.9)}] 0,0) arc(-30:30:0.9);
-			
-			% Draw EM "long distance" lines
-			\draw[shift = {(-4.1,0)},dotted] (0,0) -- (0.5,0) (0.7,0) -- (1.2,0);
-			\draw[shift = {(-4.1,0)}] (0.4,-0.2) -- (0.6,0.2) (0.6,-0.2) -- (0.8,0.2);
-			
-			% Draw EM plane waves
-			\draw[shift = {(-2.9,0)}] (0,-0.5) -- (0,0.5) (0.3,-0.5) -- (0.3,0.5);
-			\draw[shift = {(-2.6,0)}, ->] (0,0) -- (0.5,0);
-			\draw[shift = {(-2.6,0)}] (0.5,0.3) node{$\bm{k}$};
-			\draw[dotted] (-0.15,0) -- (-2.1,0);
-			
-			% Draw AO tx and spherical waves
-			\draw[shift = {(210:5)}, rotate = 30] (0,-0.15) node[anchor=north east]{AO tx} rectangle (0.2,0.15) -- (0.4,0.3) -- (0.4,-0.3) -- (0.2,-0.15);
-			\draw[shift = {(210:5)}, rotate = 30] ([shift={(-30:0.6)}] 0,0) arc(-30:30:0.6) ([shift={(-30:0.9)}] 0,0) arc(-30:30:0.9);
-			
-			% Draw AO "long distance" lines
-			\draw[shift = {(210:4.1)}, rotate = 30,dotted] (0,0) -- (0.5,0) (0.7,0) -- (1.2,0);
-			\draw[shift = {(210:4.1)}, rotate = 30] (0.4,-0.2) -- (0.6,0.2) (0.6,-0.2) -- (0.8,0.2);
-			
-			% Draw AO plane waves
-			\draw[shift = {(210:2.9)}, rotate = 30] (0,-0.5) -- (0,0.5) (0.3,-0.5) -- (0.3,0.5);
-			\draw[shift = {(210:2.6)}, rotate = 30, ->] (0,0) -- (0.5,0);
-			\draw[shift = {(210:2.6)}, rotate = 30] (0.5,-0.3) node{$\bm{q}$};
-			\draw[rotate = 30, dotted] (-0.15,0) -- (-2.1,0);
-			
-			% Draw angle alpha
-			\draw ([shift={(180:1.5)}] 0,0) arc(180:210:1.5) (195:1.8) node{$\alpha$};
-			
-			% Draw line towards receiver
-			\draw[->] (310:0.15) -- (310:5) node[anchor=south west]{$\bm{r} = x\bm{\hat{x}} + y\bm{\hat{y}} + z\bm{\hat{z}}$};
-			
-			% Draw EM rx
-			\draw[shift = {(310:5.5)}, rotate = 130] (0,0) node[anchor=north east]{EM rx} -- (0.4,0) (0.2,0) -- (0.4,0.15) (0.2,0) -- (0.4,-0.15);
-		\end{tikzpicture}
+		\input{scatteringgeom.tikz}
 		\caption{\label{fig:radareq-geom-main} Geometry for the scattering problem.}
 	\end{figure}
 
@@ -540,56 +491,7 @@
 	First, the geometry is defined as shown in figure \ref{fig:radareq-geom}.
 	\begin{figure}[h]
 		\centering
-		\begin{tikzpicture}
-			% Draw coordinate axes
-			\draw (0,0) circle(0.15);
-			\filldraw[black] circle(0.03);
-			\draw[->] (0.15,0) -- (3,0);
-			\draw[->] (0,.150) -- (0,3);
-			\draw (3,-0.25) node{$\bm{\hat{x}}$} (0.25,3) node{$\bm{\hat{y}}$} (0.25,0.25) node{$\bm{\hat{z}}$};
-			
-			% Draw scattering cube (or rectangle in this case)
-			\draw[fill=gray,opacity=0.2] (-1,-0.5) rectangle(1,0.5);
-			\draw (1,-0.1) -- (1,0.1) node[anchor= north west]{$L_x/2$} (-0.1,0.5) -- (0.1,0.5) node[anchor= south east]{$L_y/2$} (1,0.5) node[anchor=south west]{$V_{sc}$};
-			
-			% Draw EM tx and spherical waves
-			\draw[shift = {(-5,0)}] (0,0) node[anchor=north east]{EM tx} -- (0.4,0) (0.2,0) -- (0.4,0.15)
-			(0.2,0) -- (0.4,-0.15);
-			\draw[shift = {(-5,0)}] ([shift={(-30:0.6)}] 0,0) arc(-30:30:0.6) ([shift={(-30:0.9)}] 0,0) arc(-30:30:0.9);
-			
-			% Draw EM "long distance" lines
-			\draw[shift = {(-4.1,0)},dotted] (0,0) -- (0.5,0) (0.7,0) -- (1.2,0);
-			\draw[shift = {(-4.1,0)}] (0.4,-0.2) -- (0.6,0.2) (0.6,-0.2) -- (0.8,0.2);
-			
-			% Draw EM plane waves
-			\draw[shift = {(-2.9,0)}] (0,-0.5) -- (0,0.5) (0.3,-0.5) -- (0.3,0.5);
-			\draw[shift = {(-2.6,0)}, ->] (0,0) -- (0.5,0);
-			\draw[shift = {(-2.6,0)}] (0.5,0.3) node{$\bm{k}$};
-			\draw[dotted] (-0.15,0) -- (-2.1,0);
-			
-			% Draw AO tx and spherical waves
-			\draw[shift = {(210:5)}, rotate = 30] (0,-0.15) node[anchor=north east]{AO tx} rectangle (0.2,0.15) -- (0.4,0.3) -- (0.4,-0.3) -- (0.2,-0.15);
-			\draw[shift = {(210:5)}, rotate = 30] ([shift={(-30:0.6)}] 0,0) arc(-30:30:0.6) ([shift={(-30:0.9)}] 0,0) arc(-30:30:0.9);
-			
-			% Draw AO "long distance" lines
-			\draw[shift = {(210:4.1)}, rotate = 30,dotted] (0,0) -- (0.5,0) (0.7,0) -- (1.2,0);
-			\draw[shift = {(210:4.1)}, rotate = 30] (0.4,-0.2) -- (0.6,0.2) (0.6,-0.2) -- (0.8,0.2);
-			
-			% Draw AO plane waves
-			\draw[shift = {(210:2.9)}, rotate = 30] (0,-0.5) -- (0,0.5) (0.3,-0.5) -- (0.3,0.5);
-			\draw[shift = {(210:2.6)}, rotate = 30, ->] (0,0) -- (0.5,0);
-			\draw[shift = {(210:2.6)}, rotate = 30] (0.5,-0.3) node{$\bm{q}$};
-			\draw[rotate = 30, dotted] (-0.15,0) -- (-2.1,0);
-			
-			% Draw angle alpha
-			\draw ([shift={(180:1.5)}] 0,0) arc(180:210:1.5) (195:1.8) node{$\alpha$};
-			
-			% Draw line towards receiver
-			\draw[->] (310:0.15) -- (310:5) node[anchor=south west]{$\bm{r} = x\bm{\hat{x}} + y\bm{\hat{y}} + z\bm{\hat{z}}$};
-			
-			% Draw EM rx
-			\draw[shift = {(310:5.5)}, rotate = 130] (0,0) node[anchor=north east]{EM rx} -- (0.4,0) (0.2,0) -- (0.4,0.15) (0.2,0) -- (0.4,-0.15);
-		\end{tikzpicture}
+		\input{scatteringgeom.tikz}
 		\caption{\label{fig:radareq-geom} Geometry for the scattering problem.}
 	\end{figure}
 	The $xy$-plane is defined as the plane formed by the acoustic and electromagnetic wavevectors (they are assumed to be non-parallel). The scattering volume is centered in the origin of the coordinate system, and both the acoustic and electromagnetic waves are approximated as plane waves close to the origin. Thus, the electromagnetic and dielectric perturbation fields near the origin are defined as

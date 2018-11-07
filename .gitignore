@@ -377,3 +377,6 @@ $RECYCLE.BIN/
 
 # COMSOL model file
 *.mph
+
+# csv files (might be temporary, but COMSOL exports are currently saved as these and they are huge...)
+*.csv

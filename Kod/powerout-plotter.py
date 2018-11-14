@@ -13,7 +13,6 @@ The results are then plotted
 
 import numpy as np
 import matplotlib.pyplot as plt
-import csv
 
 # Files for data without and with photoelasticity
 files = [
@@ -32,32 +31,20 @@ Hyt = []
 
 # Read data from both files
 for f in files:
-    r = csv.reader(open(f, 'r'))
+    data = np.genfromtxt(f, delimiter=',', comments='%', dtype=str)
+    xt.append(data[:, 0].astype(float))
+    yt.append(data[:, 1].astype(float))
+    Ezt.append(np.array([s.replace('i', 'j') for s in data[:, 2]])
+               .astype(complex))
+    Hxt.append(np.array([s.replace('i', 'j') for s in data[:, 3]])
+               .astype(complex))
+    Hyt.append(np.array([s.replace('i', 'j') for s in data[:, 4]])
+               .astype(complex))
 
-    x = []
-    y = []
-    Ez = []
-    Hx = []
-    Hy = []
-
-    for l in r:
-        if(not l[0][0] == '%'):
-            x.append(float(l[0]))
-            y.append(float(l[1]))
-            Ez.append(complex(l[2].replace('i', 'j')))
-            Hx.append(complex(l[3].replace('i', 'j')))
-            Hy.append(complex(l[4].replace('i', 'j')))
-    x = np.array(x)
-    y = np.array(y)
-    Ez = np.array(Ez)
-    Hx = np.array(Hx)
-    Hy = np.array(Hy)
-
-    xt.append(x)
-    yt.append(y)
-    Ezt.append(Ez)
-    Hxt.append(Hx)
-    Hyt.append(Hy)
+# Define coordinates according to both files
+if((False not in (xt[0] == xt[1])) and (False not in (yt[0] == yt[1]))):
+    x = xt[0]
+    y = yt[0]
 
 # Calculate difference fields
 Ez = Ezt[1] - Ezt[0]

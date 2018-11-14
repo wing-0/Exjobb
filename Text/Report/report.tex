@@ -13,6 +13,7 @@
 \usepackage{tikz}
 \usepackage{tikz-3dplot}
 \usepackage{pgf}
+\usepackage{subcaption}
 
 % Language localization
 \usepackage[english]{babel}
@@ -110,52 +111,73 @@
 	One detail omitted before is the two methods of generating radiation force locally. The first method uses amplitude modulated focused ultrasound with its focus on the region of interest \cite{Top2016}. Since amplitude modulated ultrasound exists throughout the beam a force is generated in that entire region. However, the intensity is much higher in the focus so the force is stronger there. The second method instead uses two single-frequency ultrasonic beams which intersect at the region of interest. The frequencies of the two beams differ by a small amount $\Delta \Omega$. Superposition at the intersection will then generate localized amplitude modulation by half the difference frequency $\Delta \Omega/2$. However, the acoustic radiation force is determined by the energy density of the wave. This is proportional to the square of the acoustic field, which changes the frequency of interest by a factor 2. The frequency of the acoustic radiation force is then the difference frequency $\Delta \Omega$ \cite{Fatemi1998}.
 	
 	\subsection{Acousto-Optics}\todo{fix this stuff - lots of "old" stuff that isn't very nice to present here. I know much more than when I wrote this...}
-	
-	\subsubsection{Optics-based theory}
-	This mechanism is the one used in the theory of acousto-optics \cite{Saleh2007}\cite{Korpel1981}. The main idea is that there is a relation between the density of a material and its index of refraction. Since an acoustic wave consists of periodic compression and rarefaction in a medium, a consequence is that the index of refraction varies with the same period \cite{Saleh2007}. Due to Fresnel reflection, this periodic structure of varying index of refraction acts as a Bragg reflector scattering incident light. The Bragg condition determines the angle of incidence $\theta_B$ required for the light
+	This mechanism is the one used in the theory of acousto-optics \cite{Saleh2007}\cite{Korpel1981}. The main idea is that there is a relation between the strain in a material and its index of refraction. Since an acoustic wave consists of periodic compression and rarefaction in a medium (which can be related to strain), a consequence is that the index of refraction varies with the same period \cite{Saleh2007}. Due to Fresnel reflection, this periodic structure of varying index of refraction acts as a Bragg reflector scattering incident light. The Bragg condition determines the angle of incidence $\theta_B$ required for the light
 	\begin{equation*}
 	\sin{\theta_B} = \frac{\lambda}{2\Lambda}
 	\end{equation*}
 	where $\lambda$ is the light wavelength and $\Lambda$ is the acoustic wavelength \cite{Saleh2007}.
 	
-	There is nothing in the basic theory suggesting that optical frequencies are required for this interaction. At microwave frequencies premittivity is more common to use than index of refraction, but they are related and the principle is the same. An application which uses this principle and has been used for many years is the radio acoustic sounding system \cite{Buerkle2007}. Additionally, though not using the exact Bragg formulation for modeling interaction, some authors have explored other ways of using density variation for microwave frequencies \cite{Lawrence2001}\cite{Merkel2006}. It has been stated, however, that this interaction is very small and resonance is often required (giving rise to boundary perturbation) \cite{Buerkle2007}. This can be understood by looking at the acousto-optic theory. The Bragg condition gives the angle for peak reflectance against the acoustic wave. When considering strength of the interaction, though, an actual value for the reflectance is of interest. This can be found as
+	There is nothing in the basic theory suggesting that optical frequencies are required for this interaction. At microwave frequencies premittivity is more common to use than index of refraction, but they are related and the principle is the same. An application which uses this principle and has been used for many years is the radio acoustic sounding system \cite{Buerkle2007}. Additionally, though not using the exact Bragg formulation for modeling interaction, some authors have explored other ways of using similar interaction at microwave frequencies \cite{Lawrence2001}\cite{Merkel2006}. It has been stated, however, that this interaction is very small and resonance is often required (giving rise to boundary perturbation) \cite{Buerkle2007}. This can be understood by looking at the acousto-optic theory. The Bragg condition gives the angle for peak reflectance against the acoustic wave. When considering strength of the interaction, though, an actual value for the reflectance is of interest. This can be found as
 	%	\begin{equation*}
 	%		\mathcal{R} = \frac{\pi^2}{2\lambda_0^2} \left( \frac{L}{\sin{\theta}} \right) ^2 \mathcal{M}I_s
 	%	\end{equation*}
 	%	where $\lambda_0$ is vacuum light wavelength, $L/\sin{\theta}$ is the oblique distance of light penetration (approximately), $\mathcal{M}$ is a material parameter and $I_s$ is the acoustic intensity \cite{Saleh2007}. Alternatively, the Bragg condition can be used for the equation
 	\begin{equation*}
 	\mathcal{R} = 2\pi^2n^2 \frac{L^2 \Lambda^2}{\lambda_0^4} \mathcal{M}I_s
-	\end{equation*}
+	\end{equation*} \todo{Refine this segment on reflectance and stuff, it's not very coherent}
 	where $n$ is the unperturbed index of refraction, $L$ is the distance of overlap between light and acoustic waves in the acoustic wave direction, $\Lambda$ is the acoustic wavelength, $\lambda_0$ is the vacuum light wavelength, $\mathcal{M}$ is a material parameter and $I_s$ is the acoustic intensity \cite{Saleh2007}. For intense acoustic waves a correction is necessary, giving $\mathcal{R}_e = \sin{^2\sqrt{\mathcal{R}}}$ \cite{Saleh2007}.
 	
 	The interesting part when it comes to microwave frequencies, however, is the denominator in the first equation. The factor $1/\lambda_0^4$ might be a reason of concern when moving away from the optical regime. Since the wavelength is much longer for mm-waves there should be a large decrease in reflectance, and if too large the scattered signal could be undetectable. However, some examples for optical wavelengths give $\mathcal{R}_e = 0.192$ \cite{Saleh2007}, which is very large when compared with what can be detected in radar \cite{Richards2012}. There are also other variables such as $L$ and $\Lambda$ which might be changed to give a higher reflectance. If the different parameters can be selected to give a scattered signal above the noise floor is a very interesting question which needs to be investigated.
 	
-	\subsubsection{Radio Acoustic Sounding}
+	\subsubsection{Radio Acoustic Sounding} \todo{Maybe move this part somewhere else?}
 	This mechanism has not only been used in optics, but also in radio meteorology through the Radio Acoustic Sounding System (RASS) \cite{Buerkle2007}. This indicates that the wavelength dependence described above can be offset by other factors to still give a measurable scattered signal. The system is used for temperature sounding since the speed of sound depends on temperature. The Bragg scattering condition is thus affected by a temperature change \cite{Marshall1972}. The systems are usually designed with electromagnetic and acoustic wave sources approximately co-located \cite{Marshall1972}. This corresponds to an angle $\theta \approx 90^\circ$, which changes the Bragg condition to
 	\begin{equation*}
 	\Lambda = \frac{\lambda}{2}
 	\end{equation*}
 	
 	\subsection{Scatterer Displacement}
-	This is a mechanism presented in the field of ultrasound-optical tomography (UOT). The mechanism is based on dynamic multiple scattering of light, which occurs if many scatterers undergoing Brownian motion are considered \cite{Leutz1995}. If an ultrasonic beam is incident on such a sample the scatterers will move due to both Brownian motion and ultrasound, giving rise to a frequency shift in affected photons \cite{Leutz1995}\cite{Elson2011}. In medical applications, movement of the scatterers due to acoustic waves is very straight-forward: their displacement directly follows the acoustic wave \cite{Leutz1995}. This might well be the case for small scatterers which are then part of the wave, but for larger scatterers it gets more complicated. In that case, acoustic radiation force has to be considered for scatterer movement \cite{Torr1984}.
+	This is a mechanism mostly presented in the field of ultrasound-optical tomography (UOT). The mechanism is based on dynamic multiple scattering of light, which occurs if many scatterers undergoing Brownian motion are considered \cite{Leutz1995}. If an ultrasonic beam is incident on such a sample the scatterers will move due to both Brownian motion and ultrasound, giving rise to a frequency shift in affected photons \cite{Leutz1995}\cite{Elson2011}. In medical applications, movement of the scatterers due to acoustic waves is very straight-forward: their displacement directly follows the acoustic wave \cite{Leutz1995}. This might well be the case for small scatterers which are then part of the wave, but for larger scatterers it gets more complicated. In that case, acoustic radiation force has to be considered for scatterer movement \cite{Torr1984}. \todo{Double check some things on movement of small vs. big scatterers}
 	
 	It is interesting to see if this mechanism holds any relevance when it comes to microwave frequencies. The assumption on which the theory rests is that of dynamic multiple light scattering \cite{Leutz1995}. In the existing mm-wave imaging system there is an assumption of sparse defects being the only scatterers \cite{Helander2017}. This is in complete contrast to the theory of dynamic multiple light scattering, which is based on a large number of moving scatterers \cite{Leutz1995}. Since the basic assumptions of the problem and theory are in such stark contrast, it seems likely that this interaction mechanism holds little relevance to the problem at hand.
 	
 	\section{Ultrasonic Propagation}
 	
+	\subsection{Background stuff on ultrasound}
+	
+	\subsection{Propagation in fluid medium}
+	
+	\subsection{Propagation in solid medium}
+	
 	\section{Photoelastic Interaction}
+	
+	\subsection{Overview}
+	\todo[inline]{Explain clearly that this is acousto-optics, but derived directly from Maxwell and without the word "optics" in the name}
+	
+	\subsection{Photoelasticity}
+	\todo[inline]{Theory describing relation between solid (continuum?) mechanics and dielectric properties}
 	
 	\section{Localized Harmonic Motion}
 	
 	\chapter{Analytical Modeling}
 	
 	\section{Scattering in a perturbed dielectric}
+	\todo[inline]{Keep full derivation in appendix but have a summary with important steps here}
 	
 	\section{Radar equation for simple photoelastic interaction}
+	\todo[inline]{Keep full derivation in appendix but have a summary with important steps here}
 	
 	\chapter{Numerical Simulation}
 	
+	\section{Background stuff}
+	\todo[inline]{Description of how different basic things (such as antennas and transducers) are modeled. Details on COMSOL and other similar stuff.}
+	
+	\section{Verification of analytical model}
+	\todo[inline]{Description of how the simple scattering problem was modeled.}
+	
 	\chapter{Results and Discussion}
+	
+	\section{Verification of analytical model}
+	\todo[inline]{Comparison of results from the simulation with the analytical model. Primarily a verification of the Bragg condition, but maybe also some comparison of the power levels.}
 	
 	\chapter{Conclusions}
 	
@@ -505,9 +527,11 @@
 	k - k\cos{\phi} \pm q\cos{\alpha} &= 0 \label{eq:bragg-sinc1} \\
 	-k\sin{\phi} \pm q\sin{\alpha} &= 0 \label{eq:bragg-sinc2}
 	\end{align}
-	This system of equations is now used to find the direction of the maximum. TO avoid confusion, the positive and negative versions of the system are considered separately.
 	
-	\subsection{(+) case}
+	\subsection{Condition for $\alpha$}
+	The system \ref{eq:bragg-sinc1},\ref{eq:bragg-sinc2} is now used to find the angle between wave vectors giving a maximum. To avoid confusion, the positive and negative versions of the system are considered separately.
+	
+	\subsubsection{(+) case}
 	Begin with equation \ref{eq:bragg-sinc1}:
 	\begin{equation*}
 	\cos{\alpha} = \frac{k}{q}\left( \cos{\phi} - 1 \right) = \frac{k}{q}\left( \pm \sqrt{1-\sin^2{\phi}} - 1 \right)
@@ -525,25 +549,26 @@
 	k^2 - q^2\sin^2{\alpha} = q^2\cos^2{\alpha} + 2kq\cos{\alpha} + k^2
 	\end{equation*}
 	After some simplification, the following equation is obtained:
-	\begin{equation*}
-	\cos{\alpha} = -\frac{q}{2k}
-	\end{equation*}
-	This is now inserted in equation \ref{eq:bragg-sinc1} and \ref{eq:bragg-sinc2}:
-	\begin{align*}
-	k - k\cos{\phi} - \frac{q^2}{2k} &= 0 \\
-	-k\sin{\phi} \pm q\sqrt{1-\frac{q^2}{4k^2}} &= 0
-	\end{align*}
-	Rearranging gives
-	\begin{align*}
-	\cos{\phi} &= 1 - \frac{q^2}{2k^2} \\
-	\sin{\phi} &= \pm \frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}
-	\end{align*}
-	The second equation can be further constrained by utilizing $0 \leq \alpha \leq \pi$. This gives $\sin{\alpha} \geq 0$. With $k,q \geq 0$ and equation \ref{eq:bragg-sinc2}: $\sin{\phi} = \frac{q}{k}\sin{\alpha} \geq 0$. Thus, the only valid solution is the positive one. Now, the cos and sin equations are combined into a tan equation:
-	\begin{equation*}
-	\tan{\frac{\phi}{2}} = \frac{1 - \cos{\phi}}{\sin{\phi}} = \frac{1 - \left( 1 - \frac{q^2}{2k^2} \right)}{\frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}} = \frac{\frac{q^2}{2k^2} }{\frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}} = \frac{q}{2k\sqrt{1-\frac{q^2}{4k^2}}} = \sqrt{\frac{q^2}{4k^2-q^2}}
-	\end{equation*}
+	\begin{equation}
+	\cos{\alpha} = -\frac{q}{2k} \label{eq:bragg-cos+}
+	\end{equation}
+	Since $q$ and $k$ are non-negative it is clear that $\pi/2 \leq \alpha \leq \pi$.
 	
-	\subsection{(-) case}
+%	\begin{align*}
+%	k - k\cos{\phi} - \frac{q^2}{2k} &= 0 \\
+%	-k\sin{\phi} \pm q\sqrt{1-\frac{q^2}{4k^2}} &= 0
+%	\end{align*}
+%	Rearranging gives
+%	\begin{align*}
+%	\cos{\phi} &= 1 - \frac{q^2}{2k^2} \\
+%	\sin{\phi} &= \pm \frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}
+%	\end{align*}
+%	The second equation can be further constrained by utilizing $0 \leq \alpha \leq \pi$. This gives $\sin{\alpha} \geq 0$. With $k,q \geq 0$ and equation \ref{eq:bragg-sinc2}: $\sin{\phi} = \frac{q}{k}\sin{\alpha} \geq 0$. Thus, the only valid solution is the positive one. Now, the cos and sin equations are combined into a tan equation:
+%	\begin{equation*}
+%	\tan{\frac{\phi}{2}} = \frac{1 - \cos{\phi}}{\sin{\phi}} = \frac{1 - \left( 1 - \frac{q^2}{2k^2} \right)}{\frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}} = \frac{\frac{q^2}{2k^2} }{\frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}} = \frac{q}{2k\sqrt{1-\frac{q^2}{4k^2}}} = \sqrt{\frac{q^2}{4k^2-q^2}}
+%	\end{equation*}
+	
+	\subsubsection{(-) case}
 	This case is the same as the (+) case, but with some sign changes. Begin with equation \ref{eq:bragg-sinc1}:
 	\begin{equation*}
 	\cos{\alpha} = \frac{k}{q}\left( 1 - \cos{\phi} \right) = \frac{k}{q}\left( 1 \pm \sqrt{1-\sin^2{\phi}} \right)
@@ -561,51 +586,111 @@
 	k^2 - q^2\sin^2{\alpha} = q^2\cos^2{\alpha} - 2kq\cos{\alpha} + k^2
 	\end{equation*}
 	After some simplification, the following equation is obtained:
-	\begin{equation*}
-	\cos{\alpha} = \frac{q}{2k}
-	\end{equation*}
-	This is now inserted in equation \ref{eq:bragg-sinc1} and \ref{eq:bragg-sinc2}:
+	\begin{equation}
+	\cos{\alpha} = \frac{q}{2k} \label{eq:bragg-cos-}
+	\end{equation}
+	Since $q$ and $k$ are non-negative it is clear that $0 \leq \alpha \leq \pi/2$.
+%	This is now inserted in equation \ref{eq:bragg-sinc1} and \ref{eq:bragg-sinc2}:
+%	\begin{align*}
+%	k - k\cos{\phi} - \frac{q^2}{2k} &= 0 \\
+%	-k\sin{\phi} \pm q\sqrt{1-\frac{q^2}{4k^2}} &= 0
+%	\end{align*}
+%	Rearranging gives
+%	\begin{align*}
+%	\cos{\phi} &= 1 - \frac{q^2}{2k^2} \\
+%	\sin{\phi} &= \pm \frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}
+%	\end{align*}
+%	The second equation can be further constrained by utilizing $0 \leq \alpha \leq \pi$. This gives $\sin{\alpha} \geq 0$. With $k,q \geq 0$ and equation \ref{eq:bragg-sinc2}: $\sin{\phi} = -\frac{q}{k}\sin{\alpha} \leq 0$. Thus, the only valid solution is the negative one. Now, the cos and sin equations are combined into a tan equation:
+%	\begin{equation*}
+%	\tan{\frac{\phi}{2}} = \frac{1 - \cos{\phi}}{\sin{\phi}} = \frac{1 - \left( 1 - \frac{q^2}{2k^2} \right)}{-\frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}} = -\sqrt{\frac{q^2}{4k^2-q^2}}
+%	\end{equation*}
+
+	\subsection{Condition for $\phi$}
+	
+	If either of equations \ref{eq:bragg-cos+} or \ref{eq:bragg-cos-} is inserted in the system \ref{eq:bragg-sinc1}, \ref{eq:bragg-sinc2} the following is obtained:
 	\begin{align*}
-	k - k\cos{\phi} - \frac{q^2}{2k} &= 0 \\
-	-k\sin{\phi} \pm q\sqrt{1-\frac{q^2}{4k^2}} &= 0
+	\cos{\phi} &= 1 - 2\cos^2{\alpha} = -\cos{2\alpha} \\
+	\sin{\phi} &= -2\sin{\alpha}\cos{\alpha} = -\sin{2\alpha}
 	\end{align*}
-	Rearranging gives
+	These can be written as
 	\begin{align*}
-	\cos{\phi} &= 1 - \frac{q^2}{2k^2} \\
-	\sin{\phi} &= \pm \frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}
+		\phi &=
+		\begin{cases}
+			\arccos(-\cos{2\alpha}) + 2\pi n &= \pi - 2\alpha + 2\pi n \\
+			2\pi - \arccos(-\cos{2\alpha}) + 2\pi n &= \pi + 2\alpha + 2\pi n
+		\end{cases} \\
+		\phi &=
+		\begin{cases}
+		\arcsin(-\sin{2\alpha}) + 2\pi n &= -2\alpha + 2\pi n \\
+		\pi - \arcsin(-\sin{2\alpha}) + 2\pi n &= \pi + 2\alpha + 2\pi n
+		\end{cases}
 	\end{align*}
-	The second equation can be further constrained by utilizing $0 \leq \alpha \leq \pi$. This gives $\sin{\alpha} \geq 0$. With $k,q \geq 0$ and equation \ref{eq:bragg-sinc2}: $\sin{\phi} = -\frac{q}{k}\sin{\alpha} \leq 0$. Thus, the only valid solution is the negative one. Now, the cos and sin equations are combined into a tan equation:
-	\begin{equation*}
-	\tan{\frac{\phi}{2}} = \frac{1 - \cos{\phi}}{\sin{\phi}} = \frac{1 - \left( 1 - \frac{q^2}{2k^2} \right)}{-\frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}} = -\sqrt{\frac{q^2}{4k^2-q^2}}
-	\end{equation*}
+	From these equations it is clear that $\phi = \pi + 2\alpha + 2\pi n$ is the only valid solution. If $\phi$ is constrained to the region $0 \leq \phi \leq 2\pi$ and the previously stated constraints on $\alpha$ are utilized, $\phi$ can be written as
+	\begin{align*}
+		\phi &= -\pi + 2\alpha \text{ (+ case)}\\
+		\phi &= \pi + 2\alpha \text{ (- case)}
+	\end{align*}
 	
 	\subsection{Summary}
 	The equations for both the (+) and (-) case are very similar, and can be written in a simple way using $\pm$ signs. The conditions define the geometry which gives the maximum scattering through the angle $\alpha$ between EM and acoustic incident waves and the angles $\theta$ and $\phi$ for the receiver direction. They are summarized below:
 	\begin{align}
 	\theta &= \pi/2 \label{eq:bragg-theta}\\
 	\cos{\alpha} = \mp \frac{q}{2k} &= \mp \frac{\lambda}{2\Lambda} \label{eq:bragg-alpha}\\
-	\tan{\frac{\phi}{2}} = \pm \sqrt{\frac{q^2}{4k^2-q^2}} &= \pm \sqrt{\frac{\lambda^2}{4\Lambda^2-\lambda^2}} \label{eq:bragg-phi}
+	\phi &= \mp \pi + 2\alpha \label{eq:bragg-phi}
+	%\tan{\frac{\phi}{2}} = \pm \sqrt{\frac{q^2}{4k^2-q^2}} &= \pm \sqrt{\frac{\lambda^2}{4\Lambda^2-\lambda^2}} \label{eq:bragg-phi}
 	\end{align}
 	
 	In acousto-optics the interaction occurs in a single plane, which is what (\ref{eq:bragg-theta}) describes. There is also a Bragg condition defining the angle between an acoustic and optic wave which is required for maximum reflection. This is presented in \cite{Saleh2007} as
 	\begin{equation*}
 	\sin{\theta_B} = \frac{\lambda}{2\Lambda}
 	\end{equation*}
-	where $\theta_B$ relates to this geometry as $\alpha = \pi/2 \pm \theta_B$ (see figures 19.1-2 and 19.1-5 in \cite{Saleh2007}). Here, (\ref{eq:bragg-alpha}) is used to obtain the optimal angle between electromagnetic and acoustic waves, and the transformation between $\alpha$ and $\theta_B$ can be inserted as
+	The relationship between the angles in acousto-optics and those used in this model are shown in figure \ref{fig:bragg-comparison} with $\phi_i = \phi_r = \theta_B$ \cite{Saleh2007}. From the figure it is clear that $\alpha = \pi/2 \pm \theta_B$. In this model (\ref{eq:bragg-alpha}) is used to obtain the optimal angle between electromagnetic and acoustic waves, and the transformation between $\alpha$ and $\theta_B$ can be inserted as
 	\begin{equation*}
 	\cos{\alpha} = \cos(\pi/2 \pm \theta_B) = \mp \sin{\theta_B}
 	\end{equation*}
 	The RHS of (\ref{eq:bragg-alpha}) is $\mp \lambda/2\Lambda$. This should be equal to the RHS above, which directly gives the Bragg condition.
 	
-	In acousto-optics there is no separate equation for the scattering angle as in (\ref{eq:bragg-phi}) above. This is simply assumed to be the same as the incident angle, which gives $\phi = \pm 2\theta_B$ (again, see figures 19.1-2 and 19.1-5 in \cite{Saleh2007}). This is inserted, giving
+	In acousto-optics it is assumed that the reflection angle equals the incidence angle. This is not directly stated here, but can be obtained by changing from the angles $\alpha$, $\phi$ to the incidence angle $\phi_i$ and reflection angle $\phi_r$ shown in figure \ref{fig:bragg-comparison}. It is clear from the figure that
+	\begin{align*}
+		\phi_i &= \pm(\alpha - \pi/2) \\
+		\phi_r &=
+		\begin{cases}
+			\phi - \phi_i &\text{ (+ case)} \\
+			2\pi - \phi - \phi_i &\text{ (- case)}
+		\end{cases}
+	\end{align*}
+	Now the condition for $\phi_i$ and \ref{eq:bragg-phi} are inserted in the condition for $\phi_r$, giving
 	\begin{equation*}
-	\tan{\frac{\phi}{2}} = \tan(\pm \theta_B) = \pm \frac{\sin{\theta_B}}{\cos{\theta_B}} = \pm \sqrt{\frac{\sin^2{\theta_B}}{1-\sin^2{\theta_B}}}
+		\phi_r =
+		\begin{cases}
+			-\pi + 2\alpha - (\alpha - \pi/2) = \alpha - \pi/2 = \phi_i &\text{ (+ case)}\\
+			2\pi - (\pi + 2\alpha) + (\alpha - \pi/2) = \pi/2 - \alpha = \phi_i &\text{ (- case)}
+		\end{cases}
 	\end{equation*}
-	The RHS of (\ref{eq:bragg-phi}) is
-	\begin{equation*}
-	\pm \sqrt{\frac{\lambda^2}{4\Lambda^2-\lambda^2}} = \pm \sqrt{\frac{(\lambda/2/\Lambda)^2}{1-(\lambda/2\Lambda)^2}}
-	\end{equation*}
-	If this is compared with the RHS above, the Bragg condition is once again obtained.
-	So, from simple variable substitutions the same results as in acousto-optics are obtained. This gives the model some validation since it is in agreement with an already established theory.
+	and thus, the equation for $\alpha$ is also in agreement with acousto-optics. So, from simple variable substitutions the same results as in acousto-optics are obtained. This gives the model some validation since it is in agreement with an already established theory.
+	
+	\begin{figure}[h]
+		\centering
+		\begin{subfigure}{0.45\textwidth}
+			\input{braggcomparison+.tikz}
+			\caption{+ case}
+		\end{subfigure}
+		\begin{subfigure}{0.45\textwidth}
+			\input{braggcomparison-.tikz}
+			\caption{- case}
+		\end{subfigure}
+		\caption{\label{fig:bragg-comparison} Comparison of angles used in this model and angles of incidence and reflection. Both for the + and - cases.}
+	\end{figure}
+	
+%	In acousto-optics there is no separate equation for the scattering angle as in (\ref{eq:bragg-phi}) above. This is simply assumed to be the same as the incident angle, which gives $\phi = \pm 2\theta_B$ (again, see figures 19.1-2 and 19.1-5 in \cite{Saleh2007}). This is inserted, giving
+%	\begin{equation*}
+%	\tan{\frac{\phi}{2}} = \tan(\pm \theta_B) = \pm \frac{\sin{\theta_B}}{\cos{\theta_B}} = \pm \sqrt{\frac{\sin^2{\theta_B}}{1-\sin^2{\theta_B}}}
+%	\end{equation*}
+%	The RHS of (\ref{eq:bragg-phi}) is
+%	\begin{equation*}
+%	\pm \sqrt{\frac{\lambda^2}{4\Lambda^2-\lambda^2}} = \pm \sqrt{\frac{(\lambda/2/\Lambda)^2}{1-(\lambda/2\Lambda)^2}}
+%	\end{equation*}
+%	If this is compared with the RHS above, the Bragg condition is once again obtained.
+%	So, from simple variable substitutions the same results as in acousto-optics are obtained. This gives the model some validation since it is in agreement with an already established theory.
 	
 \end{document}

@@ -14,13 +14,18 @@ The results are then plotted
 import numpy as np
 import matplotlib.pyplot as plt
 
+plt.close('all')
+
 # Files for data without and with photoelasticity
 files = [
         (r'C:\Users\tfy13nwi\Documents\Exjobb\Simulation\Circular geometry'
-         ' test\powerout_noPE.csv'),
-        (r'C:\Users\tfy13nwi\Documents\Exjobb\Simulation\Circular geometry '
-         'test\powerout_PE.csv')
+         r'\data_verification_nope.csv'),
+        (r'C:\Users\tfy13nwi\Documents\Exjobb\Simulation\Circular geometry'
+         r'\data_verification_pe.csv')
          ]
+
+# Angle between EM and Ac. wavevectors
+alpha = 30
 
 # Lists for all data
 xt = []
@@ -70,33 +75,23 @@ ind = np.argsort(theta)
 theta = theta[ind]
 P = P[ind]
 
-# Plot
-plt.plot(np.degrees(theta), P)
-plt.xlim(0, 360)
-plt.xticks(np.linspace(0, 360, 5))
-
-
-# Line for theoretical scattering maximum (not a general calculation!)
-alpha = 30
-phi_m = np.degrees(np.arctan(-1/np.tan(np.radians(alpha))))
-yr = np.array([np.min(P), np.max(P)])
-plt.plot((phi_m + 360)*np.ones(2), yr, ':')
-
 # Polar plot
 plt.figure()
 plt.polar(theta, P)
 
 # Arrows for incident wavevectors (red: Ac, black: EM)
-plt.polar(np.radians(270 - alpha)*np.ones(2), yr, 'k:')
-plt.polar([np.radians(270 - alpha), np.radians(280 - alpha)], 0.1*yr, 'k')
-plt.polar([np.radians(270 - alpha), np.radians(260 - alpha)], 0.1*yr, 'k')
-plt.polar(np.radians(270)*np.ones(2), yr, 'r:')
-plt.polar([np.radians(270), np.radians(280)], 0.1*yr, 'r')
-plt.polar([np.radians(270), np.radians(260)], 0.1*yr, 'r')
+yr = np.array([np.min(P), np.max(P)])
+plt.polar(np.radians(180)*np.ones(2), yr, 'k:')
+plt.polar([np.radians(180), np.radians(190)], 0.1*yr, 'k')
+plt.polar([np.radians(180), np.radians(170)], 0.1*yr, 'k')
+plt.polar(np.radians(180+alpha)*np.ones(2), yr, 'r:')
+plt.polar([np.radians(180+alpha), np.radians(190+alpha)], 0.1*yr, 'r')
+plt.polar([np.radians(180+alpha), np.radians(170+alpha)], 0.1*yr, 'r')
 
-
-
-
-
-
-
+# Calculate total scattered power (line integral of power flow)
+# This is not very useful on its own, but if multiple angles alpha are swept
+# it can be used to verify that maximum scattering is obtained at the Bragg
+# condition angle
+r = 0.75
+arc = r*theta
+Ptot = np.trapz(arc, P)

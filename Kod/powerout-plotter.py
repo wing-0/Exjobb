@@ -94,4 +94,4 @@ plt.polar([np.radians(180+alpha), np.radians(170+alpha)], 0.1*yr, 'r')
 # condition angle
 r = 0.75
 arc = r*theta
-Ptot = np.trapz(arc, P)
+Ptot = np.trapz(P, arc)

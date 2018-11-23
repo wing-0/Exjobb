@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 plt.close('all')
 
 # Read data and plot (+) or (-) scattering
-pm = -1
+pm = 1
 pmchar = '+'
 if(pm == -1):
     pmchar = '-'
@@ -103,25 +103,34 @@ normS = np.sqrt(Sx**2 + Sy**2)
 for i in range(0, len(angles)):
     plt.polar(theta[:, i], normS[:, i])
 
-plt.legend(angles)
+plt.title('Norm of the time avg. power flow')
+plt.ylabel('S [W/m$^2$]')
+plt.legend([str(a) + '$^\\circ$' for a in angles], title='$\\alpha$')
 
 # Integrate norm of the power flow for all angles and plot against the angle
 # between wave vectors
 r = 0.9
 arc = r*theta
-# TODO: Stot values are negative, they shouldn't be that
-Stot = np.trapz(arc, normS, axis=0)
-plt.figure()
-plt.plot(angles, Stot)
+Stot = np.trapz(normS, arc, axis=0)
 
-# Find significant power flows (those larger than half of the largest value)
+plt.figure()
+plt.plot(angles, Stot, '.-')
+plt.title('Total scattered power')
+plt.xlabel('$\\alpha$ [$^\\circ$]')
+plt.ylabel('P [W/m]')
+
+plt.figure()
+
+# Find significant power flows (those larger than the mean value)
 for i in range(0, len(angles)):
-    plt.figure()
-    sig = normS[:, i] > 0.5*np.max(normS[:, i])
-#    plt.plot(np.degrees(theta[sig, i]), np.degrees(np.mod(
-#            np.arctan2(Sy[sig, i], Sx[sig, i]), 2*np.pi)))
-    plt.plot(x[:, i], y[:, i])
-    plt.quiver(x[sig, i], y[sig, i], Sx[sig, i], Sy[sig, i])
+    sig = normS[:, i] > np.mean(normS[:, i])
+    plt.plot(np.degrees(theta[sig, i]), np.degrees(np.mod(
+            np.arctan2(Sy[sig, i], Sx[sig, i]), 2*np.pi)))
+
+plt.title('Scattering propagation direction')
+plt.xlabel('$\\phi$ [$^\\circ$]')
+plt.ylabel('Direction of $\\mathbf{S}$')
+plt.legend([str(a) + '$^\\circ$' for a in angles], title='$\\alpha$')
 
 
 

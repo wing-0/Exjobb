@@ -29,8 +29,10 @@ opta = 40
 loc = (r'C:\Users\tfy13nwi\Documents\Exjobb\Simulation'
        r'\Angle sweep verification\Results')
 
-# Angles between wave vectors used (in filenames for both (+) and (-))
-angles = np.arange(25, 60, 5)
+# Angles between wave vectors used (in filenames for both (+) and (-)) and the
+# corresponding alpha values which depend on pm
+angles = np.array([25, 30, 35, 40, 42, 45, 50, 55])
+alpha = (180*(pm + 1)/2 - pm*angles).astype('int')
 
 # Files for data without and with photoelasticity
 files_pe = [(loc + '\\a=' + str(a) + '_opt=' + str(opta) +
@@ -88,7 +90,7 @@ nx = np.cos(theta)
 ny = np.sin(theta)
 
 # Sort by angle (since COMSOL does not)
-for i in range(0, len(angles)):
+for i in range(0, len(alpha)):
     ind = np.argsort(theta[:, i])
     theta[:, i] = theta[ind, i]
     x[:, i] = x[ind, i]
@@ -100,39 +102,56 @@ for i in range(0, len(angles)):
 normS = np.sqrt(Sx**2 + Sy**2)
 
 # Plot norm of the power flow for all angles
-for i in range(0, len(angles)):
+for i in range(0, len(alpha)):
     plt.polar(theta[:, i], normS[:, i])
 
 plt.title('Norm of the time avg. power flow')
 plt.ylabel('S [W/m$^2$]')
-plt.legend([str(a) + '$^\\circ$' for a in angles], title='$\\alpha$')
+plt.legend([str(a) + '$^\\circ$' for a in alpha], title='$\\alpha$')
 
 # Integrate norm of the power flow for all angles and plot against the angle
-# between wave vectors
+# between wave vectors (boundary approximated to be perfectly circular)
 r = 0.9
 arc = r*theta
 Stot = np.trapz(normS, arc, axis=0)
 
 plt.figure()
-plt.plot(angles, Stot, '.-')
+plt.plot(alpha, Stot, '.-')
 plt.title('Total scattered power')
 plt.xlabel('$\\alpha$ [$^\\circ$]')
 plt.ylabel('P [W/m]')
 
 plt.figure()
 
-# Find significant power flows (those larger than the mean value)
-for i in range(0, len(angles)):
+# Find significant power flows (those larger than the mean value) and plot the
+# observation and propagation angles for them
+for i in range(0, len(alpha)):
     sig = normS[:, i] > np.mean(normS[:, i])
     plt.plot(np.degrees(theta[sig, i]), np.degrees(np.mod(
             np.arctan2(Sy[sig, i], Sx[sig, i]), 2*np.pi)))
 
+# Reset plot color cycle
+plt.gca().set_prop_cycle(None)
+
+yrange = plt.ylim()
+
+# Find observation angles for maximum power flow norms and plot dashed lines
+# for those observation angles
+maxth = np.degrees(np.diag(theta[normS.argmax(axis=0)]))
+for i in range(0, len(alpha)):
+    plt.plot(maxth[i]*np.ones(2), yrange, ':')
+
 plt.title('Scattering propagation direction')
-plt.xlabel('$\\phi$ [$^\\circ$]')
-plt.ylabel('Direction of $\\mathbf{S}$')
-plt.legend([str(a) + '$^\\circ$' for a in angles], title='$\\alpha$')
+plt.xlabel('Observation angle $\\phi$ [$^\\circ$]')
+plt.ylabel('Propagation angle $\\phi$ [$^\\circ$]')
+plt.legend([str(a) + '$^\\circ$' for a in alpha], title='$\\alpha$')
+plt.ylim(yrange)
 
-
+plt.figure()
+plt.plot(alpha, maxth, '.-')
+plt.title('Angle for maximum scattering')
+plt.xlabel('$\\alpha$ [$^\\circ$]')
+plt.ylabel('Observation angle $\\phi$ [$^\\circ$]')
 
 
 

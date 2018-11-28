@@ -103,7 +103,7 @@
 	
 	\mainmatter		% Page numbering for the main thesis (arabic)
 	
-	\chapter{Introduction}
+	\chapter{Introduction \label{ch:intro}}
 	
 	\section{Background}
 	
@@ -113,10 +113,10 @@
 	
 	\section{Structure of report}
 	
-	\chapter{Technology}
+	\chapter{Technology \label{sh:tech}}
 	
 	\section{Nondestructive Testing Techniques}
-	Nondestructive testing has been ... In industries with high demands for quality and safety, NDT is often a necessity. Aerospace is such an industry and has utilized NDT for a long time. \todo{citation needed} Modern aircraft increasingly use composite materials due to superior properties such as low weight \cite{Katunin2015}. The difference of these materials when compared with traditional metal structures requires changes in the NDT procedures \cite{Riegert2006}. One old technique which is used widely for aerospace composites is ultrasonic testing \cite{Garnier2011}. Another technique which has been developed more recently than ultrasonic testing is microwave/mm-wave imaging, which may hold promises in multiple NDT applications \cite{Kharkovsky2007}.
+	Nondestructive testing has been ... In industries with high demands for quality and safety, NDT is often a necessity. Aerospace is such an industry and has utilized NDT for a long time. \todo{citation needed} Modern aircraft increasingly use composite materials due to superior properties such as low weight \cite{Katunin2015}. The difference of these materials when compared with traditional metal structures requires changes in the NDT procedures \cite{Riegert2006}. One old technique which is used widely for aerospace composites is ultrasonic testing \cite{Garnier2011}. Another technique which has been developed more recently than ultrasonic testing is microwave/mm-wave imaging, which may hold promises in various NDT applications \cite{Kharkovsky2007}.
 	
 	\subsection{Ultrasonic testing}
 	
@@ -131,7 +131,7 @@
 	
 	\subsection{Radio Acoustic Sounding System}
 	
-	\chapter{Theory}
+	\chapter{Theory \label{ch:theory}}
 	
 	\section{Overview of Interaction Mechanisms}
 	
@@ -195,12 +195,12 @@
 	
 	\section{Localized Harmonic Motion}
 	
-	\chapter{Analytical Modeling}
+	\chapter{Analytical Modeling \label{ch:analytical}}
 	
 	\section{Overview}
 	
-	\section{Scattering in a perturbed dielectric}
-	Scattering of electromagnetic waves against a dielectric perturbation is now considered in general. A full derivation can be found in \ref{app:scatterint}, but the main steps are shown here as well. Much of the derivation follows one in \cite{Tatarskii1971}. The starting point is Maxwell's equations for a linear, non-magnetic, source-free, isotropic dielectric. Note that the permittivity is not homogeneous.
+	\section{Scattering in a perturbed dielectric \label{sec:analytical-scatter}}
+	Scattering of electromagnetic waves against a dielectric perturbation is now considered in general. A full derivation can be found in \ref{sec:app-derivations-scatter}, but the main steps are shown here as well. Much of the derivation follows one in \cite{Tatarskii1971}. The starting point is Maxwell's equations for a linear, non-magnetic, source-free, isotropic dielectric. Note that the permittivity is not homogeneous.
 	\begin{align*}
 	&\nabla \times \bm{\mathcal{E}} = -\mu_0 \frac{\partial \bm{\mathcal{H}}}{\partial t} \\
 	&\nabla \times \bm{\mathcal{H}} = \frac{\partial (\varepsilon \bm{\mathcal{E}})}{\partial t} \\
@@ -277,8 +277,8 @@
 	}
 	\end{equation*}
 	
-	\section{Radar equation for simple photoelastic interaction}
-	The scattering integral is now solved for a simple geometry and material model to obtain a radar equation. A full derivation can be found in \ref{app:radareq} while some parts have been shortened here for clarity. First, the geometry is defined as shown in figure \ref{fig:radareq-geom-main}.
+	\section{Radar equation for simple photoelastic interaction \label{sec:analytical-radar}}
+	The scattering integral is now solved for a simple geometry and material model to obtain a radar equation. A full derivation can be found in \ref{sec:app-derivations-radar} while some parts have been shortened here for clarity. First, the geometry is defined as shown in figure \ref{fig:radareq-geom-main}.
 	\begin{figure}[h]
 		\centering
 		\input{scatteringgeom.tikz}
@@ -299,7 +299,7 @@
 	\begin{equation*}
 	\bm{E}_{sc}(\bm{r},t) = -\frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \bm{E}_{i0} \mathfrak{p} S_0 \left( e^{-i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) + \bm{q} ) \cdot \bm{r}'} \mathrm{d}v + e^{i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) - \bm{q} ) \cdot \bm{r}'} \mathrm{d}v' \right)
 	\end{equation*}
-	The solution to this integral is written as (see \ref{app:radareq})
+	The solution to this integral is written as (see \ref{sec:app-derivations-radar})
 	\begin{equation*}
 	\bm{E}_{sc} (\bm{r},t) = -\bm{E}_{i0} \left( E_A^+ (\bm{r},t) + E_A^- (\bm{r},t) \right)
 	\end{equation*}
@@ -325,7 +325,8 @@
 	\begin{equation*}
 	\bm{H}_{sc} \approx \frac{1}{ik \eta_0 \eta} \nabla \times \bm{E}_{sc}
 	\end{equation*}
-	where $\eta_0$ is the wave impedance of free space and $\eta_0 \eta$ the wave impedance in the material. An approximation has been made for $k$, where this is assumed to have the same value as before scattering. Since there is a frequency shift this is known to not be the case, but given a small acoustic frequency compared to the electromagnetic frequency, the error is small. The rotation of $\bm{E}_{sc}$ is now written as
+	where $\eta_0$ is the wave impedance of free space and $\eta_0 \eta$ the wave impedance in the material.
+	\todo[inline]{Here might be a good place to cut! Until the simplified power density at least.} An approximation has been made for $k$, where this is assumed to have the same value as before scattering. Since there is a frequency shift this is known to not be the case, but given a small acoustic frequency compared to the electromagnetic frequency, the error is small. The rotation of $\bm{E}_{sc}$ is now written as
 	\begin{equation*}
 	\nabla \times \bm{E}_{sc} = -\nabla \times (\bm{E}_{i0} E_A (\bm{r},t)) = -\nabla E_A (\bm{r},t) \times \bm{E}_{i0}
 	\end{equation*}
@@ -423,13 +424,13 @@
 	\end{equation*}
 	
 	\subsection{Angles for maximum scattering}
-	Inspection of the equations for either scattered power or SNR shows that all geometry dependence is contained in the function $\Phi^\pm$. This depends on the observation angles $\theta$, $\phi$ and the angle between EM and Ac. wavevectors $\alpha$. Conditions for the angles maximizing scattering are derived in \ref{app:braggmax} and can be summarized as:
+	Inspection of the equations for either scattered power or SNR shows that all geometry dependence is contained in the function $\Phi^\pm$. This depends on the observation angles $\theta$, $\phi$ and the angle between EM and Ac. wavevectors $\alpha$. Conditions for the angles maximizing scattering are derived in \ref{sec:app-derivations-bragg} and can be summarized as:
 	\begin{align*}
 	\theta &= \pi/2\\
 	\cos{\alpha} = \mp \frac{q}{2k} &= \mp \frac{\lambda}{2\Lambda}\\
 	\phi &= \mp \pi + 2\alpha
 	\end{align*}
-	The $\mp$-sign here is related to the $\pm$-sign indicating frequency shift of the scattered wave. These equations correspond directly to the Bragg condition used in acousto-optics (see \ref{app:braggmax} for derivation). This gives the model some validation since the acousto-optic Bragg condition is derived from a slightly different starting point, but for the same basic phenomenon \cite{Saleh2007}.
+	The $\mp$-sign here is related to the $\pm$-sign indicating frequency shift of the scattered wave. These equations correspond directly to the Bragg condition used in acousto-optics (see \ref{sec:app-derivations-bragg} for derivation). This gives the model some validation since the acousto-optic Bragg condition is derived from a slightly different starting point, but for the same basic phenomenon \cite{Saleh2007}.
 	
 	\chapter{Numerical Simulation}
 	
@@ -451,9 +452,9 @@
 	
 	\appendix
 	
-	\chapter{Appendix: Full Derivations}
+	\chapter{Appendix: Full Derivations \label{app:derivations}}
 	
-	\section{Derivation of scattering integral for perturbed dielectrics \label{app:scatterint}}
+	\section{Derivation of scattering integral for perturbed dielectrics \label{sec:app-derivations-scatter}}
 	Here follows a formal derivation of the scattering of electromagnetic waves against a perturbation in relative permittivity. This is useful in photoelastic interaction since an acoustic wave in that case causes a periodic dielectric perturbation. Most of this derivation is based on a similar derivation by Tatarskii which considers scattering from turbulence in air \cite{Tatarskii1971}.
 	
 	\subsection{General equation for electric field in perturbated dielectric}
@@ -593,8 +594,8 @@
 	}
 	\end{equation*}
 	
-	\section{Derivation of radar equation for simple photoelasticity \label{app:radareq}}
-	The scattering integral derived in \ref{app:scatterint} is now solved for a simple geometry and material model to obtain a radar equation.
+	\section{Derivation of radar equation for simple photoelasticity \label{sec:app-derivations-radar}}
+	The scattering integral derived in \ref{sec:app-derivations-scatter} is now solved for a simple geometry and material model to obtain a radar equation.
 	
 	\subsection{Geometry and solution of scattering integral}
 	First, the geometry is defined as shown in figure \ref{fig:radareq-geom}.
@@ -767,7 +768,7 @@
 	\begin{equation*}
 	F = \frac{\mathit{SNR}_i}{\mathit{SNR}_o}
 	\end{equation*}
-	where the SNR's are in linear units, $i$ denotes input and $o$ denotes output. It is more common to use noise figure, which is simply the noise ratio expressed in dB units, $\mathit{NF} = 10\log_{10}(F)$. Most of the noise is added at the RF front-end, so it is usually sufficient to use a noise ratio/figure for that part of the receiver. The SNR after the receiver can now be written using the noise ratio as
+	where the SNR's are in linear units, $i$ denotes input and $o$ denotes output. It is more common to use noise figure, which is simply the noise ratio expressed in dB units, $\mathit{NF} = 10\log_{10}(F)$. After the RF front-end the signal is often strong enough to not be affected by further noise, so it is usually sufficient to use a noise ratio/figure for that part of the receiver. The SNR after the receiver can now be written using the noise ratio as
 	\begin{equation*}
 	\mathit{SNR}^\pm = \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 k_B T_0 B \cdot F}
 	\end{equation*}
@@ -776,7 +777,7 @@
 	\textit{SNR}^\pm_N = \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 k_B T_0 B F} N
 	\end{equation*}
 	
-	\section{Geometry for maximum scattering \label{app:braggmax}}
+	\section{Geometry for maximum scattering \label{sec:app-derivations-bragg}}
 	Let us begin with the $\Phi$ angular dependence function:
 	\begin{multline*}
 	\Phi^\pm(\theta,\phi) = \text{sinc} \left( \frac{L_x}{2\pi} \left( k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} \right) \right) 

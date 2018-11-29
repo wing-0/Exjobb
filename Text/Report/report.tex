@@ -130,6 +130,11 @@
 	\subsection{Acousto-Optics}
 	
 	\subsection{Radio Acoustic Sounding System}
+	One application of acousto-electromagnetic interaction can be found in meteorology through the Radio Acoustic Sounding System (RASS). The purpose of the system is to utilize the interaction between radio and acoustic waves for temperature sounding of the atmosphere \todo{Find some nice review article or something}.
+	This mechanism has not only been used in optics, but also in radio meteorology through the Radio Acoustic Sounding System (RASS) \cite{Buerkle2007}. This indicates that the wavelength dependence described above can be offset by other factors to still give a measurable scattered signal. The system is used for temperature sounding since the speed of sound depends on temperature. The Bragg scattering condition is thus affected by a temperature change \cite{Marshall1972}. The systems are usually designed with electromagnetic and acoustic wave sources approximately co-located \cite{Marshall1972}. This corresponds to an angle $\theta \approx 90^\circ$, which changes the Bragg condition to
+	\begin{equation*}
+	\Lambda = \frac{\lambda}{2}
+	\end{equation*}
 	
 	\chapter{Theory \label{ch:theory}}
 	
@@ -166,7 +171,7 @@
 	
 	The interesting part when it comes to microwave frequencies, however, is the denominator in the first equation. The factor $1/\lambda_0^4$ might be a reason of concern when moving away from the optical regime. Since the wavelength is much longer for mm-waves there should be a large decrease in reflectance, and if too large the scattered signal could be undetectable. However, some examples for optical wavelengths give $\mathcal{R}_e = 0.192$ \cite{Saleh2007}, which is very large when compared with what can be detected in radar \cite{Richards2012}. There are also other variables such as $L$ and $\Lambda$ which might be changed to give a higher reflectance. If the different parameters can be selected to give a scattered signal above the noise floor is a very interesting question which needs to be investigated.
 	
-	\subsubsection{Radio Acoustic Sounding} \todo{Maybe move this part somewhere else?}
+	\subsubsection{Radio Acoustic Sounding} \todo{Maybe move this part somewhere else? Yes, but not everything}
 	This mechanism has not only been used in optics, but also in radio meteorology through the Radio Acoustic Sounding System (RASS) \cite{Buerkle2007}. This indicates that the wavelength dependence described above can be offset by other factors to still give a measurable scattered signal. The system is used for temperature sounding since the speed of sound depends on temperature. The Bragg scattering condition is thus affected by a temperature change \cite{Marshall1972}. The systems are usually designed with electromagnetic and acoustic wave sources approximately co-located \cite{Marshall1972}. This corresponds to an angle $\theta \approx 90^\circ$, which changes the Bragg condition to
 	\begin{equation*}
 	\Lambda = \frac{\lambda}{2}
@@ -178,12 +183,44 @@
 	It is interesting to see if this mechanism holds any relevance when it comes to microwave frequencies. The assumption on which the theory rests is that of dynamic multiple light scattering \cite{Leutz1995}. In the existing mm-wave imaging system there is an assumption of sparse defects being the only scatterers \cite{Helander2017}. This is in complete contrast to the theory of dynamic multiple light scattering, which is based on a large number of moving scatterers \cite{Leutz1995}. Since the basic assumptions of the problem and theory are in such stark contrast, it seems likely that this interaction mechanism holds little relevance to the problem at hand.
 	
 	\section{Ultrasonic Propagation}
+	\todo[inline]{See if what's written below works as is or needs editing. It's just copy-pasted from the review doc. Probably need to add even more info than this as well}
 	
 	\subsection{Background stuff on ultrasound}
+	This subject is of interest to both phenomena of localized harmonic motion and photoelastic interaction. Since ultrasound is used for some type of interaction with electromagnetic waves, it is important to understand that part of the problem. In many NDT applications the ultrasonic waves are generated in some transducer, coupled into a fluid medium and then coupled further into the solid medium of the test object \cite{Schmerr2016}. This requires knowledge of wave propagation in both fluid and solid media, which requires two different approaches: acoustics and elastodynamics.	
 	
-	\subsection{Propagation in fluid medium}
+	\subsection{Propagation in fluid medium - acoustic waves}
+	In a compressible fluid ultrasound can be described by a fully acoustic model. The main variable for describing the wave motion is pressure in this case. In turn, this can be converted into other variables such as displacement or strain. The acoustic wave equation which describes the phenomena is
+	\begin{equation*}
+	\nabla^2 p - \frac{1}{c_f^2} \frac{\partial^2 p}{\partial t^2} + f = 0
+	\end{equation*}
+	where $p$ is pressure, $c_f$ is the speed of sound in the fluid and $f$ is a scalar body force \cite{Schmerr2016}. The speed of sound can be written as $c_f = \sqrt{K/\rho_0}$ where $K$ is the bulk modulus of the fluid and $\rho_0$ is the unperturbed density of the fluid \cite{Kaufman2000}. The scalar body force is related to a vector body force dy the divergence: $f = -\nabla \cdot \bm{f}$ \cite{Schmerr2016}.
 	
-	\subsection{Propagation in solid medium}
+	This model is directly useful for NDT in some cases. One is in immersion testing, where a test object is immersed in water and ultrasound propagates through the water into the object \cite{Schmerr2016}. The other is in coupling ultrasound from a transducer to an object through a thin layer of coupling fluid \cite{Schmerr2016}. However, this model is also useful for understanding one special case of propagation in an elastic solid. This will be described in the following part.
+	
+	\subsection{Propagation in solid medium - elastic waves}
+	In an elastic medium the acoustic model is no longer sufficient. The acoustic model considers only pressure since one main assumption for volume elements in the fluid is that they only transmit force in the direction of the force \cite{Kaufman2000}. The volume elements in an elastic solid are more strongly coupled to each other, and this assumption does not hold anymore \cite{Kaufman2005}. The equations for elastic waves are instead based on solid mechanics. There is no simple wave equation as in acoustics, instead the complete model is described by Navier's equations
+	\begin{equation*}
+	\mu \nabla^2 \bm{u} + (\lambda+\mu) \nabla (\nabla \cdot \bm{u}) + \bm{f} = \rho_0 \frac{\partial^2 \bm{u}}{\partial t^2}
+	\end{equation*}
+	where $\bm{u}$ is the displacement vector and $\lambda$ and $\mu$ are the Lamé parameters of the material \cite{Schmerr2016}. To obtain wave equations from this, a Helmholtz decomposition is made as
+	\begin{equation*}
+	\bm{u} = \nabla \phi + \nabla \times \bm{\psi}
+	\end{equation*}
+	where $\phi$ is a scalar potential and $\bm{\psi}$ is a vector potential \cite{Schmerr2016}. For Navier's equations to be fulfilled, the following must hold for the potentials \cite{Schmerr2016}:
+	\begin{align*}
+	&\nabla^2 \phi - \frac{1}{c_p^2} \frac{\partial^2 \phi}{\partial t^2} = 0 \\
+	&\nabla^2 \bm{\psi} - \frac{1}{c_s^2} \frac{\partial^2 \bm{\psi}}{\partial t^2} = 0
+	\end{align*}
+	These are two wave equations with the wave speeds \cite{Schmerr2016}
+	\begin{align*}
+	c_p &= \sqrt{(\lambda + 2\mu)/\rho_0} \\
+	c_s &= \sqrt{\mu/\rho_0}
+	\end{align*}
+	By further investigation, the waves can be identified as p-waves with speed $c_p$ and s-waves with speed $c_s$ \cite{Schmerr2016}. The p-waves are very similar to acoustic waves, and it can be shown that the dilatation of the solid follows the p-wave equation \cite{Schmerr2016}. The s-waves on the other hand, do not have an analogy in acoustics. The rotation of the solid follows the s-wave equation \cite{Schmerr2016}, and as discussed before this type of motion does not propagate in a compressible fluid. When it comes to actually generating ultrasonic elastic waves, transducers are available both for generation of p-waves and s-waves \cite{Schmerr2016}. A simple model for determining strain is then based on calculating only one potential and setting the other to zero. This is common when working with p-waves \cite{Kaufman2000}.
+	
+	The elastic waves described above are called bulk waves since they are only fully describe waves in the bulk of an elastic solid \cite{Kaufman2005}. Other wave phenomena exist such as surface waves (Rayleigh, Stoneley, Love) \cite{Kaufman2005} and plate waves (SH, Lamb) \cite{Schmerr2016}. These waves are not insignificant and are used in some branches of ultrasonic testing \cite{Schmerr2016}. However, only bulk waves are considered here and then mostly p-waves.
+	
+	\todo[inline]{Mode conversion is probably important to mention}
 	
 	\section{Photoelastic Interaction}
 	
@@ -192,6 +229,89 @@
 	
 	\subsection{Photoelasticity}
 	\todo[inline]{Theory describing relation between solid (continuum?) mechanics and dielectric properties}
+	The primary mechanism behind this interaction is, as stated earlier, a variation of density leading to a change in refractive index (or permittivity). To get a full picture of the interaction, the relationship between acoustic intensity and refractive index must be known. For a one-dimensional, longitudinal sound wave the change in refractive index is given by \cite{Saleh2007}
+	\begin{equation*}
+	\Delta n (x,t) = -\frac{1}{2} \mathfrak{p} n^3 s(x,t)
+	\end{equation*}
+	where $\mathfrak{p}$ is the photoelastic constant (also called strain-optic coefficient or elasto-optic coefficient \cite{Korpel1988}), $n$ is the unperturbed refractive index and $s(x,t)$ is the acoustic strain. Singe it is negative, a positive strain decreases the refractive index \cite{Saleh2007}.
+	
+	It is also possible to write this change depending on the acoustic intensity instead of the actual wave. This is done as \cite{Saleh2007}
+	\begin{equation*}
+	\Delta n_0 = \sqrt{\frac{1}{2} \mathcal{M} I_s} \quad , \quad
+	\mathcal{M} = \frac{\mathfrak{p}^2 n^6}{\rho v_s^3}
+	\end{equation*}
+	where $I_s$ is the acoustic intensity (W/m$^2$), $\rho$ is the mass density and $v_s$ is the speed of sound. The amplitude is related to the total refractive index as \cite{Saleh2007}
+	\begin{equation*}
+	n(x,t) = n - \Delta n_0 \cos(\Omega t - qx)
+	\end{equation*}
+	where $\cos(\Omega t - qx)$ comes from a plane acoustic wave.
+	
+	The refractive index and relative permittivity are related by $\varepsilon_r = n^2$ in a non-magnetic material. To obtain the change in relative permittivity instead of refractive index
+	\begin{equation*}
+	\Delta \varepsilon_r(x,t) = \frac{\mathrm{d}\varepsilon_r}{\mathrm{d}n} \Delta n(x,t) = 2n \Delta n(x,t) = -\mathfrak{p} \varepsilon_r^2 s(x,t)
+	\end{equation*}
+	
+	However, the photoelastic constant described above is really a simplification of the mechanism. For a full picture it is important to consider the tensor properties from solid mechanics (for acoustics) and optical anisotropy (for electromagnetism) \cite{Korpel1988}. This gives rise to a photoelastic tensor instead of a simple constant. The relation is then given as \cite{Korpel1988}
+	\begin{equation*}
+	\Delta \left( \frac{1}{n_i^2} \right) = p_{ij} S_j
+	\end{equation*}
+	where $S_j$ are strains and $i,j = 1,...,6$. The double indexation of $j$ in both $p$ and $S$ indicates a summation over $j$. This can seem a bit troublesome to use since the LHS is the difference of an inverse quantity. This can be rewritten as shown below
+	\begin{align*}
+	\alpha &= \frac{1}{n_i^2},\ n_i = \alpha^{-1/2} \\
+	\Delta n_i &= \frac{\mathrm{d}n_i}{\mathrm{d}\alpha} \Delta \alpha = -\frac{1}{2} \alpha^{-3/2} \Delta \alpha = -\frac{1}{2} n_i^3 p_{ij} S_j
+	\end{align*}
+	This is similar to the simple relation, but it now has tensor quantities instead of scalar ones. As before this can also be written as permittivity:
+	\begin{equation*}
+	\Delta \varepsilon_{r_i} = 2n_i\Delta n_i = -n_i^4 p_{ij} S_j = -\varepsilon_{r_i}^2 p_{ij} S_j
+	\end{equation*}
+	
+	The tensor notation here is a simplified form described by the 1949 IRE standards. The relation to full tensor notation is shown below for refractive indices and strains \cite{Korpel1988}
+	\begin{align*}
+	n_1 &= n_{11},\ n_2 = n_{22},\ n_3 = n_{33}, \\
+	n_4 &= n_{23},\ n_5 = n_{31},\ n_6 = n_{12} \\
+	S_1 &= \delta_{11},\ S_2 = \delta_{22},\ S_3 = \delta_{33}, \\
+	S_4 &= \delta_{23},\ S_5 = \delta_{31},\ S_6 = \delta_{12}
+	\end{align*}
+	where $\delta_{kl}$ are the strains in standard tensor notation. It is clear that indices 1-3 are tensile and 4-6 are shear. The photoelastic tensor in standard notation is then clearly of rank 4, being $p_{ijkl}$.
+	
+	The photoelastic tensor can have up to 36 independent components, but for the simple case of an isotropic solid the tensor simplifies to \cite{Korpel1988}
+	\begin{align*}
+	p_{11} &= p_{22} = p_{33}, \ p_{12} = p_{21} = p_{13} = p_{23} = p_{32}\\
+	p_{44} &= p_{55} = p_{66} = \frac{1}{2} (p_{11} - p_{12}), \ p_{ij} = 0 \text{ for others}
+	\end{align*}
+	
+	The simplest material to consider would be an isotropic solid with isotropic permittivity $\varepsilon_r$. There is then no preferred axis and a coordinate system can be selected arbitrarily. A longitudinal acoustic wave is defined by \begin{equation*}
+	S_1(x_1,t) = \delta_{11}(x_1,t) = S_0 \cos(\Omega t - qx_1)
+	\end{equation*}
+	It is propagating in the $x_1$ direction and is thus a strain $S_1$, and all other strains are assumed to be zero. The relation $\Delta \varepsilon_{r_i} = -\varepsilon_{r_i}^2 p_{ij} S_j$ together with the photoelastic tensor for isotropic solids then gives
+	\begin{align*}
+	\varepsilon_{r_1} &= -\varepsilon_r^2 p_{11} S_0 \cos(\Omega t - qx_1) \\
+	\varepsilon_{r_2} &= \varepsilon_{r_3} = -\varepsilon_r^2 p_{12} S_0 \cos(\Omega t - qx_1)
+	\end{align*}
+	It is clear that the permittivity now has an axis $x_1$ where it has another value than in $x_2$ and $x_3$. So even for a material which is nominally completely isotropic, a preferred axis arises for the permittivity! This type of anisotropy is called birefringence in optics, and in this case it is caused by dipoles aligning themselves parallel to the strain \cite{Korpel1988}. Practically, the effect of this is that the interaction strength of this mechanism depends on the EM polarization with respect to the acoustic wave polarization. In longitudinal acoustic waves the polarization and propagation direction coincide, which makes analysis easier.
+	
+	Another starting point for the interaction is the Lorentz-Lorenz relation, which leads to the equations \cite{Korpel1988}
+	\begin{align*}
+	\Delta n &= C' s \\
+	C' &= \left[ \frac{(n^2-1)(n^2+2)}{6n} \right](1-\Lambda_0) \\
+	\Lambda_0 &= -\left( \frac{\rho}{\alpha} \right) \frac{\mathrm{d} \alpha}{\mathrm{d} \rho}
+	\end{align*}
+	where $\rho$ is the density and $\alpha$ is the molecular polarizability. Here the anisotropic effects are contained in the parameter $\Lambda_0$ \cite{Korpel1988}. If anisotropy should be considered, the tensor model is probably better to use, but if $\Lambda_0$ is neglected a simplified model is obtained. This type of model is usually accurate for liquids, but many solids do not have this behavior \cite{Korpel1988}. Nevertheless, the simplified relation can be written for permittivity (using $\varepsilon_r = n^2$ and $\Delta \varepsilon_r = 2n \Delta n$) as
+	\begin{equation*}
+	\Delta \varepsilon_r = \frac{1}{3} (\varepsilon_r - 1)(\varepsilon_r + 2) s
+	\end{equation*}
+	This can be compared with the previous relation $\Delta \varepsilon_r = -\mathfrak{p}\varepsilon_r^2 s$ to obtain an equivalent photoelasticity
+	\begin{equation*}
+	\mathfrak{p} = -\frac{(\varepsilon_r - 1)(\varepsilon_r + 2)}{3\varepsilon_r^2}
+	\end{equation*}
+	This can then be used in all equations derived with $\mathfrak{p}$ relating permittivity and strain. A plot of $\mathfrak{p}$ as a function of $\varepsilon_r$ is shown in figure \ref{fig:photoelastic-liquid}. It can be seen clearly that the interaction strength increases with $\varepsilon_r$ close to 1. However, at around $\varepsilon_r = 4$ an extreme is reached, and further on $\mathfrak{p}$ planes out. Thus, there is a bound on the interaction strength for this relation. It should be noted that this model is extremely simplistic and will probably give faulty results in many cases. \todo{Maybe write about the figure more in detail}
+	\begin{figure}[h]
+		\centering
+		\input{photoelastic-liquid.pgf}
+		\caption{\label{fig:photoelastic-liquid} Simplified photoelastic constant $\mathfrak{p}$ as a function of $\varepsilon_r$.}
+	\end{figure}
+	
+	\todo[inline]{Shear waves? They do not cause density variation, but still cause photoelastic interaction.}
 	
 	\section{Localized Harmonic Motion}
 	
@@ -200,7 +320,7 @@
 	\section{Overview}
 	
 	\section{Scattering in a perturbed dielectric \label{sec:analytical-scatter}}
-	Scattering of electromagnetic waves against a dielectric perturbation is now considered in general. A full derivation can be found in \ref{sec:app-derivations-scatter}, but the main steps are shown here as well. Much of the derivation follows one in \cite{Tatarskii1971}. The starting point is Maxwell's equations for a linear, non-magnetic, source-free, isotropic dielectric. Note that the permittivity is not homogeneous.
+	Scattering of electromagnetic waves in a dielectric perturbation is now considered in general. A full derivation can be found in \ref{sec:app-derivations-scatter}, but the main steps are shown here as well. Much of the derivation follows one in \cite{Tatarskii1971}. The starting point is Maxwell's equations for a linear, non-magnetic, source-free, isotropic dielectric. Note that the permittivity is not homogeneous.
 	\begin{align*}
 	&\nabla \times \bm{\mathcal{E}} = -\mu_0 \frac{\partial \bm{\mathcal{H}}}{\partial t} \\
 	&\nabla \times \bm{\mathcal{H}} = \frac{\partial (\varepsilon \bm{\mathcal{E}})}{\partial t} \\
@@ -278,7 +398,7 @@
 	\end{equation*}
 	
 	\section{Radar equation for simple photoelastic interaction \label{sec:analytical-radar}}
-	The scattering integral is now solved for a simple geometry and material model to obtain a radar equation. A full derivation can be found in \ref{sec:app-derivations-radar} while some parts have been shortened here for clarity. First, the geometry is defined as shown in figure \ref{fig:radareq-geom-main}.
+	The scattering integral is now solved for a simple geometry and material model to obtain a radar equation. A full derivation can be found in \ref{sec:app-derivations-radar} while some parts have been shortened here for readability. First, the geometry is defined as shown in figure \ref{fig:radareq-geom-main}.
 	\begin{figure}[h]
 		\centering
 		\input{scatteringgeom.tikz}
@@ -315,9 +435,7 @@
 	\end{multline*}
 	One important detail to note is that two distinct frequency components arise: one where the frequency is shifted up by $\Omega$ ($E_A^+$) and one where it is shifted down by $\Omega$ ($E_A^-$).
 	
-	\subsection{Solution in terms of power}
-	\todo[inline]{See if it's possible to slim this subsection down as was done with the previous one. (also for the subsection following this)}
-	This treatment has primarily been focused around the electric field. To obtain a more practical expression, this is not transformed into power. The scattered power density is given by
+	To obtain a more practical expression, the equations are now transformed into power. The scattered power density is given by
 	\begin{equation*}
 	\bm{S}_{sc} = \frac{1}{2} \bm{E}_{sc} \times \bm{H}_{sc}^*
 	\end{equation*}
@@ -325,28 +443,7 @@
 	\begin{equation*}
 	\bm{H}_{sc} \approx \frac{1}{ik \eta_0 \eta} \nabla \times \bm{E}_{sc}
 	\end{equation*}
-	where $\eta_0$ is the wave impedance of free space and $\eta_0 \eta$ the wave impedance in the material.
-	\todo[inline]{Here might be a good place to cut! Until the simplified power density at least.} An approximation has been made for $k$, where this is assumed to have the same value as before scattering. Since there is a frequency shift this is known to not be the case, but given a small acoustic frequency compared to the electromagnetic frequency, the error is small. The rotation of $\bm{E}_{sc}$ is now written as
-	\begin{equation*}
-	\nabla \times \bm{E}_{sc} = -\nabla \times (\bm{E}_{i0} E_A (\bm{r},t)) = -\nabla E_A (\bm{r},t) \times \bm{E}_{i0}
-	\end{equation*}
-	In spherical coordinates the gradient is written
-	\begin{equation*}
-	\nabla E_A = \frac{\partial E_A}{\partial r} \bm{\hat{r}} + \frac{1}{r} \frac{\partial E_A}{\partial \theta} \bm{\hat{\theta}} + \frac{1}{r\sin{\theta}} \frac{\partial E_A}{\partial \phi} \bm{\hat{\phi}}
-	\end{equation*}
-	$E_A$ contains a factor $1/r$, so the two last terms in the gradient will be $\sim 1/r^2$ and are neglected. The gradient is now written as
-	\begin{equation*}
-	\nabla E_A \approx \frac{\partial E_A}{\partial r} \bm{\hat{r}} = \left( \frac{ike^{ikr}}{r} - \frac{e^{ikr}}{r^2} \right) \frac{\varepsilon_r k^2}{8\pi} \mathfrak{p} S_0 L_x L_y L_z \left( e^{- i\Omega t} \Phi^+ (\theta,\phi) + e^{ i\Omega t} \Phi^- (\theta,\phi) \right) \bm{\hat{r}} \approx ikE_A \bm{\hat{r}}
-	\end{equation*}
-	where the $1/r^2$ term was neglected. These results are inserted into the expression for the magnetic field, giving
-	\begin{equation*}
-	\bm{H}_{sc} = \frac{1}{ik \eta_0 \eta} (-ikE_A \bm{\hat{r}} \times \bm{E}_{i0}) = \frac{E_A}{ \eta_0 \eta} \bm{\hat{r}} \times \bm{E}_{i0}
-	\end{equation*}
-	Now, the power density is written as
-	\begin{equation*}
-	\bm{S}_{sc} = \frac{1}{2} E_A \bm{E}_{i0} \times \left( \frac{E_A}{ \eta_0 \eta} \bm{\hat{r}} \times \bm{E}_{i0} \right)^* = \frac{|E_A|^2}{2\eta_0 \eta} \left( \bm{\hat{r}} (\bm{E}_{i0} \cdot \bm{E}_{i0}^*) - \bm{E}_{i0}^* (\bm{E}_{i0} \cdot \bm{\hat{r}}) \right)
-	\end{equation*}
-	In the far-field $\bm{E}_{sc} \cdot \bm{\hat{r}} = 0$ and since $\bm{E}_{sc} \parallel \bm{E}_{i0}$ the power density is simplified to
+	where $\eta_0$ is the wave impedance of free space and $\eta_0 \eta$ the wave impedance in the material. The scattered electric field is inserted, and in the far-field the power density can then be calculated to be
 	\begin{equation*}
 	\bm{S}_{sc} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{i0}|^2 |E_A (\bm{r},t)|^2
 	\end{equation*}
@@ -359,23 +456,11 @@
 	|E_A^\pm (\bm{r},t)|^2 =\frac{\varepsilon_r^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
 	
-	To find an expression for $|\bm{E}_{i0}|^2$, the field from the transmitter antenna is written as (adapted from \cite{Orfanidis2016})
-	\begin{equation*}
-	\bm{E}_T (\bm{r}) = ik\eta_0\eta \frac{e^{ikr}}{4\pi r} \bm{F}_\perp (\bm{\hat{r}})
-	\end{equation*}
-	where $\bm{F}_\perp$ is the far-field amplitude. Now the coordinate system is not the same as earlier in the derivation! Here it is a spherical coordinate system with origin at the transmitting antenna. This corresponds to a translation in $-\bm{\hat{x}}$ of the original coordinate system. Let $R_T$ be the distance between the two coordinate systems, or equivalently the distance from the transmitter to the scattering center. The direction to the scattering center in this new system is denoted $\bm{\hat{r}}_{sc} = \bm{r}_{sc}/R_T$. Assuming that the orientations of the transmitter and scattering coordinate systems are the same, $|\bm{E}_{i0}|^2$ can be written in the transmitter system as \cite{Orfanidis2016}
-	\begin{equation*}
-	|\bm{E}_{i0}|^2 = |\bm{E}_T(\bm{r}_{sc})|^2 = \left| ik\eta_0\eta \frac{e^{ikR_T}}{4\pi R_T} \bm{F}_\perp (\bm{\hat{r}}_{sc}) \right|^2 = \frac{k^2 \eta_0^2 \eta^2}{16 \pi^2 R_T^2} |\bm{F}_\perp (\bm{\hat{r}}_{sc})|^2 = 2\eta_0 \eta \mathcal{P}(\bm{\hat{r}}_{sc})
-	\end{equation*}
-	If the maximum gain $G_T$ of the antenna is in the direction $\hat{r}_{sc}$, it holds that \cite{Orfanidis2016}
-	\begin{equation*}
-	\mathcal{P}(\bm{\hat{r}}_{sc}) = \frac{P_T G_T}{4\pi R_T^2}
-	\end{equation*}
-	where $P_T$ is the power accepted by the antenna. This is used to write
+	Using standard antenna parameters, the incident field can be written as
 	\begin{equation*}
 	|\bm{E}_{i0}|^2 = 2\eta_0 \eta \frac{P_T G_T}{4\pi R_T^2}
 	\end{equation*}
-	Now this is inserted into the time-average of the power density
+	where $P_T$ is the power accepted by the antenna, $G_T$ is the maximum gain of the antenna and $R_T$ is the distance from the antenna to the scattering center. This is inserted into the time-average of the power density, giving
 	\begin{equation*}
 	\left< \bm{S}_{sc} e^{-i\omega t} \right>^\pm = \bm{\hat{r}} \frac{P_T G_T}{4\pi R_T^2} \frac{\varepsilon_r^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
@@ -401,7 +486,6 @@
 	\sigma^\pm (\theta, \phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
 	
-	\subsection{Signal-to-noise ratio and coherent integration}
 	A more practical measurement than received power is signal-to-noise ratio (SNR). For this, the average noise power is described as \cite{Young2004}
 	\begin{equation*}
 	P_n = k_B TB
@@ -423,7 +507,6 @@
 	\textit{SNR}^\pm_N = \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 k_B T_0 B F} N
 	\end{equation*}
 	
-	\subsection{Angles for maximum scattering}
 	Inspection of the equations for either scattered power or SNR shows that all geometry dependence is contained in the function $\Phi^\pm$. This depends on the observation angles $\theta$, $\phi$ and the angle between EM and Ac. wavevectors $\alpha$. Conditions for the angles maximizing scattering are derived in \ref{sec:app-derivations-bragg} and can be summarized as:
 	\begin{align*}
 	\theta &= \pi/2\\
@@ -672,7 +755,7 @@
 	\end{equation*}
 	
 	\subsection{Solution in terms of power}
-	This treatment has primarily been focused around the electric field. To obtain a more practical expression, this is not transformed into power. The scattered power density is given by
+	This treatment has primarily been focused around the electric field. To obtain a more practical expression, this is now transformed into power. The scattered power density is given by
 	\begin{equation*}
 	\bm{S}_{sc} = \frac{1}{2} \bm{E}_{sc} \times \bm{H}_{sc}^*
 	\end{equation*}
@@ -680,7 +763,7 @@
 	\begin{equation*}
 	\bm{H}_{sc} \approx \frac{1}{ik \eta_0 \eta} \nabla \times \bm{E}_{sc}
 	\end{equation*}
-	where $\eta_0$ is the wave impedance of free space and $\eta_0 \eta$ the wave impedance in the material. An approximation has been made for $k$, where this is assumed to have the same value as before scattering. Since there is a frequency shift this is known to not be the case, but given a small acoustic frequency compared to the electromagnetic frequency, the error is small. The rotation of $\bm{E}_{sc}$ is now written as
+	where $\eta_0$ is the wave impedance of free space and $\eta_0 \eta$ the wave impedance in the material. An approximation has been made for $k$, where this is assumed to have the same value as before scattering. Since there is a frequency shift this is known to not be the case, but given a small acoustic frequency compared to the electromagnetic frequency, the error is small. The curl of $\bm{E}_{sc}$ is now written as
 	\begin{equation*}
 	\nabla \times \bm{E}_{sc} = -\nabla \times (\bm{E}_{i0} E_A (\bm{r},t)) = -\nabla E_A (\bm{r},t) \times \bm{E}_{i0}
 	\end{equation*}

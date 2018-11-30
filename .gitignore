@@ -500,8 +500,9 @@ dmypy.json
 
 # End of https://www.gitignore.io/api/python
 
-# COMSOL model file
+# COMSOL model files
 *.mph
+*.mph.lock
 
 # csv files (might be temporary, but COMSOL exports are currently saved as these and they are huge...)
 *.csv

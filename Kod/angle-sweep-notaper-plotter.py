@@ -13,12 +13,12 @@ between wave vectors for either (+) or (-) scattering (this can be selected)
 
 import numpy as np
 import matplotlib.pyplot as plt
-from readFields_PE import readEHS_PE
+import readFields_PE as read
 
 plt.close('all')
 
 # Read data and plot (+) or (-) scattering
-pm = 1
+pm = -1
 pmchar = '+'
 if(pm == -1):
     pmchar = '-'
@@ -42,21 +42,25 @@ files_pe = [(loc + '\\a=' + str(a) + '_opt=' + str(opta) +
              ' (' + pmchar + ')_pe.csv') for a in angles]
 files_nope = [(loc + '\\a=' + str(a) + '_opt=' + str(opta) +
                ' (' + pmchar + ')_nope.csv') for a in angles]
-Ez, Hx, Hy, Sx, Sy, x, y = readEHS_PE(files_pe, files_nope)
+Ez, Hx, Hy, Sx, Sy, x, y = read.readEHS_PE(files_pe, files_nope)
 
 # Import data without and with photoelasticity (no taper)
 files_pe_n = [(loc + '\\a=' + str(a) + '_opt=' + str(opta) +
                ' notaper (' + pmchar + ')_pe.csv') for a in angles]
 files_nope_n = [(loc + '\\a=' + str(a) + '_opt=' + str(opta) +
                  ' notaper (' + pmchar + ')_nope.csv') for a in angles]
-Ez_n, Hx_n, Hy_n, Sx_n, Sy_n, x_n, y_n = readEHS_PE(files_pe_n, files_nope_n)
+Ez_n, Hx_n, Hy_n, Sx_n, Sy_n, x_n, y_n = read.readEHS_PE(files_pe_n,
+                                                         files_nope_n)
 
 # Import data without and with photoelasticity (wider apertures)
+# Uses another read-function since the datasets do not have the same number
+# of points in them initially (this is fixed by the function)
 files_pe_w = [(loc + '\\a=' + str(a) + '_opt=' + str(opta) +
                ' notaperwide (' + pmchar + ')_pe.csv') for a in angles]
 files_nope_w = [(loc + '\\a=' + str(a) + '_opt=' + str(opta) +
                  ' notaperwide (' + pmchar + ')_nope.csv') for a in angles]
-Ez_w, Hx_w, Hy_w, Sx_w, Sy_w, x_w, y_w = readEHS_PE(files_pe_w, files_nope_w)
+Ez_w, Hx_w, Hy_w, Sx_w, Sy_w, x_w, y_w = read.readEHS_PE_various(files_pe_w,
+                                                                 files_nope_w)
 
 # Calculate angle from x and y values (angle is counterclockwise from x-axis)
 # (with taper)
@@ -105,7 +109,6 @@ normS = np.sqrt(Sx**2 + Sy**2)
 # Plot norm of the power flow for all angles (with taper)
 plt.figure()
 plt.polar(theta, normS/normS.max())
-
 plt.title('Norm of the time avg. power flow (normalized, tapered ports)')
 plt.xlabel('Observation angle $\\phi$')
 plt.ylabel('S/S$_{max}$')
@@ -117,8 +120,19 @@ normS_n = np.sqrt(Sx_n**2 + Sy_n**2)
 # Plot norm of the power flow for all angles (no taper)
 plt.figure()
 plt.polar(theta_n, normS_n/normS_n.max())
-
 plt.title('Norm of the time avg. power flow (normalized, non-tapered ports)')
+plt.xlabel('Observation angle $\\phi$')
+plt.ylabel('S/S$_{max}$')
+plt.legend([str(a) + '$^\\circ$' for a in alpha], title='$\\alpha$')
+
+# Norm of the power flow (wider apertures)
+normS_w = np.sqrt(Sx_w**2 + Sy_w**2)
+
+# Plot norm of the power flow for all angles (wider apertures)
+plt.figure()
+plt.polar(theta_w, normS_w/normS_w.max())
+plt.title('Norm of the time avg. power flow (normalized, wider apertures, no' +
+          ' taper'')')
 plt.xlabel('Observation angle $\\phi$')
 plt.ylabel('S/S$_{max}$')
 plt.legend([str(a) + '$^\\circ$' for a in alpha], title='$\\alpha$')
@@ -145,14 +159,26 @@ arc_n = np.cumsum(dist_n, axis=0)
 # between wave vectors (no taper)
 Stot_n = np.trapz(normS_n, arc_n, axis=0)
 
+# Calculate distances between all points (x,y) and construct an axis based on
+# arc length from theta = 0 to theta = 2*pi (wider apertures)
+xdiff_w = np.diff(np.vstack((x_w, x_w[0, :])), axis=0)
+ydiff_w = np.diff(np.vstack((y_w, y_w[0, :])), axis=0)
+dist_w = np.linalg.norm(np.array([xdiff_w, ydiff_w]), axis=0)
+arc_w = np.cumsum(dist_w, axis=0)
+
+# Integrate norm of the power flow for all angles and plot against the angle
+# between wave vectors (wider apertures)
+Stot_w = np.trapz(normS_w, arc_w, axis=0)
+
 plt.figure()
-plt.plot(alpha, Stot/Stot.max(), '.-', alpha, Stot_n/Stot_n.max(), '.--')
+plt.plot(alpha, Stot/Stot.max(), '.-', alpha, Stot_n/Stot_n.max(), '.--',
+         alpha, Stot_w/Stot_w.max(), '.:')
 plt.title('Total scattered power (normalized)')
 plt.xlabel('$\\alpha$ [$^\\circ$]')
 plt.ylabel('P/P$_{max}$')
-plt.legend(['Tapered ports', 'Non-tapered ports'])
+plt.legend(['Tapered ports', 'Non-tapered ports', 'Wider apertures, no taper'])
 
-# %% Other plotting
+# %% Plotting using propagation angle and not observation angle
 
 # TODO: don't just use one maximum power - instead, take a number of datapoints
 #       near the maximum and do some averaging
@@ -161,33 +187,70 @@ plt.legend(['Tapered ports', 'Non-tapered ports'])
 propang = np.mod(np.arctan2(Sy, Sx), 2*np.pi)
 maxang = np.diag(propang[normS.argmax(axis=0)])
 
+# Re-sort data by propagation angle (with taper)
+for i in range(0, len(alpha)):
+    ind = propang[:, i].argsort()
+    propang[:, i] = propang[ind, i]
+    Sx[:, i] = Sx[ind, i]
+    Sy[:, i] = Sy[ind, i]
+    normS[:, i] = normS[ind, i]
+
 # Calculate propagation angles for all points and find angle for maximum
 # power flow norms (no taper)
 propang_n = np.mod(np.arctan2(Sy_n, Sx_n), 2*np.pi)
 maxang_n = np.diag(propang_n[normS_n.argmax(axis=0)])
 
-# Plot the angle where scattering is maximum for each alpha (both taper cases)
+# Re-sort data by propagation angle (no taper)
+for i in range(0, len(alpha)):
+    ind = propang_n[:, i].argsort()
+    propang_n[:, i] = propang_n[ind, i]
+    Sx_n[:, i] = Sx_n[ind, i]
+    Sy_n[:, i] = Sy_n[ind, i]
+    normS_n[:, i] = normS_n[ind, i]
+
+# Calculate propagation angles for all points and find angle for maximum
+# power flow norms (wider apertures)
+propang_w = np.mod(np.arctan2(Sy_w, Sx_w), 2*np.pi)
+maxang_w = np.diag(propang_w[normS_w.argmax(axis=0)])
+
+# Re-sort data by propagation angle (wider apertures)
+for i in range(0, len(alpha)):
+    ind = propang_w[:, i].argsort()
+    propang_w[:, i] = propang_w[ind, i]
+    Sx_w[:, i] = Sx_w[ind, i]
+    Sy_w[:, i] = Sy_w[ind, i]
+    normS_w[:, i] = normS_w[ind, i]
+
+# Plot the angle where scattering is maximum for each alpha (all cases)
 plt.figure()
-plt.plot(np.degrees(alpha), maxang, '.-', np.degrees(alpha), maxang_n, '.--')
+plt.plot(alpha, np.degrees(maxang), '.-', alpha, np.degrees(maxang_n), '.--',
+         alpha, np.degrees(maxang_w), '.:')
 plt.title('Angle for maximum scattering')
 plt.xlabel('$\\alpha$ [$^\\circ$]')
 plt.ylabel('Propagation angle $\\phi$ [$^\\circ$]')
-plt.legend(['Tapered ports', 'Non-tapered ports'])
+plt.legend(['Tapered ports', 'Non-tapered ports', 'Wider apertures, no taper'])
 
+# Plot norm of the power flow for all PROPAGATION angles (with taper)
 plt.figure()
 plt.polar(propang, normS/normS.max())
-
 plt.title('Norm of the time avg. power flow (normalized, tapered ports)')
 plt.xlabel('Propagation angle $\\phi$')
 plt.ylabel('S/S$_{max}$')
 plt.legend([str(a) + '$^\\circ$' for a in alpha], title='$\\alpha$')
 
+# Plot norm of the power flow for all PROPAGATION angles (no taper)
 plt.figure()
 plt.polar(propang_n, normS_n/normS_n.max())
-
 plt.title('Norm of the time avg. power flow (normalized, non-tapered ports)')
 plt.xlabel('Propagation angle $\\phi$')
 plt.ylabel('S/S$_{max}$')
 plt.legend([str(a) + '$^\\circ$' for a in alpha], title='$\\alpha$')
 
-
+# Plot norm of the power flow for all PROPAGATION angles (no taper)
+plt.figure()
+plt.polar(propang_w, normS_w/normS_w.max())
+plt.title('Norm of the time avg. power flow (normalized, Wider apertures, no' +
+          ' taper)')
+plt.xlabel('Propagation angle $\\phi$')
+plt.ylabel('S/S$_{max}$')
+plt.legend([str(a) + '$^\\circ$' for a in alpha], title='$\\alpha$')

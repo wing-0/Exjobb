@@ -228,30 +228,10 @@
 	\todo[inline]{Explain clearly that this is acousto-optics, but derived directly from Maxwell and without the word "optics" in the name}
 	
 	\subsection{Photoelasticity}
+	To understand how the interaction between the two wave phenomena works, the first step is to understand how an acoustic or elastic wave affects electromagnetic properties. The theory of photoelasticity relates strains from linear elasticity with the relative permittivity of a material. With a starting point in solid mechanics, a tensor-based theory is somewhat inevitable. However, a simplified model is shown later which condenses the tensor relations down to a scalar relation.
 	\todo[inline]{Theory describing relation between solid (continuum?) mechanics and dielectric properties}
-	The primary mechanism behind this interaction is, as stated earlier, a variation of density leading to a change in refractive index (or permittivity). To get a full picture of the interaction, the relationship between acoustic intensity and refractive index must be known. For a one-dimensional, longitudinal sound wave the change in refractive index is given by \cite{Saleh2007}
-	\begin{equation*}
-	\Delta n (x,t) = -\frac{1}{2} \mathfrak{p} n^3 s(x,t)
-	\end{equation*}
-	where $\mathfrak{p}$ is the photoelastic constant (also called strain-optic coefficient or elasto-optic coefficient \cite{Korpel1988}), $n$ is the unperturbed refractive index and $s(x,t)$ is the acoustic strain. Singe it is negative, a positive strain decreases the refractive index \cite{Saleh2007}.
 	
-	It is also possible to write this change depending on the acoustic intensity instead of the actual wave. This is done as \cite{Saleh2007}
-	\begin{equation*}
-	\Delta n_0 = \sqrt{\frac{1}{2} \mathcal{M} I_s} \quad , \quad
-	\mathcal{M} = \frac{\mathfrak{p}^2 n^6}{\rho v_s^3}
-	\end{equation*}
-	where $I_s$ is the acoustic intensity (W/m$^2$), $\rho$ is the mass density and $v_s$ is the speed of sound. The amplitude is related to the total refractive index as \cite{Saleh2007}
-	\begin{equation*}
-	n(x,t) = n - \Delta n_0 \cos(\Omega t - qx)
-	\end{equation*}
-	where $\cos(\Omega t - qx)$ comes from a plane acoustic wave.
-	
-	The refractive index and relative permittivity are related by $\varepsilon_r = n^2$ in a non-magnetic material. To obtain the change in relative permittivity instead of refractive index
-	\begin{equation*}
-	\Delta \varepsilon_r(x,t) = \frac{\mathrm{d}\varepsilon_r}{\mathrm{d}n} \Delta n(x,t) = 2n \Delta n(x,t) = -\mathfrak{p} \varepsilon_r^2 s(x,t)
-	\end{equation*}
-	
-	However, the photoelastic constant described above is really a simplification of the mechanism. For a full picture it is important to consider the tensor properties from solid mechanics (for acoustics) and optical anisotropy (for electromagnetism) \cite{Korpel1988}. This gives rise to a photoelastic tensor instead of a simple constant. The relation is then given as \cite{Korpel1988}
+	A starting point can be found in the literature on acousto-optics in the relation \cite{Korpel1988}
 	\begin{equation*}
 	\Delta \left( \frac{1}{n_i^2} \right) = p_{ij} S_j
 	\end{equation*}
@@ -260,25 +240,24 @@
 	\alpha &= \frac{1}{n_i^2},\ n_i = \alpha^{-1/2} \\
 	\Delta n_i &= \frac{\mathrm{d}n_i}{\mathrm{d}\alpha} \Delta \alpha = -\frac{1}{2} \alpha^{-3/2} \Delta \alpha = -\frac{1}{2} n_i^3 p_{ij} S_j
 	\end{align*}
-	This is similar to the simple relation, but it now has tensor quantities instead of scalar ones. As before this can also be written as permittivity:
+	The refractive index and relative permittivity are related by $\varepsilon_{r_i} = n_i^2$ in a non-magnetic material. To obtain the change in relative permittivity instead of refractive index
 	\begin{equation*}
-	\Delta \varepsilon_{r_i} = 2n_i\Delta n_i = -n_i^4 p_{ij} S_j = -\varepsilon_{r_i}^2 p_{ij} S_j
+	\Delta \varepsilon_{r_i} = \frac{\mathrm{d}\varepsilon_{r_i}}{\mathrm{d}n_i} \Delta n_i = 2n_i \Delta n_i = -n_i^4 p_{ij} S_j = -\varepsilon_{r_i}^2 p_{ij} S_j
 	\end{equation*}
 	
-	The tensor notation here is a simplified form described by the 1949 IRE standards. The relation to full tensor notation is shown below for refractive indices and strains \cite{Korpel1988}
+	The tensor notation used above is a simplified form described by the 1949 IRE standards. The relation to full tensor notation is shown below for an arbitrary tensor $a$ \cite{Korpel1988}
 	\begin{align*}
-	n_1 &= n_{11},\ n_2 = n_{22},\ n_3 = n_{33}, \\
-	n_4 &= n_{23},\ n_5 = n_{31},\ n_6 = n_{12} \\
-	S_1 &= \delta_{11},\ S_2 = \delta_{22},\ S_3 = \delta_{33}, \\
-	S_4 &= \delta_{23},\ S_5 = \delta_{31},\ S_6 = \delta_{12}
+	a_1 &= n_{11},\ a_2 = a_{22},\ a_3 = a_{33}, \\
+	a_4 &= a_{23},\ a_5 = a_{31},\ a_6 = a_{12}
 	\end{align*}
-	where $\delta_{kl}$ are the strains in standard tensor notation. It is clear that indices 1-3 are tensile and 4-6 are shear. The photoelastic tensor in standard notation is then clearly of rank 4, being $p_{ijkl}$.
+	If the strains are considered, it is clear that indices 1-3 are tensile and 4-6 are shear. For the photoelastic tensor it can be seen that it is of rank 4, being $p_{ijkl}$ in standard notation. One thing to note is that the 4 indices in standard notation should allow for many more components of the photoelastic tensor than those possible using this compact notation (81 instead of 36). This is due to symmetry of the photoelastic tensor in this particular model. \todo{Citation needed} It should also be noted that this model does break down in some cases, and more advanced descriptions of the phenomena exist \cite{Nelson1971}. However, this model was considered advanced enough as a starting point for this problem, especially since it is quite heavily simplified in the end.
 	
-	The photoelastic tensor can have up to 36 independent components, but for the simple case of an isotropic solid the tensor simplifies to \cite{Korpel1988}
+	This model of the photoelastic tensor allows for up to 36 independent components, but for the simple case of an isotropic solid the tensor simplifies to \cite{Korpel1988}
 	\begin{align*}
 	p_{11} &= p_{22} = p_{33}, \ p_{12} = p_{21} = p_{13} = p_{23} = p_{32}\\
 	p_{44} &= p_{55} = p_{66} = \frac{1}{2} (p_{11} - p_{12}), \ p_{ij} = 0 \text{ for others}
 	\end{align*}
+	\todo[inline]{Continue editing and adaptation of the section after this}
 	
 	The simplest material to consider would be an isotropic solid with isotropic permittivity $\varepsilon_r$. There is then no preferred axis and a coordinate system can be selected arbitrarily. A longitudinal acoustic wave is defined by \begin{equation*}
 	S_1(x_1,t) = \delta_{11}(x_1,t) = S_0 \cos(\Omega t - qx_1)

@@ -19,7 +19,7 @@ import scipy.interpolate as interp
 plt.close('all')
 
 # Read data and plot (+) or (-) scattering
-pm = 1
+pm = -1
 pmchar = '+'
 if(pm == -1):
     pmchar = '-'
@@ -29,7 +29,7 @@ opta = 40
 
 # Angles between wave vectors used (in filenames for both (+) and (-)) and the
 # corresponding alpha values which depend on pm
-angles = np.array([35, 38, 40, 42, 45])
+angles = np.arange(35, 46)
 alpha = (180*(pm + 1)/2 - pm*angles).astype('int')
 
 # %% Load data and process it into correct format
@@ -43,7 +43,7 @@ files_pe = [(loc + '\\a=' + str(a) + '_opt=' + str(opta) +
              ' (' + pmchar + ')_pe.csv') for a in angles]
 files_nope = [(loc + '\\a=' + str(a) + '_opt=' + str(opta) +
                ' (' + pmchar + ')_nope.csv') for a in angles]
-Ez, Hx, Hy, Sx, Sy, x, y = read.readEHS_PE(files_pe, files_nope)
+Ez, Hx, Hy, Sx, Sy, x, y = read.readEHS_PE_various(files_pe, files_nope)
 
 # Calculate angle from x and y values (angle is counterclockwise from x-axis)
 theta = np.mod(np.arctan2(y, x), 2*np.pi)
@@ -73,26 +73,17 @@ arc = np.cumsum(dist, axis=0)
 # between wave vectors (with taper)
 Stot = np.trapz(normS, arc, axis=0)
 
-# Interpolation (2nd order spline)
-f = interp.interp1d(alpha, Stot/Stot.max(), kind='quadratic')
-aa = np.linspace(alpha.min(), alpha.max(), 100)
-
 plt.figure()
-plt.plot(alpha, Stot/Stot.max(), '.-', aa, f(aa), ':')
+plt.plot(alpha, Stot/Stot.max(), '.-')
 plt.title('Total scattered power (normalized)')
 plt.xlabel('$\\alpha$ [$^\\circ$]')
 plt.ylabel('P/P$_{max}$')
 
 # %% Plotting using propagation angle and not observation angle
 
-# TODO: don't just use one maximum power - instead, take a number of datapoints
-#       near the maximum and do some averaging
-# Calculate propagation angles for all points and find angle for maximum
-# power flow norms (with taper)
+# Calculate propagation angles for all points and sort data by this angle
+# instead of by the observation angle
 propang = np.mod(np.arctan2(Sy, Sx), 2*np.pi)
-maxang = np.diag(propang[normS.argmax(axis=0)])
-
-# Re-sort data by propagation angle (with taper)
 for i in range(0, len(alpha)):
     ind = propang[:, i].argsort()
     propang[:, i] = propang[ind, i]
@@ -100,18 +91,42 @@ for i in range(0, len(alpha)):
     Sy[:, i] = Sy[ind, i]
     normS[:, i] = normS[ind, i]
 
+# Calculate propagation angle giving maximum scattering for all alpha. This is
+# done by taking the average of the propagation angles where the norm of the
+# power flow is larger than 95 % of the maximum value
+maxang = np.zeros(alpha.shape)
+for i in range(0, len(alpha)):
+    large = normS[:, i] > 0.95*normS[:, i].max()
+    maxang[i] = np.mean(propang[large, i])
 
 # Plot the angle where scattering is maximum for each alpha
 plt.figure()
 plt.plot(alpha, np.degrees(maxang), '.-')
-plt.title('Angle for maximum scattering')
+plt.title('Mean angle of the 5 % with highest energy')
 plt.xlabel('$\\alpha$ [$^\\circ$]')
 plt.ylabel('Propagation angle $\\phi$ [$^\\circ$]')
 
 # Plot norm of the power flow for all PROPAGATION angles (with taper)
 plt.figure()
 plt.polar(propang, normS/normS.max())
-plt.title('Norm of the time avg. power flow (normalized, tapered ports)')
+plt.title('Norm of the time avg. power flow (normalized)')
 plt.xlabel('Propagation angle $\\phi$')
 plt.ylabel('S/S$_{max}$')
 plt.legend([str(a) + '$^\\circ$' for a in alpha], title='$\\alpha$')
+
+# "Clean up" the data by removing all points with a norm of the power flow
+# below 5 % of the mean
+sig = normS > 0.05*normS.mean(axis=0)
+
+plt.figure()
+
+for i in range(0, len(alpha)):
+    plt.plot(np.degrees(propang[sig[:, i], i]), normS[sig[:, i], i])
+
+plt.title('Norm of the time avg. power flow (normalized)\nValues below 5 %' +
+          ' of mean discarded')
+plt.xlabel('Propagation angle $\\phi$')
+plt.ylabel('S/S$_{max}$')
+plt.legend([str(a) + '$^\\circ$' for a in alpha], title='$\\alpha$')
+
+

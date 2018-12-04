@@ -264,12 +264,21 @@
 	\end{equation*}
 	It is propagating in the $x_1$ direction and is thus a strain $S_1$, and all other strains are assumed to be zero. The relation $\Delta \varepsilon_{r_i} = -\varepsilon_{r_i}^2 p_{ij} S_j$ together with the photoelastic tensor for isotropic solids then gives
 	\begin{align*}
-	\varepsilon_{r_1} &= -\varepsilon_r^2 p_{11} S_0 \cos(\Omega t - qx_1) \\
-	\varepsilon_{r_2} &= \varepsilon_{r_3} = -\varepsilon_r^2 p_{12} S_0 \cos(\Omega t - qx_1)
+	\Delta \varepsilon_{r_1} &= -\varepsilon_r^2 p_{11} S_0 \cos(\Omega t - qx_1)\\
+	\Delta \varepsilon_{r_2} &= \varepsilon_{r_3} = -\varepsilon_r^2 p_{12} S_0 \cos(\Omega t - qx_1)
 	\end{align*}
 	It is clear that the permittivity now has an axis $x_1$ where it has another value than in $x_2$ and $x_3$. So even for a material which is nominally completely isotropic, a preferred axis arises for the permittivity! This type of anisotropy is called birefringence in optics, and in this case it is caused by dipoles aligning themselves parallel to the strain \cite{Korpel1988}. Practically, the effect of this is that the interaction strength of this mechanism depends on the EM polarization with respect to the acoustic wave polarization. In longitudinal acoustic waves the polarization and propagation direction coincide, which makes analysis easier.
 	
-	Another starting point for the interaction is the Lorentz-Lorenz relation, which leads to the equations \cite{Korpel1988}
+	For a very simplistic model, the anisotropy can be ignored if it is assumed that $p_{11} = p_{12}$. This assumption reduces the photoelastic tensor to
+	\begin{align*}
+	p_{11} &= p_{22} = p_{33} = p_{12} = p_{21} = p_{13} = p_{23} = p_{32} = \mathfrak{p}\\
+	p_{ij} &= 0 \text{ for others}
+	\end{align*}
+	where $\mathfrak{p}$ was introduced as a scalar photoelastic constant. Once again a longitudinal wave in an isotropic material (both mechanically and electrically) is assumed, but now the relation gives
+	\begin{equation*}
+		\varepsilon_r = -\varepsilon_r^2 \mathfrak{p} S_0 \cos(\Omega t - q x_1)
+	\end{equation*}
+	for all directions. To obtain a model for calculating this simplified constant $\mathfrak{p}$, another starting point for the problem is utilized. This is the Lorentz-Lorenz relation, which can be used to obtain the following equations for photoelasticity \cite{Korpel1988}
 	\begin{align*}
 	\Delta n &= C' s \\
 	C' &= \left[ \frac{(n^2-1)(n^2+2)}{6n} \right](1-\Lambda_0) \\

@@ -37,6 +37,9 @@
 % Bold math style, useful for vectors
 \usepackage{bm}
 
+% Enables multiple column parts
+\usepackage{multicol}
+
 \begin{document}
 	
 	\Title{Acousto-Electromagnetic Interaction in Aerospace Composites}
@@ -76,28 +79,51 @@
 	\end{itemize}
 	
 	\chapter*{List of Symbols}
-	Electromagnetic symbols
-	\begin{itemize}
-		\item $\mu_0$ - Magnetic permeability
-		\item $\varepsilon$ - Electric permittivity
-		\item $\varepsilon_0$ - Electric permittivity in vacuum
-		\item $\varepsilon_r$ - Unperturbed relative permittivity
-		\item $\varepsilon_1$ - Perturbation in relative permittivity
-		\item $c$ - Speed of light in material
-		\item $c_0$ - Speed of light in vacuum
-		\item $\bm{k}$ - Electromagnetic wavevector
-		\item $k$ - Electromagnetic wavenumber
-		\item $\lambda$ - Electromagnetic wavelength
-		\item $\omega$ - Electromagnetic angular frequency
-	\end{itemize}
-	Acoustic symbols
-	\begin{itemize}
-		\item $v$ - Speed of sound in material
-		\item $\bm{q}$ - Acoustic wavevector
-		\item $q$ - Acoustic wavenumber
-		\item $\Lambda$ - Acoustic wavelength
-		\item $\Omega$ - Acoustic angular frequency
-	\end{itemize}
+	\todo[inline]{Now only contains commonly used or in other ways significant symbols. Keep that or expand?}
+		Electromagnetics
+		\begin{itemize}
+			\item $\mu_0$ - Magnetic permeability
+			\item $\varepsilon$ - Electric permittivity
+			\item $\varepsilon_0$ - Electric permittivity in vacuum
+			\item $\varepsilon_r$ - Unperturbed relative permittivity
+			\item $\varepsilon_1$ - Perturbation in relative permittivity
+			\item $c$ - Speed of light in material
+			\item $c_0$ - Speed of light in vacuum
+			\item $\bm{k}$ - Electromagnetic wavevector
+			\item $k$ - Electromagnetic wavenumber
+			\item $\lambda$ - Electromagnetic wavelength
+			\item $\omega$ - Electromagnetic angular frequency
+		\end{itemize}
+		Acoustics
+		\begin{itemize}
+			\item $v$ - Speed of sound in medium
+			\item $\bm{q}$ - Acoustic wavevector
+			\item $q$ - Acoustic wavenumber
+			\item $\Lambda$ - Acoustic wavelength
+			\item $\Omega$ - Acoustic angular frequency
+			\item $K$ - Bulk modulus
+			\item $\rho_0$ - Unperturbed density of medium
+		\end{itemize}
+		Elastodynamics
+		\begin{itemize}
+			\item $\bm{u}$ - Displacement vector
+			\item $\lambda$ - Lamé's first parameter
+			\item $\mu$ - Lamé's second parameter
+			\item $\phi$ - Scalar potential
+			\item $\bm{\psi}$ - Vector potential
+			\item $c_s$ - Wave speed for s-waves
+			\item $c_p$ - Wave speed for p-waves
+		\end{itemize}
+		Photoelasticity
+		\begin{itemize}
+			\item $p_{ij}$ - $ij$ component of the photoelastic tensor
+			\item $S_j$ - $j$ component of the strain tensor
+			\item $\mathfrak{p}$ - scalar photoelastic constant
+			\item $\varepsilon_{r_i}$ - $i$ component of the relative permittivity tensor
+			\item $\Delta \varepsilon_{r_i}$ - Perturbation in $i$ component of the relative permittivity tensor
+			\item $\Delta \varepsilon_r$ - Isotropic perturbation in relative permittivity
+		\end{itemize}
+	
 	\todo[inline]{Expand and standardize throughout the report}
 	\cleardoublepage
 	
@@ -141,16 +167,17 @@
 	\section{Overview of Interaction Mechanisms}
 	
 	\subsection{Target Boundary Perturbation}
-	This mechanism is based on a discrete target under acoustic resonance. The resonance of the target leads to vibration, which is seen as a time-dependent boundary perturbation \cite{Buerkle2007}. This is seen in the scattered signal as a frequency shift by the vibration frequency \cite{Sarabandi2003}. \todo{More details on the Radlab stuff}
+	This mechanism is based on a discrete target under acoustic resonance. The resonance of the target leads to vibration, which is seen as a time-dependent boundary perturbation \cite{Buerkle2007}. This is seen in the scattered signal as a frequency shift by the vibration frequency \cite{Sarabandi2003}. \todo{More details on the Radlab stuff. Also describe why this is not used.}
 	
+	\todo[inline]{Move micro-Doppler to another section}
 	The frequency shift mentioned earlier is due to the micro-Doppler effect, which describes effects of targets with rotation or vibration \cite{Buerkle2007}. A vibrating target then causes frequency modulation of the scattered electromagnetic wave. \cite{Chen2006}. For a stationary target this corresponds to a signal with a strong frequency component at $f_c$ and weaker sidebands at $f_c \pm n f_v$ where $n=1$ are the strongest (carrier frequency $f_c$, variation frequency $f_v$, positive integers $n$). The amplitudes of the spectral lines are given by Bessel functions $J_n(B)$, where $B \sim (4\pi/\lambda)D_v$ \cite{Chen2006}. $D_v$ is the amplitude of vibration which is usually small (on the order of $\mu$m) \cite{Buerkle2007}\cite{Top2014}. For small values of $B$ the central component will dominate, and the first Doppler component will be much more prominent than the others. Therefore it makes sense that this first component is the one considered in the literature \cite{Buerkle2007}.
 	
 	\subsection{Localized Harmonic Motion}
-	This mechanism is similar to boundary perturbation in that it is based on scattering from harmonic motion. The difference is that harmonic motion is introduced in a bulk material instead of a resonating discrete target. The mechanism has been utilized in the medical method of vibro-acoustography and harmonic motion imaging \cite{Wang2018}. Both techniques use amplitude modulated ultrasound to produce a time-harmonic acoustic radiation force in a localized region of a sample. This force then generates time-harmonic displacement, or vibration. In the acoustic methods the vibrating region emits acoustic waves which can be detected \cite{Fatemi1998}\cite{Konofagou2003}.
+	This mechanism is similar to boundary perturbation in that it is based on scattering from harmonic motion. The difference is that harmonic motion is introduced in a bulk material instead of a resonating discrete target. The mechanism has been utilized in the medical method of vibro-acoustography and harmonic motion imaging \cite{Wang2018}. Both techniques use amplitude modulated ultrasound to produce a time-harmonic acoustic radiation force in a localized region of a sample. \todo{Some more on ARF} This force then generates time-harmonic displacement, or vibration. In the acoustic methods the vibrating region emits acoustic waves which can be detected \cite{Fatemi1998}\cite{Konofagou2003}.
 	
 	An electromagnetic wave incident towards the vibrating region will scatter with a frequency shift which corresponds to the frequency of vibration \cite{Top2014}. This is very similar to the boundary perturbation mechanism described before.
 	
-	One detail omitted before is the two methods of generating radiation force locally. The first method uses amplitude modulated focused ultrasound with its focus on the region of interest \cite{Top2016}. Since amplitude modulated ultrasound exists throughout the beam a force is generated in that entire region. However, the intensity is much higher in the focus so the force is stronger there. The second method instead uses two single-frequency ultrasonic beams which intersect at the region of interest. The frequencies of the two beams differ by a small amount $\Delta \Omega$. Superposition at the intersection will then generate localized amplitude modulation by half the difference frequency $\Delta \Omega/2$. However, the acoustic radiation force is determined by the energy density of the wave. This is proportional to the square of the acoustic field, which changes the frequency of interest by a factor 2. The frequency of the acoustic radiation force is then the difference frequency $\Delta \Omega$ \cite{Fatemi1998}.
+	There are two methods of generating radiation force locally. The first method uses amplitude modulated focused ultrasound with its focus on the region of interest \cite{Top2016}. Since amplitude modulated ultrasound exists throughout the beam a force is generated in that entire region. However, the intensity is much higher in the focus so the force is stronger there. The second method instead uses two single-frequency ultrasonic beams which intersect at the region of interest. The frequencies of the two beams differ by a small amount $\Delta \Omega$. Superposition at the intersection will then generate localized amplitude modulation by half the difference frequency $\Delta \Omega/2$. However, the acoustic radiation force is determined by the energy density of the wave. This is proportional to the square of the acoustic field, which changes the frequency of interest by a factor 2. The frequency of the acoustic radiation force is then the difference frequency $\Delta \Omega$ \cite{Fatemi1998}.
 	
 	\subsection{Acousto-Optics}\todo{fix this stuff - lots of "old" stuff that isn't very nice to present here. I know much more than when I wrote this...}
 	This mechanism is the one used in the theory of acousto-optics \cite{Saleh2007}\cite{Korpel1981}. The main idea is that there is a relation between the strain in a material and its index of refraction. Since an acoustic wave consists of periodic compression and rarefaction in a medium (which can be related to strain), a consequence is that the index of refraction varies with the same period \cite{Saleh2007}. Due to Fresnel reflection, this periodic structure of varying index of refraction acts as a Bragg reflector scattering incident light. The Bragg condition determines the angle of incidence $\theta_B$ required for the light
@@ -170,12 +197,6 @@
 	where $n$ is the unperturbed index of refraction, $L$ is the distance of overlap between light and acoustic waves in the acoustic wave direction, $\Lambda$ is the acoustic wavelength, $\lambda_0$ is the vacuum light wavelength, $\mathcal{M}$ is a material parameter and $I_s$ is the acoustic intensity \cite{Saleh2007}. For intense acoustic waves a correction is necessary, giving $\mathcal{R}_e = \sin{^2\sqrt{\mathcal{R}}}$ \cite{Saleh2007}.
 	
 	The interesting part when it comes to microwave frequencies, however, is the denominator in the first equation. The factor $1/\lambda_0^4$ might be a reason of concern when moving away from the optical regime. Since the wavelength is much longer for mm-waves there should be a large decrease in reflectance, and if too large the scattered signal could be undetectable. However, some examples for optical wavelengths give $\mathcal{R}_e = 0.192$ \cite{Saleh2007}, which is very large when compared with what can be detected in radar \cite{Richards2012}. There are also other variables such as $L$ and $\Lambda$ which might be changed to give a higher reflectance. If the different parameters can be selected to give a scattered signal above the noise floor is a very interesting question which needs to be investigated.
-	
-	\subsubsection{Radio Acoustic Sounding} \todo{Maybe move this part somewhere else? Yes, but not everything}
-	This mechanism has not only been used in optics, but also in radio meteorology through the Radio Acoustic Sounding System (RASS) \cite{Buerkle2007}. This indicates that the wavelength dependence described above can be offset by other factors to still give a measurable scattered signal. The system is used for temperature sounding since the speed of sound depends on temperature. The Bragg scattering condition is thus affected by a temperature change \cite{Marshall1972}. The systems are usually designed with electromagnetic and acoustic wave sources approximately co-located \cite{Marshall1972}. This corresponds to an angle $\theta \approx 90^\circ$, which changes the Bragg condition to
-	\begin{equation*}
-	\Lambda = \frac{\lambda}{2}
-	\end{equation*}
 	
 	\subsection{Scatterer Displacement}
 	This is a mechanism mostly presented in the field of ultrasound-optical tomography (UOT). The mechanism is based on dynamic multiple scattering of light, which occurs if many scatterers undergoing Brownian motion are considered \cite{Leutz1995}. If an ultrasonic beam is incident on such a sample the scatterers will move due to both Brownian motion and ultrasound, giving rise to a frequency shift in affected photons \cite{Leutz1995}\cite{Elson2011}. In medical applications, movement of the scatterers due to acoustic waves is very straight-forward: their displacement directly follows the acoustic wave \cite{Leutz1995}. This might well be the case for small scatterers which are then part of the wave, but for larger scatterers it gets more complicated. In that case, acoustic radiation force has to be considered for scatterer movement \cite{Torr1984}. \todo{Double check some things on movement of small vs. big scatterers}
@@ -202,7 +223,7 @@
 	\begin{equation*}
 	\mu \nabla^2 \bm{u} + (\lambda+\mu) \nabla (\nabla \cdot \bm{u}) + \bm{f} = \rho_0 \frac{\partial^2 \bm{u}}{\partial t^2}
 	\end{equation*}
-	where $\bm{u}$ is the displacement vector and $\lambda$ and $\mu$ are the Lamé parameters of the material \cite{Schmerr2016}. To obtain wave equations from this, a Helmholtz decomposition is made as
+	where $\bm{u}$ is the displacement vector, $\lambda$ and $\mu$ are the Lamé parameters of the material and $\bm{f}$ is the body force \cite{Schmerr2016}. To obtain wave equations from this, a Helmholtz decomposition is made as
 	\begin{equation*}
 	\bm{u} = \nabla \phi + \nabla \times \bm{\psi}
 	\end{equation*}
@@ -250,7 +271,7 @@
 	
 	The tensor notation used above is a simplified form described by the 1949 IRE standards. The relation to full tensor notation is shown below for an arbitrary tensor $a$ \cite{Korpel1988}
 	\begin{align*}
-	a_1 &= n_{11},\ a_2 = a_{22},\ a_3 = a_{33}, \\
+	a_1 &= a_{11},\ a_2 = a_{22},\ a_3 = a_{33}, \\
 	a_4 &= a_{23},\ a_5 = a_{31},\ a_6 = a_{12}
 	\end{align*}
 	If the strains are considered, it is clear that indices 1-3 are tensile and 4-6 are shear. For the photoelastic tensor it can be seen that it is of rank 4, being $p_{ijkl}$ in standard notation. One thing to note is that the 4 indices in standard notation should allow for many more components of the photoelastic tensor than those possible using this compact notation (81 instead of 36). This is due to symmetry of the photoelastic tensor in this particular model. \todo{Citation needed} It should also be noted that this model does break down in some cases, and more advanced descriptions of the phenomena exist \cite{Nelson1971}. However, this model was considered advanced enough as a starting point for this problem, especially since it is quite heavily simplified in the end.
@@ -260,7 +281,6 @@
 	p_{11} &= p_{22} = p_{33}, \ p_{12} = p_{21} = p_{13} = p_{23} = p_{32}\\
 	p_{44} &= p_{55} = p_{66} = \frac{1}{2} (p_{11} - p_{12}), \ p_{ij} = 0 \text{ for others}
 	\end{align*}
-	\todo[inline]{Continue editing and adaptation of the section after this}
 	
 	The simplest material to consider would be an isotropic solid with isotropic permittivity $\varepsilon_r$. There is then no preferred axis and a coordinate system can be selected arbitrarily. A longitudinal acoustic wave is defined by \begin{equation*}
 	S_1(x_1,t) = \delta_{11}(x_1,t) = S_0 \cos(\Omega t - qx_1)
@@ -277,11 +297,9 @@
 	p_{11} &= p_{22} = p_{33} = p_{12} = p_{21} = p_{13} = p_{23} = p_{32} = \mathfrak{p}\\
 	p_{ij} &= 0 \text{ for others}
 	\end{align*}
-	where $\mathfrak{p}$ was introduced as a scalar photoelastic constant. Once again a longitudinal wave in an isotropic material (both mechanically and electrically) is assumed, but now the relation gives
-	\begin{equation*}
-		\varepsilon_r = -\varepsilon_r^2 \mathfrak{p} S_0 \cos(\Omega t - q x_1)
-	\end{equation*}
-	for all directions. To obtain a model for calculating this simplified constant $\mathfrak{p}$, another starting point for the problem is utilized. This is the Lorentz-Lorenz relation, which can be used to obtain the following equations for photoelasticity \cite{Korpel1988}
+	where $\mathfrak{p}$ was introduced as a scalar photoelastic constant. One thing to note is that since $p_{33} = p_{44} = p_{55} = 0$, shear strain does not have any effect in this simplified model. If the unperturbed permittivity is isotropic, a scalar relation can be written as $\Delta \varepsilon_r = -\varepsilon_r^2 \mathfrak{p} S$. Here $\Delta \varepsilon_r$ is the isotropic change in relative permittivity and $S$ is a tensile strain in any direction. For clarity, it can be good to note that $\Delta \varepsilon_r$ is denoted $\varepsilon_1$ in other sections of this work.
+	
+	To obtain a model for calculating this simplified constant $\mathfrak{p}$, another starting point for the problem is utilized. This is the Lorentz-Lorenz relation, which can be used to obtain the following equations for photoelasticity \cite{Korpel1988}
 	\begin{align*}
 	\Delta n &= C' s \\
 	C' &= \left[ \frac{(n^2-1)(n^2+2)}{6n} \right](1-\Lambda_0) \\
@@ -291,20 +309,26 @@
 	\begin{equation*}
 	\Delta \varepsilon_r = \frac{1}{3} (\varepsilon_r - 1)(\varepsilon_r + 2) s
 	\end{equation*}
-	This can be compared with the previous relation $\Delta \varepsilon_r = -\mathfrak{p}\varepsilon_r^2 s$ to obtain an equivalent photoelasticity
+	This can be compared with the previous relation $\Delta \varepsilon_r = -\mathfrak{p}\varepsilon_r^2 S$ to obtain an equivalent photoelasticity
 	\begin{equation*}
 	\mathfrak{p} = -\frac{(\varepsilon_r - 1)(\varepsilon_r + 2)}{3\varepsilon_r^2}
 	\end{equation*}
-	This can then be used in all equations derived with $\mathfrak{p}$ relating permittivity and strain. A plot of $\mathfrak{p}$ as a function of $\varepsilon_r$ is shown in figure \ref{fig:photoelastic-liquid}. It can be seen clearly that the interaction strength increases with $\varepsilon_r$ close to 1. However, at around $\varepsilon_r = 4$ an extreme is reached, and further on $\mathfrak{p}$ planes out. Thus, there is a bound on the interaction strength for this relation. It should be noted that this model is extremely simplistic and will probably give faulty results in many cases. \todo{Maybe write about the figure more in detail}
+	A plot of $\mathfrak{p}$ as a function of $\varepsilon_r$ is shown in figure \ref{fig:photoelastic-liquid}. It can be seen clearly that the interaction strength increases with $\varepsilon_r$ close to 1. However, at around $\varepsilon_r = 4$ an extreme is reached, and further on $\mathfrak{p}$ planes out. Thus, there is a bound on the interaction strength for this relation. It should be noted that this model is extremely simplistic and will probably give faulty results in many cases. \todo{Maybe write about the figure more in detail}
 	\begin{figure}[h]
 		\centering
 		\input{photoelastic-liquid.pgf}
 		\caption{\label{fig:photoelastic-liquid} Simplified photoelastic constant $\mathfrak{p}$ as a function of $\varepsilon_r$.}
 	\end{figure}
 	
-	\todo[inline]{Shear waves? They do not cause density variation, but still cause photoelastic interaction.}
+	\todo[inline]{Relate back to acousto-optics. Especially in this scalar simplified model since that is similar to what is presented in Saleh.}
 	
 	\section{Localized Harmonic Motion}
+	
+	\subsection{Overview}
+	
+	\subsection{Acoustic Radiation Force}
+	
+	\subsection{The Micro-Doppler Effect}
 	
 	\chapter{Analytical Modeling \label{ch:analytical}}
 	
@@ -477,26 +501,11 @@
 	\sigma^\pm (\theta, \phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
 	
-	A more practical measurement than received power is signal-to-noise ratio (SNR). For this, the average noise power is described as \cite{Young2004}
-	\begin{equation*}
-	P_n = k_B TB
-	\end{equation*}
-	where $k_B$ is Boltzmann's constant, $T$ is the temperature and $B$ is the utilized receiver bandwidth. The noise power picked up by the antenna is calculated using the standard temperature $T_0 = 290$ K. The SNR directly at the antenna can thus be written as
-	\begin{equation*}
-	\mathit{SNR}^\pm_{ant} \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 k_B T_0 B}
-	\end{equation*}
-	After the antenna is the RF front-end which usually contains a bandpass filter, low-noise amplifier (LNA), and mixer. Here the received signal is amplified so that it can be further processed. The amplification affects both the signal and noise, but the electronic components add more noise which causes the SNR to deteriorate. To quantify this, the concept of noise ratio and noise figure is used. The noise ratio is defined as \cite{Young2004}
-	\begin{equation*}
-	F = \frac{\mathit{SNR}_i}{\mathit{SNR}_o}
-	\end{equation*}
-	where the SNR's are in linear units, $i$ denotes input and $o$ denotes output. It is more common to use noise figure, which is simply the noise ratio expressed in dB units, $\mathit{NF} = 10\log_{10}(F)$. Most of the noise is added at the RF front-end, so it is usually sufficient to use a noise ratio/figure for that part of the receiver. The SNR after the receiver can now be written using the noise ratio as
-	\begin{equation*}
-	\mathit{SNR}^\pm = \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 k_B T_0 B \cdot F}
-	\end{equation*}
-	One more effect is added to this, and that is signal integration in the signal processing following the receiver. Noise can often be modeled as a random process, and if multiple samples are added together the noise can be averaged out. If coherent demodulation is used, $N$ samples added together will cause the SNR to improve by a factor $N$ \cite{Richards2012}. The SNR can then be written as
+	When actually measuring a signal, signal-to-noise ratio (SNR) is a more practical quantity than received power. The equation can be rewritten using SNR (see appendix \ref{app:derivations}) as:
 	\begin{equation*}
 	\textit{SNR}^\pm_N = \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 k_B T_0 B F} N
 	\end{equation*}
+	where $k_B$ is Boltzmann's constant, $T_0$ is the standard temperature 290 K, $B$ is the receiver bandwidth, $F$ is the noise ratio of the receiver and $N$ is the number of samples recorded. This equation assumes that coherent demodulation and integration is used to boost the SNR.
 	
 	Inspection of the equations for either scattered power or SNR shows that all geometry dependence is contained in the function $\Phi^\pm$. This depends on the observation angles $\theta$, $\phi$ and the angle between EM and Ac. wavevectors $\alpha$. Conditions for the angles maximizing scattering are derived in \ref{sec:app-derivations-bragg} and can be summarized as:
 	\begin{align*}
@@ -514,10 +523,21 @@
 	\section{Verification of analytical model}
 	\todo[inline]{Description of how the simple scattering problem was modeled.}
 	
+	\section{Effect of voids}
+	\todo[inline]{Description of how voids were modeled. Relate to delaminations.}
+	
 	\chapter{Results and Discussion}
 	
-	\section{Verification of analytical model}
+	\section{Numerical Simulation Results}
+	
+	\subsection{Verification of analytical model}
 	\todo[inline]{Comparison of results from the simulation with the analytical model. Primarily a verification of the Bragg condition, but maybe also some comparison of the power levels.}
+	
+	\subsection{Effect of voids}
+	
+	\section{Possibilities for NDT}
+	
+	\section{Future Experiments}
 	
 	\chapter{Conclusions}
 	

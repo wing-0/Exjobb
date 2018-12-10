@@ -61,21 +61,22 @@
 	\listoftables
 	\chapter*{List of Abbreviations}
 	\begin{itemize}
-		\item NDT - Nondestructive Testing
-		\item EM - Electromagnetic
 		\item Ac. - Acoustic
 		\item Acousto-EM - Acousto-Electromagnetic
-		\item SNR - Signal-to-Noise Ratio
-		\item RASS - Radio Acoustic Sounding System
-		\item LHS - Left-Hand Side
-		\item RHS - Right-Hand Side
-		\item IRE - Institute of Radio Engineers
+		\item EM - Electromagnetic
 		\item IEEE - Institute of Electrical and Electronics Engineers
-		\item tx - Transmitter
-		\item rx - Receiver
-		\item RF - Radio Frequency
+		\item IRE - Institute of Radio Engineers
+		\item LHS - Left-Hand Side
 		\item LNA - Low-Noise Amplifier
+		\item NDT - Nondestructive Testing
 		\item PML - Perfectly matched layer
+		\item RASS - Radio Acoustic Sounding System
+		\item RF - Radio Frequency
+		\item RHS - Right-Hand Side
+		\item rx - Receiver
+		\item SNR - Signal-to-Noise Ratio
+		\item SPL - Sound pressure level
+		\item tx - Transmitter
 	\end{itemize}
 	
 	\chapter*{List of Symbols}
@@ -237,14 +238,43 @@
 	c_p &= \sqrt{(\lambda + 2\mu)/\rho_0} \\
 	c_s &= \sqrt{\mu/\rho_0}
 	\end{align*}
-	By further investigation, the waves can be identified as p-waves with speed $c_p$ and s-waves with speed $c_s$ \cite{Schmerr2016}. The p-waves are very similar to acoustic waves, and it can be shown that the dilatation of the solid follows the p-wave equation \cite{Schmerr2016}. The s-waves on the other hand, do not have an analogy in acoustics. The rotation of the solid follows the s-wave equation \cite{Schmerr2016}, and as discussed before this type of motion does not propagate in a compressible fluid. When it comes to actually generating ultrasonic elastic waves, transducers are available both for generation of p-waves and s-waves \cite{Schmerr2016}. A simple model for determining strain is then based on calculating only one potential and setting the other to zero. This is common when working with p-waves \cite{Kaufman2000}.
+	By further investigation, the waves can be identified as p-waves with speed $c_p$ and s-waves with speed $c_s$ \cite{Schmerr2016}. The p-waves are very similar to acoustic waves, and it can be shown that the dilatation of the solid (sum of linear strains) follows the p-wave equation \cite{Schmerr2016}. The s-waves on the other hand, do not have an analogy in acoustics. The rotation of the solid follows the s-wave equation \cite{Schmerr2016}, and as discussed before this type of motion does not propagate in a compressible fluid. When it comes to actually generating ultrasonic elastic waves, transducers are available both for generation of p-waves and s-waves \cite{Schmerr2016}. A simple model for determining strain is then based on calculating only one potential and setting the other to zero. This is common when working with p-waves \cite{Kaufman2000}.
 	
 	The elastic waves described above are called bulk waves since they are only fully describe waves in the bulk of an elastic solid \cite{Kaufman2005}. Other wave phenomena exist such as surface waves (Rayleigh, Stoneley, Love) \cite{Kaufman2005} and plate waves (SH, Lamb) \cite{Schmerr2016}. These waves are not insignificant and are used in some branches of ultrasonic testing \cite{Schmerr2016}. However, only bulk waves are considered here and then mostly p-waves.
 	
 	\todo[inline]{Mode conversion is probably important to mention}
 	
-	\subsection{Acoustic intensity}
-	\todo[inline]{Write about acoustic intensity definitions and relate it to displacement amplitude}
+	\subsection{Acoustic intensity and relations between quantities}
+	\todo[inline]{This is a bit of a mess... Need to find good references for everything and standardize notation a bit. The notation needs to be standardized overall, but for some reason the clashes are very apparent here}
+	An acoustic wave is usually described using pressure, but it is possible to describe the wave as a periodic displacement of particles. If a plane wave propagating in x is considered, the relation between pressure and displacement amplitudes is then
+	\begin{equation*}
+		p_{max} = \rho_0 v \Omega d_{max} = q \rho_0 v^2 u_{max}
+	\end{equation*}
+	where $p_{max}$ is the pressure amplitude, $\rho_0$ is the unperturbed density of the medium, $v$ is the wave velocity, $\Omega$ is the angular frequency, $d_{max}$ is the displacement amplitude and $q$ is the wavenumber. \todo{Citation needed for all of this!}
+	
+	In photoelasticity the strain in a material is related to dielectric properties. Strain is relative displacement and it is therefore possible to relate a strain amplitude to the displacement amplitude of an acoustic wave. A plane displacement wave is introduced as
+	\begin{equation*}
+		u_x (x,t) = u_0 \cos(\Omega t - qx)
+	\end{equation*}
+	The only strain resulting from this wave is linear in $x$, and can be written as
+	\begin{equation*}
+		e_{xx} = \frac{\partial u_x}{\partial x} = qu_0 \sin(\Omega t - qx)
+	\end{equation*}
+	It can be seen that this is also a plane wave in $x$ (with a phase shift relative to the displacement wave) and the strain amplitude can be written as
+	\begin{equation*}
+		e_0 = qu_0
+	\end{equation*}
+	
+	A common quantity for strength of acoustic waves in fluids is sound pressure level (SPL) which is measured in dB an defined as
+	\begin{equation*}
+		L_p = 20 \log_{10}{\frac{p}{p_0}}
+	\end{equation*}
+	$p_0$ is a reference pressure which is defined as 20 $\mu$Pa in air. \todo{Citation needed for all this}
+	
+	For ultrasound it is sometimes more common to use acoustic intensity instead of SPL, especially if the propagation is not in air. This is defined as the time-average of the acoustic power per cross-sectional area. \todo{citation} It can be related to the strain amplitude as \cite{Saleh2007}
+	\begin{equation*}
+		I_s = \frac{1}{2} \rho_0 v^3 e_0^2
+	\end{equation*}
 	
 	\section{Photoelastic Interaction}
 	
@@ -537,9 +567,10 @@
 	
 	\section{Possibilities for NDT}
 	
-	\section{Future Experiments}
+	\section{Future Work}
 	
-	\chapter{Conclusions}
+	\section{Conclusion}
+	
 	
 	\bibliographystyle{../../Litteratur/IEEEtran}
 	\bibliography{../../Litteratur/litteratur}

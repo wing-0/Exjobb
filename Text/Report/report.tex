@@ -42,6 +42,11 @@
 
 \begin{document}
 	
+	% Add custom todocommands, use 'disable' inside the square brackets for any of the commands to hide that type of todo's from the pdf
+	\newcommand{\addref}{\todo[color=red!40]{Citation needed!}}
+	\newcommand{\todoext}[1]{\todo[inline, color=yellow]{#1}}
+	\newcommand{\todoint}[2][]{\todo[#1]{#2}}
+	
 	\Title{Acousto-Electromagnetic Interaction in Aerospace Composites}
 	\Author{Niklas Wingren\\\texttt{tfy13nwi@student.lu.se}}
 	\Supervisor{Daniel Sj\"oberg}
@@ -58,7 +63,9 @@
 	\chapter*{Popular Science Summary}
 	\tableofcontents
 	\listoffigures
+	\todoext{Will only keep this list if it is necessary}
 	\listoftables
+	\todoext{Will only keep this list if it is necessary}
 	\chapter*{List of Abbreviations}
 	\begin{itemize}
 		\item Ac. - Acoustic
@@ -80,7 +87,7 @@
 	\end{itemize}
 	
 	\chapter*{List of Symbols}
-	\todo[inline]{Now only contains commonly used or in other ways significant symbols. Keep that or expand?}
+	\todoext{Now only contains commonly used or in other ways significant symbols. Might change the structure. Symbols probably need to be checked in the report so they are standardized.}
 		Electromagnetics
 		\begin{itemize}
 			\item $\mu_0$ - Magnetic permeability
@@ -97,6 +104,10 @@
 		\end{itemize}
 		Acoustics
 		\begin{itemize}
+			\item $p$ - Acoustic pressure
+			\item $p_p$ - Pressure amplitude (peak) of an acoustic wave
+			\item $u_p$ - Displacement amplitude (peak) of an acoustic wave
+			\item $s_p$ - Strain amplitude (peak) of an acoustic wave
 			\item $v$ - Speed of sound in medium
 			\item $\bm{q}$ - Acoustic wavevector
 			\item $q$ - Acoustic wavenumber
@@ -104,10 +115,13 @@
 			\item $\Omega$ - Acoustic angular frequency
 			\item $K$ - Bulk modulus
 			\item $\rho_0$ - Unperturbed density of medium
+			\item $L_p$ - Sound pressure level (SPL)
+			\item $I_s$ - Acoustic intensity (time-average)
 		\end{itemize}
 		Elastodynamics
 		\begin{itemize}
 			\item $\bm{u}$ - Displacement vector
+			\item $s_{ij}$ - $ij$-component of the strain tensor (standard or Cartesian notation)
 			\item $\lambda$ - Lamé's first parameter
 			\item $\mu$ - Lamé's second parameter
 			\item $\phi$ - Scalar potential
@@ -117,15 +131,14 @@
 		\end{itemize}
 		Photoelasticity
 		\begin{itemize}
-			\item $p_{ij}$ - $ij$ component of the photoelastic tensor
-			\item $S_j$ - $j$ component of the strain tensor
+			\item $p_{ij}$ - $ij$ component of the photoelastic tensor (compact notation)
+			\item $s_j$ - $j$ component of the strain tensor (compact notation)
 			\item $\mathfrak{p}$ - scalar photoelastic constant
-			\item $\varepsilon_{r_i}$ - $i$ component of the relative permittivity tensor
-			\item $\Delta \varepsilon_{r_i}$ - Perturbation in $i$ component of the relative permittivity tensor
+			\item $\varepsilon_{r_i}$ - $i$ component of the relative permittivity tensor (compact notation)
+			\item $\Delta \varepsilon_{r_i}$ - Perturbation in $i$ component of the relative permittivity tensor (compact notation)
 			\item $\Delta \varepsilon_r$ - Isotropic perturbation in relative permittivity
 		\end{itemize}
 	
-	\todo[inline]{Expand and standardize throughout the report}
 	\cleardoublepage
 	
 	\mainmatter		% Page numbering for the main thesis (arabic)
@@ -143,7 +156,7 @@
 	\chapter{Technology \label{sh:tech}}
 	
 	\section{Nondestructive Testing Techniques}
-	Nondestructive testing has been ... In industries with high demands for quality and safety, NDT is often a necessity. Aerospace is such an industry and has utilized NDT for a long time. \todo{citation needed} Modern aircraft increasingly use composite materials due to superior properties such as low weight \cite{Katunin2015}. The difference of these materials when compared with traditional metal structures requires changes in the NDT procedures \cite{Riegert2006}. One old technique which is used widely for aerospace composites is ultrasonic testing \cite{Garnier2011}. Another technique which has been developed more recently than ultrasonic testing is microwave/mm-wave imaging, which may hold promises in various NDT applications \cite{Kharkovsky2007}.
+	Nondestructive testing has been ... In industries with high demands for quality and safety, NDT is often a necessity. Aerospace is such an industry and has utilized NDT for a long time. \addref Modern aircraft increasingly use composite materials due to superior properties such as low weight \cite{Katunin2015}. The difference of these materials when compared with traditional metal structures requires changes in the NDT procedures \cite{Riegert2006}. One old technique which is used widely for aerospace composites is ultrasonic testing \cite{Garnier2011}. Another technique which has been developed more recently than ultrasonic testing is microwave/mm-wave imaging, which may hold promises in various NDT applications \cite{Kharkovsky2007}.
 	
 	\subsection{Ultrasonic testing}
 	
@@ -152,12 +165,12 @@
 	\section{Aerospace Composites}
 	
 	\section{Acousto-EM in Established Technology}
-	Interaction between acoustics and electromagnetism has been known of for a long time \todo{citation needed}. Beyond knowledge of the phenomena there are also applications in technology which are investigated in this section. Two examples are given: acousto-optics and the Radio Acoustic Sounding System. These operate at very different frequencies (both acoustic and electromagnetic) which can be of interest when investigating the possibility of using mm-wave frequencies.
+	Interaction between acoustics and electromagnetism has been known of for a long time \addref. Beyond knowledge of the phenomena there are also applications in technology which are investigated in this section. Two examples are given: acousto-optics and the Radio Acoustic Sounding System. These operate at very different frequencies (both acoustic and electromagnetic) which can be of interest when investigating the possibility of using mm-wave frequencies.
 	
 	\subsection{Acousto-Optics}
 	
 	\subsection{Radio Acoustic Sounding System}
-	One application of acousto-electromagnetic interaction can be found in meteorology through the Radio Acoustic Sounding System (RASS). The purpose of the system is to utilize the interaction between radio and acoustic waves for temperature sounding of the atmosphere \todo{Find some nice review article or something}.
+	One application of acousto-electromagnetic interaction can be found in meteorology through the Radio Acoustic Sounding System (RASS). The purpose of the system is to utilize the interaction between radio and acoustic waves for temperature sounding of the atmosphere \todoint{Find some nice review article or something}.
 	This mechanism has not only been used in optics, but also in radio meteorology through the Radio Acoustic Sounding System (RASS) \cite{Buerkle2007}. This indicates that the wavelength dependence described above can be offset by other factors to still give a measurable scattered signal. The system is used for temperature sounding since the speed of sound depends on temperature. The Bragg scattering condition is thus affected by a temperature change \cite{Marshall1972}. The systems are usually designed with electromagnetic and acoustic wave sources approximately co-located \cite{Marshall1972}. This corresponds to an angle $\theta \approx 90^\circ$, which changes the Bragg condition to
 	\begin{equation*}
 	\Lambda = \frac{\lambda}{2}
@@ -168,19 +181,17 @@
 	\section{Overview of Interaction Mechanisms}
 	
 	\subsection{Target Boundary Perturbation}
-	This mechanism is based on a discrete target under acoustic resonance. The resonance of the target leads to vibration, which is seen as a time-dependent boundary perturbation \cite{Buerkle2007}. This is seen in the scattered signal as a frequency shift by the vibration frequency \cite{Sarabandi2003}. \todo{More details on the Radlab stuff. Also describe why this is not used.}
-	
-	\todo[inline]{Move micro-Doppler to another section}
-	The frequency shift mentioned earlier is due to the micro-Doppler effect, which describes effects of targets with rotation or vibration \cite{Buerkle2007}. A vibrating target then causes frequency modulation of the scattered electromagnetic wave. \cite{Chen2006}. For a stationary target this corresponds to a signal with a strong frequency component at $f_c$ and weaker sidebands at $f_c \pm n f_v$ where $n=1$ are the strongest (carrier frequency $f_c$, variation frequency $f_v$, positive integers $n$). The amplitudes of the spectral lines are given by Bessel functions $J_n(B)$, where $B \sim (4\pi/\lambda)D_v$ \cite{Chen2006}. $D_v$ is the amplitude of vibration which is usually small (on the order of $\mu$m) \cite{Buerkle2007}\cite{Top2014}. For small values of $B$ the central component will dominate, and the first Doppler component will be much more prominent than the others. Therefore it makes sense that this first component is the one considered in the literature \cite{Buerkle2007}.
+	This mechanism is based on a discrete target under acoustic resonance. The resonance of the target leads to vibration, which is seen as a time-dependent boundary perturbation \cite{Buerkle2007}. This is seen in the scattered signal as a frequency shift by the vibration frequency \cite{Sarabandi2003}. \todoint{More details on the Radlab stuff. Also describe why this is not used.}
 	
 	\subsection{Localized Harmonic Motion}
-	This mechanism is similar to boundary perturbation in that it is based on scattering from harmonic motion. The difference is that harmonic motion is introduced in a bulk material instead of a resonating discrete target. The mechanism has been utilized in the medical method of vibro-acoustography and harmonic motion imaging \cite{Wang2018}. Both techniques use amplitude modulated ultrasound to produce a time-harmonic acoustic radiation force in a localized region of a sample. \todo{Some more on ARF} This force then generates time-harmonic displacement, or vibration. In the acoustic methods the vibrating region emits acoustic waves which can be detected \cite{Fatemi1998}\cite{Konofagou2003}.
+	This mechanism is similar to boundary perturbation in that it is based on scattering from harmonic motion. The difference is that harmonic motion is introduced in a bulk material instead of a resonating discrete target. The mechanism has been utilized in the medical method of vibro-acoustography and harmonic motion imaging \cite{Wang2018}. Both techniques use amplitude modulated ultrasound to produce a time-harmonic acoustic radiation force in a localized region of a sample. \todoint{Some more on ARF} This force then generates time-harmonic displacement, or vibration. In the acoustic methods the vibrating region emits acoustic waves which can be detected \cite{Fatemi1998}\cite{Konofagou2003}.
 	
 	An electromagnetic wave incident towards the vibrating region will scatter with a frequency shift which corresponds to the frequency of vibration \cite{Top2014}. This is very similar to the boundary perturbation mechanism described before.
 	
 	There are two methods of generating radiation force locally. The first method uses amplitude modulated focused ultrasound with its focus on the region of interest \cite{Top2016}. Since amplitude modulated ultrasound exists throughout the beam a force is generated in that entire region. However, the intensity is much higher in the focus so the force is stronger there. The second method instead uses two single-frequency ultrasonic beams which intersect at the region of interest. The frequencies of the two beams differ by a small amount $\Delta \Omega$. Superposition at the intersection will then generate localized amplitude modulation by half the difference frequency $\Delta \Omega/2$. However, the acoustic radiation force is determined by the energy density of the wave. This is proportional to the square of the acoustic field, which changes the frequency of interest by a factor 2. The frequency of the acoustic radiation force is then the difference frequency $\Delta \Omega$ \cite{Fatemi1998}.
 	
-	\subsection{Acousto-Optics}\todo{fix this stuff - lots of "old" stuff that isn't very nice to present here. I know much more than when I wrote this...}
+	\subsection{Acousto-Optics}\todoint{fix this stuff - lots of "old" stuff that isn't very nice to present here. I know much more than when I wrote this...}
+	\todoext{Needs to be rewritten since it was written very early in the thesis work, and I don't want to present it in this way.}
 	This mechanism is the one used in the theory of acousto-optics \cite{Saleh2007}\cite{Korpel1981}. The main idea is that there is a relation between the strain in a material and its index of refraction. Since an acoustic wave consists of periodic compression and rarefaction in a medium (which can be related to strain), a consequence is that the index of refraction varies with the same period \cite{Saleh2007}. Due to Fresnel reflection, this periodic structure of varying index of refraction acts as a Bragg reflector scattering incident light. The Bragg condition determines the angle of incidence $\theta_B$ required for the light
 	\begin{equation*}
 	\sin{\theta_B} = \frac{\lambda}{2\Lambda}
@@ -194,18 +205,18 @@
 	%	where $\lambda_0$ is vacuum light wavelength, $L/\sin{\theta}$ is the oblique distance of light penetration (approximately), $\mathcal{M}$ is a material parameter and $I_s$ is the acoustic intensity \cite{Saleh2007}. Alternatively, the Bragg condition can be used for the equation
 	\begin{equation*}
 	\mathcal{R} = 2\pi^2n^2 \frac{L^2 \Lambda^2}{\lambda_0^4} \mathcal{M}I_s
-	\end{equation*} \todo{Refine this segment on reflectance and stuff, it's not very coherent}
+	\end{equation*} \todoint{Refine this segment on reflectance and stuff, it's not very coherent}
 	where $n$ is the unperturbed index of refraction, $L$ is the distance of overlap between light and acoustic waves in the acoustic wave direction, $\Lambda$ is the acoustic wavelength, $\lambda_0$ is the vacuum light wavelength, $\mathcal{M}$ is a material parameter and $I_s$ is the acoustic intensity \cite{Saleh2007}. For intense acoustic waves a correction is necessary, giving $\mathcal{R}_e = \sin{^2\sqrt{\mathcal{R}}}$ \cite{Saleh2007}.
 	
 	The interesting part when it comes to microwave frequencies, however, is the denominator in the first equation. The factor $1/\lambda_0^4$ might be a reason of concern when moving away from the optical regime. Since the wavelength is much longer for mm-waves there should be a large decrease in reflectance, and if too large the scattered signal could be undetectable. However, some examples for optical wavelengths give $\mathcal{R}_e = 0.192$ \cite{Saleh2007}, which is very large when compared with what can be detected in radar \cite{Richards2012}. There are also other variables such as $L$ and $\Lambda$ which might be changed to give a higher reflectance. If the different parameters can be selected to give a scattered signal above the noise floor is a very interesting question which needs to be investigated.
 	
 	\subsection{Scatterer Displacement}
-	This is a mechanism mostly presented in the field of ultrasound-optical tomography (UOT). The mechanism is based on dynamic multiple scattering of light, which occurs if many scatterers undergoing Brownian motion are considered \cite{Leutz1995}. If an ultrasonic beam is incident on such a sample the scatterers will move due to both Brownian motion and ultrasound, giving rise to a frequency shift in affected photons \cite{Leutz1995}\cite{Elson2011}. In medical applications, movement of the scatterers due to acoustic waves is very straight-forward: their displacement directly follows the acoustic wave \cite{Leutz1995}. This might well be the case for small scatterers which are then part of the wave, but for larger scatterers it gets more complicated. In that case, acoustic radiation force has to be considered for scatterer movement \cite{Torr1984}. \todo{Double check some things on movement of small vs. big scatterers}
+	This is a mechanism mostly presented in the field of ultrasound-optical tomography (UOT). The mechanism is based on dynamic multiple scattering of light, which occurs if many scatterers undergoing Brownian motion are considered \cite{Leutz1995}. If an ultrasonic beam is incident on such a sample the scatterers will move due to both Brownian motion and ultrasound, giving rise to a frequency shift in affected photons \cite{Leutz1995}\cite{Elson2011}. In medical applications, movement of the scatterers due to acoustic waves is very straight-forward: their displacement directly follows the acoustic wave \cite{Leutz1995}. This might well be the case for small scatterers which are then part of the wave, but for larger scatterers it gets more complicated. In that case, acoustic radiation force has to be considered for scatterer movement \cite{Torr1984}. \todoint{Double check some things on movement of small vs. big scatterers}
 	
 	It is interesting to see if this mechanism holds any relevance when it comes to microwave frequencies. The assumption on which the theory rests is that of dynamic multiple light scattering \cite{Leutz1995}. In the existing mm-wave imaging system there is an assumption of sparse defects being the only scatterers \cite{Helander2017}. This is in complete contrast to the theory of dynamic multiple light scattering, which is based on a large number of moving scatterers \cite{Leutz1995}. Since the basic assumptions of the problem and theory are in such stark contrast, it seems likely that this interaction mechanism holds little relevance to the problem at hand.
 	
 	\section{Ultrasonic Propagation}
-	\todo[inline]{See if what's written below works as is or needs editing. It's just copy-pasted from the review doc. Probably need to add even more info than this as well}
+	\todoint[inline]{See if what's written below works as is or needs editing. It's just copy-pasted from the review doc. Probably need to add even more info than this as well}
 	
 	\subsection{Background stuff on ultrasound}
 	This subject is of interest to both phenomena of localized harmonic motion and photoelastic interaction. Since ultrasound is used for some type of interaction with electromagnetic waves, it is important to understand that part of the problem. In many NDT applications the ultrasonic waves are generated in some transducer, coupled into a fluid medium and then coupled further into the solid medium of the test object \cite{Schmerr2016}. This requires knowledge of wave propagation in both fluid and solid media, which requires two different approaches: acoustics and elastodynamics.	
@@ -220,7 +231,7 @@
 	This model is directly useful for NDT in some cases. One is in immersion testing, where a test object is immersed in water and ultrasound propagates through the water into the object \cite{Schmerr2016}. The other is in coupling ultrasound from a transducer to an object through a thin layer of coupling fluid \cite{Schmerr2016}. However, this model is also useful for understanding one special case of propagation in an elastic solid. This will be described in the following part.
 	
 	\subsection{Propagation in solid medium - elastic waves}
-	In an elastic medium the acoustic model is no longer sufficient. The acoustic model considers only pressure since one main assumption for volume elements in the fluid is that they only transmit force in the direction of the force \cite{Kaufman2000}. The volume elements in an elastic solid are more strongly coupled to each other, and this assumption does not hold anymore \cite{Kaufman2005}. The equations for elastic waves are instead based on solid mechanics. There is no simple wave equation as in acoustics, instead the complete model is described by Navier's equations
+	In an elastic medium the acoustic model is no longer sufficient. The acoustic model considers only pressure since one main assumption for volume elements in the fluid is that they only transmit force in the direction of the force \cite{Kaufman2000}. The volume elements in an elastic solid are more strongly coupled to each other, and this assumption does not hold anymore \cite{Kaufman2005}. The equations for elastic waves are instead based on solid mechanics. There is no simple wave equation as in acoustics, instead the model is described by Navier's equations
 	\begin{equation*}
 	\mu \nabla^2 \bm{u} + (\lambda+\mu) \nabla (\nabla \cdot \bm{u}) + \bm{f} = \rho_0 \frac{\partial^2 \bm{u}}{\partial t^2}
 	\end{equation*}
@@ -242,61 +253,73 @@
 	
 	The elastic waves described above are called bulk waves since they are only fully describe waves in the bulk of an elastic solid \cite{Kaufman2005}. Other wave phenomena exist such as surface waves (Rayleigh, Stoneley, Love) \cite{Kaufman2005} and plate waves (SH, Lamb) \cite{Schmerr2016}. These waves are not insignificant and are used in some branches of ultrasonic testing \cite{Schmerr2016}. However, only bulk waves are considered here and then mostly p-waves.
 	
-	\todo[inline]{Mode conversion is probably important to mention}
+	\todoint[inline]{Mode conversion is probably important to mention}
 	
 	\subsection{Acoustic intensity and relations between quantities}
-	\todo[inline]{This is a bit of a mess... Need to find good references for everything and standardize notation a bit. The notation needs to be standardized overall, but for some reason the clashes are very apparent here}
-	An acoustic wave is usually described using pressure, but it is possible to describe the wave as a periodic displacement of particles. If a plane wave propagating in x is considered, the relation between pressure and displacement amplitudes is then
+	\todoint[inline]{This is a bit of a mess... Need to find good references for everything and standardize notation a bit. The notation needs to be standardized overall, but for some reason the clashes are very apparent here}
+	An acoustic wave is usually described using pressure, but it is possible to relate this to a displacement of the particles involved. The relation between pressure and displacement can be written as \cite{Schmerr2016}
 	\begin{equation*}
-		p_{max} = \rho_0 v \Omega d_{max} = q \rho_0 v^2 u_{max}
+		-\nabla p + \bm{f} = \rho_0 \frac{\partial^2 \bm{u}}{\partial t^2}
 	\end{equation*}
-	where $p_{max}$ is the pressure amplitude, $\rho_0$ is the unperturbed density of the medium, $v$ is the wave velocity, $\Omega$ is the angular frequency, $d_{max}$ is the displacement amplitude and $q$ is the wavenumber. \todo{Citation needed for all of this!}
+	If the body force is set to zero, $\bm{f} = \bm{0}$, and a plane wave is considered, $p(\bm{r}, t) = p_p \cos(\Omega t - qx)$, the equation can be written as
+	\begin{equation*}
+		\frac{\partial^2 \bm{u}}{\partial t^2} = -\frac{p_p q}{\rho_0} \sin(\Omega t - qx) \bm{\hat{x}}
+	\end{equation*}
+	This is integrated twice with respect to time to obtain the displacement vector
+	\begin{equation*}
+		\bm{u}(\bm{r}) = \frac{p_p q}{\rho_0 \Omega^2} \sin(\Omega t - qx) \bm{\hat{x}} + \bm{A}(\bm{r})t + \bm{B}(\bm{r})
+	\end{equation*}
+	The functions $\bm{A}(\bm{r})$ and $\bm{B}(\bm{r})$ are results of the integration. If the particle velocity $\partial \bm{u}/\partial t$ is assumed to be zero in the absence of an acoustic wave, $\bm{A}(\bm{r})$ must be zero. Similarly, if the particle displacement $\bm{u}$ is assumed to be zero in the absence of an acoustic wave and $\bm{A}(\bm{r}) = \bm{0}$, $\bm{B}(\bm{r})$ must be zero as well. The remainder of the RHS is a plane wave as the original pressure, but with a phase shift. The amplitudes of the pressure and displacement waves can now be related as
+	\begin{equation*}
+		p_p = \frac{\rho_0 \Omega^2}{q} u_p = q \rho_0 v^2 u_p
+	\end{equation*}
 	
 	In photoelasticity the strain in a material is related to dielectric properties. Strain is relative displacement and it is therefore possible to relate a strain amplitude to the displacement amplitude of an acoustic wave. A plane displacement wave is introduced as
 	\begin{equation*}
-		u_x (x,t) = u_0 \cos(\Omega t - qx)
+		u_x (x,t) = u_p \cos(\Omega t - qx)
 	\end{equation*}
 	The only strain resulting from this wave is linear in $x$, and can be written as
 	\begin{equation*}
-		e_{xx} = \frac{\partial u_x}{\partial x} = qu_0 \sin(\Omega t - qx)
+		s_{xx} = \frac{\partial u_x}{\partial x} = qu_p \sin(\Omega t - qx)
 	\end{equation*}
 	It can be seen that this is also a plane wave in $x$ (with a phase shift relative to the displacement wave) and the strain amplitude can be written as
 	\begin{equation*}
-		e_0 = qu_0
+		s_p = qu_p
 	\end{equation*}
 	
 	A common quantity for strength of acoustic waves in fluids is sound pressure level (SPL) which is measured in dB an defined as
 	\begin{equation*}
 		L_p = 20 \log_{10}{\frac{p}{p_0}}
 	\end{equation*}
-	$p_0$ is a reference pressure which is defined as 20 $\mu$Pa in air. \todo{Citation needed for all this}
+	$p_0$ is a reference pressure which is defined as 20 $\mu$Pa in air \cite{Rossing2014}.
 	
-	For ultrasound it is sometimes more common to use acoustic intensity instead of SPL, especially if the propagation is not in air. This is defined as the time-average of the acoustic power per cross-sectional area. \todo{citation} It can be related to the strain amplitude as \cite{Saleh2007}
+	For ultrasound it is sometimes more common to use acoustic intensity instead of SPL, especially if the propagation is not in air. This is often taken as the time-average of the acoustic power per unit area in the propagation direction \cite{Rossing2014}. It can be related to the strain amplitude as \cite{Saleh2007}
 	\begin{equation*}
-		I_s = \frac{1}{2} \rho_0 v^3 e_0^2
+		I_s = \frac{1}{2} \rho_0 v^3 s_p^2
 	\end{equation*}
 	
 	\section{Photoelastic Interaction}
 	
 	\subsection{Overview}
-	\todo[inline]{Explain clearly that this is acousto-optics, but derived directly from Maxwell and without the word "optics" in the name}
+	\todoint[inline]{Explain clearly that this is acousto-optics, but derived directly from Maxwell and without the word "optics" in the name}
+	\todoint[inline]{All strains on form $S_j$ have been changed to $s_j$ to standardize notation}
 	
 	\subsection{Photoelasticity}
 	To understand how the interaction between the two wave phenomena works, the first step is to understand how an acoustic or elastic wave affects electromagnetic properties. The theory of photoelasticity relates strains from linear elasticity with the relative permittivity of a material. With a starting point in solid mechanics, a tensor-based theory is somewhat inevitable. However, a simplified model is shown later which condenses the tensor relations down to a scalar relation.
-	\todo[inline]{Theory describing relation between solid (continuum?) mechanics and dielectric properties}
+	\todoint[inline]{Theory describing relation between solid (continuum?) mechanics and dielectric properties}
 	
 	A starting point can be found in the literature on acousto-optics in the relation \cite{Korpel1988}
 	\begin{equation*}
-	\Delta \left( \frac{1}{n_i^2} \right) = p_{ij} S_j
+	\Delta \left( \frac{1}{n_i^2} \right) = p_{ij} s_j
 	\end{equation*}
-	where $S_j$ are strains and $i,j = 1,...,6$. The double indexation of $j$ in both $p$ and $S$ indicates a summation over $j$. This can seem a bit troublesome to use since the LHS is the difference of an inverse quantity. This can be rewritten as shown below
+	where $s_j$ are strains and $i,j = 1,...,6$. The double indexation of $j$ in both $p$ and $e$ indicates a summation over $j$. This can seem a bit troublesome to use since the LHS is the difference of an inverse quantity. This can be rewritten as shown below
 	\begin{align*}
 	\alpha &= \frac{1}{n_i^2},\ n_i = \alpha^{-1/2} \\
-	\Delta n_i &= \frac{\mathrm{d}n_i}{\mathrm{d}\alpha} \Delta \alpha = -\frac{1}{2} \alpha^{-3/2} \Delta \alpha = -\frac{1}{2} n_i^3 p_{ij} S_j
+	\Delta n_i &= \frac{\mathrm{d}n_i}{\mathrm{d}\alpha} \Delta \alpha = -\frac{1}{2} \alpha^{-3/2} \Delta \alpha = -\frac{1}{2} n_i^3 p_{ij} s_j
 	\end{align*}
 	The refractive index and relative permittivity are related by $\varepsilon_{r_i} = n_i^2$ in a non-magnetic material. To obtain the change in relative permittivity instead of refractive index
 	\begin{equation*}
-	\Delta \varepsilon_{r_i} = \frac{\mathrm{d}\varepsilon_{r_i}}{\mathrm{d}n_i} \Delta n_i = 2n_i \Delta n_i = -n_i^4 p_{ij} S_j = -\varepsilon_{r_i}^2 p_{ij} S_j
+	\Delta \varepsilon_{r_i} = \frac{\mathrm{d}\varepsilon_{r_i}}{\mathrm{d}n_i} \Delta n_i = 2n_i \Delta n_i = -n_i^4 p_{ij} s_j = -\varepsilon_{r_i}^2 p_{ij} s_j
 	\end{equation*}
 	
 	The tensor notation used above is a simplified form described by the 1949 IRE standards. The relation to full tensor notation is shown below for an arbitrary tensor $a$ \cite{Korpel1988}
@@ -304,7 +327,7 @@
 	a_1 &= a_{11},\ a_2 = a_{22},\ a_3 = a_{33}, \\
 	a_4 &= a_{23},\ a_5 = a_{31},\ a_6 = a_{12}
 	\end{align*}
-	If the strains are considered, it is clear that indices 1-3 are tensile and 4-6 are shear. For the photoelastic tensor it can be seen that it is of rank 4, being $p_{ijkl}$ in standard notation. One thing to note is that the 4 indices in standard notation should allow for many more components of the photoelastic tensor than those possible using this compact notation (81 instead of 36). This is due to symmetry of the photoelastic tensor in this particular model. \todo{Citation needed} It should also be noted that this model does break down in some cases, and more advanced descriptions of the phenomena exist \cite{Nelson1971}. However, this model was considered advanced enough as a starting point for this problem, especially since it is quite heavily simplified in the end.
+	If the strains are considered, it is clear that indices 1-3 are tensile and 4-6 are shear. For the photoelastic tensor it can be seen that it is of rank 4, being $p_{ijkl}$ in standard notation. One thing to note is that the 4 indices in standard notation should allow for many more components of the photoelastic tensor than those possible using this compact notation (81 instead of 36). This is due to symmetry of the photoelastic tensor in this particular model. \addref It should also be noted that this model does break down in some cases, and more advanced descriptions of the phenomena exist \cite{Nelson1971}. However, this model was considered advanced enough as a starting point for this problem, especially since it is quite heavily simplified in the end.
 	
 	This model of the photoelastic tensor allows for up to 36 independent components, but for the simple case of an isotropic solid the tensor simplifies to \cite{Korpel1988}
 	\begin{align*}
@@ -313,12 +336,12 @@
 	\end{align*}
 	
 	The simplest material to consider would be an isotropic solid with isotropic permittivity $\varepsilon_r$. There is then no preferred axis and a coordinate system can be selected arbitrarily. A longitudinal acoustic wave is defined by \begin{equation*}
-	S_1(x_1,t) = \delta_{11}(x_1,t) = S_0 \cos(\Omega t - qx_1)
+	s_1(x_1,t) = s_p \cos(\Omega t - qx_1)
 	\end{equation*}
-	It is propagating in the $x_1$ direction and is thus a strain $S_1$, and all other strains are assumed to be zero. The relation $\Delta \varepsilon_{r_i} = -\varepsilon_{r_i}^2 p_{ij} S_j$ together with the photoelastic tensor for isotropic solids then gives
+	It is propagating in the $x_1$ direction and is thus a strain $e_1$, and all other strains are assumed to be zero. The relation $\Delta \varepsilon_{r_i} = -\varepsilon_{r_i}^2 p_{ij} s_j$ together with the photoelastic tensor for isotropic solids then gives
 	\begin{align*}
-	\Delta \varepsilon_{r_1} &= -\varepsilon_r^2 p_{11} S_0 \cos(\Omega t - qx_1)\\
-	\Delta \varepsilon_{r_2} &= \varepsilon_{r_3} = -\varepsilon_r^2 p_{12} S_0 \cos(\Omega t - qx_1)
+	\Delta \varepsilon_{r_1} &= -\varepsilon_r^2 p_{11} s_p \cos(\Omega t - qx_1)\\
+	\Delta \varepsilon_{r_2} &= \varepsilon_{r_3} = -\varepsilon_r^2 p_{12} s_p \cos(\Omega t - qx_1)
 	\end{align*}
 	It is clear that the permittivity now has an axis $x_1$ where it has another value than in $x_2$ and $x_3$. So even for a material which is nominally completely isotropic, a preferred axis arises for the permittivity! This type of anisotropy is called birefringence in optics, and in this case it is caused by dipoles aligning themselves parallel to the strain \cite{Korpel1988}. Practically, the effect of this is that the interaction strength of this mechanism depends on the EM polarization with respect to the acoustic wave polarization. In longitudinal acoustic waves the polarization and propagation direction coincide, which makes analysis easier.
 	
@@ -327,30 +350,30 @@
 	p_{11} &= p_{22} = p_{33} = p_{12} = p_{21} = p_{13} = p_{23} = p_{32} = \mathfrak{p}\\
 	p_{ij} &= 0 \text{ for others}
 	\end{align*}
-	where $\mathfrak{p}$ was introduced as a scalar photoelastic constant. One thing to note is that since $p_{33} = p_{44} = p_{55} = 0$, shear strain does not have any effect in this simplified model. If the unperturbed permittivity is isotropic, a scalar relation can be written as $\Delta \varepsilon_r = -\varepsilon_r^2 \mathfrak{p} S$. Here $\Delta \varepsilon_r$ is the isotropic change in relative permittivity and $S$ is a tensile strain in any direction. For clarity, it can be good to note that $\Delta \varepsilon_r$ is denoted $\varepsilon_1$ in other sections of this work.
+	where $\mathfrak{p}$ was introduced as a scalar photoelastic constant. One thing to note is that since $p_{33} = p_{44} = p_{55} = 0$, shear strain does not have any effect in this simplified model. If the unperturbed permittivity is isotropic, a scalar relation can be written as $\Delta \varepsilon_r = -\varepsilon_r^2 \mathfrak{p} \Delta$. Here $\Delta \varepsilon_r$ is the isotropic change in relative permittivity and $\Delta$ is the dilatation, which in Cartesian coordinates can be written as $\Delta = s_x + s_y + s_z$ \cite{Schmerr2016}. For clarity, it can be good to note that $\Delta \varepsilon_r$ is denoted $\varepsilon_1$ in other sections of this work.
 	
 	To obtain a model for calculating this simplified constant $\mathfrak{p}$, another starting point for the problem is utilized. This is the Lorentz-Lorenz relation, which can be used to obtain the following equations for photoelasticity \cite{Korpel1988}
 	\begin{align*}
-	\Delta n &= C' s \\
+	\Delta n &= C' S \\
 	C' &= \left[ \frac{(n^2-1)(n^2+2)}{6n} \right](1-\Lambda_0) \\
 	\Lambda_0 &= -\left( \frac{\rho}{\alpha} \right) \frac{\mathrm{d} \alpha}{\mathrm{d} \rho}
 	\end{align*}
-	where $\rho$ is the density and $\alpha$ is the molecular polarizability. Here the anisotropic effects are contained in the parameter $\Lambda_0$ \cite{Korpel1988}. If anisotropy should be considered, the tensor model is probably better to use, but if $\Lambda_0$ is neglected a simplified model is obtained. This type of model is usually accurate for liquids, but many solids do not have this behavior \cite{Korpel1988}. Nevertheless, the simplified relation can be written for permittivity (using $\varepsilon_r = n^2$ and $\Delta \varepsilon_r = 2n \Delta n$) as
+	where $S$ is the condensation (relative change in density), $\rho$ is the density and $\alpha$ is the molecular polarizability. Here the anisotropic effects are contained in the parameter $\Lambda_0$ \cite{Korpel1988}. If anisotropy should be considered, the tensor model is probably better to use, but if $\Lambda_0$ is neglected a simplified model is obtained. This type of model is usually accurate for liquids, but many solids do not have this behavior \cite{Korpel1988}. Nevertheless, the simplified relation can be written for permittivity (using $\varepsilon_r = n^2$ and $\Delta \varepsilon_r = 2n \Delta n$) as
 	\begin{equation*}
-	\Delta \varepsilon_r = \frac{1}{3} (\varepsilon_r - 1)(\varepsilon_r + 2) s
+	\Delta \varepsilon_r = \frac{1}{3} (\varepsilon_r - 1)(\varepsilon_r + 2) S
 	\end{equation*}
-	This can be compared with the previous relation $\Delta \varepsilon_r = -\mathfrak{p}\varepsilon_r^2 S$ to obtain an equivalent photoelasticity
+	This can be compared with the previous relation $\Delta \varepsilon_r = -\mathfrak{p}\varepsilon_r^2 e$ to obtain an equivalent photoelasticity \todoint{Check similarity between condensation (relative density change) and dilatation (relative volume change, div of displacements, sum of linear strains)}
 	\begin{equation*}
 	\mathfrak{p} = -\frac{(\varepsilon_r - 1)(\varepsilon_r + 2)}{3\varepsilon_r^2}
 	\end{equation*}
-	A plot of $\mathfrak{p}$ as a function of $\varepsilon_r$ is shown in figure \ref{fig:photoelastic-liquid}. It can be seen clearly that the interaction strength increases with $\varepsilon_r$ close to 1. However, at around $\varepsilon_r = 4$ an extreme is reached, and further on $\mathfrak{p}$ planes out. Thus, there is a bound on the interaction strength for this relation. It should be noted that this model is extremely simplistic and will probably give faulty results in many cases. \todo{Maybe write about the figure more in detail}
+	A plot of $\mathfrak{p}$ as a function of $\varepsilon_r$ is shown in figure \ref{fig:photoelastic-liquid}. It can be seen clearly that the interaction strength increases with $\varepsilon_r$ close to 1. However, at around $\varepsilon_r = 4$ an extreme is reached, and further on $\mathfrak{p}$ planes out. Thus, there is a bound on the interaction strength for this relation. It should be noted that this model is extremely simplistic and will probably give faulty results in many cases.
 	\begin{figure}[h]
 		\centering
 		\input{photoelastic-liquid.pgf}
 		\caption{\label{fig:photoelastic-liquid} Simplified photoelastic constant $\mathfrak{p}$ as a function of $\varepsilon_r$.}
 	\end{figure}
 	
-	\todo[inline]{Relate back to acousto-optics. Especially in this scalar simplified model since that is similar to what is presented in Saleh.}
+	\todoint[inline]{Relate back to acousto-optics. Especially in this scalar simplified model since that is similar to what is presented in Saleh.}
 	
 	\section{Localized Harmonic Motion}
 	
@@ -359,6 +382,8 @@
 	\subsection{Acoustic Radiation Force}
 	
 	\subsection{The Micro-Doppler Effect}
+	\todoint[inline]{Rewrite this, comes from another section}
+	The frequency shift mentioned earlier is due to the micro-Doppler effect, which describes effects of targets with rotation or vibration \cite{Buerkle2007}. A vibrating target then causes frequency modulation of the scattered electromagnetic wave. \cite{Chen2006}. For a stationary target this corresponds to a signal with a strong frequency component at $f_c$ and weaker sidebands at $f_c \pm n f_v$ where $n=1$ are the strongest (carrier frequency $f_c$, variation frequency $f_v$, positive integers $n$). The amplitudes of the spectral lines are given by Bessel functions $J_n(B)$, where $B \sim (4\pi/\lambda)D_v$ \cite{Chen2006}. $D_v$ is the amplitude of vibration which is usually small (on the order of $\mu$m) \cite{Buerkle2007}\cite{Top2014}. For small values of $B$ the central component will dominate, and the first Doppler component will be much more prominent than the others. Therefore it makes sense that this first component is the one considered in the literature \cite{Buerkle2007}.
 	
 	\chapter{Analytical Modeling \label{ch:analytical}}
 	
@@ -443,6 +468,7 @@
 	\end{equation*}
 	
 	\section{Radar equation for simple photoelastic interaction \label{sec:analytical-radar}}
+	\todoint[inline]{Changed S to e for strains}
 	The scattering integral is now solved for a simple geometry and material model to obtain a radar equation. A full derivation can be found in \ref{sec:app-derivations-radar} while some parts have been shortened here for readability. First, the geometry is defined as shown in figure \ref{fig:radareq-geom-main}.
 	\begin{figure}[h]
 		\centering
@@ -452,7 +478,7 @@
 	The $xy$-plane is defined as the plane formed by the acoustic and electromagnetic wavevectors (they are assumed to be non-parallel). The scattering volume is a cuboid with dimensions $L_x$, $L_y$ and $L_z$. It is centered in the origin of the coordinate system, and both the acoustic and electromagnetic waves are approximated as plane waves close to the origin. Thus, the electromagnetic and dielectric perturbation fields near the origin are defined as
 	\begin{align*}
 	\bm{E}_i (\bm{r}',t) &= \bm{E}_i (\bm{r}') = \bm{E}_{i0} e^{i\bm{k}\cdot\bm{r}'} \\
-	\varepsilon_1 (\bm{r}',t) &= -\mathfrak{p} \varepsilon_r^2 S_0 \cos(\bm{q} \cdot \bm{r}' - \Omega t)
+	\varepsilon_1 (\bm{r}',t) &= -\mathfrak{p} \varepsilon_r^2 s_p \cos(\bm{q} \cdot \bm{r}' - \Omega t)
 	\end{align*}
 	Here, $\bm{E}_{i0}$ is the complex field amplitude at the origin ($-i\omega t$ time-dependence separated) and $\bm{k}$ is the electromagnetic wavevector. A scalar photoelastic relation has been assumed, where $\mathfrak{p}$ is the photoelastic constant, $S_0$ is the acoustic strain amplitude at the origin, $\bm{q}$ is the acoustic wavevector and $\Omega$ the acoustic frequency.
 	
@@ -462,7 +488,7 @@
 	\end{equation*}
 	The field expressions are now inserted, and with a far-field approximation and expansion of the cosine as complex exponentials the integral is written as
 	\begin{equation*}
-	\bm{E}_{sc}(\bm{r},t) = -\frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \bm{E}_{i0} \mathfrak{p} S_0 \left( e^{-i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) + \bm{q} ) \cdot \bm{r}'} \mathrm{d}v + e^{i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) - \bm{q} ) \cdot \bm{r}'} \mathrm{d}v' \right)
+	\bm{E}_{sc}(\bm{r},t) = -\frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \bm{E}_{i0} \mathfrak{p} s_p \left( e^{-i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) + \bm{q} ) \cdot \bm{r}'} \mathrm{d}v + e^{i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) - \bm{q} ) \cdot \bm{r}'} \mathrm{d}v' \right)
 	\end{equation*}
 	The solution to this integral is written as (see \ref{sec:app-derivations-radar})
 	\begin{equation*}
@@ -470,7 +496,7 @@
 	\end{equation*}
 	where
 	\begin{equation*}
-	E_A^\pm (\bm{r},t) = \frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \mathfrak{p} S_0 L_x L_y L_z e^{\mp i\Omega t} \Phi^\pm (\theta,\phi)
+	E_A^\pm (\bm{r},t) = \frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \mathfrak{p} s_p L_x L_y L_z e^{\mp i\Omega t} \Phi^\pm (\theta,\phi)
 	\end{equation*}
 	and
 	\begin{multline*}
@@ -498,7 +524,7 @@
 	\end{equation*}
 	If the two frequency components are now considered individually,
 	\begin{equation*}
-	|E_A^\pm (\bm{r},t)|^2 =\frac{\varepsilon_r^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
+	|E_A^\pm (\bm{r},t)|^2 =\frac{\varepsilon_r^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 s_p^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
 	
 	Using standard antenna parameters, the incident field can be written as
@@ -507,7 +533,7 @@
 	\end{equation*}
 	where $P_T$ is the power accepted by the antenna, $G_T$ is the maximum gain of the antenna and $R_T$ is the distance from the antenna to the scattering center. This is inserted into the time-average of the power density, giving
 	\begin{equation*}
-	\left< \bm{S}_{sc} e^{-i\omega t} \right>^\pm = \bm{\hat{r}} \frac{P_T G_T}{4\pi R_T^2} \frac{\varepsilon_r^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
+	\left< \bm{S}_{sc} e^{-i\omega t} \right>^\pm = \bm{\hat{r}} \frac{P_T G_T}{4\pi R_T^2} \frac{\varepsilon_r^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 s_p^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
 	
 	Now the effects of the receiving antenna are considered. It is assumed that this antenna is optimally directed towards the scattering center. The received power is then
@@ -520,7 +546,7 @@
 	\end{equation*}
 	where $G_R$ is the gain of the receiving antenna. $\lambda_R$ should be the wavelength at the antenna here, which is not necessarily the same as in the material. Combining this with earlier results gives a received power of
 	\begin{equation*}
-	P_R^\pm = \frac{\lambda_R^2 G_R}{4\pi} \frac{P_T G_T}{4\pi R_T^2} \frac{\varepsilon_r^2 k^4}{64 \pi^2 R_R^2} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
+	P_R^\pm = \frac{\lambda_R^2 G_R}{4\pi} \frac{P_T G_T}{4\pi R_T^2} \frac{\varepsilon_r^2 k^4}{64 \pi^2 R_R^2} \mathfrak{p}^2 s_p^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
 	where $R_R$ is the distance between the scattering center and the receiver, and the receiver is located in the direction $(\theta,\phi)$ as seen from the scattering center. For a more traditional bistatic radar equation this can be written as
 	\begin{equation*}
@@ -528,7 +554,7 @@
 	\end{equation*}
 	with the radar cross-section given by
 	\begin{equation*}
-	\sigma^\pm (\theta, \phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
+	\sigma^\pm (\theta, \phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 s_p^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
 	
 	When actually measuring a signal, signal-to-noise ratio (SNR) is a more practical quantity than received power. The equation can be rewritten using SNR (see appendix \ref{app:derivations}) as:
@@ -548,20 +574,20 @@
 	\chapter{Numerical Simulation}
 	
 	\section{Background stuff}
-	\todo[inline]{Description of how different basic things (such as antennas and transducers) are modeled. Details on COMSOL and other similar stuff.}
+	\todoint[inline]{Description of how different basic things (such as antennas and transducers) are modeled. Details on COMSOL and other similar stuff.}
 	
 	\section{Verification of analytical model}
-	\todo[inline]{Description of how the simple scattering problem was modeled.}
+	\todoint[inline]{Description of how the simple scattering problem was modeled.}
 	
 	\section{Effect of voids}
-	\todo[inline]{Description of how voids were modeled. Relate to delaminations.}
+	\todoint[inline]{Description of how voids were modeled. Relate to delaminations.}
 	
 	\chapter{Results and Discussion}
 	
 	\section{Numerical Simulation Results}
 	
 	\subsection{Verification of analytical model}
-	\todo[inline]{Comparison of results from the simulation with the analytical model. Primarily a verification of the Bragg condition, but maybe also some comparison of the power levels.}
+	\todoint[inline]{Comparison of results from the simulation with the analytical model. Primarily a verification of the Bragg condition, but maybe also some comparison of the power levels.}
 	
 	\subsection{Effect of voids}
 	
@@ -656,7 +682,7 @@
 	\begin{equation*}
 	\nabla^2\bm{E}_{sc} + k^2 \bm{E}_{sc} =	-k^2 \frac{\varepsilon_1}{\varepsilon_r} \bm{E}_i -\frac{1}{\varepsilon_r}\nabla(\bm{E}_i \cdot \nabla \varepsilon_1) - \frac{2ik}{c\varepsilon_0\varepsilon_r} \frac{\partial (\varepsilon \bm{E}_i)}{\partial t} + \frac{1}{c^2 \varepsilon_0 \varepsilon_r} \frac{\partial^2 (\varepsilon \bm{E}_i)}{\partial t^2}
 	\end{equation*}
-	This is an inhomogeneous Helmholtz equation which under a Sommerfeld radiation condition has the solution \todo{citation needed}
+	This is an inhomogeneous Helmholtz equation which under a Sommerfeld radiation condition has the solution \addref
 	\begin{equation*}
 	\boxed{
 		\bm{E}_{sc}(\bm{r},t) = \int_{V_{sc}} \frac{e^{ik |\bm{r}-\bm{r'}| }}{4\pi |\bm{r}-\bm{r'}|} \left( -k^2 \frac{\varepsilon_1}{\varepsilon_r} \bm{E}_i -\frac{1}{\varepsilon_r}\nabla(\bm{E}_i \cdot \nabla \varepsilon_1) - \frac{2ik}{c\varepsilon_0\varepsilon_r} \frac{\partial (\varepsilon \bm{E}_i)}{\partial t} + \frac{1}{c^2 \varepsilon_0 \varepsilon_r} \frac{\partial^2 (\varepsilon \bm{E}_i)}{\partial t^2} \right) \mathrm{d}v'
@@ -732,9 +758,9 @@
 	The $xy$-plane is defined as the plane formed by the acoustic and electromagnetic wavevectors (they are assumed to be non-parallel). The scattering volume is centered in the origin of the coordinate system, and both the acoustic and electromagnetic waves are approximated as plane waves close to the origin. Thus, the electromagnetic and dielectric perturbation fields near the origin are defined as
 	\begin{align*}
 	\bm{E}_i (\bm{r}',t) &= \bm{E}_i (\bm{r}') = \bm{E}_{i0} e^{i\bm{k}\cdot\bm{r}'} \\
-	\varepsilon_1 (\bm{r}',t) &= -\mathfrak{p} \varepsilon_r^2 S_0 \cos(\bm{q} \cdot \bm{r}' - \Omega t)
+	\varepsilon_1 (\bm{r}',t) &= -\mathfrak{p} \varepsilon_r^2 s_p \cos(\bm{q} \cdot \bm{r}' - \Omega t)
 	\end{align*}
-	Here, $\bm{E}_{i0}$ is the complex field amplitude at the origin ($-i\omega t$ time-dependence separated) and $\bm{k}$ is the electromagnetic wavevector. A scalar photoelastic relation has been assumed, where $\mathfrak{p}$ is the photoelastic constant, $S_0$ is the acoustic strain amplitude at the origin, $\bm{q}$ is the acoustic wavevector and $\Omega$ the acoustic frequency.
+	Here, $\bm{E}_{i0}$ is the complex field amplitude at the origin ($-i\omega t$ time-dependence separated) and $\bm{k}$ is the electromagnetic wavevector. A scalar photoelastic relation has been assumed, where $\mathfrak{p}$ is the photoelastic constant, $s_p$ is the acoustic strain amplitude at the origin, $\bm{q}$ is the acoustic wavevector and $\Omega$ the acoustic frequency.
 	
 	For simplicity, the electromagnetic polarization is assumed to be in z, $\bm{E}_{i0} \parallel \bm{\hat{z}}$. This is also in part done to avoid polarization changes in the scattered field \cite{Korpel1988}. Due to this $\nabla(\bm{E}_i \cdot \nabla \varepsilon_1) = \bm{0}$ which simplifies the scattering integral to
 	\begin{equation*}
@@ -742,7 +768,7 @@
 	\end{equation*}
 	Insertion of the field expressions gives
 	\begin{equation*}
-	\bm{E}_{sc}(\bm{r},t) = -\frac{k^2}{4\pi\varepsilon_r} \int_{V_{sc}} \frac{e^{ik |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \bm{E}_{i0} e^{i\bm{k} \cdot \bm{r}'} \mathfrak{p} \varepsilon_r^2 S_0 \cos(\bm{q} \cdot \bm{r}' - \Omega t) \mathrm{d}v'
+	\bm{E}_{sc}(\bm{r},t) = -\frac{k^2}{4\pi\varepsilon_r} \int_{V_{sc}} \frac{e^{ik |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \bm{E}_{i0} e^{i\bm{k} \cdot \bm{r}'} \mathfrak{p} \varepsilon_r^2 s_p \cos(\bm{q} \cdot \bm{r}' - \Omega t) \mathrm{d}v'
 	\end{equation*}
 	Assuming far-field gives an approximation for the Green-function as \cite{Kristensson2008}
 	\begin{equation*}
@@ -750,11 +776,11 @@
 	\end{equation*}
 	where $r = |\bm{r}|$ and $\bm{\hat{r}} = \bm{r}/r$. The scattering integral is now written as
 	\begin{equation*}
-	\bm{E}_{sc}(\bm{r},t) = -\frac{\varepsilon_rk^2 e^{ikr}}{4\pi r} \bm{E}_{i0} \mathfrak{p} S_0 \int_{V_{sc}} e^{ik ( \bm{\hat{k}} - \bm{\hat{r}} ) \cdot \bm{r}'} \cos(\bm{q} \cdot \bm{r}' - \Omega t) \mathrm{d}v'
+	\bm{E}_{sc}(\bm{r},t) = -\frac{\varepsilon_rk^2 e^{ikr}}{4\pi r} \bm{E}_{i0} \mathfrak{p} s_p \int_{V_{sc}} e^{ik ( \bm{\hat{k}} - \bm{\hat{r}} ) \cdot \bm{r}'} \cos(\bm{q} \cdot \bm{r}' - \Omega t) \mathrm{d}v'
 	\end{equation*}
 	The cosine is now written as complex exponentials giving
 	\begin{equation*}
-	\bm{E}_{sc}(\bm{r},t) = -\frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \bm{E}_{i0} \mathfrak{p} S_0 \left( e^{-i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) + \bm{q} ) \cdot \bm{r}'} \mathrm{d}v + e^{i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) - \bm{q} ) \cdot \bm{r}'} \mathrm{d}v' \right)
+	\bm{E}_{sc}(\bm{r},t) = -\frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \bm{E}_{i0} \mathfrak{p} s_p \left( e^{-i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) + \bm{q} ) \cdot \bm{r}'} \mathrm{d}v + e^{i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) - \bm{q} ) \cdot \bm{r}'} \mathrm{d}v' \right)
 	\end{equation*}
 	The two integrals are of the same form, $\int e^{i\bm{A} \cdot \bm{r}'} \mathrm{d}v'$, where $\bm{A}$ is independent of $\bm{r}'$. This is solved in general below for the cuboid volume defined by $-L_m/2 \leq m \leq L_m/2$, $m = x,y,z$.
 	\begin{multline*}
@@ -784,7 +810,7 @@
 	\end{multline*}
 	where all angular dependence has been gathered in the function $\Phi^\pm (\theta,\phi)$. This result is now inserted into the scattered field, giving
 	\begin{equation*}
-	\bm{E}_{sc}(\bm{r},t) = -\bm{E}_{i0} \frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \mathfrak{p} S_0 L_x L_y L_z \left( e^{-i\Omega t} \Phi^+ (\theta,\phi)  + e^{i\Omega t} \Phi^- (\theta,\phi) \right) = -\bm{E}_{i0} E_A(\bm{r},t)
+	\bm{E}_{sc}(\bm{r},t) = -\bm{E}_{i0} \frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \mathfrak{p} s_p L_x L_y L_z \left( e^{-i\Omega t} \Phi^+ (\theta,\phi)  + e^{i\Omega t} \Phi^- (\theta,\phi) \right) = -\bm{E}_{i0} E_A(\bm{r},t)
 	\end{equation*}
 	
 	By inspecting $E_A(\bm{r},t)$ it is clear that two frequency-shifted components arise. Since the implied time-dependence is $e^{-i\omega t}$, the factors $e^{\mp i\Omega t}$ give a frequency shift of $\pm \Omega$. The scattered field is written using two distinct components as
@@ -793,7 +819,7 @@
 	\end{equation*}
 	where
 	\begin{equation*}
-	E_A^\pm (\bm{r},t) = \frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \mathfrak{p} S_0 L_x L_y L_z e^{\mp i\Omega t} \Phi^\pm (\theta,\phi)
+	E_A^\pm (\bm{r},t) = \frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \mathfrak{p} s_p L_x L_y L_z e^{\mp i\Omega t} \Phi^\pm (\theta,\phi)
 	\end{equation*}
 	
 	\subsection{Solution in terms of power}

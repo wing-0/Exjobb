@@ -1,36 +1,52 @@
-\documentclass[10pt,a4paper]{scrartcl}
+\documentclass[11pt,a4paper]{article}
+\usepackage[a4paper]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
 
+\usepackage[style=iso]{datetime2}
+
 \author{Niklas Wingren}
-\title{Master's Thesis Opposition}
-\subtitle{"Synthesizing Training Data for Object Detection Using Generative Adversarial Networks" by Jonathan Astermark}
+\title{Master's Thesis Review}
 
 \begin{document}
 	\maketitle
 	
 	\section*{Introduction}
-	Jonathan Astermark has written the Master's thesis report "Synthesizing Training Data for Object Detection Using Generative Adversarial Networks" at Axis Communications AB and LTH. This text is meant to review the work from the perspective of another Master's thesis student.
+	Jonathan Astermark has written the Master's thesis report "Synthesizing Training Data for Object Detection Using Generative Adversarial Networks" at Axis Communications AB and LTH. This text is meant to review the work from the perspective of another Master's thesis student. The review is written mostly in the same order as the report itself where it is applicable, with some more general considerations written at the end.
 	
 	\section*{Review of the report}
-	There are some strange sentences, missing references etc. in the report. These have been marked with comments in an attached pdf document and should be easy to correct.
+	The Related Work section is quite technical for being before the theory chapter where many concepts are introduced. The section itself is placed appropriately in the introduction, but the contents might be easier to grasp with some changes. It is basically a list of papers with short summaries, where some summaries are heavy with abbreviations and specialized terms. For a reader not already familiar with the subject, it can be slightly overwhelming. For improvement, some of the summaries could be extended to describe the results using less specialized language.
 	
-	"Related Work" is quite technical even though it is before the theory chapter where many concepts are introduced. The section itself is placed appropriately in the introduction, but the contents might be easier to grasp with some changes. It is basically a list of publications with short summaries, where each summary adds new concepts and abbreviations. For a reader not already familiar with the subject, it can be slightly overwhelming. The section might be improved by stating the main results from each publication in a simple manner for those not familiar with the subject. This way there is no need to remove the more technical writing which is interesting for readers familiar with the subject.
+	The purpose of the work is well stated in the introduction chapter in the form of two questions. These are also referred to in the method chapter as the investigative process is described for both cases. The connection also continues into the discussion and conclusion, which is good since it shows that the actual results of the work are relevant when compared to the original purpose.
+	
+	The outline of the report is also well defined in its own section of the introduction. The report then generally follows this outline. There is some vagueness regarding what is presented in the method and experiment chapters since both contain descriptions of the methods used. However, the way of presenting methods specific to the experiments in the experiment chapter makes for better readability. One might consider stating this extra detail on experiment-specific methods in the outline for increased clarity.
+	
+	In section 2.2 of the theory there are a number of value and loss functions which could benefit from some more detailed explanation. Operators such as the expectation value and nabla might be good to introduce for clarity, especially since they look slightly different than they do in general (to my knowledge).
 	
 	The parts in the method chapter detailing the Viola-Jones detector and the performance score have parts that are more fitting in the theory chapter. Especially the performance scores would benefit from this as they are not explained in much detail. If there were a theory section for performance scores more explanations could be given. It would be nice with more information on the F1-score since this is what you actually use to compare data. Now it’s just given as a formula, but there is no detailed information on what it actually tells us.
 	
-	The augmented feature "mustache" gives increased performance for datasets "children" and "women" even though one would expect the opposite. Might be nice if this result was discussed more.
+	In the experiment chapter there is one part where figures and tables take up two full pages (figure 4.2, table 4.1, table 4.2). It might be be more readable with some text between the figures/tables. In addition, table 4.1 is likely misplaced since table 4.2 is referenced earlier in the text. If the order of the tables is reversed they should be closer to the text where they are referenced, increasing readability.
 	
-	"Region proposal" is mentioned multiple times in the context of object detection, but is never really introduced. It would be nice to have an explanation of what region proposal is somewhere in the theory as this is not obvious to all readers.
+	In the discussion it is stated that the augmented feature "mustache" gives increased performance for datasets "children" and "women" even though one would expect the opposite. It could have been nice if there were a bit more discussion or investigation into this result since it was unexpected.
+	
+	The Future Work section shows good understanding of the results and how they might be expanded on. Some parts are quite specific, so it seems that the results have opened up some new avenues for investigation.
+	
+	The bibliography is quite large, and from what I can discern it seems to have relevant references. Many of the references are from the arXiv preprint archive, which seems common in the field. However, some of them seem to exist in peer-reviewed publications as well and in those cases it might be better to cite those. I am no expert in citing conventions for the field though, so this might be good to discuss with someone who is.
 	
 	The ethical considerations presented primarily in the introduction and discussion are interesting and serve to put the thesis in perspective. The GDPR has been in much media focus since it became valid earlier in 2018. The report discusses the effects of such regulation in the context of object detection, and uses this as one reason for synthesizing training data. Bias in the context of AI and machine learning is also discussed. This has been identified by many as a major problem which needs to be solved for AI applications to be fair. The usage of highly biased datasets for comparison shows that there has been some thought about this concern.
 	
+	"Region proposal" is mentioned multiple times in the context of object detection, but is never really introduced. It would be nice to have an explanation of what region proposal is somewhere in the theory as this is not obvious to all readers.
+	
 	The images in the report are well made and illustrative. One good example is the usage of flowcharts in the method chapter. They show the processes used in a very effective way and highlight the differences between data generation and image translation.
 	
+	The layout of the report does not seem to be adapted for printing. For example, the page layouts are not consistent with a "left" and "right" page. Also, figure 4.5 stretches out into the margin which might be bad for printing (and it looks strange anyway).
+	
+	In addition to what has been presented here, there are some strange sentences, missing references etc. in the report. These have been marked with comments in an attached pdf document and should be easy to correct.
+	
 	\section*{Conclusion}
-	Overall, the work is well made and coherent. Some parts could use more work to make it easier for readers unfamiliar with the subject. Despite this, I find the report fairly easy to understand and the process from theory to discussion is simple to follow. The work is also related to ethical concerns such as personal data and algorithm bias in the report, which keeps it grounded in the bigger picture.
+	Overall, the report is well made. Some parts could use more work to make it easier for readers unfamiliar with the subject. Despite this, I find the report fairly easy to understand and the process from theory to discussion is simple to follow. It is clear from the conclusion that the results of the work answer the questions clearly stated in the beginning, which is the goal of any scientific work. Ethical concerns such as personal data and algorithm bias in the report are also considered throughout the report, which keeps it grounded in the bigger picture.
 	
 \end{document}

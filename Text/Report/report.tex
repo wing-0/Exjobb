@@ -47,6 +47,9 @@
 	\newcommand{\todoext}[1]{\todo[inline, color=yellow]{#1}}
 	\newcommand{\todoint}[2][]{\todo[#1]{#2}}
 	
+	\listoftodos
+	\pagebreak
+	
 	\Title{Acousto-Electromagnetic Interaction in Aerospace Composites}
 	\Author{Niklas Wingren\\\texttt{tfy13nwi@student.lu.se}}
 	\Supervisor{Daniel Sj\"oberg}
@@ -146,10 +149,10 @@
 	\chapter{Introduction \label{ch:intro}}
 	
 	\section{Background}
+	\todoext{Introduce the subject from a starting point in non-destructive testing and aerospace materials. Bring up the two separate fields of ultrasonic testing and microwave imaging. Different acousto-electromagnetism perspectives such as acousto-optics, RASS, micro-Doppler effect in radar (for vibrations).}
 	
 	\section{Related work}
-	EKAS stuff
-	More?
+	\todoext{List other work related to this. The paper detailing the mm-wave imaging system developed at EIT should probably be here. Other related work might be development by Top et.al. (HMMDI) for localized harmonic motion, Russian (Soviet) derivations of the acousto-optic-like theory from basic EM. Probably even more.}
 	
 	\section{Structure of report}
 	
@@ -158,32 +161,38 @@
 	\section{Nondestructive Testing Techniques}
 	Nondestructive testing has been ... In industries with high demands for quality and safety, NDT is often a necessity. Aerospace is such an industry and has utilized NDT for a long time. \addref Modern aircraft increasingly use composite materials due to superior properties such as low weight \cite{Katunin2015}. The difference of these materials when compared with traditional metal structures requires changes in the NDT procedures \cite{Riegert2006}. One old technique which is used widely for aerospace composites is ultrasonic testing \cite{Garnier2011}. Another technique which has been developed more recently than ultrasonic testing is microwave/mm-wave imaging, which may hold promises in various NDT applications \cite{Kharkovsky2007}.
 	
-	\subsection{Ultrasonic testing}
+	\subsection{Ultrasonic Testing}
 	
 	\subsection{Microwave/mm-wave Imaging}
 	
 	\section{Aerospace Composites}
+	\todoext{Description of the demands of materials in the aerospace industry (high strength-to-weight ratio, high reliability etc.) and the materials commonly used. Examples of composite structures and the materials used (with examples of properties).}
 	
 	\section{Acousto-EM in Established Technology}
 	Interaction between acoustics and electromagnetism has been known of for a long time \addref. Beyond knowledge of the phenomena there are also applications in technology which are investigated in this section. Two examples are given: acousto-optics and the Radio Acoustic Sounding System. These operate at very different frequencies (both acoustic and electromagnetic) which can be of interest when investigating the possibility of using mm-wave frequencies.
 	
 	\subsection{Acousto-Optics}
+	\todoext{Overview of acousto-optics and where acousto-optics is used (modulators, scanners, switches etc.). Maybe introduce the Bragg condition, but otherwise very little theory (that comes later).}
 	
 	\subsection{Radio Acoustic Sounding System}
 	One application of acousto-electromagnetic interaction can be found in meteorology through the Radio Acoustic Sounding System (RASS). The purpose of the system is to utilize the interaction between radio and acoustic waves for temperature sounding of the atmosphere \todoint{Find some nice review article or something}.
-	This mechanism has not only been used in optics, but also in radio meteorology through the Radio Acoustic Sounding System (RASS) \cite{Buerkle2007}. This indicates that the wavelength dependence described above can be offset by other factors to still give a measurable scattered signal. The system is used for temperature sounding since the speed of sound depends on temperature. The Bragg scattering condition is thus affected by a temperature change \cite{Marshall1972}. The systems are usually designed with electromagnetic and acoustic wave sources approximately co-located \cite{Marshall1972}. This corresponds to an angle $\theta \approx 90^\circ$, which changes the Bragg condition to
-	\begin{equation*}
-	\Lambda = \frac{\lambda}{2}
-	\end{equation*}
+	This mechanism has not only been used in optics, but also in radio meteorology through the Radio Acoustic Sounding System (RASS) \cite{Buerkle2007}. This indicates that the wavelength dependence described above can be offset by other factors to still give a measurable scattered signal. The system is used for temperature sounding since the speed of sound depends on temperature. The Bragg scattering condition is thus affected by a temperature change \cite{Marshall1972}. The systems are usually designed with electromagnetic and acoustic wave sources approximately co-located \cite{Marshall1972}.
+	
+%	This corresponds to an angle $\theta \approx 90^\circ$, which changes the Bragg condition to
+%	\begin{equation*}
+%	\Lambda = \frac{\lambda}{2}
+%	\end{equation*}
 	
 	\chapter{Theory \label{ch:theory}}
 	
 	\section{Overview of Interaction Mechanisms}
 	
 	\subsection{Target Boundary Perturbation}
-	This mechanism is based on a discrete target under acoustic resonance. The resonance of the target leads to vibration, which is seen as a time-dependent boundary perturbation \cite{Buerkle2007}. This is seen in the scattered signal as a frequency shift by the vibration frequency \cite{Sarabandi2003}. \todoint{More details on the Radlab stuff. Also describe why this is not used.}
+	This mechanism is based on a discrete target under acoustic resonance. The resonance of the target leads to vibration, which is seen as a time-dependent boundary perturbation \cite{Buerkle2007}. This is seen in the scattered signal as a frequency shift by the vibration frequency \cite{Sarabandi2003}.
+	\todoext{There should be a little more details here. Also a description on why this is not used later on in the work.}
 	
 	\subsection{Localized Harmonic Motion}
+	\todoext{This part should be reduced a bit and some things can be moved to the major Localized Harmonic Motion section later in the theory.}
 	This mechanism is similar to boundary perturbation in that it is based on scattering from harmonic motion. The difference is that harmonic motion is introduced in a bulk material instead of a resonating discrete target. The mechanism has been utilized in the medical method of vibro-acoustography and harmonic motion imaging \cite{Wang2018}. Both techniques use amplitude modulated ultrasound to produce a time-harmonic acoustic radiation force in a localized region of a sample. \todoint{Some more on ARF} This force then generates time-harmonic displacement, or vibration. In the acoustic methods the vibrating region emits acoustic waves which can be detected \cite{Fatemi1998}\cite{Konofagou2003}.
 	
 	An electromagnetic wave incident towards the vibrating region will scatter with a frequency shift which corresponds to the frequency of vibration \cite{Top2014}. This is very similar to the boundary perturbation mechanism described before.
@@ -213,12 +222,9 @@
 	\subsection{Scatterer Displacement}
 	This is a mechanism mostly presented in the field of ultrasound-optical tomography (UOT). The mechanism is based on dynamic multiple scattering of light, which occurs if many scatterers undergoing Brownian motion are considered \cite{Leutz1995}. If an ultrasonic beam is incident on such a sample the scatterers will move due to both Brownian motion and ultrasound, giving rise to a frequency shift in affected photons \cite{Leutz1995}\cite{Elson2011}. In medical applications, movement of the scatterers due to acoustic waves is very straight-forward: their displacement directly follows the acoustic wave \cite{Leutz1995}. This might well be the case for small scatterers which are then part of the wave, but for larger scatterers it gets more complicated. In that case, acoustic radiation force has to be considered for scatterer movement \cite{Torr1984}. \todoint{Double check some things on movement of small vs. big scatterers}
 	
-	It is interesting to see if this mechanism holds any relevance when it comes to microwave frequencies. The assumption on which the theory rests is that of dynamic multiple light scattering \cite{Leutz1995}. In the existing mm-wave imaging system there is an assumption of sparse defects being the only scatterers \cite{Helander2017}. This is in complete contrast to the theory of dynamic multiple light scattering, which is based on a large number of moving scatterers \cite{Leutz1995}. Since the basic assumptions of the problem and theory are in such stark contrast, it seems likely that this interaction mechanism holds little relevance to the problem at hand.
+	For this work, a mechanism needs to be relevant at microwave frequencies to be considered. The assumption on which the theory rests is that of dynamic multiple light scattering \cite{Leutz1995}. In the existing mm-wave imaging system there is an assumption of sparse defects being the only scatterers \cite{Helander2017}. This is in complete contrast to the theory of dynamic multiple light scattering, which is based on a large number of moving scatterers \cite{Leutz1995}. Since the basic assumptions of the problem and theory are in such stark contrast, it seems likely that this interaction mechanism holds little relevance to the problem at hand.
 	
 	\section{Ultrasonic Propagation}
-	\todoint[inline]{See if what's written below works as is or needs editing. It's just copy-pasted from the review doc. Probably need to add even more info than this as well}
-	
-	\subsection{Background stuff on ultrasound}
 	This subject is of interest to both phenomena of localized harmonic motion and photoelastic interaction. Since ultrasound is used for some type of interaction with electromagnetic waves, it is important to understand that part of the problem. In many NDT applications the ultrasonic waves are generated in some transducer, coupled into a fluid medium and then coupled further into the solid medium of the test object \cite{Schmerr2016}. This requires knowledge of wave propagation in both fluid and solid media, which requires two different approaches: acoustics and elastodynamics.	
 	
 	\subsection{Propagation in fluid medium - acoustic waves}
@@ -278,7 +284,7 @@
 	\begin{equation*}
 		u_x (x,t) = u_p \cos(\Omega t - qx)
 	\end{equation*}
-	The only strain resulting from this wave is linear in $x$, and can be written as
+	The only strain resulting from this wave is linear in $x$, and can be written as \addref
 	\begin{equation*}
 		s_{xx} = \frac{\partial u_x}{\partial x} = qu_p \sin(\Omega t - qx)
 	\end{equation*}
@@ -299,10 +305,8 @@
 	\end{equation*}
 	
 	\section{Photoelastic Interaction}
-	
-	\subsection{Overview}
+	\todoext{There should be an overview of the interaction here before "Photoelasticity"}
 	\todoint[inline]{Explain clearly that this is acousto-optics, but derived directly from Maxwell and without the word "optics" in the name}
-	\todoint[inline]{All strains on form $S_j$ have been changed to $s_j$ to standardize notation}
 	
 	\subsection{Photoelasticity}
 	To understand how the interaction between the two wave phenomena works, the first step is to understand how an acoustic or elastic wave affects electromagnetic properties. The theory of photoelasticity relates strains from linear elasticity with the relative permittivity of a material. With a starting point in solid mechanics, a tensor-based theory is somewhat inevitable. However, a simplified model is shown later which condenses the tensor relations down to a scalar relation.
@@ -376,13 +380,13 @@
 	\todoint[inline]{Relate back to acousto-optics. Especially in this scalar simplified model since that is similar to what is presented in Saleh.}
 	
 	\section{Localized Harmonic Motion}
-	
-	\subsection{Overview}
+	\todoext{There should be an overview of the interaction mechanism here}
 	
 	\subsection{Acoustic Radiation Force}
+	\todoext{Description on how acoustic radiation force works and how it is possible to cause vibrations inside an object using this}
 	
 	\subsection{The Micro-Doppler Effect}
-	\todoint[inline]{Rewrite this, comes from another section}
+	\todoext{This needs to be rewritten since it comes from another section}
 	The frequency shift mentioned earlier is due to the micro-Doppler effect, which describes effects of targets with rotation or vibration \cite{Buerkle2007}. A vibrating target then causes frequency modulation of the scattered electromagnetic wave. \cite{Chen2006}. For a stationary target this corresponds to a signal with a strong frequency component at $f_c$ and weaker sidebands at $f_c \pm n f_v$ where $n=1$ are the strongest (carrier frequency $f_c$, variation frequency $f_v$, positive integers $n$). The amplitudes of the spectral lines are given by Bessel functions $J_n(B)$, where $B \sim (4\pi/\lambda)D_v$ \cite{Chen2006}. $D_v$ is the amplitude of vibration which is usually small (on the order of $\mu$m) \cite{Buerkle2007}\cite{Top2014}. For small values of $B$ the central component will dominate, and the first Doppler component will be much more prominent than the others. Therefore it makes sense that this first component is the one considered in the literature \cite{Buerkle2007}.
 	
 	\chapter{Analytical Modeling \label{ch:analytical}}
@@ -468,7 +472,6 @@
 	\end{equation*}
 	
 	\section{Radar equation for simple photoelastic interaction \label{sec:analytical-radar}}
-	\todoint[inline]{Changed S to e for strains}
 	The scattering integral is now solved for a simple geometry and material model to obtain a radar equation. A full derivation can be found in \ref{sec:app-derivations-radar} while some parts have been shortened here for readability. First, the geometry is defined as shown in figure \ref{fig:radareq-geom-main}.
 	\begin{figure}[h]
 		\centering
@@ -571,9 +574,11 @@
 	\end{align*}
 	The $\mp$-sign here is related to the $\pm$-sign indicating frequency shift of the scattered wave. These equations correspond directly to the Bragg condition used in acousto-optics (see \ref{sec:app-derivations-bragg} for derivation). This gives the model some validation since the acousto-optic Bragg condition is derived from a slightly different starting point, but for the same basic phenomenon \cite{Saleh2007}.
 	
+	\todoext{I have a new derivation which is based on a parallelogram interaction region (still based on plane waves, but uses beam widths to define the interaction region). This could be added here to show the result of another interaction region.}
+	
 	\chapter{Numerical Simulation}
 	
-	\section{Background stuff}
+	\section{Overview}
 	\todoint[inline]{Description of how different basic things (such as antennas and transducers) are modeled. Details on COMSOL and other similar stuff.}
 	
 	\section{Verification of analytical model}
@@ -583,6 +588,7 @@
 	\todoint[inline]{Description of how voids were modeled. Relate to delaminations.}
 	
 	\chapter{Results and Discussion}
+	\todoext{It might be better to have results and discussion separated?}
 	
 	\section{Numerical Simulation Results}
 	
@@ -821,6 +827,8 @@
 	\begin{equation*}
 	E_A^\pm (\bm{r},t) = \frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \mathfrak{p} s_p L_x L_y L_z e^{\mp i\Omega t} \Phi^\pm (\theta,\phi)
 	\end{equation*}
+	
+	\todoext{I have a new derivation which is based on a parallelogram interaction region (still based on plane waves, but uses beam widths to define the interaction region). This could be added here to show the result of another interaction region.}
 	
 	\subsection{Solution in terms of power}
 	This treatment has primarily been focused around the electric field. To obtain a more practical expression, this is now transformed into power. The scattered power density is given by

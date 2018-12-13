@@ -1,5 +1,5 @@
 % Use 'final' for a nicer preview
-\documentclass[10pt,a4paper]{eitExjobb}
+\documentclass[11pt,twoside]{eitExjobb}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
@@ -24,6 +24,7 @@
 
 % Includes todo-notes
 \usepackage{todonotes}
+\setlength{\marginparwidth}{0.8in}
 
 % Makes caption identifiers (i.e. Figure X:) bold
 \usepackage[labelfont=bf]{caption}
@@ -151,10 +152,12 @@
 	\section{Background}
 	\todoext{Introduce the subject from a starting point in non-destructive testing and aerospace materials. Bring up the two separate fields of ultrasonic testing and microwave imaging. Different acousto-electromagnetism perspectives such as acousto-optics, RASS, micro-Doppler effect in radar (for vibrations).}
 	
-	\section{Related work}
+	\section{Related Work}
 	\todoext{List other work related to this. The paper detailing the mm-wave imaging system developed at EIT should probably be here. Other related work might be development by Top et.al. (HMMDI) for localized harmonic motion, Russian (Soviet) derivations of the acousto-optic-like theory from basic EM. Probably even more.}
 	
-	\section{Structure of report}
+	\section{Purpose and Goals}
+	
+	\section{Structure of Report}
 	
 	\chapter{Technology \label{sh:tech}}
 	
@@ -186,6 +189,7 @@
 	\chapter{Theory \label{ch:theory}}
 	
 	\section{Overview of Interaction Mechanisms}
+	To introduce the subject, four types of interaction mechanisms between acoustic and electromagnetic waves are presented. This is by no means a complete list of possible ways of combining the phenomena. Instead, these mechanisms are those which could be found in the literature relatively easily.
 	
 	\subsection{Target Boundary Perturbation}
 	This mechanism is based on a discrete target under acoustic resonance. The resonance of the target leads to vibration, which is seen as a time-dependent boundary perturbation \cite{Buerkle2007}. This is seen in the scattered signal as a frequency shift by the vibration frequency \cite{Sarabandi2003}.
@@ -193,51 +197,46 @@
 	
 	\subsection{Localized Harmonic Motion}
 	\todoext{This part should be reduced a bit and some things can be moved to the major Localized Harmonic Motion section later in the theory.}
-	This mechanism is similar to boundary perturbation in that it is based on scattering from harmonic motion. The difference is that harmonic motion is introduced in a bulk material instead of a resonating discrete target. The mechanism has been utilized in the medical method of vibro-acoustography and harmonic motion imaging \cite{Wang2018}. Both techniques use amplitude modulated ultrasound to produce a time-harmonic acoustic radiation force in a localized region of a sample. \todoint{Some more on ARF} This force then generates time-harmonic displacement, or vibration. In the acoustic methods the vibrating region emits acoustic waves which can be detected \cite{Fatemi1998}\cite{Konofagou2003}.
+	Interaction based on Localized Harmonic Motion is similar to the previous one based on boundary perturbation in that it uses scattering from harmonic motion. The difference is that harmonic motion is introduced in a bulk material instead of a resonating discrete target. The acoustic part of the mechanism has been utilized in the medical methods of vibro-acoustography and harmonic motion imaging \cite{Wang2018}. Both techniques use amplitude modulated ultrasound to produce a time-harmonic acoustic radiation force in a localized region of a sample. This force then generates time-harmonic displacement, or vibration. In the acoustic methods the vibrating region emits acoustic waves which can be detected \cite{Fatemi1998}\cite{Konofagou2003}.
 	
 	An electromagnetic wave incident towards the vibrating region will scatter with a frequency shift which corresponds to the frequency of vibration \cite{Top2014}. This is very similar to the boundary perturbation mechanism described before.
 	
-	There are two methods of generating radiation force locally. The first method uses amplitude modulated focused ultrasound with its focus on the region of interest \cite{Top2016}. Since amplitude modulated ultrasound exists throughout the beam a force is generated in that entire region. However, the intensity is much higher in the focus so the force is stronger there. The second method instead uses two single-frequency ultrasonic beams which intersect at the region of interest. The frequencies of the two beams differ by a small amount $\Delta \Omega$. Superposition at the intersection will then generate localized amplitude modulation by half the difference frequency $\Delta \Omega/2$. However, the acoustic radiation force is determined by the energy density of the wave. This is proportional to the square of the acoustic field, which changes the frequency of interest by a factor 2. The frequency of the acoustic radiation force is then the difference frequency $\Delta \Omega$ \cite{Fatemi1998}.
+%	There are two methods of generating radiation force locally. The first method uses amplitude modulated focused ultrasound with its focus on the region of interest \cite{Top2016}. Since amplitude modulated ultrasound exists throughout the beam a force is generated in that entire region. However, the intensity is much higher in the focus so the force is stronger there. The second method instead uses two single-frequency ultrasonic beams which intersect at the region of interest. The frequencies of the two beams differ by a small amount $\Delta \Omega$. Superposition at the intersection will then generate localized amplitude modulation by half the difference frequency $\Delta \Omega/2$. However, the acoustic radiation force is determined by the energy density of the wave. This is proportional to the square of the acoustic field, which changes the frequency of interest by a factor 2. The frequency of the acoustic radiation force is then the difference frequency $\Delta \Omega$ \cite{Fatemi1998}.
 	
-	\subsection{Acousto-Optics}\todoint{fix this stuff - lots of "old" stuff that isn't very nice to present here. I know much more than when I wrote this...}
-	\todoext{Needs to be rewritten since it was written very early in the thesis work, and I don't want to present it in this way.}
-	This mechanism is the one used in the theory of acousto-optics \cite{Saleh2007}\cite{Korpel1981}. The main idea is that there is a relation between the strain in a material and its index of refraction. Since an acoustic wave consists of periodic compression and rarefaction in a medium (which can be related to strain), a consequence is that the index of refraction varies with the same period \cite{Saleh2007}. Due to Fresnel reflection, this periodic structure of varying index of refraction acts as a Bragg reflector scattering incident light. The Bragg condition determines the angle of incidence $\theta_B$ required for the light
+	\subsection{Acousto-Optics}
+	Acousto-optics is an interaction mechanism often explained using simple elasticity models and wave optics \cite{Saleh2007}\cite{Korpel1981}. The main idea is that there is a relation between the strain in a material and its index of refraction. Since an acoustic wave consists of periodic compression and rarefaction in a medium (which can be related to strain), a consequence is that the index of refraction varies with the same period \cite{Saleh2007}. Due to Fresnel reflection, this periodic structure of varying index of refraction acts as a Bragg reflector scattering incident light \cite{Saleh2007}. The Bragg condition determines the angle of incidence $\theta_B$ required for the light
 	\begin{equation*}
 	\sin{\theta_B} = \frac{\lambda}{2\Lambda}
 	\end{equation*}
-	where $\lambda$ is the light wavelength and $\Lambda$ is the acoustic wavelength \cite{Saleh2007}.
+	where $\lambda$ is the light wavelength and $\Lambda$ is the acoustic wavelength \cite{Saleh2007}. As for the previously mentioned mechanisms, the scattered wave is frequency shifted by the acoustic frequency \cite{Korpel1988}.
 	
-	There is nothing in the basic theory suggesting that optical frequencies are required for this interaction. At microwave frequencies premittivity is more common to use than index of refraction, but they are related and the principle is the same. An application which uses this principle and has been used for many years is the radio acoustic sounding system \cite{Buerkle2007}. Additionally, though not using the exact Bragg formulation for modeling interaction, some authors have explored other ways of using similar interaction at microwave frequencies \cite{Lawrence2001}\cite{Merkel2006}. It has been stated, however, that this interaction is very small and resonance is often required (giving rise to boundary perturbation) \cite{Buerkle2007}. This can be understood by looking at the acousto-optic theory. The Bragg condition gives the angle for peak reflectance against the acoustic wave. When considering strength of the interaction, though, an actual value for the reflectance is of interest. This can be found as
-	%	\begin{equation*}
-	%		\mathcal{R} = \frac{\pi^2}{2\lambda_0^2} \left( \frac{L}{\sin{\theta}} \right) ^2 \mathcal{M}I_s
-	%	\end{equation*}
-	%	where $\lambda_0$ is vacuum light wavelength, $L/\sin{\theta}$ is the oblique distance of light penetration (approximately), $\mathcal{M}$ is a material parameter and $I_s$ is the acoustic intensity \cite{Saleh2007}. Alternatively, the Bragg condition can be used for the equation
-	\begin{equation*}
-	\mathcal{R} = 2\pi^2n^2 \frac{L^2 \Lambda^2}{\lambda_0^4} \mathcal{M}I_s
-	\end{equation*} \todoint{Refine this segment on reflectance and stuff, it's not very coherent}
-	where $n$ is the unperturbed index of refraction, $L$ is the distance of overlap between light and acoustic waves in the acoustic wave direction, $\Lambda$ is the acoustic wavelength, $\lambda_0$ is the vacuum light wavelength, $\mathcal{M}$ is a material parameter and $I_s$ is the acoustic intensity \cite{Saleh2007}. For intense acoustic waves a correction is necessary, giving $\mathcal{R}_e = \sin{^2\sqrt{\mathcal{R}}}$ \cite{Saleh2007}.
+	There is nothing in the basic theory suggesting that optical frequencies are required for this interaction. At microwave frequencies permittivity is more common to use than index of refraction, but they are related and the principle is the same. An application which uses this principle and has been used for many years is the radio acoustic sounding system \cite{Buerkle2007}. Additionally, though not using the exact Bragg formulation for modeling interaction, some authors have explored other ways of using similar interaction at microwave frequencies \cite{Lawrence2001}\cite{Merkel2006}. It has been stated, however, that this interaction is very small and resonance is often required (giving rise to boundary perturbation) \cite{Buerkle2007}.
 	
-	The interesting part when it comes to microwave frequencies, however, is the denominator in the first equation. The factor $1/\lambda_0^4$ might be a reason of concern when moving away from the optical regime. Since the wavelength is much longer for mm-waves there should be a large decrease in reflectance, and if too large the scattered signal could be undetectable. However, some examples for optical wavelengths give $\mathcal{R}_e = 0.192$ \cite{Saleh2007}, which is very large when compared with what can be detected in radar \cite{Richards2012}. There are also other variables such as $L$ and $\Lambda$ which might be changed to give a higher reflectance. If the different parameters can be selected to give a scattered signal above the noise floor is a very interesting question which needs to be investigated.
+	It is common to assume near-perpendicularity between the acoustic and electromagnetic wave vectors in acousto-optic theory \cite{Korpel1988}. For modeling at other angles, which makes for other wavelength ratios through the Bragg conditions, this interaction mechanism is studied further. A full electromagnetic model based on Maxwell's equations will be presented in section \ref{sec:analytical-scatter}.
 	
 	\subsection{Scatterer Displacement}
 	This is a mechanism mostly presented in the field of ultrasound-optical tomography (UOT). The mechanism is based on dynamic multiple scattering of light, which occurs if many scatterers undergoing Brownian motion are considered \cite{Leutz1995}. If an ultrasonic beam is incident on such a sample the scatterers will move due to both Brownian motion and ultrasound, giving rise to a frequency shift in affected photons \cite{Leutz1995}\cite{Elson2011}. In medical applications, movement of the scatterers due to acoustic waves is very straight-forward: their displacement directly follows the acoustic wave \cite{Leutz1995}. This might well be the case for small scatterers which are then part of the wave, but for larger scatterers it gets more complicated. In that case, acoustic radiation force has to be considered for scatterer movement \cite{Torr1984}. \todoint{Double check some things on movement of small vs. big scatterers}
 	
 	For this work, a mechanism needs to be relevant at microwave frequencies to be considered. The assumption on which the theory rests is that of dynamic multiple light scattering \cite{Leutz1995}. In the existing mm-wave imaging system there is an assumption of sparse defects being the only scatterers \cite{Helander2017}. This is in complete contrast to the theory of dynamic multiple light scattering, which is based on a large number of moving scatterers \cite{Leutz1995}. Since the basic assumptions of the problem and theory are in such stark contrast, it seems likely that this interaction mechanism holds little relevance to the problem at hand.
 	
-	\section{Ultrasonic Propagation}
+	\subsection{Main Subjects of Interest}
+	The mechanisms presented above were the major ones found in a wide search of the literature. Of the four presented, two could be ruled out for not being applicable to the problem of interest. The "Localized Harmonic Motion" and "Acousto-Optics" interaction mechanisms are presented in further detail later in this chapter.
+	
+	\section{Ultrasonic Wave Propagation}
+	\todoext{This section should probably be expanded a bit more}
 	This subject is of interest to both phenomena of localized harmonic motion and photoelastic interaction. Since ultrasound is used for some type of interaction with electromagnetic waves, it is important to understand that part of the problem. In many NDT applications the ultrasonic waves are generated in some transducer, coupled into a fluid medium and then coupled further into the solid medium of the test object \cite{Schmerr2016}. This requires knowledge of wave propagation in both fluid and solid media, which requires two different approaches: acoustics and elastodynamics.	
 	
-	\subsection{Propagation in fluid medium - acoustic waves}
-	In a compressible fluid ultrasound can be described by a fully acoustic model. The main variable for describing the wave motion is pressure in this case. In turn, this can be converted into other variables such as displacement or strain. The acoustic wave equation which describes the phenomena is
+	\subsection{Propagation in fluid medium}
+	In a compressible fluid ultrasound can be described by a fully acoustic model. The main variable for describing the wave motion is pressure in this case. In turn, this can be converted into other variables such as displacement or strain. The theory of acoustics originates in continuum mechanics, but a restriction to fluids and a linearization leads to the most commonly used model - linear acoustics \cite{Rossing2014}. The acoustic wave equation which lies at the heart of the model of linear acoustics can be written as \cite{Rossing2014, Schmerr2016, Kaufman2000}
 	\begin{equation*}
-	\nabla^2 p - \frac{1}{c_f^2} \frac{\partial^2 p}{\partial t^2} + f = 0
+	\nabla^2 p - \frac{1}{v^2} \frac{\partial^2 p}{\partial t^2} = 0
 	\end{equation*}
-	where $p$ is pressure, $c_f$ is the speed of sound in the fluid and $f$ is a scalar body force \cite{Schmerr2016}. The speed of sound can be written as $c_f = \sqrt{K/\rho_0}$ where $K$ is the bulk modulus of the fluid and $\rho_0$ is the unperturbed density of the fluid \cite{Kaufman2000}. The scalar body force is related to a vector body force dy the divergence: $f = -\nabla \cdot \bm{f}$ \cite{Schmerr2016}.
+	where $p$ is pressure and $v$ is the speed of sound in the fluid. In addition to linearization, this equation assumes no body forces and a homogeneous density of the medium \cite{Rossing2014}. The speed of sound can be written as $v = \sqrt{K/\rho_0}$ where $K$ is the bulk modulus of the fluid and $\rho_0$ is the unperturbed density of the fluid \cite{Kaufman2000}.
 	
-	This model is directly useful for NDT in some cases. One is in immersion testing, where a test object is immersed in water and ultrasound propagates through the water into the object \cite{Schmerr2016}. The other is in coupling ultrasound from a transducer to an object through a thin layer of coupling fluid \cite{Schmerr2016}. However, this model is also useful for understanding one special case of propagation in an elastic solid. This will be described in the following part.
+	This model is directly useful for NDT in some cases. One is in immersion testing, where a test object is immersed in water and ultrasound propagates through the water into the object \cite{Schmerr2016}. The other is in coupling ultrasound from a transducer to an object through a thin layer of coupling fluid \cite{Schmerr2016}. However, this model is also useful for understanding one special case of propagation in an elastic solid, namely p-wave propagation \cite{Rossing2014}. This will be described further in the following part.
 	
-	\subsection{Propagation in solid medium - elastic waves}
-	In an elastic medium the acoustic model is no longer sufficient. The acoustic model considers only pressure since one main assumption for volume elements in the fluid is that they only transmit force in the direction of the force \cite{Kaufman2000}. The volume elements in an elastic solid are more strongly coupled to each other, and this assumption does not hold anymore \cite{Kaufman2005}. The equations for elastic waves are instead based on solid mechanics. There is no simple wave equation as in acoustics, instead the model is described by Navier's equations
+	\subsection{Propagation in solid medium}
+	In an elastic medium the acoustic model is no longer sufficient. The linear acoustic model considers only pressure since one main assumption for volume elements in the fluid is that they only transmit force in the direction of the force \cite{Kaufman2000}. The volume elements in an elastic solid are more strongly coupled to each other, and this assumption does not hold anymore \cite{Kaufman2005}. The equations for elastic waves are instead based on solid mechanics. There is no simple wave equation as in acoustics, instead the model is described by Navier's equations
 	\begin{equation*}
 	\mu \nabla^2 \bm{u} + (\lambda+\mu) \nabla (\nabla \cdot \bm{u}) + \bm{f} = \rho_0 \frac{\partial^2 \bm{u}}{\partial t^2}
 	\end{equation*}
@@ -309,6 +308,7 @@
 	\todoint[inline]{Explain clearly that this is acousto-optics, but derived directly from Maxwell and without the word "optics" in the name}
 	
 	\subsection{Photoelasticity}
+	\todoint[inline]{Add all other names such as strain-optic, elasto-optic}
 	To understand how the interaction between the two wave phenomena works, the first step is to understand how an acoustic or elastic wave affects electromagnetic properties. The theory of photoelasticity relates strains from linear elasticity with the relative permittivity of a material. With a starting point in solid mechanics, a tensor-based theory is somewhat inevitable. However, a simplified model is shown later which condenses the tensor relations down to a scalar relation.
 	\todoint[inline]{Theory describing relation between solid (continuum?) mechanics and dielectric properties}
 	
@@ -583,6 +583,7 @@
 	
 	\section{Verification of analytical model}
 	\todoint[inline]{Description of how the simple scattering problem was modeled.}
+	To verify the results from section \ref{sec:analytical-radar}
 	
 	\section{Effect of voids}
 	\todoint[inline]{Description of how voids were modeled. Relate to delaminations.}

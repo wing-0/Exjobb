@@ -1,0 +1,40 @@
+
+% http://www.texample.net/tikz/examples/simple-flow-chart/
+\tikzstyle{sim} = [rectangle, draw, fill=blue!20, 
+text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{res} = [draw, ellipse,fill=red!20]
+
+\begin{tikzpicture}[node distance = 2 cm, auto]
+
+	\draw[dashed] (-2,1) rectangle(2,-7);
+	\node[anchor=south west, text width=10em] at (-2,1) {Pressure acoustics, frequency domain};
+	
+	\node[sim] at (0,0) (Ac) {Ac. Simulation};
+	\node[res, below of=Ac] (p) {$p$ field};
+	\node[sim, below of=p] (real) {Calculation on real part};
+	\node[res, below of=real] (er) {$\varepsilon_1$ field};
+	
+	\draw[->] (Ac) -- (p);
+	\draw[->] (p) -- (real);
+	\draw[->] (real) -- (er);
+	
+	\draw[dashed] (4,1) rectangle(12,-3);
+	\node[anchor=south west, text width=11em] at (4,1) {Electromagnetic waves, frequency domain};
+	
+	\node[sim] at (6,0) (EM1) {EM Simulation w/o PE};
+	\node[res, below of=EM1] (emw1) {$\bm{E}_i$, $\bm{H}_i$ fields};
+	\node[sim] at (10,0) (EM2) {EM Simulation w/ PE};
+	\node[res, below of=EM2] (emw2) {$\bm{E}$, $\bm{H}$ fields};
+	
+	\draw[->] (EM1) -- (emw1);
+	\draw[->] (EM2) -- (emw2);
+	
+	\draw[->] (er.east) -- (3,-6) -- (3,2.5) -- (10,2.5) -- (EM2.north);
+	
+	\node[sim] at (8,-4) (diff) {Difference};
+	\node[res, below of=diff] (sc) {$\bm{E}_{sc}$, $\bm{H}_{sc}$ fields};
+	\draw[->] (emw1.south) -- (6,-4) -- (diff.west);
+	\draw[->] (emw2.south) -- (10,-4) -- (diff.east);
+	\draw[->] (diff.south) -- (sc.north);
+	
+\end{tikzpicture}

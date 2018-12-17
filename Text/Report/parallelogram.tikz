@@ -1,0 +1,31 @@
+\begin{tikzpicture}
+	
+	
+	% Draw EM beam
+	\filldraw[red,opacity=0.2] (-5,-1) rectangle(5,1);
+	\draw[<->] (-5,-1) -- (-5,1);
+	\draw (-5,0) node[anchor=west]{$w_e$};
+	
+	% Draw Ac beam
+	\filldraw[blue,rotate=45,opacity=0.2] (-5,-0.75) rectangle(5,0.75);
+	\draw[<->,rotate=45] (-5,-0.75) -- (-5,0.75);
+	\draw[rotate=45] (-5,0) node[anchor=south west]{$w_a$};
+	
+	% Draw parallelogram
+	\draw (-2.061,-1) -- (-0.061,1) -- (2.061,1) -- (0.061,-1) -- cycle;
+	\draw[<->] (-2.061,-1.1) -- (0.061, -1.1);
+	\draw (-1.061, -1.4) node{$w_a/\sin{\alpha}$};
+	\draw[<->, shift={(135:0.1)}] (-2.061,-1) -- (-0.061,1);
+	\draw[shift={(135:0.4)}] (-1,0) node[anchor=center,rotate=45] {$w_e/\sin{\alpha}$};
+	
+	% Draw angle alpha
+	\draw ([shift={(-1.061,-1)}] 0,0) arc(0:45:1) ([shift={(22.5:1.2)}] -2.061,-1) node{$\alpha$};
+	
+	% Draw coordinate axes
+	\draw (0,0) circle(0.15);
+	\filldraw[black] circle(0.03);
+	\draw[->] (0.15,0) -- (3,0);
+	\draw[->] (0,.150) -- (0,3);
+	\draw (3,-0.25) node{$\bm{\hat{x}}$} (0.25,3) node{$\bm{\hat{y}}$} (0.25,0.25) node{$\bm{\hat{z}}$};
+	
+\end{tikzpicture}

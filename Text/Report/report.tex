@@ -48,10 +48,10 @@
 	% Add custom todocommands, use 'disable' inside the square brackets for any of the commands to hide that type of todo's from the pdf
 	\newcommand{\addref}{\todo[color=red!40]{Citation needed!}}
 	\newcommand{\todoext}[1]{\todo[inline, color=yellow]{#1}}
-	\newcommand{\todoint}[2][]{\todo[#1,disable]{#2}}
+	\newcommand{\todoint}[2][]{\todo[#1]{#2}}
 	
-%	\listoftodos
-%	\pagebreak
+	\listoftodos
+	\pagebreak
 	
 	\Title{Acousto-Electromagnetic Interaction in Aerospace Composites}
 	\Author{Niklas Wingren\\\texttt{tfy13nwi@student.lu.se}}
@@ -281,9 +281,9 @@
 		\bm{u}(\bm{r}) = \frac{p_p q}{\rho_0 \Omega^2} \sin(\Omega t - qx) \bm{\hat{x}} + \bm{A}(\bm{r})t + \bm{B}(\bm{r})
 	\end{equation*}
 	The functions $\bm{A}(\bm{r})$ and $\bm{B}(\bm{r})$ are results of the integration. If the particle velocity $\partial \bm{u}/\partial t$ is assumed to be zero in the absence of an acoustic wave, $\bm{A}(\bm{r})$ must be zero. Similarly, if the particle displacement $\bm{u}$ is assumed to be zero in the absence of an acoustic wave and $\bm{A}(\bm{r}) = \bm{0}$, $\bm{B}(\bm{r})$ must be zero as well. The remainder of the RHS is a plane wave as the original pressure, but with a phase shift. The amplitudes of the pressure and displacement waves can now be related as
-	\begin{equation*}
+	\begin{equation}\label{eq:pressure-displ}
 		p_p = \frac{\rho_0 \Omega^2}{q} u_p = q \rho_0 v^2 u_p
-	\end{equation*}
+	\end{equation}
 	
 	In photoelasticity the strain in a material is related to dielectric properties. Strain is relative displacement and it is therefore possible to relate a strain amplitude to the displacement amplitude of an acoustic wave. A plane displacement wave is introduced as
 	\begin{equation*}
@@ -294,9 +294,9 @@
 		s_{xx} = \frac{\partial u_x}{\partial x} = qu_p \sin(\Omega t - qx)
 	\end{equation*}
 	It can be seen that this is also a plane wave in $x$ (with a phase shift relative to the displacement wave) and the strain amplitude can be written as
-	\begin{equation*}
+	\begin{equation} \label{eq:strain-displ}
 		s_p = qu_p
-	\end{equation*}
+	\end{equation}
 	
 	A common quantity for strength of acoustic waves in fluids is sound pressure level (SPL) which is measured in dB an defined as
 	\begin{equation*}
@@ -360,7 +360,11 @@
 	p_{11} &= p_{22} = p_{33} = p_{12} = p_{21} = p_{13} = p_{23} = p_{32} = \mathfrak{p}\\
 	p_{ij} &= 0 \text{ for others}
 	\end{align*}
-	where $\mathfrak{p}$ was introduced as a scalar photoelastic constant. One thing to note is that since $p_{33} = p_{44} = p_{55} = 0$, shear strain does not have any effect in this simplified model. If the unperturbed permittivity is isotropic, a scalar relation can be written as $\Delta \varepsilon_r = -\varepsilon_r^2 \mathfrak{p} \Delta$. Here $\Delta \varepsilon_r$ is the isotropic change in relative permittivity and $\Delta$ is the dilatation, which in Cartesian coordinates can be written as $\Delta = s_x + s_y + s_z$ \cite{Schmerr2016}. For clarity, it can be good to note that $\Delta \varepsilon_r$ is denoted $\varepsilon_1$ in other sections of this work.
+	where $\mathfrak{p}$ was introduced as a scalar photoelastic constant. One thing to note is that since $p_{33} = p_{44} = p_{55} = 0$, shear strain does not have any effect in this simplified model. If the unperturbed permittivity is isotropic, a scalar relation can be written as
+	\begin{equation}\label{eq:PE-scalar}
+		\Delta \varepsilon_r = -\varepsilon_r^2 \mathfrak{p} \Delta
+	\end{equation}
+	Here $\Delta \varepsilon_r$ is the isotropic change in relative permittivity and $\Delta$ is the dilatation, which in Cartesian coordinates can be written as $\Delta = s_1 + s_2 + s_3$ \cite{Schmerr2016}. For clarity, it can be good to note that $\Delta \varepsilon_r$ is denoted $\varepsilon_1$ in other sections of this work.
 	
 	To obtain a model for calculating this simplified constant $\mathfrak{p}$, another starting point for the problem is utilized. This is the Lorentz-Lorenz relation, which can be used to obtain the following equations for photoelasticity \cite{Korpel1988}
 	\begin{align*}
@@ -372,17 +376,40 @@
 	\begin{equation*}
 	\Delta \varepsilon_r = \frac{1}{3} (\varepsilon_r - 1)(\varepsilon_r + 2) S
 	\end{equation*}
-	This can be compared with the previous relation $\Delta \varepsilon_r = -\mathfrak{p}\varepsilon_r^2 e$ to obtain an equivalent photoelasticity \todoint{Check similarity between condensation (relative density change) and dilatation (relative volume change, div of displacements, sum of linear strains)}
+	This can be compared with equation \ref{eq:PE-scalar} to obtain an equivalent photoelasticity \todoint{Check similarity between condensation (relative density change) and dilatation (relative volume change, div of displacements, sum of linear strains)}
 	\todoext{All steps are not fully written out here, should be done later}
-	\begin{equation*}
+	\begin{equation}\label{eq:PE-liquid-model}
 	\mathfrak{p} = -\frac{(\varepsilon_r - 1)(\varepsilon_r + 2)}{3\varepsilon_r^2}
-	\end{equation*}
+	\end{equation}
 	A plot of $\mathfrak{p}$ as a function of $\varepsilon_r$ is shown in figure \ref{fig:photoelastic-liquid}. It can be seen clearly that the interaction strength increases with $\varepsilon_r$ close to 1. However, at around $\varepsilon_r = 4$ an extreme is reached, and further on $\mathfrak{p}$ planes out. Thus, there is a bound on the interaction strength for this relation. It should be noted that this model is extremely simplistic and is probably only accurate for a limited range of materials.
 	\begin{figure}[h]
 		\centering
 		\input{photoelastic-liquid.pgf}
 		\caption{\label{fig:photoelastic-liquid} Simplified photoelastic constant $\mathfrak{p}$ as a function of $\varepsilon_r$.}
 	\end{figure}
+	
+	\todoext{Move to separate part in the modeling chapter? Unclear}
+	This simple model can be compared with a model for dry air found in the RASS literature. The perturbation in relative permittivity can then be related to pressure as \cite{Rapoport1997}
+	\begin{equation*}
+		\varepsilon_1 = \frac{1.13 \cdot 10^{-6} p}{T}
+	\end{equation*}
+	The simple model using equations \ref{eq:PE-scalar} and \ref{eq:PE-liquid-model} can be written as (with $\varepsilon_1$ instead of $\Delta \varepsilon_r$)
+	\begin{equation*}
+		\varepsilon_1 = -\mathfrak{p} \varepsilon_r^2 \Delta = \frac{1}{3}(\varepsilon_r - 1)(\varepsilon_r + 2) s_{xx}
+	\end{equation*}
+	assuming that the strain can be seen as a plane wave in x near the area of interest. Now, this can be related to pressure using equations \ref{eq:strain-displ} and \ref{eq:pressure-displ} as
+	\begin{equation*}
+		\varepsilon_1 = \frac{1}{3}(\varepsilon_r - 1)(\varepsilon_r + 2) s_{xx} = \frac{1}{3}(\varepsilon_r - 1)(\varepsilon_r + 2) q u_x = \frac{(\varepsilon_r - 1)(\varepsilon_r + 2) p}{3 \rho_0 v^2}
+	\end{equation*}
+	Dry air at 0 $^\circ$C (293 K) has the properties $\rho_0 = 1.293$ kg/m$^3$ and $v = 331.45$ m/s \cite{Onda2003}. In addition, the relative permittivity cannot be approximated to 1 for this case, so the value of $\varepsilon_r \approx 1.00059$ is used \cite{Hector1936}. The simple model presented here can then be written as
+	\begin{equation*}
+		\varepsilon_1 \approx 4.2 \cdot 10^{-9} p
+	\end{equation*}
+	while the model from \cite{Rapoport1997} at 293 K gives
+	\begin{equation*}
+		\varepsilon_1 \approx 3.9 \cdot 10^{-9} p
+	\end{equation*}
+	Thus, the simple model presented here shows good agreement with another model from the literature in air.
 	
 	\todoint[inline]{Relate back to acousto-optics. Especially in this scalar simplified model since that is similar to what is presented in Saleh.}
 	
@@ -966,6 +993,19 @@
 	\begin{equation*}
 	\textit{SNR}^\pm_N = \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 k_B T_0 B F} N
 	\end{equation*}
+	
+	\section{Refined interaction region}
+	The derivation in \ref{sec:app-derivations-radar} is based on plane waves and a very simple geometry. A problem with the geometry used is that there is no easy way to obtain the parameters $L_x$, $L_y$ and $L_z$ from common parameters such as widths of the acoustic and electromagnetic beams. To address this, a slightly different interaction geometry based on beams is introduced as shown in figure \ref{fig:parallelogram}. Here the beam widths $w_e$ and $w_a$ have been introduced for the electromagnetic and acoustic plane waves. For simplicity, it is assumed that the beam edges are infinitely sharp, i.e. inside the wave behaves as a plane wave and outside it is zero. This way the previous derivation can be used with the exception of the interaction region.
+	\begin{figure}[h]
+		\centering
+		\resizebox{\textwidth}{!}{
+			\input{parallelogram.tikz}
+		}
+		\caption{\label{fig:parallelogram} Parallelogram interaction region}
+	\end{figure}
+	Since plane waves are still used the model is not based on real beams. However, for real beams it is still easy to obtain widths at the overlap area and then the interaction region should be fairly close using this model.
+	
+	\todoint[inline]{Continue derivation, might need to introduce some equation numbering for referencing.}
 	
 	\section{Geometry for maximum scattering \label{sec:app-derivations-bragg}}
 	Let us begin with the $\Phi$ angular dependence function:

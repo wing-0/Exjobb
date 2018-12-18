@@ -401,13 +401,13 @@
 	\begin{equation*}
 		\varepsilon_1 = \frac{1}{3}(\varepsilon_r - 1)(\varepsilon_r + 2) s_{xx} = \frac{1}{3}(\varepsilon_r - 1)(\varepsilon_r + 2) q u_x = \frac{(\varepsilon_r - 1)(\varepsilon_r + 2) p}{3 \rho_0 v^2}
 	\end{equation*}
-	Dry air at 0 $^\circ$C (293 K) has the properties $\rho_0 = 1.293$ kg/m$^3$ and $v = 331.45$ m/s \cite{Onda2003}. In addition, the relative permittivity cannot be approximated to 1 for this case, so the value of $\varepsilon_r \approx 1.00059$ is used \cite{Hector1936}. The simple model presented here can then be written as
+	Dry air at 0 $^\circ$C (273 K) has the properties $\rho_0 = 1.293$ kg/m$^3$ and $v = 331.45$ m/s \cite{Onda2003}. In addition, the relative permittivity cannot be approximated to 1 for this case, so the value of $\varepsilon_r \approx 1.00059$ is used \cite{Hector1936}. The simple model presented here can then be written as
 	\begin{equation*}
 		\varepsilon_1 \approx 4.2 \cdot 10^{-9} p
 	\end{equation*}
-	while the model from \cite{Rapoport1997} at 293 K gives
+	while the model from \cite{Rapoport1997} at 273 K gives
 	\begin{equation*}
-		\varepsilon_1 \approx 3.9 \cdot 10^{-9} p
+		\varepsilon_1 \approx 4.1 \cdot 10^{-9} p
 	\end{equation*}
 	Thus, the simple model presented here shows good agreement with another model from the literature in air.
 	
@@ -500,9 +500,7 @@
 	\end{equation*}
 	Furthermore, some terms can be neglected if the condition $v/c \ll |\varepsilon_1|/\varepsilon_r$ holds. If this is used together with a Sommerfeld radiation condition, the solution is
 	\begin{equation*}
-	\boxed{
 		\bm{E}_{sc}(\bm{r},t) = \frac{1}{4\pi\varepsilon_r} \int_{V_{sc}} \frac{e^{ik |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \left( k^2 \bm{E}_i (\bm{r'},t) \varepsilon_1 (\bm{r'},t) + \nabla (\bm{E}_i (\bm{r'},t) \cdot \nabla \varepsilon_1 (\bm{r'},t)) \right) \mathrm{d}v'
-	}
 	\end{equation*}
 	
 	\section{Radar equation for simple photoelastic interaction \label{sec:analytical-radar}}
@@ -526,9 +524,10 @@
 	\bm{E}_{sc}(\bm{r},t) = \frac{k^2}{4\pi\varepsilon_r} \int_{V_{sc}} \frac{e^{ik |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \bm{E}_i (\bm{r'},t) \varepsilon_1 (\bm{r'},t) \mathrm{d}v'
 	\end{equation*}
 	The field expressions are now inserted, and with a far-field approximation and expansion of the cosine as complex exponentials the integral is written as
-	\begin{equation*}
-	\bm{E}_{sc}(\bm{r},t) = -\frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \bm{E}_{i0} \mathfrak{p} s_p \left( e^{-i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) + \bm{q} ) \cdot \bm{r}'} \mathrm{d}v + e^{i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) - \bm{q} ) \cdot \bm{r}'} \mathrm{d}v' \right)
-	\end{equation*}
+	\begin{align*}
+	\bm{E}_{sc}(\bm{r},t) =& -\frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \bm{E}_{i0} \mathfrak{p} s_p \\
+	&\cdot \left( e^{-i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) + \bm{q} ) \cdot \bm{r}'} \mathrm{d}v + e^{i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) - \bm{q} ) \cdot \bm{r}'} \mathrm{d}v' \right)
+	\end{align*}
 	The solution to this integral is written as (see \ref{sec:app-derivations-radar})
 	\begin{equation*}
 	\bm{E}_{sc} (\bm{r},t) = -\bm{E}_{i0} \left( E_A^+ (\bm{r},t) + E_A^- (\bm{r},t) \right)
@@ -538,11 +537,11 @@
 	E_A^\pm (\bm{r},t) = \frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \mathfrak{p} s_p L_x L_y L_z e^{\mp i\Omega t} \Phi^\pm (\theta,\phi)
 	\end{equation*}
 	and
-	\begin{multline*}
-	\Phi^\pm(\theta,\phi) = \text{sinc} \left( \frac{L_x}{2\pi} \left( k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} \right) \right) 
-	\cdot \text{sinc} \left( \frac{L_y}{2\pi} \left( -k\sin{\theta}\sin{\phi} \pm q\sin{\alpha} \right) \right) \\
-	\cdot \text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right)
-	\end{multline*}
+	\begin{align*}
+	\Phi^\pm(\theta,\phi) =& \text{sinc} \left( \frac{L_x}{2\pi} \left( k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} \right) \right) \\
+	\cdot& \text{sinc} \left( \frac{L_y}{2\pi} \left( -k\sin{\theta}\sin{\phi} \pm q\sin{\alpha} \right) \right) \\
+	\cdot& \text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right)
+	\end{align*}
 	One important detail to note is that two distinct frequency components arise: one where the frequency is shifted up by $\Omega$ ($E_A^+$) and one where it is shifted down by $\Omega$ ($E_A^-$).
 	
 	To obtain a more practical expression, the equations are now transformed into power. The scattered power density is given by
@@ -729,10 +728,8 @@
 	\end{equation*}
 	Now the equation for $\bm{E}$ is written as
 	\begin{equation*}
-	\boxed{
 		\nabla^2\bm{E} + k^2 \bm{E} = \\
 		-k^2 \frac{\varepsilon_1}{\varepsilon_r} \bm{E} -\frac{1}{\varepsilon_r}\nabla(\bm{E} \cdot \nabla \varepsilon_1) - \frac{2ik}{c\varepsilon_0\varepsilon_r} \frac{\partial (\varepsilon \bm{E})}{\partial t} + \frac{1}{c^2 \varepsilon_0 \varepsilon_r} \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
-	}
 	\end{equation*}
 	
 	\subsection{Born approximation and solution}
@@ -745,11 +742,10 @@
 	\nabla^2\bm{E}_{sc} + k^2 \bm{E}_{sc} =	-k^2 \frac{\varepsilon_1}{\varepsilon_r} \bm{E}_i -\frac{1}{\varepsilon_r}\nabla(\bm{E}_i \cdot \nabla \varepsilon_1) - \frac{2ik}{c\varepsilon_0\varepsilon_r} \frac{\partial (\varepsilon \bm{E}_i)}{\partial t} + \frac{1}{c^2 \varepsilon_0 \varepsilon_r} \frac{\partial^2 (\varepsilon \bm{E}_i)}{\partial t^2}
 	\end{equation*}
 	This is an inhomogeneous Helmholtz equation which under a Sommerfeld radiation condition has the solution \addref
-	\begin{equation*}
-	\boxed{
-		\bm{E}_{sc}(\bm{r},t) = \int_{V_{sc}} \frac{e^{ik |\bm{r}-\bm{r'}| }}{4\pi |\bm{r}-\bm{r'}|} \left( -k^2 \frac{\varepsilon_1}{\varepsilon_r} \bm{E}_i -\frac{1}{\varepsilon_r}\nabla(\bm{E}_i \cdot \nabla \varepsilon_1) - \frac{2ik}{c\varepsilon_0\varepsilon_r} \frac{\partial (\varepsilon \bm{E}_i)}{\partial t} + \frac{1}{c^2 \varepsilon_0 \varepsilon_r} \frac{\partial^2 (\varepsilon \bm{E}_i)}{\partial t^2} \right) \mathrm{d}v'
-	}
-	\end{equation*}
+	\begin{align*}
+		\bm{E}_{sc}(\bm{r},t) =& \int_{V_{sc}} \frac{e^{ik |\bm{r}-\bm{r'}| }}{4\pi |\bm{r}-\bm{r'}|} \\
+		&\cdot \left( -k^2 \frac{\varepsilon_1}{\varepsilon_r} \bm{E}_i -\frac{1}{\varepsilon_r}\nabla(\bm{E}_i \cdot \nabla \varepsilon_1)- \frac{2ik}{c\varepsilon_0\varepsilon_r} \frac{\partial (\varepsilon \bm{E}_i)}{\partial t} + \frac{1}{c^2 \varepsilon_0 \varepsilon_r} \frac{\partial^2 (\varepsilon \bm{E}_i)}{\partial t^2} \right) \mathrm{d}v'
+	\end{align*}
 	
 	\subsection{Approximation of the integral}
 	To simplify this equations even more, approximations concerning the nature of the perturbation can be done. The dielectric perturbation is thus assumed to have the following behavior:
@@ -767,20 +763,20 @@
 	T_2 \sim \frac{|\varepsilon_1| |\bm{E}|}{\varepsilon_r \Lambda} \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right)
 	\end{equation*}
 	Term 3 can be expanded using the perturbation definition and the chain rule:
-	\begin{equation*}
-	T_3 \sim \frac{k}{c\varepsilon_0\varepsilon_r} \frac{\partial (\varepsilon \bm{E})}{\partial t} = \frac{k}{c\varepsilon_0\varepsilon_r} \left( \varepsilon_0\varepsilon_r \frac{\partial \bm{E}}{\partial t} + \varepsilon_0\varepsilon_1 \frac{\partial \bm{E}}{\partial t} + \varepsilon_0\bm{E} \frac{\partial \varepsilon_1}{\partial t}\right)
-	\sim \frac{1}{c\lambda} \left( \frac{\partial \bm{E}}{\partial t} + \frac{\varepsilon_1}{\varepsilon_r} \frac{\partial \bm{E}}{\partial t} + \frac{\bm{E}}{\varepsilon_r} \frac{\partial \varepsilon_1}{\partial t} \right)
-	\end{equation*}
+	\begin{align*}
+	T_3 \sim \frac{k}{c\varepsilon_0\varepsilon_r} \frac{\partial (\varepsilon \bm{E})}{\partial t} &= \frac{k}{c\varepsilon_0\varepsilon_r} \left( \varepsilon_0\varepsilon_r \frac{\partial \bm{E}}{\partial t} + \varepsilon_0\varepsilon_1 \frac{\partial \bm{E}}{\partial t} + \varepsilon_0\bm{E} \frac{\partial \varepsilon_1}{\partial t}\right) \\
+	&\sim \frac{1}{c\lambda} \left( \frac{\partial \bm{E}}{\partial t} + \frac{\varepsilon_1}{\varepsilon_r} \frac{\partial \bm{E}}{\partial t} + \frac{\bm{E}}{\varepsilon_r} \frac{\partial \varepsilon_1}{\partial t} \right)
+	\end{align*}
 	The derivatives can be approximated as
 	\begin{align*}
 	\frac{\partial \varepsilon_1}{\partial t} &\sim |\varepsilon_1|\Omega \sim \frac{|\varepsilon_1| v}{\Lambda} \\
 	\frac{\partial \bm{E}}{\partial t} &\sim \bm{E} v \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right)
 	\end{align*}
 	where $v$ is the speed of sound in the material. The second equation comes from a similar equation in \cite{Tatarskii1971} which takes into account the Doppler effect and changes in $\varepsilon_1$. These are inserted to give
-	\begin{equation*}
-	T_3 \sim \frac{1}{c\lambda} \left( |\bm{E}| v \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right) \left( 1 + \frac{|\varepsilon_1|}{\varepsilon_r} \right) + \frac{|\bm{E}| |\varepsilon_1| v}{\varepsilon_r \Lambda} \right) =
-	\frac{|\bm{E}| |\varepsilon_1| v}{c\lambda} \left( \left( 1 + \frac{|\varepsilon_1|}{\varepsilon_r} \right) \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right) + \frac{|\varepsilon_1|}{\varepsilon_r \Lambda} \right)
-	\end{equation*}
+	\begin{align*}
+	T_3 &\sim \frac{1}{c\lambda} \left( |\bm{E}| v \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right) \left( 1 + \frac{|\varepsilon_1|}{\varepsilon_r} \right) + \frac{|\bm{E}| |\varepsilon_1| v}{\varepsilon_r \Lambda} \right) \\
+	&= \frac{|\bm{E}| |\varepsilon_1| v}{c\lambda} \left( \left( 1 + \frac{|\varepsilon_1|}{\varepsilon_r} \right) \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right) + \frac{|\varepsilon_1|}{\varepsilon_r \Lambda} \right)
+	\end{align*}
 	Now, the condition $|\varepsilon_1| \ll \varepsilon_r$, or equivalently, $|\varepsilon_1|/\varepsilon_r \ll 1$ is used to write the the term as
 	\begin{equation*}
 	T_3 \sim \frac{|\bm{E}| |\varepsilon_1| v}{c\lambda} \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right)
@@ -802,9 +798,7 @@
 	\end{equation*}
 	This holds for any ratio between $\lambda$ and $\Lambda$. If $\lambda \gg \Lambda$, $T_2$ will dominate $T_3$. If $\Lambda \gg \lambda$, $T_1$ will dominate $T_3$. If $\lambda \sim \Lambda$, both $T_1$ and $T_2$ will dominate $T_3$. The fourth term on the RHS is similar to the third, but contains a factor $(v/c)^2$. Thus, if $T_3$ can be neglected, so can $T_4$.	The simplified equation if the condition $v/c \ll |\varepsilon_1|/\varepsilon_r$ holds is shown below:
 	\begin{equation*}
-	\boxed{
 		\bm{E}_{sc}(\bm{r},t) = \frac{1}{4\pi\varepsilon_r} \int_{V_{sc}} \frac{e^{ik |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \left( k^2 \bm{E}_i (\bm{r'},t) \varepsilon_1 (\bm{r'},t) + \nabla (\bm{E}_i (\bm{r'},t) \cdot \nabla \varepsilon_1 (\bm{r'},t)) \right) \mathrm{d}v'
-	}
 	\end{equation*}
 	
 	\section{Derivation of radar equation for simple photoelasticity \label{sec:app-derivations-radar}}
@@ -843,39 +837,41 @@
 	\bm{E}_{sc}(\bm{r},t) = -\frac{\varepsilon_rk^2 e^{ikr}}{4\pi r} \bm{E}_{i0} \mathfrak{p} s_p \int_{V_{sc}} e^{ik ( \bm{\hat{k}} - \bm{\hat{r}} ) \cdot \bm{r}'} \cos(\bm{q} \cdot \bm{r}' - \Omega t) \mathrm{d}v'
 	\end{equation*}
 	The cosine is now written as complex exponentials giving
-	\begin{equation*}
-	\bm{E}_{sc}(\bm{r},t) = -\frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \bm{E}_{i0} \mathfrak{p} s_p \left( e^{-i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) + \bm{q} ) \cdot \bm{r}'} \mathrm{d}v + e^{i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) - \bm{q} ) \cdot \bm{r}'} \mathrm{d}v' \right)
-	\end{equation*}
+	\begin{align*}
+	\bm{E}_{sc}(\bm{r},t) =& -\frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \bm{E}_{i0} \mathfrak{p} s_p \\
+	&\cdot \left( e^{-i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) + \bm{q} ) \cdot \bm{r}'} \mathrm{d}v + e^{i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) - \bm{q} ) \cdot \bm{r}'} \mathrm{d}v' \right)
+	\end{align*}
 	The two integrals are of the same form, $\int e^{i\bm{A} \cdot \bm{r}'} \mathrm{d}v'$, where $\bm{A}$ is independent of $\bm{r}'$. This is solved in general below for the cuboid volume defined by $-L_m/2 \leq m \leq L_m/2$, $m = x,y,z$.
-	\begin{multline*}
-	\int_{V_{sc}} e^{i\bm{A} \cdot \bm{r}'} \mathrm{d}v' =
-	\int_{V_{sc}} e^{i\bm{A} \cdot \bm{\hat{x}} x'} e^{i\bm{A} \cdot \bm{\hat{y}} y'} e^{i\bm{A} \cdot \bm{\hat{z}} z'} \mathrm{d}v' =
-	\prod_{m = x,y,z} \frac{1}{i \bm{A} \cdot \bm{\hat{m}}} \left( e^{i\bm{A} \cdot \bm{\hat{m}} L_m/2} - e^{-i\bm{A} \cdot \bm{\hat{m}} L_m/2} \right) \\
-	= \prod_{m = x,y,z} \frac{2}{\bm{A} \cdot \bm{\hat{m}}} \sin \left(\bm{A} \cdot \bm{\hat{m}} \frac{L_m}{2} \right) =
-	\prod_{m = x,y,z} L_m \text{sinc} \left( \frac{\bm{A} \cdot \bm{\hat{m}} L_m}{2\pi} \right)
-	\end{multline*}
+	\begin{align*}
+	\int_{V_{sc}} e^{i\bm{A} \cdot \bm{r}'} \mathrm{d}v' &=
+	\int_{V_{sc}} e^{i\bm{A} \cdot \bm{\hat{x}} x'} e^{i\bm{A} \cdot \bm{\hat{y}} y'} e^{i\bm{A} \cdot \bm{\hat{z}} z'} \mathrm{d}v' \\
+	&= \prod_{m = x,y,z} \frac{1}{i \bm{A} \cdot \bm{\hat{m}}} \left( e^{i\bm{A} \cdot \bm{\hat{m}} L_m/2} - e^{-i\bm{A} \cdot \bm{\hat{m}} L_m/2} \right) \\
+	&= \prod_{m = x,y,z} \frac{2}{\bm{A} \cdot \bm{\hat{m}}} \sin \left(\bm{A} \cdot \bm{\hat{m}} \frac{L_m}{2} \right) 
+	= \prod_{m = x,y,z} L_m \text{sinc} \left( \frac{\bm{A} \cdot \bm{\hat{m}} L_m}{2\pi} \right)
+	\end{align*}
 	where sinc$(x) = \sin(\pi x)/(\pi x)$. To apply this result to $\bm{A} = k(\bm{\hat{k}} - \bm{\hat{r}}) \pm \bm{q}$ this is first simplified using the geometry defined earlier.
 	\begin{equation*}
-	k(\bm{\hat{k}} - \bm{\hat{r}}) \pm \bm{q} = k\bm{\hat{x}} - k(\bm{\hat{x}} x + \bm{\hat{y}} y + \bm{\hat{z}} z)/r \pm q(\bm{\hat{x}} \cos{\alpha} + \bm{\hat{x}} \sin{\alpha})
+	k(\bm{\hat{k}} - \bm{\hat{r}}) \pm \bm{q} = k\bm{\hat{x}} - k(\bm{\hat{x}} x + \bm{\hat{y}} y + \bm{\hat{z}} z)/r \pm q(\bm{\hat{x}} \cos{\alpha} + \bm{\hat{y}} \sin{\alpha})
 	\end{equation*}
-	where r is not written out fully. The solution to the integral with this choice of $\bm{A}$ is now written as
-	\begin{multline*}
-	\int_{V_{sc}} e^{i(	k(\bm{\hat{k}} - \bm{\hat{r}}) \pm \bm{q}) \cdot \bm{r}'} \mathrm{d}v' =
-	L_x \text{sinc} \left( \frac{L_x}{2\pi} ( k - kx/r \pm q\cos{\alpha} ) \right) \cdot
-	L_y \text{sinc} \left( \frac{L_y}{2\pi} ( - ky/r \pm q\sin{\alpha} ) \right) \\
-	\cdot L_z \text{sinc} \left( -\frac{L_z}{2\pi} kz/r \right)
-	\end{multline*}
-	Changing to spherical coordinates gives:
-	\begin{multline*}
-	\int_{V_{sc}} e^{i(	k(\bm{\hat{k}} - \bm{\hat{r}}) \pm \bm{q}) \cdot \bm{r}'} \mathrm{d}v' =
-	L_x \text{sinc} \left( \frac{L_x}{2\pi} ( k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} ) \right) \\
-	\cdot L_y \text{sinc} \left( \frac{L_y}{2\pi} ( - k\sin{\theta}\sin{\phi} \pm q\sin{\alpha} ) \right)
-	\cdot L_z \text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right) = L_x L_y L_z \Phi^\pm (\theta,\phi)
-	\end{multline*}
+	where r is not written out fully. $\bm{A} \cdot \bm{\hat{m}}$ are now calculated for the three coordinate axes as
+	\begin{align} \label{eq:radar-Aproj}
+		\bm{A} \cdot \bm{\hat{x}} &= k - kx/r \pm q\cos{\alpha} = k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} \nonumber \\
+		\bm{A} \cdot \bm{\hat{y}} &= - ky/r \pm q\sin{\alpha} = - k\sin{\theta}\sin{\phi} \pm q\sin{\alpha} \\
+		\bm{A} \cdot \bm{\hat{z}} &= -kz/r = -k\cos{\theta} \nonumber
+	\end{align}
+	where a conversion to spherical coordinates was made. Insertion into the integral solution gives:
+	\begin{align*}
+	\int_{V_{sc}} &e^{i(	k(\bm{\hat{k}} - \bm{\hat{r}}) \pm \bm{q}) \cdot \bm{r}'} \mathrm{d}v' \\
+	=& L_x \text{sinc} \left( \frac{L_x}{2\pi} ( k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} ) \right) \\
+	&\cdot L_y \text{sinc} \left( \frac{L_y}{2\pi} ( - k\sin{\theta}\sin{\phi} \pm q\sin{\alpha} ) \right)
+	\cdot L_z \text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right) \\
+	=& L_x L_y L_z \Phi^\pm (\theta,\phi)
+	\end{align*}
 	where all angular dependence has been gathered in the function $\Phi^\pm (\theta,\phi)$. This result is now inserted into the scattered field, giving
-	\begin{equation*}
-	\bm{E}_{sc}(\bm{r},t) = -\bm{E}_{i0} \frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \mathfrak{p} s_p L_x L_y L_z \left( e^{-i\Omega t} \Phi^+ (\theta,\phi)  + e^{i\Omega t} \Phi^- (\theta,\phi) \right) = -\bm{E}_{i0} E_A(\bm{r},t)
-	\end{equation*}
+	\begin{align*}
+	\bm{E}_{sc}(\bm{r},t) &= -\bm{E}_{i0} \frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \mathfrak{p} s_p L_x L_y L_z \left( e^{-i\Omega t} \Phi^+ (\theta,\phi)  + e^{i\Omega t} \Phi^- (\theta,\phi) \right) \\
+	&= -\bm{E}_{i0} E_A(\bm{r},t)
+	\end{align*}
 	
 	By inspecting $E_A(\bm{r},t)$ it is clear that two frequency-shifted components arise. Since the implied time-dependence is $e^{-i\omega t}$, the factors $e^{\mp i\Omega t}$ give a frequency shift of $\pm \Omega$. The scattered field is written using two distinct components as
 	\begin{equation*}
@@ -906,9 +902,11 @@
 	\nabla E_A = \frac{\partial E_A}{\partial r} \bm{\hat{r}} + \frac{1}{r} \frac{\partial E_A}{\partial \theta} \bm{\hat{\theta}} + \frac{1}{r\sin{\theta}} \frac{\partial E_A}{\partial \phi} \bm{\hat{\phi}}
 	\end{equation*}
 	$E_A$ contains a factor $1/r$, so the two last terms in the gradient will be $\sim 1/r^2$ and are neglected. The gradient is now written as
-	\begin{equation*}
-	\nabla E_A \approx \frac{\partial E_A}{\partial r} \bm{\hat{r}} = \left( \frac{ike^{ikr}}{r} - \frac{e^{ikr}}{r^2} \right) \frac{\varepsilon_r k^2}{8\pi} \mathfrak{p} S_0 L_x L_y L_z \left( e^{- i\Omega t} \Phi^+ (\theta,\phi) + e^{ i\Omega t} \Phi^- (\theta,\phi) \right) \bm{\hat{r}} \approx ikE_A \bm{\hat{r}}
-	\end{equation*}
+	\begin{align*}
+	\nabla E_A &\approx \frac{\partial E_A}{\partial r} \bm{\hat{r}} \\
+	&= \left( \frac{ike^{ikr}}{r} - \frac{e^{ikr}}{r^2} \right) \frac{\varepsilon_r k^2}{8\pi} \mathfrak{p} S_0 L_x L_y L_z \left( e^{- i\Omega t} \Phi^+ (\theta,\phi) + e^{ i\Omega t} \Phi^- (\theta,\phi) \right) \bm{\hat{r}} \\
+	&\approx ikE_A \bm{\hat{r}}
+	\end{align*}
 	where the $1/r^2$ term was neglected. These results are inserted into the expression for the magnetic field, giving
 	\begin{equation*}
 	\bm{H}_{sc} = \frac{1}{ik \eta_0 \eta} (-ikE_A \bm{\hat{r}} \times \bm{E}_{i0}) = \frac{E_A}{ \eta_0 \eta} \bm{\hat{r}} \times \bm{E}_{i0}
@@ -1005,15 +1003,70 @@
 	\end{figure}
 	Since plane waves are still used the model is not based on real beams. However, for real beams it is still easy to obtain widths at the overlap area and then the interaction region should be fairly close using this model.
 	
+	The integration limits corresponding to this parallelogram can be written as
+	\begin{align*}
+		x_0 - x_1 &< x < x_0 + x_1 \\
+		-w_e/2 &< y < w_e/2 \\
+		-L_z/2 &< z < L_z/2
+	\end{align*}
+	where
+	\begin{align*}
+		x_0 &= \frac{y}{\tan{\alpha}} \\
+		x_1 &= \frac{w_a}{2\sin{\alpha}}
+	\end{align*}
+	The solution to a general function on the form $e^{i\bm{A} \cdot \bm{r}}$ is now written as
+	\begin{align*}
+		I &= \int_{V_{sc}} e^{i\bm{A} \cdot \bm{r}'} \mathrm{d}v' \\
+		&= \int_{-L_z/2}^{L_z/2} e^{i\bm{A} \cdot \bm{\hat{z}} z'} \mathrm{d}z'
+		\int_{-w_e/2}^{w_e/2} \left( e^{i\bm{A} \cdot \bm{\hat{y}} y'}
+		\int_{x_0-x_1}^{x_0+x_1} e^{i\bm{A} \cdot \bm{\hat{x}} x'} \mathrm{d}x' \right) \mathrm{d}y' \\
+		&= \int_{-L_z/2}^{L_z/2} e^{i\bm{A} \cdot \bm{\hat{z}} z'} \mathrm{d}z' \cdot I_2
+	\end{align*}
+	using the solution from \ref{sec:app-derivations-radar} \todoint{Maybe make better references?} this integral can be written as
+	\begin{equation*}
+		I = L_z \text{sinc}\left( \frac{\bm{A} \cdot \bm{\hat{z}} L_z}{2\pi} \right) \cdot I_2
+	\end{equation*}
+	The integral $I_2$ can be solved as
+	\begin{align*}
+		I_2 &= \int_{-w_e/2}^{w_e/2} e^{i\bm{A} \cdot \bm{\hat{y}} y'}
+		\cdot \frac{1}{i\bm{A} \cdot \bm{\hat{x}}}
+		\left( e^{i\bm{A} \cdot \bm{\hat{x}} (x_0+x_1)} - e^{i\bm{A} \cdot \bm{\hat{x}} (x_0-x_1)}\right) \mathrm{d}y' \\
+		&=\int_{-w_e/2}^{w_e/2} e^{i\bm{A} \cdot \bm{\hat{y}} y'}
+		\cdot e^{i\bm{A} \cdot \bm{\hat{x}} x_0} \frac{2}{\bm{A} \cdot \bm{\hat{x}}} \sin(\bm{A} \cdot \bm{\hat{x}} x_1) \mathrm{d}y' \\
+		&=\int_{-w_e/2}^{w_e/2} e^{i\bm{A} \cdot (\bm{\hat{y}} y'+ \bm{\hat{x}} x_0)}
+		\cdot 2x_1 \text{sinc}\left( \frac{\bm{A} \cdot \bm{\hat{x}} x_1}{\pi} \right) \mathrm{d}y' \\
+		&= \frac{w_a}{\sin{\alpha}} \text{sinc}\left( \frac{\bm{A} \cdot \bm{\hat{x}} w_a}{2\pi \sin{\alpha}} \right) \int_{-w_e/2}^{w_e/2} e^{i\bm{A} \cdot (\bm{\hat{y}} + \bm{\hat{x}}/\tan{\alpha}) y'} \mathrm{d}y' \\
+		&= \frac{w_a}{\sin{\alpha}} \text{sinc}\left( \frac{\bm{A} \cdot \bm{\hat{x}} w_a}{2\pi \sin{\alpha}} \right) \cdot I_3
+	\end{align*}
+	The integral $I_3$ can be solved analogously to the solution from \ref{sec:app-derivations-radar} as
+	\begin{equation*}
+		I_3 = w_e \text{sinc}\left( \frac{\bm{A} \cdot (\bm{\hat{y}} + \bm{\hat{x}}/\tan{\alpha}) w_e}{2\pi} \right)
+	\end{equation*}
+	Now the complete solution to $I$ is written as
+	\begin{align*}
+		I =& \frac{w_a}{\sin{\alpha}} \text{sinc}\left( \frac{\bm{A} \cdot \bm{\hat{x}} w_a}{2\pi \sin{\alpha}} \right) \cdot w_e \text{sinc}\left( \frac{\bm{A} \cdot (\bm{\hat{y}} + \bm{\hat{x}}/\tan{\alpha}) w_e}{2\pi} \right) \\
+		&\cdot L_z \text{sinc}\left( \frac{\bm{A} \cdot \bm{\hat{z}} L_z}{2\pi} \right)
+	\end{align*}
+	If the specific function of interest to the scattering problem is inserted, and spherical coordinates are used as in equation (\ref{eq:radar-Aproj}) the solution is
+	\begin{align*}
+		\int_{V_{sc}} &e^{i(	k(\bm{\hat{k}} - \bm{\hat{r}}) \pm \bm{q}) \cdot \bm{r}'} \mathrm{d}v' \\
+		&= \frac{w_a w_e L_z}{\sin{\alpha}} \text{sinc}\left( \frac{w_a}{2\pi \sin{\alpha}}(k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha}) \right) \\
+		&\cdot \text{sinc}\left( \frac{w_e}{2\pi \tan{\alpha}}
+		(k - k\sin{\theta}(\cos{\phi} + \sin{\phi}\tan{\alpha}) \pm q(\cos{\alpha} + \sin{\alpha}\tan{\alpha})) \right) \\
+		&\cdot \text{sinc}\left( -\frac{L_z}{2\pi} k\cos{\theta} \right) \\
+		&= w_a w_e L_z \Phi_p^{\pm}(\theta, \phi)
+	\end{align*}
+	where the function $\Phi_p^{\pm}(\theta, \phi)$ was introduced for all angular dependence as for $\Phi^{\pm}(\theta, \phi)$ in \ref{sec:app-derivations-radar}.
+	
 	\todoint[inline]{Continue derivation, might need to introduce some equation numbering for referencing.}
 	
 	\section{Geometry for maximum scattering \label{sec:app-derivations-bragg}}
 	Let us begin with the $\Phi$ angular dependence function:
-	\begin{multline*}
-	\Phi^\pm(\theta,\phi) = \text{sinc} \left( \frac{L_x}{2\pi} \left( k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} \right) \right) 
-	\cdot \text{sinc} \left( \frac{L_y}{2\pi} \left( -k\sin{\theta}\sin{\phi} \pm q\sin{\alpha} \right) \right) \\
-	\cdot \text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right)
-	\end{multline*}
+	\begin{align*}
+	\Phi^\pm(\theta,\phi) =& \text{sinc} \left( \frac{L_x}{2\pi} \left( k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} \right) \right) \\
+	\cdot& \text{sinc} \left( \frac{L_y}{2\pi} \left( -k\sin{\theta}\sin{\phi} \pm q\sin{\alpha} \right) \right) \\
+	\cdot& \text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right)
+	\end{align*}
 	The maximum of this function mush be where all sinc-functions are maximum. For a sinc the maximum is given when the argument is equal to 0, which simplifies the process. Firstly, consider the third sinc:
 	\begin{equation*}
 	\text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right)

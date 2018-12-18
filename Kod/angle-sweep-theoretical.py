@@ -40,8 +40,9 @@ Phi = Lx*Ly*(np.sinc(Lx/2/np.pi*(k - k*np.cos(phi_m) + pm*q*np.cos(alpha_m))) *
 Phi_p = (wa*we/np.sin(alpha_m) *
          np.sinc(wa/2/np.pi/np.sin(alpha_m) *
                  (k - k*np.cos(phi_m) + pm*q*np.cos(alpha_m))) *
-         np.sinc(we*(1 + np.tan(alpha_m))/2/np.pi/np.tan(alpha_m) *
-                 (-k*np.sin(phi_m) + pm*q*np.sin(alpha_m))))
+         np.sinc(we/2/np.pi/np.tan(alpha_m) *
+                 (k - k*(np.cos(phi_m) + np.sin(phi_m)*np.tan(alpha_m)) +
+                  pm*q*(np.cos(alpha_m) + np.sin(alpha_m)*np.tan(alpha_m)))))
 
 P_ang = Phi**2
 P_ang_p = Phi_p**2
@@ -51,7 +52,8 @@ plt.polar(phi, P_ang[:, ::10])
 plt.legend(angles[::10])
 
 plt.figure()
-Ptot = np.trapz(P_ang.T, r*phi)
+plt.grid()
+Ptot = np.trapz(P_ang.T, x=r*phi)
 plt.plot(angles, Ptot/Ptot.max())
 
 plt.figure()
@@ -59,5 +61,6 @@ plt.polar(phi, P_ang_p[:, ::10])
 plt.legend(angles[::10])
 
 plt.figure()
-Ptot_p = np.trapz(P_ang_p.T, r*phi)
+plt.grid()
+Ptot_p = np.trapz(P_ang_p.T, x=r*phi)
 plt.plot(angles, Ptot_p/Ptot_p.max())

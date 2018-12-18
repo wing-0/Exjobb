@@ -74,6 +74,7 @@ arc = np.cumsum(dist, axis=0)
 Stot = np.trapz(normS, arc, axis=0)
 
 plt.figure()
+plt.grid()
 plt.plot(alpha, Stot/Stot.max(), '.-')
 plt.title('Total scattered power (normalized)')
 plt.xlabel('$\\alpha$ [$^\\circ$]')

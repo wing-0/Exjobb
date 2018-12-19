@@ -58,18 +58,18 @@ for i in range(0, len(alpha)):
 
 # %% Plot using norm of the power flow
 
-# Norm of the power flow (with taper)
+# Norm of the power flow
 normS = np.sqrt(Sx**2 + Sy**2)
 
 # Calculate distances between all points (x,y) and construct an axis based on
-# arc length from theta = 0 to theta = 2*pi (with taper)
+# arc length from theta = 0 to theta = 2*pi
 xdiff = np.diff(np.vstack((x, x[0, :])), axis=0)
 ydiff = np.diff(np.vstack((y, y[0, :])), axis=0)
 dist = np.linalg.norm(np.array([xdiff, ydiff]), axis=0)
 arc = np.cumsum(dist, axis=0)
 
 # Integrate norm of the power flow for all angles and plot against the angle
-# between wave vectors (with taper)
+# between wave vectors
 Stot = np.trapz(normS, arc, axis=0)
 
 plt.figure()
@@ -106,7 +106,7 @@ plt.title('Mean angle of the 5 % with highest energy')
 plt.xlabel('$\\alpha$ [$^\\circ$]')
 plt.ylabel('Propagation angle $\\phi$ [$^\\circ$]')
 
-# Plot norm of the power flow for all PROPAGATION angles (with taper)
+# Plot norm of the power flow for all PROPAGATION angles
 plt.figure()
 plt.polar(propang, normS/normS.max())
 plt.title('Norm of the time avg. power flow (normalized)')

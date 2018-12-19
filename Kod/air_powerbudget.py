@@ -53,7 +53,7 @@ we = ape + 2*R*np.tan(angle_e/2)
 Lz = min([we, wa])
 
 # Overlap length based on parallelogram model with cosine law for diagonal
-d = np.sqrt((we/np.sin(np.pi-alpha))**2 + (wa/np.sin(np.pi-alpha))**2 - 
+d = np.sqrt((we/np.sin(np.pi-alpha))**2 + (wa/np.sin(np.pi-alpha))**2 -
             2*we*wa/np.sin(np.pi-alpha)**2 * np.cos(np.pi-alpha))
 
 # Receiver things
@@ -66,10 +66,10 @@ B = fa                          # Assume receiver BW same as Ac. freq.
 sigma = er**2*k**2/16/np.pi*ph**2*s_p**2*wa**2*we**2*Lz**2/np.sin(alpha)
 
 # Power required to obtain 0 dB SNR with 1 sample
-P = (4*np.pi)**3 * R**4 * con.k*T0*B *F/(G**2 * le**2 * sigma)
+P = (4*np.pi)**3 * R**4 * con.k*T0*B*F/(G**2 * le**2 * sigma)
 
 # Samples required to obtain 0 dB SNR with 15 dBm EM power
-N = (4*np.pi)**3 * R**4 * con.k*T0*B *F/(1e-3*10**1.5 * G**2 * le**2 * sigma)
+N = (4*np.pi)**3 * R**4 * con.k*T0*B*F/(1e-3*10**1.5 * G**2 * le**2 * sigma)
 
 print(60*'-')
 print('{0:>60s}'.format('ULTRASOUND AND MICROWAVES IN AIR'))

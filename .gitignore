@@ -505,7 +505,15 @@ dmypy.json
 *.mph.lock
 
 # csv files (might be temporary, but COMSOL exports are currently saved as these and they are huge...)
-*.csv
+#*.csv
 
 # zip archives
 *.zip
+
+# Directories with unnecessary results
+/Simulation/Angle sweep verification/Incorrect acceleration (DO NOT USE)
+/Simulation/Circular geometry
+/Simulation/Circular geometry test
+/Simulation/Misc. stuff test
+/Simulation/Port-scatter comparison
+/Simulation/Water jet test

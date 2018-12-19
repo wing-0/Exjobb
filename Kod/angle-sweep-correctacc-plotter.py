@@ -35,8 +35,7 @@ alpha = (180*(pm + 1)/2 - pm*angles).astype('int')
 # %% Load data and process it into correct format
 
 # File directory
-loc = (r'C:\Users\tfy13nwi\Documents\Exjobb\Simulation'
-       r'\Angle sweep verification\Correct acceleration\Results')
+loc = (r'..\Simulation\Angle sweep verification\Correct acceleration\Results')
 
 # Import data without and with photoelasticity (with taper)
 files_pe = [(loc + '\\a=' + str(a) + '_opt=' + str(opta) +

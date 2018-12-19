@@ -29,8 +29,7 @@ voids = ['0', 'le']
 # %% Load data and process it into correct format
 
 # File directory
-loc = ('C:\\Users\\tfy13nwi\\Documents\\Exjobb\\Simulation'
-       '\\Void test\\Results\\')
+loc = ('..\\Simulation\\Void test\\Results\\')
 
 # Import data without and with photoelasticity (with taper)
 files_pe = [(loc + mat + ' a=' + str(opta) + ' void=' + a + '_pe.csv')

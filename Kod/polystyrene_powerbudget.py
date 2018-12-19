@@ -1,32 +1,42 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Dec 18 17:39:30 2018
+Created on Wed Dec 19 00:29:01 2018
 
-@author: tfy13nwi
+@author: Niklas
 """
 
 import numpy as np
 import scipy.constants as con
 
-# Material properties (air)
-rho_0 = 1.293               # Density (273 K)
-v = 344                     # Speed of sound (293 K)
-er = 1.00059                # Relative permittivity
+# Material properties (polystyrene)
+# https://www.azom.com/article.aspx?ArticleID=798
+# http://www.classltd.com/sound_velocity_table.html
+rho_0 = 1070                # Density
+v = 2400                    # Speed of sound
+er = 2.6                    # Relative permittivity
 
 # Photoelastic constant from scalar model
 ph = -1/3*(er-1)*(er+2)/er**2
 
-# Acoustic transducer properties SensComp 40KPT25
-fa = 40e3                   # Frequency
+# Acoustic transducer properties from paper
+# https://academic.oup.com/ptj/article/88/1/50/2747229
+fa = 1e6                    # Frequency
 la = v/fa                   # Wavelength
-angle_a = np.radians(23)    # Beam angle (full width, -6 dB SPL)
-p_p = 20e-6*10**(110/20)    # Sound pressure amplitude at ref distance
-s_p = p_p/rho_0/v**2        # Sound strain amplitude at ref distance
-d_ref = 30e-2               # Reference distance for SPL measurment
-apa = 25.1e-3               # Ac. aperture from datasheet
+apa = 5e-2                  # Ac. aperture (guess)
+angle_a = np.radians(20)    # Beam angle (guess)
+P_s = 5                     # Output power
+d_ref = 30e-2               # Distance for intersection
+
+# Radius of beam at the intersection distance
+br = (apa + 2*d_ref*np.tan(angle_a/2))/2
+
+I_s = P_s/(np.pi*br**2)     # Sound intensity at interection
+
+# Sound strain amplitude at intersection
+s_p = np.sqrt(2*I_s/rho_0/v**3)
 
 # EM antenna properties
-fe = 17.5e9                   # Frequency
+fe = 60e9                   # Frequency
 le = con.c/np.sqrt(er)/fe   # Wavelength
 k = 2*np.pi/le              # Wave number
 G = 10**(20/10)             # Transmitter & Receiver gain
@@ -72,9 +82,9 @@ P = (4*np.pi)**3 * R**4 * con.k*T0*B *F/(G**2 * le**2 * sigma)
 N = (4*np.pi)**3 * R**4 * con.k*T0*B *F/(1e-3*10**1.5 * G**2 * le**2 * sigma)
 
 print(60*'-')
-print('{0:>60s}'.format('ULTRASOUND AND MICROWAVES IN AIR'))
+print('{0:>60s}'.format('ULTRASOUND AND MICROWAVES IN POLYSTYRENE'))
 print(60*'-')
-print('{0:>50s} {1:.2f} kHz'.format('Ac. frequency:', fa/1e3))
+print('{0:>50s} {1:.2f} MHz'.format('Ac. frequency:', fa/1e6))
 print('{0:>50s} {1:.2f} GHz \n'.format('Em frequency:', fe/1e9))
 
 print('{0:>50s} {1:.2f} deg'.format('Angle between wave vectors:',

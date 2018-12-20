@@ -630,10 +630,11 @@
 	An electromagnetic antenna was modeled using the port boundary condition. 
 	
 	\subsection{Modeling of Ultrasonic Transducer}
-	An ultrasonic transducer was modeled using the normal acceleration boundary condition. The acceleration was set to "inward acceleration" \todoint{Check this}. The value of the acceleration amplitude was calculated from a displacement amplitude using $a_p = \Omega^2 u_p$ where the displacement amplitude is the same as described in the theory. A taper was added to the transducer by multiplying the acceleration value by a Gaussian taper
+	An ultrasonic transducer was modeled using the normal acceleration boundary condition. The acceleration was set to "inward acceleration" \todoint{Check this}. The value of the acceleration amplitude was calculated from a displacement amplitude using $a_p = \Omega^2 u_p$ where the displacement amplitude is the same as described in the theory. To reduce the sidelobe level, a taper was added to the transducer by multiplying the acceleration value by a Gaussian taper
 	\begin{equation*}
-		e^{-(A...)^2}
-	\end{equation*}\todoint{Fix this}
+		e^{-(A(-x\sin{\phi} + y\cos{\phi}))^2} = e^{-(A(x\sin{\alpha} - y\cos{\alpha}))^2}
+	\end{equation*} \todoint{Derivation for tapering? Rotation of coordinate system and such things then}
+	where $A$ affects the width of the taper. An acceptable value for $A$ was found to be $A = 4/d_a$ where $d_a$ is the length of the aperture. \todoint{More info on tapering since this was not used for all simulations (though it's the most general so it should maybe be used)}
 	
 	\section{Verification of analytical model}
 	\todoext{Description of how the simple scattering problem was modeled.}

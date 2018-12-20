@@ -18,13 +18,14 @@ import readFields_PE as read
 plt.close('all')
 
 # Conductivities
-sigs = [0, 0.5, 1, 1.5, 2]
+#sigs = [0, 0.5, 1, 1.5, 2]
+sigs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 # %% Load data and process it into correct format
 
 # File directory
 loc = ('..\\Simulation\\Cond test\\Results\\' +
-       'True glass fiber a=40, cond=0..2, d=le, centered')
+       'True glass fiber a=40, cond=0..10, d=le, centered')
 
 # Import data without and with photoelasticity (with taper)
 files_pe = [loc + '\\sig=' + str(a) + '_pe.csv' for a in sigs]

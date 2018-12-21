@@ -212,7 +212,7 @@
 	\subsection{Acousto-Optics}
 	Acousto-optics is an interaction mechanism often explained using simple elasticity models and wave optics \cite{Saleh2007}\cite{Korpel1981}. The main idea is that there is a relation between the strain in a material and its index of refraction. Since an acoustic wave consists of periodic compression and rarefaction in a medium (which can be related to strain), a consequence is that the index of refraction varies with the same period \cite{Saleh2007}. Due to Fresnel reflection, this periodic structure of varying index of refraction acts as a Bragg reflector scattering incident light \cite{Saleh2007}. The Bragg condition determines the angle of incidence $\theta_B$ required for the light
 	\begin{equation*}
-	\sin{\theta_B} = \frac{\lambda}{2\Lambda}
+		\sin{\theta_B} = \frac{\lambda}{2\Lambda}
 	\end{equation*}
 	where $\lambda$ is the light wavelength and $\Lambda$ is the acoustic wavelength \cite{Saleh2007}. As for the previously mentioned mechanisms, the scattered wave is frequency shifted by the acoustic frequency \cite{Korpel1988}.
 	
@@ -235,7 +235,7 @@
 	\subsection{Propagation in fluid medium}
 	In a compressible fluid ultrasound can be described by a fully acoustic model. The main variable for describing the wave motion is pressure in this case. In turn, this can be converted into other variables such as displacement or strain. The theory of acoustics originates in continuum mechanics, but a restriction to fluids and a linearization leads to the most commonly used model - linear acoustics \cite{Rossing2014}. The acoustic wave equation which lies at the heart of the model of linear acoustics can be written as \cite{Rossing2014, Schmerr2016, Kaufman2000}
 	\begin{equation*}
-	\nabla^2 p - \frac{1}{v^2} \frac{\partial^2 p}{\partial t^2} = 0
+		\nabla^2 p - \frac{1}{v^2} \frac{\partial^2 p}{\partial t^2} = 0
 	\end{equation*}
 	where $p$ is pressure and $v$ is the speed of sound in the fluid. In addition to linearization, this equation assumes no body forces and a homogeneous density of the medium \cite{Rossing2014}. The speed of sound can be written as $v = \sqrt{K/\rho_0}$ where $K$ is the bulk modulus of the fluid and $\rho_0$ is the unperturbed density of the fluid \cite{Kaufman2000}.
 	
@@ -244,21 +244,21 @@
 	\subsection{Propagation in solid medium}
 	In an elastic medium the acoustic model is no longer sufficient. The linear acoustic model considers only pressure since one main assumption for volume elements in the fluid is that they only transmit force in the direction of the force \cite{Kaufman2000}. The volume elements in an elastic solid are more strongly coupled to each other, and this assumption does not hold anymore \cite{Kaufman2005}. The equations for elastic waves are instead based on solid mechanics. There is no simple wave equation as in acoustics, instead the model is described by Navier's equations
 	\begin{equation*}
-	\mu \nabla^2 \bm{u} + (\lambda+\mu) \nabla (\nabla \cdot \bm{u}) + \bm{f} = \rho_0 \frac{\partial^2 \bm{u}}{\partial t^2}
+		\mu \nabla^2 \bm{u} + (\lambda+\mu) \nabla (\nabla \cdot \bm{u}) + \bm{f} = \rho_0 \frac{\partial^2 \bm{u}}{\partial t^2}
 	\end{equation*}
 	where $\bm{u}$ is the displacement vector, $\lambda$ and $\mu$ are the Lamé parameters of the material and $\bm{f}$ is the body force \cite{Schmerr2016}. To obtain wave equations from this, a Helmholtz decomposition is made as
 	\begin{equation*}
-	\bm{u} = \nabla \phi + \nabla \times \bm{\psi}
+		\bm{u} = \nabla \phi + \nabla \times \bm{\psi}
 	\end{equation*}
 	where $\phi$ is a scalar potential and $\bm{\psi}$ is a vector potential \cite{Schmerr2016}. For Navier's equations to be fulfilled, the following must hold for the potentials \cite{Schmerr2016}:
 	\begin{align*}
-	&\nabla^2 \phi - \frac{1}{c_p^2} \frac{\partial^2 \phi}{\partial t^2} = 0 \\
-	&\nabla^2 \bm{\psi} - \frac{1}{c_s^2} \frac{\partial^2 \bm{\psi}}{\partial t^2} = 0
+		&\nabla^2 \phi - \frac{1}{c_p^2} \frac{\partial^2 \phi}{\partial t^2} = 0 \\
+		&\nabla^2 \bm{\psi} - \frac{1}{c_s^2} \frac{\partial^2 \bm{\psi}}{\partial t^2} = 0
 	\end{align*}
 	These are two wave equations with the wave speeds \cite{Schmerr2016}
 	\begin{align*}
-	c_p &= \sqrt{(\lambda + 2\mu)/\rho_0} \\
-	c_s &= \sqrt{\mu/\rho_0}
+		c_p &= \sqrt{(\lambda + 2\mu)/\rho_0} \\
+		c_s &= \sqrt{\mu/\rho_0}
 	\end{align*}
 	By further investigation, the waves can be identified as p-waves with speed $c_p$ and s-waves with speed $c_s$ \cite{Schmerr2016}. The p-waves are very similar to acoustic waves, and it can be shown that the dilatation of the solid (sum of linear strains) follows the p-wave equation \cite{Schmerr2016}. The s-waves on the other hand, do not have an analogy in acoustics. The rotation of the solid follows the s-wave equation \cite{Schmerr2016}, and as discussed before this type of motion does not propagate in a compressible fluid. When it comes to actually generating ultrasonic elastic waves, transducers are available both for generation of p-waves and s-waves \cite{Schmerr2016}. A simple model for determining strain is then based on calculating only one potential and setting the other to zero. This is common when working with p-waves \cite{Kaufman2000}.
 	
@@ -320,46 +320,52 @@
 	
 	A starting point can be found in the literature on acousto-optics in the relation \cite{Korpel1988}
 	\begin{equation*}
-	\Delta \left( \frac{1}{n_i^2} \right) = p_{ij} s_j
+		\Delta \left( \frac{1}{n_i^2} \right) = p_{ij} s_j
 	\end{equation*}
 	where $s_j$ are strains and $i,j = 1,...,6$. The double indexation of $j$ in both $p$ and $e$ indicates a summation over $j$. This can seem a bit troublesome to use since the LHS is the difference of an inverse quantity. This can be rewritten as shown below
 	\begin{align*}
-	\alpha &= \frac{1}{n_i^2},\ n_i = \alpha^{-1/2} \\
-	\Delta n_i &= \frac{\mathrm{d}n_i}{\mathrm{d}\alpha} \Delta \alpha = -\frac{1}{2} \alpha^{-3/2} \Delta \alpha = -\frac{1}{2} n_i^3 p_{ij} s_j
+		\alpha &= \frac{1}{n_i^2},\ n_i = \alpha^{-1/2} \\
+		\Delta n_i &= \frac{\mathrm{d}n_i}{\mathrm{d}\alpha} \Delta \alpha = -\frac{1}{2} \alpha^{-3/2} \Delta \alpha = -\frac{1}{2} n_i^3 p_{ij} s_j
 	\end{align*}
 	The refractive index and relative permittivity are related by $\varepsilon_{r_i} = n_i^2$ in a non-magnetic material. To obtain the change in relative permittivity instead of refractive index
 	\begin{equation*}
-	\Delta \varepsilon_{r_i} = \frac{\mathrm{d}\varepsilon_{r_i}}{\mathrm{d}n_i} \Delta n_i = 2n_i \Delta n_i = -n_i^4 p_{ij} s_j = -\varepsilon_{r_i}^2 p_{ij} s_j
+		\Delta \varepsilon_{r_i} = \frac{\mathrm{d}\varepsilon_{r_i}}{\mathrm{d}n_i} \Delta n_i = 2n_i \Delta n_i = -n_i^4 p_{ij} s_j = -\varepsilon_{r_i}^2 p_{ij} s_j
 	\end{equation*}
 	
 	The tensor notation used above is a simplified form described by the 1949 IRE standards. The relation to full tensor notation is shown below for an arbitrary tensor $a$ \cite{Korpel1988}
-	\begin{align*}
-	a_1 &= a_{11},\ a_2 = a_{22},\ a_3 = a_{33}, \\
-	a_4 &= a_{23},\ a_5 = a_{31},\ a_6 = a_{12}
-	\end{align*}
+	\begin{equation*}
+	\begin{split}
+		a_1 &= a_{11},\ a_2 = a_{22},\ a_3 = a_{33}, \\
+		a_4 &= a_{23},\ a_5 = a_{31},\ a_6 = a_{12}
+	\end{split}
+	\end{equation*}
 	If the strains are considered, it is clear that indices 1-3 are tensile and 4-6 are shear. For the photoelastic tensor it can be seen that it is of rank 4, being $p_{ijkl}$ in standard notation. One thing to note is that the 4 indices in standard notation should allow for many more components of the photoelastic tensor than those possible using this compact notation (81 instead of 36). This is due to symmetry of the photoelastic tensor in this particular model. \addref It should also be noted that this model does break down in some cases, and more advanced descriptions of the phenomena exist \cite{Nelson1971}. However, this model was considered advanced enough as a starting point for this problem, especially since it is quite heavily simplified in the end.
 	
 	This model of the photoelastic tensor allows for up to 36 independent components, but for the simple case of an isotropic solid the tensor simplifies to \cite{Korpel1988}
-	\begin{align*}
-	p_{11} &= p_{22} = p_{33}, \ p_{12} = p_{21} = p_{13} = p_{23} = p_{32}\\
-	p_{44} &= p_{55} = p_{66} = \frac{1}{2} (p_{11} - p_{12}), \ p_{ij} = 0 \text{ for others}
-	\end{align*}
+	\begin{equation*}
+	\begin{split}
+		p_{11} &= p_{22} = p_{33}, \ p_{12} = p_{21} = p_{13} = p_{23} = p_{32}\\
+		p_{44} &= p_{55} = p_{66} = \frac{1}{2} (p_{11} - p_{12}), \ p_{ij} = 0 \text{ for others}
+	\end{split}
+	\end{equation*}
 	
 	The simplest material to consider would be an isotropic solid with isotropic permittivity $\varepsilon_r$. There is then no preferred axis and a coordinate system can be selected arbitrarily. A longitudinal acoustic wave is defined by \begin{equation*}
-	s_1(x_1,t) = s_p \cos(\Omega t - qx_1)
+		s_1(x_1,t) = s_p \cos(\Omega t - qx_1)
 	\end{equation*}
 	It is propagating in the $x_1$ direction and is thus a strain $e_1$, and all other strains are assumed to be zero. The relation $\Delta \varepsilon_{r_i} = -\varepsilon_{r_i}^2 p_{ij} s_j$ together with the photoelastic tensor for isotropic solids then gives
 	\begin{align*}
-	\Delta \varepsilon_{r_1} &= -\varepsilon_r^2 p_{11} s_p \cos(\Omega t - qx_1)\\
-	\Delta \varepsilon_{r_2} &= \varepsilon_{r_3} = -\varepsilon_r^2 p_{12} s_p \cos(\Omega t - qx_1)
+		\Delta \varepsilon_{r_1} &= -\varepsilon_r^2 p_{11} s_p \cos(\Omega t - qx_1)\\
+		\Delta \varepsilon_{r_2} &= \varepsilon_{r_3} = -\varepsilon_r^2 p_{12} s_p \cos(\Omega t - qx_1)
 	\end{align*}
 	It is clear that the permittivity now has an axis $x_1$ where it has another value than in $x_2$ and $x_3$. So even for a material which is nominally completely isotropic, a preferred axis arises for the permittivity! This type of anisotropy is called birefringence in optics, and in this case it is caused by dipoles aligning themselves parallel to the strain \cite{Korpel1988}. Practically, the effect of this is that the interaction strength of this mechanism depends on the EM polarization with respect to the acoustic wave polarization. In longitudinal acoustic waves the polarization and propagation direction coincide, which makes analysis easier.
 	
 	For a very simplistic model, the anisotropy can be ignored if it is assumed that $p_{11} = p_{12}$. This assumption reduces the photoelastic tensor to
-	\begin{align*}
-	p_{11} &= p_{22} = p_{33} = p_{12} = p_{21} = p_{13} = p_{23} = p_{32} = \mathfrak{p}\\
-	p_{ij} &= 0 \text{ for others}
-	\end{align*}
+	\begin{equation*}
+	\begin{split}
+		p_{11} &= p_{22} = p_{33} = p_{12} = p_{21} = p_{13} = p_{23} = p_{32} = \mathfrak{p}\\
+		p_{ij} &= 0 \text{ for others}
+	\end{split}
+	\end{equation*}
 	where $\mathfrak{p}$ was introduced as a scalar photoelastic constant. One thing to note is that since $p_{33} = p_{44} = p_{55} = 0$, shear strain does not have any effect in this simplified model. If the unperturbed permittivity is isotropic, a scalar relation can be written as
 	\begin{equation}\label{eq:PE-scalar}
 		\Delta \varepsilon_r = -\varepsilon_r^2 \mathfrak{p} \Delta
@@ -368,18 +374,18 @@
 	
 	To obtain a model for calculating this simplified constant $\mathfrak{p}$, another starting point for the problem is utilized. This is the Lorentz-Lorenz relation, which can be used to obtain the following equations for photoelasticity \cite{Korpel1988}
 	\begin{align*}
-	\Delta n &= C' S \\
-	C' &= \left[ \frac{(n^2-1)(n^2+2)}{6n} \right](1-\Lambda_0) \\
-	\Lambda_0 &= -\left( \frac{\rho}{\alpha} \right) \frac{\mathrm{d} \alpha}{\mathrm{d} \rho}
+		\Delta n &= C' S \\
+		C' &= \left[ \frac{(n^2-1)(n^2+2)}{6n} \right](1-\Lambda_0) \\
+		\Lambda_0 &= -\left( \frac{\rho}{\alpha} \right) \frac{\mathrm{d} \alpha}{\mathrm{d} \rho}
 	\end{align*}
 	where $S$ is the condensation (relative change in density), $\rho$ is the density and $\alpha$ is the molecular polarizability. Here the anisotropic effects are contained in the parameter $\Lambda_0$ \cite{Korpel1988}. If anisotropy should be considered, the tensor model is probably better to use, but if $\Lambda_0$ is neglected a simplified model is obtained. This type of model is usually accurate for liquids, but many solids do not have this behavior \cite{Korpel1988}. Nevertheless, the simplified relation can be written for permittivity (using $\varepsilon_r = n^2$ and $\Delta \varepsilon_r = 2n \Delta n$) as
 	\begin{equation*}
-	\Delta \varepsilon_r = \frac{1}{3} (\varepsilon_r - 1)(\varepsilon_r + 2) S
+		\Delta \varepsilon_r = \frac{1}{3} (\varepsilon_r - 1)(\varepsilon_r + 2) S
 	\end{equation*}
 	This can be compared with equation \ref{eq:PE-scalar} to obtain an equivalent photoelasticity \todoint{Check similarity between condensation (relative density change) and dilatation (relative volume change, div of displacements, sum of linear strains)}
 	\todoext{All steps are not fully written out here, should be done later}
 	\begin{equation}\label{eq:PE-liquid-model}
-	\mathfrak{p} = -\frac{(\varepsilon_r - 1)(\varepsilon_r + 2)}{3\varepsilon_r^2}
+		\mathfrak{p} = -\frac{(\varepsilon_r - 1)(\varepsilon_r + 2)}{3\varepsilon_r^2}
 	\end{equation}
 	A plot of $\mathfrak{p}$ as a function of $\varepsilon_r$ is shown in figure \ref{fig:photoelastic-liquid}. It can be seen clearly that the interaction strength increases with $\varepsilon_r$ close to 1. However, at around $\varepsilon_r = 4$ an extreme is reached, and further on $\mathfrak{p}$ planes out. Thus, there is a bound on the interaction strength for this relation. It should be noted that this model is extremely simplistic and is probably only accurate for a limited range of materials.
 	\begin{figure}[h]
@@ -430,61 +436,64 @@
 	\section{Scattering in a perturbed dielectric \label{sec:analytical-scatter}}
 	Scattering of electromagnetic waves in a dielectric perturbation is now considered in general. A full derivation can be found in \ref{sec:app-derivations-scatter}, but the main steps are shown here as well. Much of the derivation follows one in \cite{Tatarskii1971}. The starting point is Maxwell's equations for a linear, non-magnetic, source-free, isotropic dielectric. Note that the permittivity is not homogeneous.
 	\begin{align*}
-	&\nabla \times \bm{\mathcal{E}} = -\mu_0 \frac{\partial \bm{\mathcal{H}}}{\partial t} \\
-	&\nabla \times \bm{\mathcal{H}} = \frac{\partial (\varepsilon \bm{\mathcal{E}})}{\partial t} \\
-	&\nabla \cdot (\varepsilon \bm{\mathcal{E}}) = 0 \\
-	&\nabla \cdot \bm{\mathcal{H}} = 0
+		&\nabla \times \bm{\mathcal{E}} = -\mu_0 \frac{\partial \bm{\mathcal{H}}}{\partial t} \\
+		&\nabla \times \bm{\mathcal{H}} = \frac{\partial (\varepsilon \bm{\mathcal{E}})}{\partial t} \\
+		&\nabla \cdot (\varepsilon \bm{\mathcal{E}}) = 0 \\
+		&\nabla \cdot \bm{\mathcal{H}} = 0
 	\end{align*}
 	The script letters are used here to indicate a time dependence as
 	\begin{align*}
-	&\bm{\mathcal{E}}(\bm{r},t) = \bm{E}(\bm{r},t) \text{e}^{-i\omega t} \\
-	&\bm{\mathcal{H}}(\bm{r},t) = \bm{H}(\bm{r},t) \text{e}^{-i\omega t}
+		&\bm{\mathcal{E}}(\bm{r},t) = \bm{E}(\bm{r},t) \text{e}^{-i\omega t} \\
+		&\bm{\mathcal{H}}(\bm{r},t) = \bm{H}(\bm{r},t) \text{e}^{-i\omega t}
 	\end{align*}
 	This is used to remove the e$^{-i\omega t}$ dependence in the equations and only keep "slower" time dependencies. The new equations are
-	\begin{align*}
-	&\nabla \times \bm{E} = i\omega \mu_0 \bm{H} - \mu_0 \frac{\partial \bm{H}}{\partial t} \\
-	&\nabla \times \bm{H} = -i\omega \varepsilon \bm{E} + \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} \\
-	&\nabla \cdot (\varepsilon \bm{E}) = 0 \\
-	&\nabla \cdot \bm{H} = 0
-	\end{align*}
+	\begin{align}
+		&\nabla \times \bm{E} = i\omega \mu_0 \bm{H} - \mu_0 \frac{\partial \bm{H}}{\partial t} \label{eq:an-scatter-faraday} \\
+		&\nabla \times \bm{H} = -i\omega \varepsilon \bm{E} + \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} \label{eq:an-scatter-ampere} \\
+		&\nabla \cdot (\varepsilon \bm{E}) = 0 \label{eq:an-scatter-gauss} \\
+		&\nabla \cdot \bm{H} = 0 \label{eq:an-scatter-magn}
+	\end{align}
 	Now $\nabla \times$ is applied to $\nabla \times \bm{E}$ and it is combined with $\nabla \times \bm{H}$, giving
 	\begin{equation*}
-	\nabla \times (\nabla \times \bm{E}) = \omega^2 \mu_0 \varepsilon \bm{E} + 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} - \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
+		\nabla \times (\nabla \times \bm{E}) = \omega^2 \mu_0 \varepsilon \bm{E} + 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} - \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
 	\end{equation*}
 	The relation $\nabla \times (\nabla \times \bm{E}) = -\nabla^2\bm{E} + \nabla(\nabla \cdot \bm{E})$ is now used
 	\begin{equation*}
-	\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon \bm{E} = \nabla(\nabla \cdot \bm{E}) - 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} + \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
+		\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon \bm{E} = \nabla(\nabla \cdot \bm{E}) - 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} + \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
+		\label{eq:an-scatter-Efield1}
 	\end{equation*}
-	Gauss' law $\nabla \cdot (\varepsilon \bm{E}) = 0$ is now expanded to $\varepsilon(\nabla \cdot \bm{E}) + (\nabla \varepsilon) \cdot \bm{E} = 0$. This can be rewritten as
+	Gauss' law (\ref{eq:an-scatter-gauss}) is now expanded to $\varepsilon(\nabla \cdot \bm{E}) + (\nabla \varepsilon) \cdot \bm{E} = 0$. This can be rewritten as
 	\begin{equation*}
-	\nabla \cdot \bm{E} = -\bm{E} \cdot \frac{\nabla \varepsilon}{\varepsilon} = -\bm{E} \cdot \nabla (\ln{\varepsilon})
+		\nabla \cdot \bm{E} = -\bm{E} \cdot \frac{\nabla \varepsilon}{\varepsilon} = -\bm{E} \cdot \nabla (\ln{\varepsilon})
 	\end{equation*}
-	Inserting this into the previous equation gives
-	\begin{equation*}
-	\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon \bm{E} = -\nabla(\bm{E} \cdot \nabla (\ln{\varepsilon})) - 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} + \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
-	\end{equation*}
+	Inserting this into equation (\ref{eq:an-scatter-Efield1}) gives
+	\begin{equation}
+		\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon \bm{E} = -\nabla(\bm{E} \cdot \nabla (\ln{\varepsilon})) - 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} + \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
+		\label{eq:an-scatter-Efield2}
+	\end{equation}
 	Now, the dielectric perturbation is defined as
-	\begin{equation*}
-	\varepsilon = \varepsilon_0(\varepsilon_r + \varepsilon_1)
-	\end{equation*}
+	\begin{equation}
+		\varepsilon = \varepsilon_0(\varepsilon_r + \varepsilon_1)
+		\label{eq:an-scatter-eps}
+	\end{equation}
 	where $\varepsilon_0$ is the permittivity of free space, $\varepsilon_r$ is the unperturbed value for relative permittivity in the material and $\varepsilon_1$ is a small perturbation around $\varepsilon_r$. For $|\varepsilon_1| \ll \varepsilon_r$ $\ln{\varepsilon}$ can be approximated as
 	\begin{equation*}
-	\ln{\varepsilon} = \ln(\varepsilon_0 \varepsilon_r) + \ln(1 + \frac{\varepsilon_1}{\varepsilon_r}) \approx \ln(\varepsilon_0 \varepsilon_r) + \frac{\varepsilon_1}{\varepsilon_r}
+		\ln{\varepsilon} = \ln(\varepsilon_0 \varepsilon_r) + \ln(1 + \frac{\varepsilon_1}{\varepsilon_r}) \approx \ln(\varepsilon_0 \varepsilon_r) + \frac{\varepsilon_1}{\varepsilon_r}
 	\end{equation*}
 	Since $\ln(\varepsilon_0 \varepsilon_r)$ is constant, the gradient can be written as
 	\begin{equation*}
 	\nabla(\ln{\varepsilon}) = \nabla \left( \frac{\varepsilon_1}{\varepsilon_r} \right) = \frac{1}{\varepsilon_r} \nabla \varepsilon_1
 	\end{equation*}
-	This is now inserted in the equation for the electric field together with the definition of the perturbation:
+	This is now inserted in equation (\ref{eq:an-scatter-Efield2}) together with equation (\ref{eq:an-scatter-eps}), giving
 	\begin{equation*}
-	\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon_0 \varepsilon_r \bm{E} = \\
+		\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon_0 \varepsilon_r \bm{E} = \\
 	-\omega^2 \mu_0 \varepsilon_0 \varepsilon_1 \bm{E} -\frac{1}{\varepsilon_r}\nabla(\bm{E} \cdot \nabla \varepsilon_1) - 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} + \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
 	\end{equation*}
 	Now $k$ is defined as $k = \omega/c$ where $c$ is the speed of light in the material
 	\begin{equation*}
-	c = \frac{1}{\sqrt{\mu_0 \varepsilon_0 \varepsilon_r}} = \frac{c_0}{\sqrt{\varepsilon_r}}
+		c = \frac{1}{\sqrt{\mu_0 \varepsilon_0 \varepsilon_r}} = \frac{c_0}{\sqrt{\varepsilon_r}}
 	\end{equation*}
-	The equation for $\bm{E}$ is written as
+	This is now used to obtain
 	\begin{equation*}
 		\nabla^2\bm{E} + k^2 \bm{E} = \\
 		-k^2 \frac{\varepsilon_1}{\varepsilon_r} \bm{E} -\frac{1}{\varepsilon_r}\nabla(\bm{E} \cdot \nabla \varepsilon_1) - \frac{2ik}{c\varepsilon_0\varepsilon_r} \frac{\partial (\varepsilon \bm{E})}{\partial t} + \frac{1}{c^2 \varepsilon_0 \varepsilon_r} \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
@@ -492,11 +501,11 @@
 
 	The electric field is split up into an incident field $\bm{E}_i$ and a scattered field $\bm{E}_{sc}$ such that $\bm{E} = \bm{E}_i + \bm{E}_{sc}$. The scattered field is considered to be small compared to the incident field (Born approximation). The incident field then approximately obeys the source-free equation
 	\begin{equation*}
-	\nabla^2 \bm{E}_{i} + k^2 \bm{E}_{i} = 0
+		\nabla^2 \bm{E}_{i} + k^2 \bm{E}_{i} = 0
 	\end{equation*}
 	If this is subtracted from the total equation and $\bm{E}_{sc}$ is neglected in the RHS the resulting equation is
 	\begin{equation*}
-	\nabla^2\bm{E}_{sc} + k^2 \bm{E}_{sc} =	-k^2 \frac{\varepsilon_1}{\varepsilon_r} \bm{E}_i -\frac{1}{\varepsilon_r}\nabla(\bm{E}_i \cdot \nabla \varepsilon_1) - \frac{2ik}{c\varepsilon_0\varepsilon_r} \frac{\partial (\varepsilon \bm{E}_i)}{\partial t} + \frac{1}{c^2 \varepsilon_0 \varepsilon_r} \frac{\partial^2 (\varepsilon \bm{E}_i)}{\partial t^2}
+		\nabla^2\bm{E}_{sc} + k^2 \bm{E}_{sc} =	-k^2 \frac{\varepsilon_1}{\varepsilon_r} \bm{E}_i -\frac{1}{\varepsilon_r}\nabla(\bm{E}_i \cdot \nabla \varepsilon_1) - \frac{2ik}{c\varepsilon_0\varepsilon_r} \frac{\partial (\varepsilon \bm{E}_i)}{\partial t} + \frac{1}{c^2 \varepsilon_0 \varepsilon_r} \frac{\partial^2 (\varepsilon \bm{E}_i)}{\partial t^2}
 	\end{equation*}
 	Furthermore, some terms can be neglected if the condition $v/c \ll |\varepsilon_1|/\varepsilon_r$ holds. If this is used together with a Sommerfeld radiation condition, the solution is
 	\begin{equation*}
@@ -513,99 +522,103 @@
 		\caption{\label{fig:radareq-geom-main} Geometry for the scattering problem.}
 	\end{figure}
 	The $xy$-plane is defined as the plane formed by the acoustic and electromagnetic wavevectors (they are assumed to be non-parallel). The scattering volume is a cuboid with dimensions $L_x$, $L_y$ and $L_z$. It is centered in the origin of the coordinate system, and both the acoustic and electromagnetic waves are approximated as plane waves close to the origin. Thus, the electromagnetic and dielectric perturbation fields near the origin are defined as
-	\begin{align*}
-	\bm{E}_i (\bm{r}',t) &= \bm{E}_i (\bm{r}') = \bm{E}_{i0} e^{i\bm{k}\cdot\bm{r}'} \\
-	\varepsilon_1 (\bm{r}',t) &= -\mathfrak{p} \varepsilon_r^2 s_p \cos(\bm{q} \cdot \bm{r}' - \Omega t)
-	\end{align*}
+	\begin{align}
+		\bm{E}_i (\bm{r}',t) &= \bm{E}_i (\bm{r}') = \bm{E}_{i0} e^{i\bm{k}\cdot\bm{r}'} \label{eq:an-radar-planeE} \\
+		\varepsilon_1 (\bm{r}',t) &= -\mathfrak{p} \varepsilon_r^2 s_p \cos(\bm{q} \cdot \bm{r}' - \Omega t) \label{eq:an-radar-planeEps}
+	\end{align}
 	Here, $\bm{E}_{i0}$ is the complex field amplitude at the origin ($-i\omega t$ time-dependence separated) and $\bm{k}$ is the electromagnetic wavevector. A scalar photoelastic relation has been assumed, where $\mathfrak{p}$ is the photoelastic constant, $S_0$ is the acoustic strain amplitude at the origin, $\bm{q}$ is the acoustic wavevector and $\Omega$ the acoustic frequency.
 	
 	For simplicity, the electromagnetic polarization is assumed to be in z, $\bm{E}_{i0} \parallel \bm{\hat{z}}$. This is also in part done to avoid polarization changes in the scattered field \cite{Korpel1988}. Due to this $\nabla(\bm{E}_i \cdot \nabla \varepsilon_1) = \bm{0}$ which simplifies the scattering integral to
 	\begin{equation*}
-	\bm{E}_{sc}(\bm{r},t) = \frac{k^2}{4\pi\varepsilon_r} \int_{V_{sc}} \frac{e^{ik |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \bm{E}_i (\bm{r'},t) \varepsilon_1 (\bm{r'},t) \mathrm{d}v'
+		\bm{E}_{sc}(\bm{r},t) = \frac{k^2}{4\pi\varepsilon_r} \int_{V_{sc}} \frac{e^{ik |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \bm{E}_i (\bm{r'},t) \varepsilon_1 (\bm{r'},t) \mathrm{d}v'
 	\end{equation*}
-	The field expressions are now inserted, and with a far-field approximation and expansion of the cosine as complex exponentials the integral is written as
-	\begin{align*}
-	\bm{E}_{sc}(\bm{r},t) =& -\frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \bm{E}_{i0} \mathfrak{p} s_p \\
-	&\cdot \left( e^{-i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) + \bm{q} ) \cdot \bm{r}'} \mathrm{d}v + e^{i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) - \bm{q} ) \cdot \bm{r}'} \mathrm{d}v' \right)
-	\end{align*}
+	Equation (\ref{eq:an-radar-planeE}) and (\ref{eq:an-radar-planeEps}) are now inserted, and with a far-field approximation and expansion of the cosine as complex exponentials the integral is written as
+	\begin{equation*}
+	\begin{split}
+		\bm{E}_{sc}(\bm{r},t) =& -\frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \bm{E}_{i0} \mathfrak{p} s_p \\
+		&\cdot \left( e^{-i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) + \bm{q} ) \cdot \bm{r}'} \mathrm{d}v + e^{i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) - \bm{q} ) \cdot \bm{r}'} \mathrm{d}v' \right)
+	\end{split}
+	\end{equation*}
 	The solution to this integral is written as (see \ref{sec:app-derivations-radar})
 	\begin{equation*}
-	\bm{E}_{sc} (\bm{r},t) = -\bm{E}_{i0} \left( E_A^+ (\bm{r},t) + E_A^- (\bm{r},t) \right)
+		\bm{E}_{sc} (\bm{r},t) = -\bm{E}_{i0} \left( E_A^+ (\bm{r},t) + E_A^- (\bm{r},t) \right)
 	\end{equation*}
 	where
 	\begin{equation*}
-	E_A^\pm (\bm{r},t) = \frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \mathfrak{p} s_p L_x L_y L_z e^{\mp i\Omega t} \Phi^\pm (\theta,\phi)
+		E_A^\pm (\bm{r},t) = \frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \mathfrak{p} s_p L_x L_y L_z e^{\mp i\Omega t} \Phi^\pm (\theta,\phi)
 	\end{equation*}
 	and
-	\begin{align*}
-	\Phi^\pm(\theta,\phi) =& \text{sinc} \left( \frac{L_x}{2\pi} \left( k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} \right) \right) \\
-	\cdot& \text{sinc} \left( \frac{L_y}{2\pi} \left( -k\sin{\theta}\sin{\phi} \pm q\sin{\alpha} \right) \right) \\
-	\cdot& \text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right)
-	\end{align*}
+	\begin{equation*}
+	\begin{split}
+		\Phi^\pm(\theta,\phi) =& \text{sinc} \left( \frac{L_x}{2\pi} \left( k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} \right) \right) \\
+		\cdot& \text{sinc} \left( \frac{L_y}{2\pi} \left( -k\sin{\theta}\sin{\phi} \pm q\sin{\alpha} \right) \right) \\
+		\cdot& \text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right)
+	\end{split}
+	\end{equation*}
 	One important detail to note is that two distinct frequency components arise: one where the frequency is shifted up by $\Omega$ ($E_A^+$) and one where it is shifted down by $\Omega$ ($E_A^-$).
 	
 	To obtain a more practical expression, the equations are now transformed into power. The scattered power density is given by
 	\begin{equation*}
-	\bm{S}_{sc} = \frac{1}{2} \bm{E}_{sc} \times \bm{H}_{sc}^*
+		\bm{S}_{sc} = \frac{1}{2} \bm{E}_{sc} \times \bm{H}_{sc}^*
 	\end{equation*}
 	with the magnetic field $\bm{H}_{sc}$ given by
 	\begin{equation*}
-	\bm{H}_{sc} \approx \frac{1}{ik \eta_0 \eta} \nabla \times \bm{E}_{sc}
+		\bm{H}_{sc} \approx \frac{1}{ik \eta_0 \eta} \nabla \times \bm{E}_{sc}
 	\end{equation*}
 	where $\eta_0$ is the wave impedance of free space and $\eta_0 \eta$ the wave impedance in the material. The scattered electric field is inserted, and in the far-field the power density can then be calculated to be
 	\begin{equation*}
-	\bm{S}_{sc} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{i0}|^2 |E_A (\bm{r},t)|^2
+		\bm{S}_{sc} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{i0}|^2 |E_A (\bm{r},t)|^2
 	\end{equation*}
 	Since there is an implied $e^{-\omega t}$ time-dependence, this is added back in to obtain a time-average on the short time-scale ($\omega$ and not $\Omega$). This is
 	\begin{equation*}
-	\left< \bm{S}_{sc} e^{-i\omega t} \right> = \mathrm{Re}\left\{ \bm{S}_{sc} e^{-i\omega t} \right\} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{i0}|^2 |E_A (\bm{r},t)|^2
+		\left< \bm{S}_{sc} e^{-i\omega t} \right> = \mathrm{Re}\left\{ \bm{S}_{sc} e^{-i\omega t} \right\} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{i0}|^2 |E_A (\bm{r},t)|^2
 	\end{equation*}
 	If the two frequency components are now considered individually,
 	\begin{equation*}
-	|E_A^\pm (\bm{r},t)|^2 =\frac{\varepsilon_r^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 s_p^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
+		|E_A^\pm (\bm{r},t)|^2 =\frac{\varepsilon_r^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 s_p^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
 	
 	Using standard antenna parameters, the incident field can be written as
 	\begin{equation*}
-	|\bm{E}_{i0}|^2 = 2\eta_0 \eta \frac{P_T G_T}{4\pi R_T^2}
+		|\bm{E}_{i0}|^2 = 2\eta_0 \eta \frac{P_T G_T}{4\pi R_T^2}
 	\end{equation*}
 	where $P_T$ is the power accepted by the antenna, $G_T$ is the maximum gain of the antenna and $R_T$ is the distance from the antenna to the scattering center. This is inserted into the time-average of the power density, giving
 	\begin{equation*}
-	\left< \bm{S}_{sc} e^{-i\omega t} \right>^\pm = \bm{\hat{r}} \frac{P_T G_T}{4\pi R_T^2} \frac{\varepsilon_r^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 s_p^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
+		\left< \bm{S}_{sc} e^{-i\omega t} \right>^\pm = \bm{\hat{r}} \frac{P_T G_T}{4\pi R_T^2} \frac{\varepsilon_r^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 s_p^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
 	
 	Now the effects of the receiving antenna are considered. It is assumed that this antenna is optimally directed towards the scattering center. The received power is then
 	\begin{equation*}
-	P_R^\pm = \left| \left< \bm{S}_{sc} e^{-i\omega t} \right>^\pm \right| A_e
+		P_R^\pm = \left| \left< \bm{S}_{sc} e^{-i\omega t} \right>^\pm \right| A_e
 	\end{equation*}
 	where $A_e$ is the effective area of the antenna, which can be rewritten as
 	\begin{equation*}
-	A_e = \frac{\lambda_R^2 G_R}{4\pi}
+		A_e = \frac{\lambda_R^2 G_R}{4\pi}
 	\end{equation*}
 	where $G_R$ is the gain of the receiving antenna. $\lambda_R$ should be the wavelength at the antenna here, which is not necessarily the same as in the material. Combining this with earlier results gives a received power of
 	\begin{equation*}
-	P_R^\pm = \frac{\lambda_R^2 G_R}{4\pi} \frac{P_T G_T}{4\pi R_T^2} \frac{\varepsilon_r^2 k^4}{64 \pi^2 R_R^2} \mathfrak{p}^2 s_p^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
+		P_R^\pm = \frac{\lambda_R^2 G_R}{4\pi} \frac{P_T G_T}{4\pi R_T^2} \frac{\varepsilon_r^2 k^4}{64 \pi^2 R_R^2} \mathfrak{p}^2 s_p^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
 	where $R_R$ is the distance between the scattering center and the receiver, and the receiver is located in the direction $(\theta,\phi)$ as seen from the scattering center. For a more traditional bistatic radar equation this can be written as
 	\begin{equation*}
-	P_R^\pm = \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2}
+		P_R^\pm = \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2}
 	\end{equation*}
 	with the radar cross-section given by
 	\begin{equation*}
-	\sigma^\pm (\theta, \phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 s_p^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
+		\sigma^\pm (\theta, \phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 s_p^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
 	
 	When actually measuring a signal, signal-to-noise ratio (SNR) is a more practical quantity than received power. The equation can be rewritten using SNR (see appendix \ref{app:derivations}) as:
 	\begin{equation*}
-	\textit{SNR}^\pm_N = \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 k_B T_0 B F} N
+		\textit{SNR}^\pm_N = \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 k_B T_0 B F} N
 	\end{equation*}
 	where $k_B$ is Boltzmann's constant, $T_0$ is the standard temperature 290 K, $B$ is the receiver bandwidth, $F$ is the noise ratio of the receiver and $N$ is the number of samples recorded. This equation assumes that coherent demodulation and integration is used to boost the SNR.
 	
 	Inspection of the equations for either scattered power or SNR shows that all geometry dependence is contained in the function $\Phi^\pm$. This depends on the observation angles $\theta$, $\phi$ and the angle between EM and Ac. wavevectors $\alpha$. Conditions for the angles maximizing scattering are derived in \ref{sec:app-derivations-bragg} and can be summarized as:
 	\begin{align*}
-	\theta &= \pi/2\\
-	\cos{\alpha} = \mp \frac{q}{2k} &= \mp \frac{\lambda}{2\Lambda}\\
-	\phi &= \mp \pi + 2\alpha
+		\theta &= \pi/2\\
+		\cos{\alpha} = \mp \frac{q}{2k} &= \mp \frac{\lambda}{2\Lambda}\\
+		\phi &= \mp \pi + 2\alpha
 	\end{align*}
 	The $\mp$-sign here is related to the $\pm$-sign indicating frequency shift of the scattered wave. These equations correspond directly to the Bragg condition used in acousto-optics (see \ref{sec:app-derivations-bragg} for derivation). This gives the model some validation since the acousto-optic Bragg condition is derived from a slightly different starting point, but for the same basic phenomenon \cite{Saleh2007}.
 	
@@ -626,15 +639,38 @@
 		\caption{\label{fig:simulationflow} Simulation work flow}
 	\end{figure}
 	
+	\subsection{Tapering of apertures}
+	To reduce sidelobe levels, both the electromagnetic ports and acoustic acceleration boundaries had amplitude tapers applied to them. \addref This had the effect of lowering the electric field or acoustic acceleration near the edges of apertures. The specific taper used was a Gaussian taper, which multiplies values at the aperture with a Gaussian function given by
+	\begin{equation*}
+	e^{-(Ay')^2}
+	\end{equation*}
+	where $A$ affects the width of the taper and $y'$ is a coordinate along the aperture with 0 in the center. Since the model was based on a circle and all apertures were modeled as straight lines on the edge of the circle, $y'$ can be found by rotation of the original coordinate $y$ by the angle $\phi$. This transformation is given by \addref
+	\begin{equation*}
+		\begin{bmatrix}
+			x' \\
+			y'
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			\cos{\phi} & \sin{\phi} \\
+			-\sin{\phi} & \cos{\phi}
+		\end{bmatrix}
+		\begin{bmatrix}
+			x \\
+			y
+		\end{bmatrix}
+	\end{equation*}
+	which gives the equation for $y'$
+	\begin{equation*}
+		y' = -x\sin{\phi} + y\cos{\phi}
+	\end{equation*}
+	The geometry is the same as previously shown in figure \ref{fig:radareq-geom-main}. As such, $\phi = \pi$ for EM and $\phi = \pi + \alpha$ for Ac. For the coefficient $A$, it was found that $A = 4/d_a$ gave a good taper. $d_a$ is then the aperture length.
+	
 	\subsection{Modeling of Electromagnetic Antenna}
 	An electromagnetic antenna was modeled using the port boundary condition. 
 	
 	\subsection{Modeling of Ultrasonic Transducer}
-	An ultrasonic transducer was modeled using the normal acceleration boundary condition. The acceleration was set to "inward acceleration" \todoint{Check this}. The value of the acceleration amplitude was calculated from a displacement amplitude using $a_p = \Omega^2 u_p$ where the displacement amplitude is the same as described in the theory. To reduce the sidelobe level, a taper was added to the transducer by multiplying the acceleration value by a Gaussian taper
-	\begin{equation*}
-		e^{-(A(-x\sin{\phi} + y\cos{\phi}))^2} = e^{-(A(x\sin{\alpha} - y\cos{\alpha}))^2}
-	\end{equation*} \todoint{Derivation for tapering? Rotation of coordinate system and such things then}
-	where $A$ affects the width of the taper. An acceptable value for $A$ was found to be $A = 4/d_a$ where $d_a$ is the length of the aperture. \todoint{More info on tapering since this was not used for all simulations (though it's the most general so it should maybe be used)}
+	An ultrasonic transducer was modeled using the normal acceleration boundary condition. The acceleration was set to "inward acceleration" \todoint{Check this}. The value of the acceleration amplitude was calculated from a displacement amplitude using $a_p = \Omega^2 u_p$ where the displacement amplitude is the same as described in the theory. To reduce the sidelobe level, a taper was added to the transducer as described before.
 	
 	\section{Verification of analytical model}
 	\todoext{Description of how the simple scattering problem was modeled.}
@@ -642,6 +678,8 @@
 	
 	\section{Effect of voids}
 	\todoext{Description of how voids were modeled. Relate to delaminations.}
+	
+	\section{Effect of conductive defects}
 	
 	\chapter{Results and Discussion}
 	\todoext{It might be better to have results and discussion separated?}
@@ -653,9 +691,14 @@
 	
 	\subsection{Effect of voids}
 	
+	\section{Effect of conductive defects}
+	
 	\section{Possibilities for NDT}
 	
 	\section{Future Work}
+	\todoext{More detailed simulations - accurate modeling of the EM antenna, Ac. transducer, propagation from outside into the sample etc. Would require simulation of elastic waves in addition to acoustic waves. Possible in COMSOL if the acoustics module and structural mechanics module are used (those were not available to me). The improved acoustics simulation would enable investigation of things such as s-waves, transducer coupling etc.}
+	
+	\todoext{Experiments - simple verification of the photoelastic interaction mechanism at the specific combination of ultrasound/microwave or ultrasound/mm-wave frequencies. Primarily, the Bragg condition would be the most interesting thing to verify. Both the angle and frequency requirements and shifts are interesting.}
 	
 	\section{Conclusion}
 	
@@ -673,61 +716,64 @@
 	\subsection{General equation for electric field in perturbated dielectric}
 	First, Maxwell's equations for a linear, non-magnetic, source-free, isotropic dielectric are presented. Note that the permittivity is not homogeneous.
 	\begin{align*}
-	&\nabla \times \bm{\mathcal{E}} = -\mu_0 \frac{\partial \bm{\mathcal{H}}}{\partial t} \\
-	&\nabla \times \bm{\mathcal{H}} = \frac{\partial (\varepsilon \bm{\mathcal{E}})}{\partial t} \\
-	&\nabla \cdot (\varepsilon \bm{\mathcal{E}}) = 0 \\
-	&\nabla \cdot \bm{\mathcal{H}} = 0
+		&\nabla \times \bm{\mathcal{E}} = -\mu_0 \frac{\partial \bm{\mathcal{H}}}{\partial t} \\
+		&\nabla \times \bm{\mathcal{H}} = \frac{\partial (\varepsilon \bm{\mathcal{E}})}{\partial t} \\
+		&\nabla \cdot (\varepsilon \bm{\mathcal{E}}) = 0 \\
+		&\nabla \cdot \bm{\mathcal{H}} = 0
 	\end{align*}
 	The script letters are used here to indicate a time dependence as
 	\begin{align*}
-	&\bm{\mathcal{E}}(\bm{r},t) = \bm{E}(\bm{r},t) \text{e}^{-i\omega t} \\
-	&\bm{\mathcal{H}}(\bm{r},t) = \bm{H}(\bm{r},t) \text{e}^{-i\omega t}
+		&\bm{\mathcal{E}}(\bm{r},t) = \bm{E}(\bm{r},t) \text{e}^{-i\omega t} \\
+		&\bm{\mathcal{H}}(\bm{r},t) = \bm{H}(\bm{r},t) \text{e}^{-i\omega t}
 	\end{align*}
 	This is used to remove the e$^{-i\omega t}$ dependence in the equations and only keep "slower" time dependencies. The new equations are
-	\begin{align*}
-	&\nabla \times \bm{E} = i\omega \mu_0 \bm{H} - \mu_0 \frac{\partial \bm{H}}{\partial t} \\
-	&\nabla \times \bm{H} = -i\omega \varepsilon \bm{E} + \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} \\
-	&\nabla \cdot (\varepsilon \bm{E}) = 0 \\
-	&\nabla \cdot \bm{H} = 0
-	\end{align*}
+	\begin{align}
+		&\nabla \times \bm{E} = i\omega \mu_0 \bm{H} - \mu_0 \frac{\partial \bm{H}}{\partial t} \label{eq:app-scatter-faraday} \\
+		&\nabla \times \bm{H} = -i\omega \varepsilon \bm{E} + \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} \label{eq:app-scatter-ampere} \\
+		&\nabla \cdot (\varepsilon \bm{E}) = 0 \label{eq:app-scatter-gauss} \\
+		&\nabla \cdot \bm{H} = 0 \label{eq:app-scatter-magn}
+	\end{align}
 	Now $\nabla \times$ is applied to $\nabla \times \bm{E}$ and it is combined with $\nabla \times \bm{H}$, giving
 	\begin{equation*}
-	\nabla \times (\nabla \times \bm{E}) = \omega^2 \mu_0 \varepsilon \bm{E} + 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} - \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
+		\nabla \times (\nabla \times \bm{E}) = \omega^2 \mu_0 \varepsilon \bm{E} + 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} - \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
 	\end{equation*}
 	The relation $\nabla \times (\nabla \times \bm{E}) = -\nabla^2\bm{E} + \nabla(\nabla \cdot \bm{E})$ is now used
+	\begin{equation}
+		\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon \bm{E} = \nabla(\nabla \cdot \bm{E}) - 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} + \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
+		\label{eq:app-scatter-Efield1}
+	\end{equation}
+	Gauss' law (\ref{eq:app-scatter-gauss}) is now expanded to $\varepsilon(\nabla \cdot \bm{E}) + (\nabla \varepsilon) \cdot \bm{E} = 0$. This can be rewritten as
 	\begin{equation*}
-	\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon \bm{E} = \nabla(\nabla \cdot \bm{E}) - 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} + \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
+		\nabla \cdot \bm{E} = -\bm{E} \cdot \frac{\nabla \varepsilon}{\varepsilon} = -\bm{E} \cdot \nabla (\ln{\varepsilon})
 	\end{equation*}
-	Gauss' law $\nabla \cdot (\varepsilon \bm{E}) = 0$ is now expanded to $\varepsilon(\nabla \cdot \bm{E}) + (\nabla \varepsilon) \cdot \bm{E} = 0$. This can be rewritten as
-	\begin{equation*}
-	\nabla \cdot \bm{E} = -\bm{E} \cdot \frac{\nabla \varepsilon}{\varepsilon} = -\bm{E} \cdot \nabla (\ln{\varepsilon})
-	\end{equation*}
-	Inserting this into the previous equation gives
-	\begin{equation*}
-	\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon \bm{E} = -\nabla(\bm{E} \cdot \nabla (\ln{\varepsilon})) - 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} + \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
-	\end{equation*}
+	Inserting this into equation (\ref{eq:app-scatter-Efield1}) gives
+	\begin{equation}
+		\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon \bm{E} = -\nabla(\bm{E} \cdot \nabla (\ln{\varepsilon})) - 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} + \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
+		\label{eq:app-scatter-Efield2}
+	\end{equation}
 	Now, the dielectric perturbation is defined as
-	\begin{equation*}
-	\varepsilon = \varepsilon_0(\varepsilon_r + \varepsilon_1)
-	\end{equation*}
+	\begin{equation}
+		\varepsilon = \varepsilon_0(\varepsilon_r + \varepsilon_1)
+		\label{eq:app-scatter-eps}
+	\end{equation}
 	where $\varepsilon_0$ is the permittivity of free space, $\varepsilon_r$ is the unperturbed value for relative permittivity in the material and $\varepsilon_1$ is a small perturbation around $\varepsilon_r$. For $|\varepsilon_1| \ll \varepsilon_r$ $\ln{\varepsilon}$ can be approximated as
 	\begin{equation*}
-	\ln{\varepsilon} = \ln(\varepsilon_0 \varepsilon_r) + \ln(1 + \frac{\varepsilon_1}{\varepsilon_r}) \approx \ln(\varepsilon_0 \varepsilon_r) + \frac{\varepsilon_1}{\varepsilon_r}
+		\ln{\varepsilon} = \ln(\varepsilon_0 \varepsilon_r) + \ln(1 + \frac{\varepsilon_1}{\varepsilon_r}) \approx \ln(\varepsilon_0 \varepsilon_r) + \frac{\varepsilon_1}{\varepsilon_r}
 	\end{equation*}
 	Since $\ln(\varepsilon_0 \varepsilon_r)$ is constant, the gradient can be written as
 	\begin{equation*}
-	\nabla(\ln{\varepsilon}) = \nabla \left( \frac{\varepsilon_1}{\varepsilon_r} \right) = \frac{1}{\varepsilon_r} \nabla \varepsilon_1
+		\nabla(\ln{\varepsilon}) = \nabla \left( \frac{\varepsilon_1}{\varepsilon_r} \right) = \frac{1}{\varepsilon_r} \nabla \varepsilon_1
 	\end{equation*}
-	This is now inserted in the equation for the electric field together with the definition of the perturbation:
+	This is now inserted in equation (\ref{eq:app-scatter-Efield2}) together with equation \ref{eq:app-scatter-eps}, giving
 	\begin{equation*}
-	\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon_0 \varepsilon_r \bm{E} = \\
-	-\omega^2 \mu_0 \varepsilon_0 \varepsilon_1 \bm{E} -\frac{1}{\varepsilon_r}\nabla(\bm{E} \cdot \nabla \varepsilon_1) - 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} + \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
+		\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon_0 \varepsilon_r \bm{E} = \\
+		-\omega^2 \mu_0 \varepsilon_0 \varepsilon_1 \bm{E} -\frac{1}{\varepsilon_r}\nabla(\bm{E} \cdot \nabla \varepsilon_1) - 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} + \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
 	\end{equation*}
 	Now $k$ is defined as $k = \omega/c$ where $c$ is the speed of light in the material
 	\begin{equation*}
-	c = \frac{1}{\sqrt{\mu_0 \varepsilon_0 \varepsilon_r}} = \frac{c_0}{\sqrt{\varepsilon_r}}
+		c = \frac{1}{\sqrt{\mu_0 \varepsilon_0 \varepsilon_r}} = \frac{c_0}{\sqrt{\varepsilon_r}}
 	\end{equation*}
-	Now the equation for $\bm{E}$ is written as
+	This is now used to obtain
 	\begin{equation*}
 		\nabla^2\bm{E} + k^2 \bm{E} = \\
 		-k^2 \frac{\varepsilon_1}{\varepsilon_r} \bm{E} -\frac{1}{\varepsilon_r}\nabla(\bm{E} \cdot \nabla \varepsilon_1) - \frac{2ik}{c\varepsilon_0\varepsilon_r} \frac{\partial (\varepsilon \bm{E})}{\partial t} + \frac{1}{c^2 \varepsilon_0 \varepsilon_r} \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
@@ -736,66 +782,72 @@
 	\subsection{Born approximation and solution}
 	Now the electric field is split up into an incident field $\bm{E}_i$ and a scattered field $\bm{E}_{sc}$ such that $\bm{E} = \bm{E}_i + \bm{E}_{sc}$. The scattered field is considered to be small compared to the incident field (Born approximation). The incident field then approximately obeys the source-free equation
 	\begin{equation*}
-	\nabla^2 \bm{E}_{i} + k^2 \bm{E}_{i} = 0
+		\nabla^2 \bm{E}_{i} + k^2 \bm{E}_{i} = 0
 	\end{equation*}
 	If this is subtracted from the total equation and $\bm{E}_{sc}$ is neglected in the RHS the resulting equation is
 	\begin{equation*}
-	\nabla^2\bm{E}_{sc} + k^2 \bm{E}_{sc} =	-k^2 \frac{\varepsilon_1}{\varepsilon_r} \bm{E}_i -\frac{1}{\varepsilon_r}\nabla(\bm{E}_i \cdot \nabla \varepsilon_1) - \frac{2ik}{c\varepsilon_0\varepsilon_r} \frac{\partial (\varepsilon \bm{E}_i)}{\partial t} + \frac{1}{c^2 \varepsilon_0 \varepsilon_r} \frac{\partial^2 (\varepsilon \bm{E}_i)}{\partial t^2}
+		\nabla^2\bm{E}_{sc} + k^2 \bm{E}_{sc} =	-k^2 \frac{\varepsilon_1}{\varepsilon_r} \bm{E}_i -\frac{1}{\varepsilon_r}\nabla(\bm{E}_i \cdot \nabla \varepsilon_1) - \frac{2ik}{c\varepsilon_0\varepsilon_r} \frac{\partial (\varepsilon \bm{E}_i)}{\partial t} + \frac{1}{c^2 \varepsilon_0 \varepsilon_r} \frac{\partial^2 (\varepsilon \bm{E}_i)}{\partial t^2}
 	\end{equation*}
 	This is an inhomogeneous Helmholtz equation which under a Sommerfeld radiation condition has the solution \addref
-	\begin{align*}
+	\begin{equation*}
+	\begin{split}
 		\bm{E}_{sc}(\bm{r},t) =& \int_{V_{sc}} \frac{e^{ik |\bm{r}-\bm{r'}| }}{4\pi |\bm{r}-\bm{r'}|} \\
 		&\cdot \left( -k^2 \frac{\varepsilon_1}{\varepsilon_r} \bm{E}_i -\frac{1}{\varepsilon_r}\nabla(\bm{E}_i \cdot \nabla \varepsilon_1)- \frac{2ik}{c\varepsilon_0\varepsilon_r} \frac{\partial (\varepsilon \bm{E}_i)}{\partial t} + \frac{1}{c^2 \varepsilon_0 \varepsilon_r} \frac{\partial^2 (\varepsilon \bm{E}_i)}{\partial t^2} \right) \mathrm{d}v'
-	\end{align*}
+	\end{split}
+	\end{equation*}
 	
 	\subsection{Approximation of the integral}
 	To simplify this equations even more, approximations concerning the nature of the perturbation can be done. The dielectric perturbation is thus assumed to have the following behavior:
 	\begin{equation*}
-	\varepsilon_1 (\bm{r},t) = |\varepsilon_1| \cos(\bm{q} \cdot \bm{r} - \Omega t)
+		\varepsilon_1 (\bm{r},t) = |\varepsilon_1| \cos(\bm{q} \cdot \bm{r} - \Omega t)
 	\end{equation*}
 	where $|\varepsilon_1|$ is the amplitude, $q$ is the acoustic wavevector and $\Omega$ is the acoustic frequency. Furthermore, the relations between wavenumbers and wavelengths are introduced as $k = 2\pi/\lambda$ for electromagnetics and $q = |\bm{q}| = 2\pi/\Lambda$ for acoustics.
 	
 	Now the terms inside of the parenthesis in the integral are estimated to see which terms are dominant. The terms are denoted $T_n$ where $n$ begins at 1 and is the order in which they appear. Note that these estimations are only to find orders of magnitude. For the first term:
 	\begin{equation*}
-	T_1 \sim \frac{|\varepsilon_1| |\bm{E}|}{\varepsilon_r \lambda^2}
+		T_1 \sim \frac{|\varepsilon_1| |\bm{E}|}{\varepsilon_r \lambda^2}
 	\end{equation*}
 	For term 2 $\nabla \varepsilon_1 \sim \Lambda^{-1} |\varepsilon_1| \bm{v}$ where $\bm{v}$ is a vector with components $\sim \sin(\bm{q} \cdot \bm{r} - \Omega t)$. Then $\nabla (\bm{\hat{E}} \cdot \bm{v}) \sim \nabla(|\bm{\hat{E}}| \sin(\bm{q} \cdot \bm{r} - \Omega t)) \sim \nabla(|\bm{\hat{E}}|) + \nabla(\sin(\bm{q} \cdot \bm{r} - \Omega t)) \sim \lambda^{-1} + \Lambda^{-1}$. The resulting estimation of the term is then
 	\begin{equation*}
-	T_2 \sim \frac{|\varepsilon_1| |\bm{E}|}{\varepsilon_r \Lambda} \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right)
+		T_2 \sim \frac{|\varepsilon_1| |\bm{E}|}{\varepsilon_r \Lambda} \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right)
 	\end{equation*}
 	Term 3 can be expanded using the perturbation definition and the chain rule:
-	\begin{align*}
-	T_3 \sim \frac{k}{c\varepsilon_0\varepsilon_r} \frac{\partial (\varepsilon \bm{E})}{\partial t} &= \frac{k}{c\varepsilon_0\varepsilon_r} \left( \varepsilon_0\varepsilon_r \frac{\partial \bm{E}}{\partial t} + \varepsilon_0\varepsilon_1 \frac{\partial \bm{E}}{\partial t} + \varepsilon_0\bm{E} \frac{\partial \varepsilon_1}{\partial t}\right) \\
-	&\sim \frac{1}{c\lambda} \left( \frac{\partial \bm{E}}{\partial t} + \frac{\varepsilon_1}{\varepsilon_r} \frac{\partial \bm{E}}{\partial t} + \frac{\bm{E}}{\varepsilon_r} \frac{\partial \varepsilon_1}{\partial t} \right)
-	\end{align*}
+	\begin{equation*}
+	\begin{split}
+		T_3 \sim \frac{k}{c\varepsilon_0\varepsilon_r} \frac{\partial (\varepsilon \bm{E})}{\partial t} &= \frac{k}{c\varepsilon_0\varepsilon_r} \left( \varepsilon_0\varepsilon_r \frac{\partial \bm{E}}{\partial t} + \varepsilon_0\varepsilon_1 \frac{\partial \bm{E}}{\partial t} + \varepsilon_0\bm{E} \frac{\partial \varepsilon_1}{\partial t}\right) \\
+		&\sim \frac{1}{c\lambda} \left( \frac{\partial \bm{E}}{\partial t} + \frac{\varepsilon_1}{\varepsilon_r} \frac{\partial \bm{E}}{\partial t} + \frac{\bm{E}}{\varepsilon_r} \frac{\partial \varepsilon_1}{\partial t} \right)
+	\end{split}
+	\end{equation*}
 	The derivatives can be approximated as
 	\begin{align*}
-	\frac{\partial \varepsilon_1}{\partial t} &\sim |\varepsilon_1|\Omega \sim \frac{|\varepsilon_1| v}{\Lambda} \\
-	\frac{\partial \bm{E}}{\partial t} &\sim \bm{E} v \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right)
+		\frac{\partial \varepsilon_1}{\partial t} &\sim |\varepsilon_1|\Omega \sim \frac{|\varepsilon_1| v}{\Lambda} \\
+		\frac{\partial \bm{E}}{\partial t} &\sim \bm{E} v \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right)
 	\end{align*}
 	where $v$ is the speed of sound in the material. The second equation comes from a similar equation in \cite{Tatarskii1971} which takes into account the Doppler effect and changes in $\varepsilon_1$. These are inserted to give
-	\begin{align*}
-	T_3 &\sim \frac{1}{c\lambda} \left( |\bm{E}| v \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right) \left( 1 + \frac{|\varepsilon_1|}{\varepsilon_r} \right) + \frac{|\bm{E}| |\varepsilon_1| v}{\varepsilon_r \Lambda} \right) \\
-	&= \frac{|\bm{E}| |\varepsilon_1| v}{c\lambda} \left( \left( 1 + \frac{|\varepsilon_1|}{\varepsilon_r} \right) \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right) + \frac{|\varepsilon_1|}{\varepsilon_r \Lambda} \right)
-	\end{align*}
+	\begin{equation*}
+	\begin{split}
+		T_3 &\sim \frac{1}{c\lambda} \left( |\bm{E}| v \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right) \left( 1 + \frac{|\varepsilon_1|}{\varepsilon_r} \right) + \frac{|\bm{E}| |\varepsilon_1| v}{\varepsilon_r \Lambda} \right) \\
+		&= \frac{|\bm{E}| |\varepsilon_1| v}{c\lambda} \left( \left( 1 + \frac{|\varepsilon_1|}{\varepsilon_r} \right) \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right) + \frac{|\varepsilon_1|}{\varepsilon_r \Lambda} \right)
+	\end{split}
+	\end{equation*}
 	Now, the condition $|\varepsilon_1| \ll \varepsilon_r$, or equivalently, $|\varepsilon_1|/\varepsilon_r \ll 1$ is used to write the the term as
 	\begin{equation*}
-	T_3 \sim \frac{|\bm{E}| |\varepsilon_1| v}{c\lambda} \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right)
+		T_3 \sim \frac{|\bm{E}| |\varepsilon_1| v}{c\lambda} \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right)
 	\end{equation*}
 	Term 3 can now be compared with term 1 and 2 to determine the relative sizes.
 	\begin{align*}
-	\frac{T_3}{T_1} &= \frac{|\bm{E}| |\varepsilon_1| v}{c\lambda} \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right)
-	\bigg/
-	\frac{|\varepsilon_1| |\bm{E}|}{\varepsilon_r \lambda^2} =
-	\frac{v}{c} \frac{\varepsilon_r}{|\varepsilon_1|} \left( 1 + \frac{\lambda}{\Lambda} \right) \\
-	\frac{T_3}{T_2} &= \frac{|\bm{E}| |\varepsilon_1| v}{c\lambda} \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right)
-	\bigg/
-	\frac{|\varepsilon_1| |\bm{E}|}{\varepsilon_r \Lambda} \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right) =
-	\frac{v}{c} \frac{\varepsilon_r}{|\varepsilon_1|} \frac{\Lambda}{\lambda}
+		\frac{T_3}{T_1} &= \frac{|\bm{E}| |\varepsilon_1| v}{c\lambda} \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right)
+		\bigg/
+		\frac{|\varepsilon_1| |\bm{E}|}{\varepsilon_r \lambda^2} =
+		\frac{v}{c} \frac{\varepsilon_r}{|\varepsilon_1|} \left( 1 + \frac{\lambda}{\Lambda} \right) \\
+		\frac{T_3}{T_2} &= \frac{|\bm{E}| |\varepsilon_1| v}{c\lambda} \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right)
+		\bigg/
+		\frac{|\varepsilon_1| |\bm{E}|}{\varepsilon_r \Lambda} \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right) =
+		\frac{v}{c} \frac{\varepsilon_r}{|\varepsilon_1|} \frac{\Lambda}{\lambda}
 	\end{align*}
 	Inspection of these fractions reveals that the condition required for $T_3$ to be neglected is
 	\begin{equation*}
-	\frac{v}{c} \ll \frac{|\varepsilon_1|}{\varepsilon_r}
+		\frac{v}{c} \ll \frac{|\varepsilon_1|}{\varepsilon_r}
 	\end{equation*}
 	This holds for any ratio between $\lambda$ and $\Lambda$. If $\lambda \gg \Lambda$, $T_2$ will dominate $T_3$. If $\Lambda \gg \lambda$, $T_1$ will dominate $T_3$. If $\lambda \sim \Lambda$, both $T_1$ and $T_2$ will dominate $T_3$. The fourth term on the RHS is similar to the third, but contains a factor $(v/c)^2$. Thus, if $T_3$ can be neglected, so can $T_4$.	The simplified equation if the condition $v/c \ll |\varepsilon_1|/\varepsilon_r$ holds is shown below:
 	\begin{equation*}
@@ -815,72 +867,86 @@
 		\caption{\label{fig:radareq-geom} Geometry for the scattering problem.}
 	\end{figure}
 	The $xy$-plane is defined as the plane formed by the acoustic and electromagnetic wavevectors (they are assumed to be non-parallel). The scattering volume is centered in the origin of the coordinate system, and both the acoustic and electromagnetic waves are approximated as plane waves close to the origin. Thus, the electromagnetic and dielectric perturbation fields near the origin are defined as
-	\begin{align*}
-	\bm{E}_i (\bm{r}',t) &= \bm{E}_i (\bm{r}') = \bm{E}_{i0} e^{i\bm{k}\cdot\bm{r}'} \\
-	\varepsilon_1 (\bm{r}',t) &= -\mathfrak{p} \varepsilon_r^2 s_p \cos(\bm{q} \cdot \bm{r}' - \Omega t)
-	\end{align*}
+	\begin{align}
+		\bm{E}_i (\bm{r}',t) &= \bm{E}_i (\bm{r}') = \bm{E}_{i0} e^{i\bm{k}\cdot\bm{r}'} \label{eq:app-radar-planeE} \\
+		\varepsilon_1 (\bm{r}',t) &= -\mathfrak{p} \varepsilon_r^2 s_p \cos(\bm{q} \cdot \bm{r}' - \Omega t) \label{eq:app-radar-planeEps}
+	\end{align}
 	Here, $\bm{E}_{i0}$ is the complex field amplitude at the origin ($-i\omega t$ time-dependence separated) and $\bm{k}$ is the electromagnetic wavevector. A scalar photoelastic relation has been assumed, where $\mathfrak{p}$ is the photoelastic constant, $s_p$ is the acoustic strain amplitude at the origin, $\bm{q}$ is the acoustic wavevector and $\Omega$ the acoustic frequency.
 	
 	For simplicity, the electromagnetic polarization is assumed to be in z, $\bm{E}_{i0} \parallel \bm{\hat{z}}$. This is also in part done to avoid polarization changes in the scattered field \cite{Korpel1988}. Due to this $\nabla(\bm{E}_i \cdot \nabla \varepsilon_1) = \bm{0}$ which simplifies the scattering integral to
 	\begin{equation*}
-	\bm{E}_{sc}(\bm{r},t) = \frac{k^2}{4\pi\varepsilon_r} \int_{V_{sc}} \frac{e^{ik |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \bm{E}_i (\bm{r'},t) \varepsilon_1 (\bm{r'},t) \mathrm{d}v'
+		\bm{E}_{sc}(\bm{r},t) = \frac{k^2}{4\pi\varepsilon_r} \int_{V_{sc}} \frac{e^{ik |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \bm{E}_i (\bm{r'},t) \varepsilon_1 (\bm{r'},t) \mathrm{d}v'
 	\end{equation*}
-	Insertion of the field expressions gives
+	Insertion of equation (\ref{eq:app-radar-planeE}) and (\ref{eq:app-radar-planeEps}) gives
 	\begin{equation*}
-	\bm{E}_{sc}(\bm{r},t) = -\frac{k^2}{4\pi\varepsilon_r} \int_{V_{sc}} \frac{e^{ik |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \bm{E}_{i0} e^{i\bm{k} \cdot \bm{r}'} \mathfrak{p} \varepsilon_r^2 s_p \cos(\bm{q} \cdot \bm{r}' - \Omega t) \mathrm{d}v'
+		\bm{E}_{sc}(\bm{r},t) = -\frac{k^2}{4\pi\varepsilon_r} \int_{V_{sc}} \frac{e^{ik |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \bm{E}_{i0} e^{i\bm{k} \cdot \bm{r}'} \mathfrak{p} \varepsilon_r^2 s_p \cos(\bm{q} \cdot \bm{r}' - \Omega t) \mathrm{d}v'
 	\end{equation*}
 	Assuming far-field gives an approximation for the Green-function as \cite{Kristensson2008}
 	\begin{equation*}
-	\frac{e^{ik |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \approx \frac{e^{ikr}}{r} e^{-ik \bm{\hat{r}} \cdot \bm{r}'}
+		\frac{e^{ik |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \approx \frac{e^{ikr}}{r} e^{-ik \bm{\hat{r}} \cdot \bm{r}'}
 	\end{equation*}
 	where $r = |\bm{r}|$ and $\bm{\hat{r}} = \bm{r}/r$. The scattering integral is now written as
 	\begin{equation*}
-	\bm{E}_{sc}(\bm{r},t) = -\frac{\varepsilon_rk^2 e^{ikr}}{4\pi r} \bm{E}_{i0} \mathfrak{p} s_p \int_{V_{sc}} e^{ik ( \bm{\hat{k}} - \bm{\hat{r}} ) \cdot \bm{r}'} \cos(\bm{q} \cdot \bm{r}' - \Omega t) \mathrm{d}v'
+		\bm{E}_{sc}(\bm{r},t) = -\frac{\varepsilon_rk^2 e^{ikr}}{4\pi r} \bm{E}_{i0} \mathfrak{p} s_p \int_{V_{sc}} e^{ik ( \bm{\hat{k}} - \bm{\hat{r}} ) \cdot \bm{r}'} \cos(\bm{q} \cdot \bm{r}' - \Omega t) \mathrm{d}v'
 	\end{equation*}
 	The cosine is now written as complex exponentials giving
-	\begin{align*}
-	\bm{E}_{sc}(\bm{r},t) =& -\frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \bm{E}_{i0} \mathfrak{p} s_p \\
-	&\cdot \left( e^{-i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) + \bm{q} ) \cdot \bm{r}'} \mathrm{d}v + e^{i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) - \bm{q} ) \cdot \bm{r}'} \mathrm{d}v' \right)
-	\end{align*}
+	\begin{equation*}
+	\begin{split}
+			\bm{E}_{sc}(\bm{r},t) =& -\frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \bm{E}_{i0} \mathfrak{p} s_p \\
+			&\cdot \left( e^{-i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) + \bm{q} ) \cdot \bm{r}'} \mathrm{d}v + e^{i\Omega t} \int_{V_{sc}} e^{i( k(\bm{\hat{k}} - \bm{\hat{r}}) - \bm{q} ) \cdot \bm{r}'} \mathrm{d}v' \right)
+	\end{split}
+	\end{equation*}
 	The two integrals are of the same form, $\int e^{i\bm{A} \cdot \bm{r}'} \mathrm{d}v'$, where $\bm{A}$ is independent of $\bm{r}'$. This is solved in general below for the cuboid volume defined by $-L_m/2 \leq m \leq L_m/2$, $m = x,y,z$.
-	\begin{align*}
-	\int_{V_{sc}} e^{i\bm{A} \cdot \bm{r}'} \mathrm{d}v' &=
-	\int_{V_{sc}} e^{i\bm{A} \cdot \bm{\hat{x}} x'} e^{i\bm{A} \cdot \bm{\hat{y}} y'} e^{i\bm{A} \cdot \bm{\hat{z}} z'} \mathrm{d}v' \\
-	&= \prod_{m = x,y,z} \frac{1}{i \bm{A} \cdot \bm{\hat{m}}} \left( e^{i\bm{A} \cdot \bm{\hat{m}} L_m/2} - e^{-i\bm{A} \cdot \bm{\hat{m}} L_m/2} \right) \\
-	&= \prod_{m = x,y,z} \frac{2}{\bm{A} \cdot \bm{\hat{m}}} \sin \left(\bm{A} \cdot \bm{\hat{m}} \frac{L_m}{2} \right) 
-	= \prod_{m = x,y,z} L_m \text{sinc} \left( \frac{\bm{A} \cdot \bm{\hat{m}} L_m}{2\pi} \right)
-	\end{align*}
+	\begin{equation*}
+	\begin{split}
+		\int_{V_{sc}} e^{i\bm{A} \cdot \bm{r}'} \mathrm{d}v' &=
+		\int_{V_{sc}} e^{i\bm{A} \cdot \bm{\hat{x}} x'} e^{i\bm{A} \cdot \bm{\hat{y}} y'} e^{i\bm{A} \cdot \bm{\hat{z}} z'} \mathrm{d}v' \\
+		&= \prod_{m = x,y,z} \frac{1}{i \bm{A} \cdot \bm{\hat{m}}} \left( e^{i\bm{A} \cdot \bm{\hat{m}} L_m/2} - e^{-i\bm{A} \cdot \bm{\hat{m}} L_m/2} \right) \\
+		&= \prod_{m = x,y,z} \frac{2}{\bm{A} \cdot \bm{\hat{m}}} \sin \left(\bm{A} \cdot \bm{\hat{m}} \frac{L_m}{2} \right) 
+		= \prod_{m = x,y,z} L_m \text{sinc} \left( \frac{\bm{A} \cdot \bm{\hat{m}} L_m}{2\pi} \right)
+	\end{split}
+	\end{equation*}
 	where sinc$(x) = \sin(\pi x)/(\pi x)$. To apply this result to $\bm{A} = k(\bm{\hat{k}} - \bm{\hat{r}}) \pm \bm{q}$ this is first simplified using the geometry defined earlier.
 	\begin{equation*}
-	k(\bm{\hat{k}} - \bm{\hat{r}}) \pm \bm{q} = k\bm{\hat{x}} - k(\bm{\hat{x}} x + \bm{\hat{y}} y + \bm{\hat{z}} z)/r \pm q(\bm{\hat{x}} \cos{\alpha} + \bm{\hat{y}} \sin{\alpha})
+		k(\bm{\hat{k}} - \bm{\hat{r}}) \pm \bm{q} = k\bm{\hat{x}} - k(\bm{\hat{x}} x + \bm{\hat{y}} y + \bm{\hat{z}} z)/r \pm q(\bm{\hat{x}} \cos{\alpha} + \bm{\hat{y}} \sin{\alpha})
 	\end{equation*}
 	where r is not written out fully. $\bm{A} \cdot \bm{\hat{m}}$ are now calculated for the three coordinate axes as
-	\begin{align} \label{eq:radar-Aproj}
-		\bm{A} \cdot \bm{\hat{x}} &= k - kx/r \pm q\cos{\alpha} = k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} \nonumber \\
+	\begin{equation} 
+	\begin{split}
+		\bm{A} \cdot \bm{\hat{x}} &= k - kx/r \pm q\cos{\alpha} = k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} \\
 		\bm{A} \cdot \bm{\hat{y}} &= - ky/r \pm q\sin{\alpha} = - k\sin{\theta}\sin{\phi} \pm q\sin{\alpha} \\
-		\bm{A} \cdot \bm{\hat{z}} &= -kz/r = -k\cos{\theta} \nonumber
-	\end{align}
+		\bm{A} \cdot \bm{\hat{z}} &= -kz/r = -k\cos{\theta}
+	\end{split}
+	\label{eq:radar-Aproj}
+	\end{equation}
 	where a conversion to spherical coordinates was made. Insertion into the integral solution gives:
-	\begin{align*}
-	\int_{V_{sc}} &e^{i(	k(\bm{\hat{k}} - \bm{\hat{r}}) \pm \bm{q}) \cdot \bm{r}'} \mathrm{d}v' \\
-	=& L_x \text{sinc} \left( \frac{L_x}{2\pi} ( k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} ) \right) \\
-	&\cdot L_y \text{sinc} \left( \frac{L_y}{2\pi} ( - k\sin{\theta}\sin{\phi} \pm q\sin{\alpha} ) \right)
-	\cdot L_z \text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right) \\
-	=& L_x L_y L_z \Phi^\pm (\theta,\phi)
-	\end{align*}
+	\begin{equation}
+		\begin{split} 
+			\int_{V_{sc}} &e^{i(	k(\bm{\hat{k}} - \bm{\hat{r}}) \pm \bm{q}) \cdot \bm{r}'} \mathrm{d}v' \\
+			=& L_x \text{sinc} \left( \frac{L_x}{2\pi} ( k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} ) \right) \\
+			&\cdot L_y \text{sinc} \left( \frac{L_y}{2\pi} ( - k\sin{\theta}\sin{\phi} \pm q\sin{\alpha} ) \right)
+			\cdot L_z \text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right) \\
+			=& L_x L_y L_z \Phi^\pm (\theta,\phi)
+		\end{split}
+		\label{eq:radar-intsol}
+	\end{equation}
+	
+	
 	where all angular dependence has been gathered in the function $\Phi^\pm (\theta,\phi)$. This result is now inserted into the scattered field, giving
-	\begin{align*}
-	\bm{E}_{sc}(\bm{r},t) &= -\bm{E}_{i0} \frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \mathfrak{p} s_p L_x L_y L_z \left( e^{-i\Omega t} \Phi^+ (\theta,\phi)  + e^{i\Omega t} \Phi^- (\theta,\phi) \right) \\
-	&= -\bm{E}_{i0} E_A(\bm{r},t)
-	\end{align*}
+	\begin{equation*}
+	\begin{split}
+		\bm{E}_{sc}(\bm{r},t) &= -\bm{E}_{i0} \frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \mathfrak{p} s_p L_x L_y L_z \left( e^{-i\Omega t} \Phi^+ (\theta,\phi)  + e^{i\Omega t} \Phi^- (\theta,\phi) \right) \\
+		&= -\bm{E}_{i0} E_A(\bm{r},t)
+	\end{split}
+	\end{equation*}
 	
 	By inspecting $E_A(\bm{r},t)$ it is clear that two frequency-shifted components arise. Since the implied time-dependence is $e^{-i\omega t}$, the factors $e^{\mp i\Omega t}$ give a frequency shift of $\pm \Omega$. The scattered field is written using two distinct components as
 	\begin{equation*}
-	\bm{E}_{sc} (\bm{r},t) = -\bm{E}_{i0} \left( E_A^+ (\bm{r},t) + E_A^- (\bm{r},t) \right)
+		\bm{E}_{sc} (\bm{r},t) = -\bm{E}_{i0} \left( E_A^+ (\bm{r},t) + E_A^- (\bm{r},t) \right)
 	\end{equation*}
 	where
 	\begin{equation*}
-	E_A^\pm (\bm{r},t) = \frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \mathfrak{p} s_p L_x L_y L_z e^{\mp i\Omega t} \Phi^\pm (\theta,\phi)
+		E_A^\pm (\bm{r},t) = \frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \mathfrak{p} s_p L_x L_y L_z e^{\mp i\Omega t} \Phi^\pm (\theta,\phi)
 	\end{equation*}
 	
 	\todoext{I have a new derivation which is based on a parallelogram interaction region (still based on plane waves, but uses beam widths to define the interaction region). This could be added here to show the result of another interaction region.}
@@ -888,113 +954,115 @@
 	\subsection{Solution in terms of power}
 	This treatment has primarily been focused around the electric field. To obtain a more practical expression, this is now transformed into power. The scattered power density is given by
 	\begin{equation*}
-	\bm{S}_{sc} = \frac{1}{2} \bm{E}_{sc} \times \bm{H}_{sc}^*
+		\bm{S}_{sc} = \frac{1}{2} \bm{E}_{sc} \times \bm{H}_{sc}^*
 	\end{equation*}
 	with the magnetic field $\bm{H}_{sc}$ given by
 	\begin{equation*}
-	\bm{H}_{sc} \approx \frac{1}{ik \eta_0 \eta} \nabla \times \bm{E}_{sc}
+		\bm{H}_{sc} \approx \frac{1}{ik \eta_0 \eta} \nabla \times \bm{E}_{sc}
 	\end{equation*}
 	where $\eta_0$ is the wave impedance of free space and $\eta_0 \eta$ the wave impedance in the material. An approximation has been made for $k$, where this is assumed to have the same value as before scattering. Since there is a frequency shift this is known to not be the case, but given a small acoustic frequency compared to the electromagnetic frequency, the error is small. The curl of $\bm{E}_{sc}$ is now written as
 	\begin{equation*}
-	\nabla \times \bm{E}_{sc} = -\nabla \times (\bm{E}_{i0} E_A (\bm{r},t)) = -\nabla E_A (\bm{r},t) \times \bm{E}_{i0}
+		\nabla \times \bm{E}_{sc} = -\nabla \times (\bm{E}_{i0} E_A (\bm{r},t)) = -\nabla E_A (\bm{r},t) \times \bm{E}_{i0}
 	\end{equation*}
 	In spherical coordinates the gradient is written
 	\begin{equation*}
-	\nabla E_A = \frac{\partial E_A}{\partial r} \bm{\hat{r}} + \frac{1}{r} \frac{\partial E_A}{\partial \theta} \bm{\hat{\theta}} + \frac{1}{r\sin{\theta}} \frac{\partial E_A}{\partial \phi} \bm{\hat{\phi}}
+		\nabla E_A = \frac{\partial E_A}{\partial r} \bm{\hat{r}} + \frac{1}{r} \frac{\partial E_A}{\partial \theta} \bm{\hat{\theta}} + \frac{1}{r\sin{\theta}} \frac{\partial E_A}{\partial \phi} \bm{\hat{\phi}}
 	\end{equation*}
 	$E_A$ contains a factor $1/r$, so the two last terms in the gradient will be $\sim 1/r^2$ and are neglected. The gradient is now written as
-	\begin{align*}
-	\nabla E_A &\approx \frac{\partial E_A}{\partial r} \bm{\hat{r}} \\
-	&= \left( \frac{ike^{ikr}}{r} - \frac{e^{ikr}}{r^2} \right) \frac{\varepsilon_r k^2}{8\pi} \mathfrak{p} S_0 L_x L_y L_z \left( e^{- i\Omega t} \Phi^+ (\theta,\phi) + e^{ i\Omega t} \Phi^- (\theta,\phi) \right) \bm{\hat{r}} \\
-	&\approx ikE_A \bm{\hat{r}}
-	\end{align*}
+	\begin{equation*}
+	\begin{split}
+		\nabla E_A &\approx \frac{\partial E_A}{\partial r} \bm{\hat{r}} \\
+		&= \left( \frac{ike^{ikr}}{r} - \frac{e^{ikr}}{r^2} \right) \frac{\varepsilon_r k^2}{8\pi} \mathfrak{p} S_0 L_x L_y L_z \left( e^{- i\Omega t} \Phi^+ (\theta,\phi) + e^{ i\Omega t} \Phi^- (\theta,\phi) \right) \bm{\hat{r}} \\
+		&\approx ikE_A \bm{\hat{r}}
+	\end{split}
+	\end{equation*}
 	where the $1/r^2$ term was neglected. These results are inserted into the expression for the magnetic field, giving
 	\begin{equation*}
-	\bm{H}_{sc} = \frac{1}{ik \eta_0 \eta} (-ikE_A \bm{\hat{r}} \times \bm{E}_{i0}) = \frac{E_A}{ \eta_0 \eta} \bm{\hat{r}} \times \bm{E}_{i0}
+		\bm{H}_{sc} = \frac{1}{ik \eta_0 \eta} (-ikE_A \bm{\hat{r}} \times \bm{E}_{i0}) = \frac{E_A}{ \eta_0 \eta} \bm{\hat{r}} \times \bm{E}_{i0}
 	\end{equation*}
 	Now, the power density is written as
 	\begin{equation*}
-	\bm{S}_{sc} = \frac{1}{2} E_A \bm{E}_{i0} \times \left( \frac{E_A}{ \eta_0 \eta} \bm{\hat{r}} \times \bm{E}_{i0} \right)^* = \frac{|E_A|^2}{2\eta_0 \eta} \left( \bm{\hat{r}} (\bm{E}_{i0} \cdot \bm{E}_{i0}^*) - \bm{E}_{i0}^* (\bm{E}_{i0} \cdot \bm{\hat{r}}) \right)
+		\bm{S}_{sc} = \frac{1}{2} E_A \bm{E}_{i0} \times \left( \frac{E_A}{ \eta_0 \eta} \bm{\hat{r}} \times \bm{E}_{i0} \right)^* = \frac{|E_A|^2}{2\eta_0 \eta} \left( \bm{\hat{r}} (\bm{E}_{i0} \cdot \bm{E}_{i0}^*) - \bm{E}_{i0}^* (\bm{E}_{i0} \cdot \bm{\hat{r}}) \right)
 	\end{equation*}
 	In the far-field $\bm{E}_{sc} \cdot \bm{\hat{r}} = 0$ and since $\bm{E}_{sc} \parallel \bm{E}_{i0}$ the power density is simplified to
 	\begin{equation*}
-	\bm{S}_{sc} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{i0}|^2 |E_A (\bm{r},t)|^2
+		\bm{S}_{sc} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{i0}|^2 |E_A (\bm{r},t)|^2
 	\end{equation*}
 	Since there is an implied $e^{-\omega t}$ time-dependence, this is added back in to obtain a time-average on the short time-scale ($\omega$ and not $\Omega$). This is
 	\begin{equation*}
-	\left< \bm{S}_{sc} e^{-i\omega t} \right> = \mathrm{Re}\left\{ \bm{S}_{sc} e^{-i\omega t} \right\} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{i0}|^2 |E_A (\bm{r},t)|^2
+		\left< \bm{S}_{sc} e^{-i\omega t} \right> = \mathrm{Re}\left\{ \bm{S}_{sc} e^{-i\omega t} \right\} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{i0}|^2 |E_A (\bm{r},t)|^2
 	\end{equation*}
 	If the two frequency components are now considered individually,
 	\begin{equation*}
-	|E_A^\pm (\bm{r},t)|^2 =\frac{\varepsilon_r^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
+		|E_A^\pm (\bm{r},t)|^2 =\frac{\varepsilon_r^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
 	
 	To find an expression for $|\bm{E}_{i0}|^2$, the field from the transmitter antenna is written as (adapted from \cite{Orfanidis2016})
 	\begin{equation*}
-	\bm{E}_T (\bm{r}) = ik\eta_0\eta \frac{e^{ikr}}{4\pi r} \bm{F}_\perp (\bm{\hat{r}})
+		\bm{E}_T (\bm{r}) = ik\eta_0\eta \frac{e^{ikr}}{4\pi r} \bm{F}_\perp (\bm{\hat{r}})
 	\end{equation*}
 	where $\bm{F}_\perp$ is the far-field amplitude. Now the coordinate system is not the same as earlier in the derivation! Here it is a spherical coordinate system with origin at the transmitting antenna. This corresponds to a translation in $-\bm{\hat{x}}$ of the original coordinate system. Let $R_T$ be the distance between the two coordinate systems, or equivalently the distance from the transmitter to the scattering center. The direction to the scattering center in this new system is denoted $\bm{\hat{r}}_{sc} = \bm{r}_{sc}/R_T$. Assuming that the orientations of the transmitter and scattering coordinate systems are the same, $|\bm{E}_{i0}|^2$ can be written in the transmitter system as \cite{Orfanidis2016}
 	\begin{equation*}
-	|\bm{E}_{i0}|^2 = |\bm{E}_T(\bm{r}_{sc})|^2 = \left| ik\eta_0\eta \frac{e^{ikR_T}}{4\pi R_T} \bm{F}_\perp (\bm{\hat{r}}_{sc}) \right|^2 = \frac{k^2 \eta_0^2 \eta^2}{16 \pi^2 R_T^2} |\bm{F}_\perp (\bm{\hat{r}}_{sc})|^2 = 2\eta_0 \eta \mathcal{P}(\bm{\hat{r}}_{sc})
+		|\bm{E}_{i0}|^2 = |\bm{E}_T(\bm{r}_{sc})|^2 = \left| ik\eta_0\eta \frac{e^{ikR_T}}{4\pi R_T} \bm{F}_\perp (\bm{\hat{r}}_{sc}) \right|^2 = \frac{k^2 \eta_0^2 \eta^2}{16 \pi^2 R_T^2} |\bm{F}_\perp (\bm{\hat{r}}_{sc})|^2 = 2\eta_0 \eta \mathcal{P}(\bm{\hat{r}}_{sc})
 	\end{equation*}
 	If the maximum gain $G_T$ of the antenna is in the direction $\hat{r}_{sc}$, it holds that \cite{Orfanidis2016}
 	\begin{equation*}
-	\mathcal{P}(\bm{\hat{r}}_{sc}) = \frac{P_T G_T}{4\pi R_T^2}
+		\mathcal{P}(\bm{\hat{r}}_{sc}) = \frac{P_T G_T}{4\pi R_T^2}
 	\end{equation*}
 	where $P_T$ is the power accepted by the antenna. This is used to write
 	\begin{equation*}
-	|\bm{E}_{i0}|^2 = 2\eta_0 \eta \frac{P_T G_T}{4\pi R_T^2}
+		|\bm{E}_{i0}|^2 = 2\eta_0 \eta \frac{P_T G_T}{4\pi R_T^2}
 	\end{equation*}
 	Now this is inserted into the time-average of the power density
 	\begin{equation*}
-	\left< \bm{S}_{sc} e^{-i\omega t} \right>^\pm = \bm{\hat{r}} \frac{P_T G_T}{4\pi R_T^2} \frac{\varepsilon_r^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
+		\left< \bm{S}_{sc} e^{-i\omega t} \right>^\pm = \bm{\hat{r}} \frac{P_T G_T}{4\pi R_T^2} \frac{\varepsilon_r^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
 	
 	Now the effects of the receiving antenna are considered. It is assumed that this antenna is optimally directed towards the scattering center. The received power is then
 	\begin{equation*}
-	P_R^\pm = \left| \left< \bm{S}_{sc} e^{-i\omega t} \right>^\pm \right| A_e
+		P_R^\pm = \left| \left< \bm{S}_{sc} e^{-i\omega t} \right>^\pm \right| A_e
 	\end{equation*}
 	where $A_e$ is the effective area of the antenna, which can be rewritten as
 	\begin{equation*}
-	A_e = \frac{\lambda_R^2 G_R}{4\pi}
+		A_e = \frac{\lambda_R^2 G_R}{4\pi}
 	\end{equation*}
 	where $G_R$ is the gain of the receiving antenna. $\lambda_R$ should be the wavelength at the antenna here, which is not necessarily the same as in the material. Combining this with earlier results gives a received power of
 	\begin{equation*}
-	P_R^\pm = \frac{\lambda_R^2 G_R}{4\pi} \frac{P_T G_T}{4\pi R_T^2} \frac{\varepsilon_r^2 k^4}{64 \pi^2 R_R^2} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
+		P_R^\pm = \frac{\lambda_R^2 G_R}{4\pi} \frac{P_T G_T}{4\pi R_T^2} \frac{\varepsilon_r^2 k^4}{64 \pi^2 R_R^2} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
 	where $R_R$ is the distance between the scattering center and the receiver, and the receiver is located in the direction $(\theta,\phi)$ as seen from the scattering center. For a more traditional bistatic radar equation this can be written as
 	\begin{equation*}
-	P_R^\pm = \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2}
+		P_R^\pm = \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2}
 	\end{equation*}
 	with the radar cross-section given by
 	\begin{equation*}
-	\sigma^\pm (\theta, \phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
+		\sigma^\pm (\theta, \phi) = \frac{\varepsilon_r^2 k^4}{16\pi} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
 	
 	\subsection{Signal-to-noise ratio and coherent integration}
 	A more practical measurement than received power is signal-to-noise ratio (SNR). For this, the average noise power is described as \cite{Young2004}
 	\begin{equation*}
-	P_n = k_B TB
+		P_n = k_B TB
 	\end{equation*}
 	where $k_B$ is Boltzmann's constant, $T$ is the temperature and $B$ is the utilized receiver bandwidth. The noise power picked up by the antenna is calculated using the standard temperature $T_0 = 290$ K. The SNR directly at the antenna can thus be written as
 	\begin{equation*}
-	\mathit{SNR}^\pm_{ant} \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 k_B T_0 B}
+		\mathit{SNR}^\pm_{ant} \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 k_B T_0 B}
 	\end{equation*}
 	After the antenna is the RF front-end which usually contains a bandpass filter, low-noise amplifier (LNA), and mixer. Here the received signal is amplified so that it can be further processed. The amplification affects both the signal and noise, but the electronic components add more noise which causes the SNR to deteriorate. To quantify this, the concept of noise ratio and noise figure is used. The noise ratio is defined as \cite{Young2004}
 	\begin{equation*}
-	F = \frac{\mathit{SNR}_i}{\mathit{SNR}_o}
+		F = \frac{\mathit{SNR}_i}{\mathit{SNR}_o}
 	\end{equation*}
 	where the SNR's are in linear units, $i$ denotes input and $o$ denotes output. It is more common to use noise figure, which is simply the noise ratio expressed in dB units, $\mathit{NF} = 10\log_{10}(F)$. After the RF front-end the signal is often strong enough to not be affected by further noise, so it is usually sufficient to use a noise ratio/figure for that part of the receiver. The SNR after the receiver can now be written using the noise ratio as
 	\begin{equation*}
-	\mathit{SNR}^\pm = \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 k_B T_0 B \cdot F}
+		\mathit{SNR}^\pm = \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 k_B T_0 B \cdot F}
 	\end{equation*}
 	One more effect is added to this, and that is signal integration in the signal processing following the receiver. Noise can often be modeled as a random process, and if multiple samples are added together the noise can be averaged out. If coherent demodulation is used, $N$ samples added together will cause the SNR to improve by a factor $N$ \cite{Richards2012}. The SNR can then be written as
 	\begin{equation*}
-	\textit{SNR}^\pm_N = \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 k_B T_0 B F} N
+		\mathit{SNR}^\pm_N = \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 k_B T_0 B F} N
 	\end{equation*}
 	
 	\section{Refined interaction region}
-	The derivation in \ref{sec:app-derivations-radar} is based on plane waves and a very simple geometry. A problem with the geometry used is that there is no easy way to obtain the parameters $L_x$, $L_y$ and $L_z$ from common parameters such as widths of the acoustic and electromagnetic beams. To address this, a slightly different interaction geometry based on beams is introduced as shown in figure \ref{fig:parallelogram}. Here the beam widths $w_e$ and $w_a$ have been introduced for the electromagnetic and acoustic plane waves. For simplicity, it is assumed that the beam edges are infinitely sharp, i.e. inside the wave behaves as a plane wave and outside it is zero. This way the previous derivation can be used with the exception of the interaction region.
+	The derivation in \ref{sec:app-derivations-radar} is based on plane waves and a very simple geometry. A problem with the geometry used is that there is no easy way to obtain the parameters $L_x$, $L_y$ and $L_z$ from common parameters of the acoustic and electromagnetic beams. To address this, a slightly different interaction geometry based on beams is introduced as shown in figure \ref{fig:parallelogram}. Here the beam diameters $d_e$ and $d_a$ have been introduced for the electromagnetic and acoustic plane waves. For simplicity, it is assumed that the beam edges are infinitely sharp, i.e. inside the wave behaves as a plane wave and outside it is zero. This way the previous derivation can be used with the exception of the interaction region.
 	\begin{figure}[h]
 		\centering
 		\resizebox{\textwidth}{!}{
@@ -1007,75 +1075,89 @@
 	The integration limits corresponding to this parallelogram can be written as
 	\begin{align*}
 		x_0 - x_1 &< x < x_0 + x_1 \\
-		-w_e/2 &< y < w_e/2 \\
+		-d_e/2 &< y < d_e/2 \\
 		-L_z/2 &< z < L_z/2
 	\end{align*}
 	where
 	\begin{align*}
 		x_0 &= \frac{y}{\tan{\alpha}} \\
-		x_1 &= \frac{w_a}{2\sin{\alpha}}
+		x_1 &= \frac{d_a}{2\sin{\alpha}}
 	\end{align*}
-	The solution to a general function on the form $e^{i\bm{A} \cdot \bm{r}}$ is now written as
-	\begin{align*}
-		I &= \int_{V_{sc}} e^{i\bm{A} \cdot \bm{r}'} \mathrm{d}v' \\
-		&= \int_{-L_z/2}^{L_z/2} e^{i\bm{A} \cdot \bm{\hat{z}} z'} \mathrm{d}z'
-		\int_{-w_e/2}^{w_e/2} \left( e^{i\bm{A} \cdot \bm{\hat{y}} y'}
-		\int_{x_0-x_1}^{x_0+x_1} e^{i\bm{A} \cdot \bm{\hat{x}} x'} \mathrm{d}x' \right) \mathrm{d}y' \\
-		&= \int_{-L_z/2}^{L_z/2} e^{i\bm{A} \cdot \bm{\hat{z}} z'} \mathrm{d}z' \cdot I_2
-	\end{align*}
+	The solution to the integral for a general function on the form $e^{i\bm{A} \cdot \bm{r}}$ is now written as
+	\begin{equation*}
+	\begin{split}
+			I &= \int_{V_{sc}} e^{i\bm{A} \cdot \bm{r}'} \mathrm{d}v' \\
+			&= \int_{-L_z/2}^{L_z/2} e^{i\bm{A} \cdot \bm{\hat{z}} z'} \mathrm{d}z'
+			\int_{-d_e/2}^{d_e/2} \left( e^{i\bm{A} \cdot \bm{\hat{y}} y'}
+			\int_{x_0-x_1}^{x_0+x_1} e^{i\bm{A} \cdot \bm{\hat{x}} x'} \mathrm{d}x' \right) \mathrm{d}y' \\
+			&= \int_{-L_z/2}^{L_z/2} e^{i\bm{A} \cdot \bm{\hat{z}} z'} \mathrm{d}z' \cdot I_2
+	\end{split}
+	\end{equation*}
 	using the solution from \ref{sec:app-derivations-radar} \todoint{Maybe make better references?} this integral can be written as
 	\begin{equation*}
 		I = L_z \text{sinc}\left( \frac{\bm{A} \cdot \bm{\hat{z}} L_z}{2\pi} \right) \cdot I_2
 	\end{equation*}
 	The integral $I_2$ can be solved as
-	\begin{align*}
-		I_2 &= \int_{-w_e/2}^{w_e/2} e^{i\bm{A} \cdot \bm{\hat{y}} y'}
+	\begin{equation*}
+	\begin{split}
+		I_2 &= \int_{-d_e/2}^{d_e/2} e^{i\bm{A} \cdot \bm{\hat{y}} y'}
 		\cdot \frac{1}{i\bm{A} \cdot \bm{\hat{x}}}
 		\left( e^{i\bm{A} \cdot \bm{\hat{x}} (x_0+x_1)} - e^{i\bm{A} \cdot \bm{\hat{x}} (x_0-x_1)}\right) \mathrm{d}y' \\
-		&=\int_{-w_e/2}^{w_e/2} e^{i\bm{A} \cdot \bm{\hat{y}} y'}
+		&=\int_{-d_e/2}^{d_e/2} e^{i\bm{A} \cdot \bm{\hat{y}} y'}
 		\cdot e^{i\bm{A} \cdot \bm{\hat{x}} x_0} \frac{2}{\bm{A} \cdot \bm{\hat{x}}} \sin(\bm{A} \cdot \bm{\hat{x}} x_1) \mathrm{d}y' \\
-		&=\int_{-w_e/2}^{w_e/2} e^{i\bm{A} \cdot (\bm{\hat{y}} y'+ \bm{\hat{x}} x_0)}
+		&=\int_{-d_e/2}^{d_e/2} e^{i\bm{A} \cdot (\bm{\hat{y}} y'+ \bm{\hat{x}} x_0)}
 		\cdot 2x_1 \text{sinc}\left( \frac{\bm{A} \cdot \bm{\hat{x}} x_1}{\pi} \right) \mathrm{d}y' \\
-		&= \frac{w_a}{\sin{\alpha}} \text{sinc}\left( \frac{\bm{A} \cdot \bm{\hat{x}} w_a}{2\pi \sin{\alpha}} \right) \int_{-w_e/2}^{w_e/2} e^{i\bm{A} \cdot (\bm{\hat{y}} + \bm{\hat{x}}/\tan{\alpha}) y'} \mathrm{d}y' \\
-		&= \frac{w_a}{\sin{\alpha}} \text{sinc}\left( \frac{\bm{A} \cdot \bm{\hat{x}} w_a}{2\pi \sin{\alpha}} \right) \cdot I_3
-	\end{align*}
+		&= \frac{d_a}{\sin{\alpha}} \text{sinc}\left( \frac{\bm{A} \cdot \bm{\hat{x}} d_a}{2\pi \sin{\alpha}} \right) \int_{-d_e/2}^{d_e/2} e^{i\bm{A} \cdot (\bm{\hat{y}} + \bm{\hat{x}}/\tan{\alpha}) y'} \mathrm{d}y' \\
+		&= \frac{d_a}{\sin{\alpha}} \text{sinc}\left( \frac{\bm{A} \cdot \bm{\hat{x}} d_a}{2\pi \sin{\alpha}} \right) \cdot I_3
+	\end{split}
+	\end{equation*}
 	The integral $I_3$ can be solved analogously to the solution from \ref{sec:app-derivations-radar} as
 	\begin{equation*}
-		I_3 = w_e \text{sinc}\left( \frac{\bm{A} \cdot (\bm{\hat{y}} + \bm{\hat{x}}/\tan{\alpha}) w_e}{2\pi} \right)
+		I_3 = d_e \text{sinc}\left( \frac{\bm{A} \cdot (\bm{\hat{y}} + \bm{\hat{x}}/\tan{\alpha}) d_e}{2\pi} \right)
 	\end{equation*}
 	Now the complete solution to $I$ is written as
-	\begin{align*}
-		I =& \frac{w_a}{\sin{\alpha}} \text{sinc}\left( \frac{\bm{A} \cdot \bm{\hat{x}} w_a}{2\pi \sin{\alpha}} \right) \cdot w_e \text{sinc}\left( \frac{\bm{A} \cdot (\bm{\hat{y}} + \bm{\hat{x}}/\tan{\alpha}) w_e}{2\pi} \right) \\
+	\begin{equation*}
+	\begin{split}
+		I =& \frac{d_a}{\sin{\alpha}} \text{sinc}\left( \frac{\bm{A} \cdot \bm{\hat{x}} d_a}{2\pi \sin{\alpha}} \right) \cdot d_e \text{sinc}\left( \frac{\bm{A} \cdot (\bm{\hat{y}} + \bm{\hat{x}}/\tan{\alpha}) d_e}{2\pi} \right) \\
 		&\cdot L_z \text{sinc}\left( \frac{\bm{A} \cdot \bm{\hat{z}} L_z}{2\pi} \right)
-	\end{align*}
+	\end{split}
+	\end{equation*}
 	If the specific function of interest to the scattering problem is inserted, and spherical coordinates are used as in equation (\ref{eq:radar-Aproj}) the solution is
-	\begin{align*}
+	\begin{equation*}
+	\begin{split}
 		\int_{V_{sc}} &e^{i(	k(\bm{\hat{k}} - \bm{\hat{r}}) \pm \bm{q}) \cdot \bm{r}'} \mathrm{d}v' \\
-		&= \frac{w_a w_e L_z}{\sin{\alpha}} \text{sinc}\left( \frac{w_a}{2\pi \sin{\alpha}}(k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha}) \right) \\
-		&\cdot \text{sinc}\left( \frac{w_e}{2\pi \tan{\alpha}}
+		&= \frac{d_a d_e L_z}{\sin{\alpha}} \text{sinc}\left( \frac{d_a}{2\pi \sin{\alpha}}(k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha}) \right) \\
+		&\cdot \text{sinc}\left( \frac{d_e}{2\pi \tan{\alpha}}
 		(k - k\sin{\theta}(\cos{\phi} + \sin{\phi}\tan{\alpha}) \pm q(\cos{\alpha} + \sin{\alpha}\tan{\alpha})) \right) \\
 		&\cdot \text{sinc}\left( -\frac{L_z}{2\pi} k\cos{\theta} \right) \\
-		&= w_a w_e L_z \Phi_p^{\pm}(\theta, \phi)
-	\end{align*}
-	where the function $\Phi_p^{\pm}(\theta, \phi)$ was introduced for all angular dependence as for $\Phi^{\pm}(\theta, \phi)$ in \ref{sec:app-derivations-radar}.
+		&= \frac{d_a d_e L_z}{\sin{\alpha}} \Phi_p^{\pm}(\theta, \phi)
+	\end{split}
+	\end{equation*}
+	where the function $\Phi_p^{\pm}(\theta, \phi)$ was introduced similarly to $\Phi^{\pm}(\theta, \phi)$ in equation (\ref{eq:radar-intsol}). In contrast to the derivation in \ref{sec:app-derivations-radar}, $\Phi_p^{\pm}(\theta, \phi)$ does not contain all angular dependence since there is still a factor $1/\sin{\alpha}$ not included. This is due to that factor being directly related to the interaction volume. If the area of the parallelogram is calculated and multiplied by the width in $z$, the result is
+	\begin{equation*}
+		\frac{d_a d_e L_z}{\sin{\alpha}}
+	\end{equation*}
+	This means that the solution of the integral is the interaction volume multiplied by $\Phi_p^{\pm}(\theta, \phi)$. This is the same result as in equation (\ref{eq:radar-intsol}).
 	
 	\todoint[inline]{Continue derivation, might need to introduce some equation numbering for referencing.}
 	
 	\section{Geometry for maximum scattering \label{sec:app-derivations-bragg}}
 	Let us begin with the $\Phi$ angular dependence function:
-	\begin{align*}
-	\Phi^\pm(\theta,\phi) =& \text{sinc} \left( \frac{L_x}{2\pi} \left( k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} \right) \right) \\
-	\cdot& \text{sinc} \left( \frac{L_y}{2\pi} \left( -k\sin{\theta}\sin{\phi} \pm q\sin{\alpha} \right) \right) \\
-	\cdot& \text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right)
-	\end{align*}
+	\begin{equation*}
+	\begin{split}
+		\Phi^\pm(\theta,\phi) =& \text{sinc} \left( \frac{L_x}{2\pi} \left( k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} \right) \right) \\
+		\cdot& \text{sinc} \left( \frac{L_y}{2\pi} \left( -k\sin{\theta}\sin{\phi} \pm q\sin{\alpha} \right) \right) \\
+		\cdot& \text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right)
+	\end{split}
+	\end{equation*}
 	The maximum of this function mush be where all sinc-functions are maximum. For a sinc the maximum is given when the argument is equal to 0, which simplifies the process. Firstly, consider the third sinc:
 	\begin{equation*}
-	\text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right)
+		\text{sinc} \left( -\frac{L_z}{2\pi} k\cos{\theta} \right)
 	\end{equation*}
 	The argument of this is obviously zero when $\cos{\theta} = 0$, which for $0 \leq \theta \leq \pi$ is when $\theta = \pi/2$. This fixes the maximum to the plane formed by the incident electromagnetic and acoustic wavevectors. What it means is that the scattering occurs primarily in one single interaction plane, which simplifies analysis. Now the arguments of the two other sinc functions are set to zero with the value for $\theta$ being set to $\pi/2$:
 	\begin{align}
-	k - k\cos{\phi} \pm q\cos{\alpha} &= 0 \label{eq:bragg-sinc1} \\
-	-k\sin{\phi} \pm q\sin{\alpha} &= 0 \label{eq:bragg-sinc2}
+		k - k\cos{\phi} \pm q\cos{\alpha} &= 0 \label{eq:bragg-sinc1} \\
+		-k\sin{\phi} \pm q\sin{\alpha} &= 0 \label{eq:bragg-sinc2}
 	\end{align}
 	
 	\subsection{Condition for $\alpha$}
@@ -1084,23 +1166,23 @@
 	\subsubsection{(+) case}
 	Begin with equation \ref{eq:bragg-sinc1}:
 	\begin{equation*}
-	\cos{\alpha} = \frac{k}{q}\left( \cos{\phi} - 1 \right) = \frac{k}{q}\left( \pm \sqrt{1-\sin^2{\phi}} - 1 \right)
+		\cos{\alpha} = \frac{k}{q}\left( \cos{\phi} - 1 \right) = \frac{k}{q}\left( \pm \sqrt{1-\sin^2{\phi}} - 1 \right)
 	\end{equation*}
 	Now equation \ref{eq:bragg-sinc2} is inserted in the above as
 	\begin{equation*}
-	\cos{\alpha} = \frac{k}{q}\left( \pm \sqrt{1-\frac{q^2}{k^2}\sin^2{\alpha}} - 1 \right)
+		\cos{\alpha} = \frac{k}{q}\left( \pm \sqrt{1-\frac{q^2}{k^2}\sin^2{\alpha}} - 1 \right)
 	\end{equation*}
 	This is rewritten as
 	\begin{equation*}
-	\pm \sqrt{k^2-q^2\sin^2{\alpha}} = q\cos{\alpha} + k
+		\pm \sqrt{k^2-q^2\sin^2{\alpha}} = q\cos{\alpha} + k
 	\end{equation*}
 	And squared
 	\begin{equation*}
-	k^2 - q^2\sin^2{\alpha} = q^2\cos^2{\alpha} + 2kq\cos{\alpha} + k^2
+		k^2 - q^2\sin^2{\alpha} = q^2\cos^2{\alpha} + 2kq\cos{\alpha} + k^2
 	\end{equation*}
 	After some simplification, the following equation is obtained:
 	\begin{equation}
-	\cos{\alpha} = -\frac{q}{2k} \label{eq:bragg-cos+}
+		\cos{\alpha} = -\frac{q}{2k} \label{eq:bragg-cos+}
 	\end{equation}
 	Since $q$ and $k$ are non-negative it is clear that $\pi/2 \leq \alpha \leq \pi$.
 	
@@ -1121,23 +1203,23 @@
 	\subsubsection{(-) case}
 	This case is the same as the (+) case, but with some sign changes. Begin with equation \ref{eq:bragg-sinc1}:
 	\begin{equation*}
-	\cos{\alpha} = \frac{k}{q}\left( 1 - \cos{\phi} \right) = \frac{k}{q}\left( 1 \pm \sqrt{1-\sin^2{\phi}} \right)
+		\cos{\alpha} = \frac{k}{q}\left( 1 - \cos{\phi} \right) = \frac{k}{q}\left( 1 \pm \sqrt{1-\sin^2{\phi}} \right)
 	\end{equation*}
 	Now equation \ref{eq:bragg-sinc2} is inserted in the above as
 	\begin{equation*}
-	\cos{\alpha} = \frac{k}{q}\left( 1 \pm \sqrt{1-\frac{q^2}{k^2}\sin^2{\alpha}} \right)
+		\cos{\alpha} = \frac{k}{q}\left( 1 \pm \sqrt{1-\frac{q^2}{k^2}\sin^2{\alpha}} \right)
 	\end{equation*}
 	This is rewritten as
 	\begin{equation*}
-	\pm \sqrt{k^2-q^2\sin^2{\alpha}} = q\cos{\alpha} - k
+		\pm \sqrt{k^2-q^2\sin^2{\alpha}} = q\cos{\alpha} - k
 	\end{equation*}
 	And squared
 	\begin{equation*}
-	k^2 - q^2\sin^2{\alpha} = q^2\cos^2{\alpha} - 2kq\cos{\alpha} + k^2
+		k^2 - q^2\sin^2{\alpha} = q^2\cos^2{\alpha} - 2kq\cos{\alpha} + k^2
 	\end{equation*}
 	After some simplification, the following equation is obtained:
 	\begin{equation}
-	\cos{\alpha} = \frac{q}{2k} \label{eq:bragg-cos-}
+		\cos{\alpha} = \frac{q}{2k} \label{eq:bragg-cos-}
 	\end{equation}
 	Since $q$ and $k$ are non-negative it is clear that $0 \leq \alpha \leq \pi/2$.
 %	This is now inserted in equation \ref{eq:bragg-sinc1} and \ref{eq:bragg-sinc2}:
@@ -1159,8 +1241,8 @@
 	
 	If either of equations \ref{eq:bragg-cos+} or \ref{eq:bragg-cos-} is inserted in the system \ref{eq:bragg-sinc1}, \ref{eq:bragg-sinc2} the following is obtained:
 	\begin{align*}
-	\cos{\phi} &= 1 - 2\cos^2{\alpha} = -\cos{2\alpha} \\
-	\sin{\phi} &= -2\sin{\alpha}\cos{\alpha} = -\sin{2\alpha}
+		\cos{\phi} &= 1 - 2\cos^2{\alpha} = -\cos{2\alpha} \\
+		\sin{\phi} &= -2\sin{\alpha}\cos{\alpha} = -\sin{2\alpha}
 	\end{align*}
 	These can be written as
 	\begin{align*}
@@ -1171,8 +1253,8 @@
 		\end{cases} \\
 		\phi &=
 		\begin{cases}
-		\arcsin(-\sin{2\alpha}) + 2\pi n &= -2\alpha + 2\pi n \\
-		\pi - \arcsin(-\sin{2\alpha}) + 2\pi n &= \pi + 2\alpha + 2\pi n
+			\arcsin(-\sin{2\alpha}) + 2\pi n &= -2\alpha + 2\pi n \\
+			\pi - \arcsin(-\sin{2\alpha}) + 2\pi n &= \pi + 2\alpha + 2\pi n
 		\end{cases}
 	\end{align*}
 	From these equations it is clear that $\phi = \pi + 2\alpha + 2\pi n$ is the only valid solution. If $\phi$ is constrained to the region $0 \leq \phi \leq 2\pi$ and the previously stated constraints on $\alpha$ are utilized, $\phi$ can be written as
@@ -1184,19 +1266,19 @@
 	\subsection{Summary}
 	The equations for both the (+) and (-) case are very similar, and can be written in a simple way using $\pm$ signs. The conditions define the geometry which gives the maximum scattering through the angle $\alpha$ between EM and acoustic incident waves and the angles $\theta$ and $\phi$ for the receiver direction. They are summarized below:
 	\begin{align}
-	\theta &= \pi/2 \label{eq:bragg-theta}\\
-	\cos{\alpha} = \mp \frac{q}{2k} &= \mp \frac{\lambda}{2\Lambda} \label{eq:bragg-alpha}\\
-	\phi &= \mp \pi + 2\alpha \label{eq:bragg-phi}
-	%\tan{\frac{\phi}{2}} = \pm \sqrt{\frac{q^2}{4k^2-q^2}} &= \pm \sqrt{\frac{\lambda^2}{4\Lambda^2-\lambda^2}} \label{eq:bragg-phi}
+		\theta &= \pi/2 \label{eq:bragg-theta}\\
+		\cos{\alpha} = \mp \frac{q}{2k} &= \mp \frac{\lambda}{2\Lambda} \label{eq:bragg-alpha}\\
+		\phi &= \mp \pi + 2\alpha \label{eq:bragg-phi}
+		%\tan{\frac{\phi}{2}} = \pm \sqrt{\frac{q^2}{4k^2-q^2}} &= \pm \sqrt{\frac{\lambda^2}{4\Lambda^2-\lambda^2}} \label{eq:bragg-phi}
 	\end{align}
 	
 	In acousto-optics the interaction occurs in a single plane, which is what (\ref{eq:bragg-theta}) describes. There is also a Bragg condition defining the angle between an acoustic and optic wave which is required for maximum reflection. This is presented in \cite{Saleh2007} as
 	\begin{equation*}
-	\sin{\theta_B} = \frac{\lambda}{2\Lambda}
+		\sin{\theta_B} = \frac{\lambda}{2\Lambda}
 	\end{equation*}
 	The relationship between the angles in acousto-optics and those used in this model are shown in figure \ref{fig:bragg-comparison} with $\phi_i = \phi_r = \theta_B$ \cite{Saleh2007}. From the figure it is clear that $\alpha = \pi/2 \pm \theta_B$. In this model (\ref{eq:bragg-alpha}) is used to obtain the optimal angle between electromagnetic and acoustic waves, and the transformation between $\alpha$ and $\theta_B$ can be inserted as
 	\begin{equation*}
-	\cos{\alpha} = \cos(\pi/2 \pm \theta_B) = \mp \sin{\theta_B}
+		\cos{\alpha} = \cos(\pi/2 \pm \theta_B) = \mp \sin{\theta_B}
 	\end{equation*}
 	The RHS of (\ref{eq:bragg-alpha}) is $\mp \lambda/2\Lambda$. This should be equal to the RHS above, which directly gives the Bragg condition.
 	

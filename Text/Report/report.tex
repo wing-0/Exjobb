@@ -7,6 +7,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{cases}
 
 % Graphics
 \usepackage{graphicx}
@@ -268,6 +269,7 @@
 	
 	\subsection{Acoustic intensity and relations between quantities}
 	\todoint[inline]{This is a bit of a mess... Need to find good references for everything and standardize notation a bit. The notation needs to be standardized overall, but for some reason the clashes are very apparent here}
+	\todoint[inline]{Sign errors??? Check everything!!}
 	An acoustic wave is usually described using pressure, but it is possible to relate this to a displacement of the particles involved. The relation between pressure and displacement can be written as \cite{Schmerr2016}
 	\begin{equation*}
 		-\nabla p + \bm{f} = \rho_0 \frac{\partial^2 \bm{u}}{\partial t^2}
@@ -382,8 +384,14 @@
 	\begin{equation*}
 		\Delta \varepsilon_r = \frac{1}{3} (\varepsilon_r - 1)(\varepsilon_r + 2) S
 	\end{equation*}
-	This can be compared with equation \ref{eq:PE-scalar} to obtain an equivalent photoelasticity \todoint{Check similarity between condensation (relative density change) and dilatation (relative volume change, div of displacements, sum of linear strains)}
+	The condensation can be related to dilatation using the relation $-\rho_a/\rho_0 = \nabla \cdot \bm{u}$ where $\rho_a$ is the change in density \cite{Kaufman2000}. Thus,
+	\begin{equation*}
+		S = \frac{\rho_a}{\rho_0} = - \nabla \cdot \bm{u} = - \Delta
+	\end{equation*}
+	
+	This can be compared with equation \eqref{eq:PE-scalar} to obtain an equivalent photoelasticity 
 	\todoext{All steps are not fully written out here, should be done later}
+	\todoint[inline]{Sign error???? Things seem very strange. Think that increased density should mean increased permittivity...}
 	\begin{equation}\label{eq:PE-liquid-model}
 		\mathfrak{p} = -\frac{(\varepsilon_r - 1)(\varepsilon_r + 2)}{3\varepsilon_r^2}
 	\end{equation}
@@ -399,11 +407,11 @@
 	\begin{equation*}
 		\varepsilon_1 = \frac{1.13 \cdot 10^{-6} p}{T}
 	\end{equation*}
-	The simple model using equations \ref{eq:PE-scalar} and \ref{eq:PE-liquid-model} can be written as (with $\varepsilon_1$ instead of $\Delta \varepsilon_r$)
+	The simple model using equations \eqref{eq:PE-scalar} and \eqref{eq:PE-liquid-model} can be written as (with $\varepsilon_1$ instead of $\Delta \varepsilon_r$)
 	\begin{equation*}
 		\varepsilon_1 = -\mathfrak{p} \varepsilon_r^2 \Delta = \frac{1}{3}(\varepsilon_r - 1)(\varepsilon_r + 2) s_{xx}
 	\end{equation*}
-	assuming that the strain can be seen as a plane wave in x near the area of interest. Now, this can be related to pressure using equations \ref{eq:strain-displ} and \ref{eq:pressure-displ} as
+	assuming that the strain can be seen as a plane wave in x near the area of interest. Now, this can be related to pressure using equations \eqref{eq:strain-displ} and \eqref{eq:pressure-displ} as
 	\begin{equation*}
 		\varepsilon_1 = \frac{1}{3}(\varepsilon_r - 1)(\varepsilon_r + 2) s_{xx} = \frac{1}{3}(\varepsilon_r - 1)(\varepsilon_r + 2) q u_x = \frac{(\varepsilon_r - 1)(\varepsilon_r + 2) p}{3 \rho_0 v^2}
 	\end{equation*}
@@ -462,11 +470,11 @@
 		\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon \bm{E} = \nabla(\nabla \cdot \bm{E}) - 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} + \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
 		\label{eq:an-scatter-Efield1}
 	\end{equation*}
-	Gauss' law (\ref{eq:an-scatter-gauss}) is now expanded to $\varepsilon(\nabla \cdot \bm{E}) + (\nabla \varepsilon) \cdot \bm{E} = 0$. This can be rewritten as
+	Gauss' law \eqref{eq:an-scatter-gauss} is now expanded to $\varepsilon(\nabla \cdot \bm{E}) + (\nabla \varepsilon) \cdot \bm{E} = 0$. This can be rewritten as
 	\begin{equation*}
 		\nabla \cdot \bm{E} = -\bm{E} \cdot \frac{\nabla \varepsilon}{\varepsilon} = -\bm{E} \cdot \nabla (\ln{\varepsilon})
 	\end{equation*}
-	Inserting this into equation (\ref{eq:an-scatter-Efield1}) gives
+	Inserting this into equation \eqref{eq:an-scatter-Efield1} gives
 	\begin{equation}
 		\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon \bm{E} = -\nabla(\bm{E} \cdot \nabla (\ln{\varepsilon})) - 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} + \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
 		\label{eq:an-scatter-Efield2}
@@ -484,7 +492,7 @@
 	\begin{equation*}
 	\nabla(\ln{\varepsilon}) = \nabla \left( \frac{\varepsilon_1}{\varepsilon_r} \right) = \frac{1}{\varepsilon_r} \nabla \varepsilon_1
 	\end{equation*}
-	This is now inserted in equation (\ref{eq:an-scatter-Efield2}) together with equation (\ref{eq:an-scatter-eps}), giving
+	This is now inserted in equation \eqref{eq:an-scatter-Efield2} together with equation \eqref{eq:an-scatter-eps}, giving
 	\begin{equation*}
 		\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon_0 \varepsilon_r \bm{E} = \\
 	-\omega^2 \mu_0 \varepsilon_0 \varepsilon_1 \bm{E} -\frac{1}{\varepsilon_r}\nabla(\bm{E} \cdot \nabla \varepsilon_1) - 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} + \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
@@ -532,7 +540,7 @@
 	\begin{equation*}
 		\bm{E}_{sc}(\bm{r},t) = \frac{k^2}{4\pi\varepsilon_r} \int_{V_{sc}} \frac{e^{ik |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \bm{E}_i (\bm{r'},t) \varepsilon_1 (\bm{r'},t) \mathrm{d}v'
 	\end{equation*}
-	Equation (\ref{eq:an-radar-planeE}) and (\ref{eq:an-radar-planeEps}) are now inserted, and with a far-field approximation and expansion of the cosine as complex exponentials the integral is written as
+	Equation \eqref{eq:an-radar-planeE} and \eqref{eq:an-radar-planeEps} are now inserted, and with a far-field approximation and expansion of the cosine as complex exponentials the integral is written as
 	\begin{equation*}
 	\begin{split}
 		\bm{E}_{sc}(\bm{r},t) =& -\frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \bm{E}_{i0} \mathfrak{p} s_p \\
@@ -742,11 +750,11 @@
 		\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon \bm{E} = \nabla(\nabla \cdot \bm{E}) - 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} + \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
 		\label{eq:app-scatter-Efield1}
 	\end{equation}
-	Gauss' law (\ref{eq:app-scatter-gauss}) is now expanded to $\varepsilon(\nabla \cdot \bm{E}) + (\nabla \varepsilon) \cdot \bm{E} = 0$. This can be rewritten as
+	Gauss' law \eqref{eq:app-scatter-gauss} is now expanded to $\varepsilon(\nabla \cdot \bm{E}) + (\nabla \varepsilon) \cdot \bm{E} = 0$. This can be rewritten as
 	\begin{equation*}
 		\nabla \cdot \bm{E} = -\bm{E} \cdot \frac{\nabla \varepsilon}{\varepsilon} = -\bm{E} \cdot \nabla (\ln{\varepsilon})
 	\end{equation*}
-	Inserting this into equation (\ref{eq:app-scatter-Efield1}) gives
+	Inserting this into equation \eqref{eq:app-scatter-Efield1} gives
 	\begin{equation}
 		\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon \bm{E} = -\nabla(\bm{E} \cdot \nabla (\ln{\varepsilon})) - 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} + \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
 		\label{eq:app-scatter-Efield2}
@@ -764,7 +772,7 @@
 	\begin{equation*}
 		\nabla(\ln{\varepsilon}) = \nabla \left( \frac{\varepsilon_1}{\varepsilon_r} \right) = \frac{1}{\varepsilon_r} \nabla \varepsilon_1
 	\end{equation*}
-	This is now inserted in equation (\ref{eq:app-scatter-Efield2}) together with equation \ref{eq:app-scatter-eps}, giving
+	This is now inserted in equation \eqref{eq:app-scatter-Efield2} together with equation \eqref{eq:app-scatter-eps}, giving
 	\begin{equation*}
 		\nabla^2\bm{E} + \omega^2 \mu_0 \varepsilon_0 \varepsilon_r \bm{E} = \\
 		-\omega^2 \mu_0 \varepsilon_0 \varepsilon_1 \bm{E} -\frac{1}{\varepsilon_r}\nabla(\bm{E} \cdot \nabla \varepsilon_1) - 2i\omega \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} + \mu_0 \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
@@ -877,7 +885,7 @@
 	\begin{equation*}
 		\bm{E}_{sc}(\bm{r},t) = \frac{k^2}{4\pi\varepsilon_r} \int_{V_{sc}} \frac{e^{ik |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \bm{E}_i (\bm{r'},t) \varepsilon_1 (\bm{r'},t) \mathrm{d}v'
 	\end{equation*}
-	Insertion of equation (\ref{eq:app-radar-planeE}) and (\ref{eq:app-radar-planeEps}) gives
+	Insertion of equation \eqref{eq:app-radar-planeE} and \eqref{eq:app-radar-planeEps} gives
 	\begin{equation*}
 		\bm{E}_{sc}(\bm{r},t) = -\frac{k^2}{4\pi\varepsilon_r} \int_{V_{sc}} \frac{e^{ik |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \bm{E}_{i0} e^{i\bm{k} \cdot \bm{r}'} \mathfrak{p} \varepsilon_r^2 s_p \cos(\bm{q} \cdot \bm{r}' - \Omega t) \mathrm{d}v'
 	\end{equation*}
@@ -948,8 +956,6 @@
 	\begin{equation*}
 		E_A^\pm (\bm{r},t) = \frac{\varepsilon_rk^2 e^{ikr}}{8\pi r} \mathfrak{p} s_p L_x L_y L_z e^{\mp i\Omega t} \Phi^\pm (\theta,\phi)
 	\end{equation*}
-	
-	\todoext{I have a new derivation which is based on a parallelogram interaction region (still based on plane waves, but uses beam widths to define the interaction region). This could be added here to show the result of another interaction region.}
 	
 	\subsection{Solution in terms of power}
 	This treatment has primarily been focused around the electric field. To obtain a more practical expression, this is now transformed into power. The scattered power density is given by
@@ -1061,7 +1067,7 @@
 		\mathit{SNR}^\pm_N = \frac{P_T G_T G_R \lambda_R^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_T^2 R_R^2 k_B T_0 B F} N
 	\end{equation*}
 	
-	\section{Refined interaction region}
+	\section{Refined interaction region} \label{sec:app-derivations-refined}
 	The derivation in \ref{sec:app-derivations-radar} is based on plane waves and a very simple geometry. A problem with the geometry used is that there is no easy way to obtain the parameters $L_x$, $L_y$ and $L_z$ from common parameters of the acoustic and electromagnetic beams. To address this, a slightly different interaction geometry based on beams is introduced as shown in figure \ref{fig:parallelogram}. Here the beam diameters $d_e$ and $d_a$ have been introduced for the electromagnetic and acoustic plane waves. For simplicity, it is assumed that the beam edges are infinitely sharp, i.e. inside the wave behaves as a plane wave and outside it is zero. This way the previous derivation can be used with the exception of the interaction region.
 	\begin{figure}[h]
 		\centering
@@ -1122,7 +1128,7 @@
 		&\cdot L_z \text{sinc}\left( \frac{\bm{A} \cdot \bm{\hat{z}} L_z}{2\pi} \right)
 	\end{split}
 	\end{equation*}
-	If the specific function of interest to the scattering problem is inserted, and spherical coordinates are used as in equation (\ref{eq:radar-Aproj}) the solution is
+	If the specific function of interest to the scattering problem is inserted, and spherical coordinates are used as in equation \eqref{eq:radar-Aproj} the solution is
 	\begin{equation*}
 	\begin{split}
 		\int_{V_{sc}} &e^{i(	k(\bm{\hat{k}} - \bm{\hat{r}}) \pm \bm{q}) \cdot \bm{r}'} \mathrm{d}v' \\
@@ -1133,13 +1139,13 @@
 		&= \frac{d_a d_e L_z}{\sin{\alpha}} \Phi_p^{\pm}(\theta, \phi)
 	\end{split}
 	\end{equation*}
-	where the function $\Phi_p^{\pm}(\theta, \phi)$ was introduced similarly to $\Phi^{\pm}(\theta, \phi)$ in equation (\ref{eq:radar-intsol}). In contrast to the derivation in \ref{sec:app-derivations-radar}, $\Phi_p^{\pm}(\theta, \phi)$ does not contain all angular dependence since there is still a factor $1/\sin{\alpha}$ not included. This is due to that factor being directly related to the interaction volume. If the area of the parallelogram is calculated and multiplied by the width in $z$, the result is
+	where the function $\Phi_p^{\pm}(\theta, \phi)$ was introduced similarly to $\Phi^{\pm}(\theta, \phi)$ in equation \eqref{eq:radar-intsol}. In contrast to the derivation in \ref{sec:app-derivations-radar}, $\Phi_p^{\pm}(\theta, \phi)$ does not contain all angular dependence since there is still a factor $1/\sin{\alpha}$ not included. This is due to that factor being directly related to the interaction volume. If the area of the parallelogram is calculated and multiplied by the width in $z$, the result is
 	\begin{equation*}
 		\frac{d_a d_e L_z}{\sin{\alpha}}
 	\end{equation*}
-	This means that the solution of the integral is the interaction volume multiplied by $\Phi_p^{\pm}(\theta, \phi)$. This is the same result as in equation (\ref{eq:radar-intsol}).
+	This means that the solution of the integral is the interaction volume multiplied by $\Phi_p^{\pm}(\theta, \phi)$. This is the same result as in equation \eqref{eq:radar-intsol}.
 	
-	\todoint[inline]{Continue derivation, might need to introduce some equation numbering for referencing.}
+	For the major results of the derivations in section \ref{sec:app-derivations-radar}, the interaction region is easily changed from cuboid to beam-based. The geometry only matters in the calculation of the integral, so the only necessary changes are from there. This means that the interaction volume needs to be changed from $L_x L_y L_z$ to $d_a d_e L_z/\sin{\alpha}$ and the function $\Phi^\pm$ changed to $\Phi_p^\pm$. The same expressions as before for electric fields, received power, SNR, etc. can be used if these changes are made.
 	
 	\section{Geometry for maximum scattering \label{sec:app-derivations-bragg}}
 	Let us begin with the $\Phi$ angular dependence function:
@@ -1156,19 +1162,19 @@
 	\end{equation*}
 	The argument of this is obviously zero when $\cos{\theta} = 0$, which for $0 \leq \theta \leq \pi$ is when $\theta = \pi/2$. This fixes the maximum to the plane formed by the incident electromagnetic and acoustic wavevectors. What it means is that the scattering occurs primarily in one single interaction plane, which simplifies analysis. Now the arguments of the two other sinc functions are set to zero with the value for $\theta$ being set to $\pi/2$:
 	\begin{align}
-		k - k\cos{\phi} \pm q\cos{\alpha} &= 0 \label{eq:bragg-sinc1} \\
-		-k\sin{\phi} \pm q\sin{\alpha} &= 0 \label{eq:bragg-sinc2}
+		k - k\cos{\phi} \pm q\cos{\alpha} &= 0 \label{eq:app-bragg-sinc1} \\
+		-k\sin{\phi} \pm q\sin{\alpha} &= 0 \label{eq:app-bragg-sinc2}
 	\end{align}
 	
 	\subsection{Condition for $\alpha$}
-	The system \ref{eq:bragg-sinc1},\ref{eq:bragg-sinc2} is now used to find the angle between wave vectors giving a maximum. To avoid confusion, the positive and negative versions of the system are considered separately.
+	The system \eqref{eq:app-bragg-sinc1},\eqref{eq:app-bragg-sinc2} is now used to find the angle between wave vectors giving a maximum. To avoid confusion, the positive and negative versions of the system are considered separately.
 	
 	\subsubsection{(+) case}
-	Begin with equation \ref{eq:bragg-sinc1}:
+	Begin with equation \eqref{eq:app-bragg-sinc1}:
 	\begin{equation*}
 		\cos{\alpha} = \frac{k}{q}\left( \cos{\phi} - 1 \right) = \frac{k}{q}\left( \pm \sqrt{1-\sin^2{\phi}} - 1 \right)
 	\end{equation*}
-	Now equation \ref{eq:bragg-sinc2} is inserted in the above as
+	Now equation \eqref{eq:app-bragg-sinc2} is inserted in the above as
 	\begin{equation*}
 		\cos{\alpha} = \frac{k}{q}\left( \pm \sqrt{1-\frac{q^2}{k^2}\sin^2{\alpha}} - 1 \right)
 	\end{equation*}
@@ -1182,7 +1188,7 @@
 	\end{equation*}
 	After some simplification, the following equation is obtained:
 	\begin{equation}
-		\cos{\alpha} = -\frac{q}{2k} \label{eq:bragg-cos+}
+		\cos{\alpha} = -\frac{q}{2k} \label{eq:app-bragg-cos+}
 	\end{equation}
 	Since $q$ and $k$ are non-negative it is clear that $\pi/2 \leq \alpha \leq \pi$.
 	
@@ -1201,11 +1207,11 @@
 %	\end{equation*}
 	
 	\subsubsection{(-) case}
-	This case is the same as the (+) case, but with some sign changes. Begin with equation \ref{eq:bragg-sinc1}:
+	This case is the same as the (+) case, but with some sign changes. Begin with equation \eqref{eq:app-bragg-sinc1}:
 	\begin{equation*}
 		\cos{\alpha} = \frac{k}{q}\left( 1 - \cos{\phi} \right) = \frac{k}{q}\left( 1 \pm \sqrt{1-\sin^2{\phi}} \right)
 	\end{equation*}
-	Now equation \ref{eq:bragg-sinc2} is inserted in the above as
+	Now equation \eqref{eq:app-bragg-sinc2} is inserted in the above as
 	\begin{equation*}
 		\cos{\alpha} = \frac{k}{q}\left( 1 \pm \sqrt{1-\frac{q^2}{k^2}\sin^2{\alpha}} \right)
 	\end{equation*}
@@ -1219,7 +1225,7 @@
 	\end{equation*}
 	After some simplification, the following equation is obtained:
 	\begin{equation}
-		\cos{\alpha} = \frac{q}{2k} \label{eq:bragg-cos-}
+		\cos{\alpha} = \frac{q}{2k} \label{eq:app-bragg-cos-}
 	\end{equation}
 	Since $q$ and $k$ are non-negative it is clear that $0 \leq \alpha \leq \pi/2$.
 %	This is now inserted in equation \ref{eq:bragg-sinc1} and \ref{eq:bragg-sinc2}:
@@ -1239,7 +1245,7 @@
 
 	\subsection{Condition for $\phi$}
 	
-	If either of equations \ref{eq:bragg-cos+} or \ref{eq:bragg-cos-} is inserted in the system \ref{eq:bragg-sinc1}, \ref{eq:bragg-sinc2} the following is obtained:
+	If either of equations \eqref{eq:app-bragg-cos+} or \eqref{eq:app-bragg-cos-} is inserted in the system \eqref{eq:app-bragg-sinc1}, \eqref{eq:app-bragg-sinc2} the following is obtained:
 	\begin{align*}
 		\cos{\phi} &= 1 - 2\cos^2{\alpha} = -\cos{2\alpha} \\
 		\sin{\phi} &= -2\sin{\alpha}\cos{\alpha} = -\sin{2\alpha}
@@ -1266,21 +1272,21 @@
 	\subsection{Summary}
 	The equations for both the (+) and (-) case are very similar, and can be written in a simple way using $\pm$ signs. The conditions define the geometry which gives the maximum scattering through the angle $\alpha$ between EM and acoustic incident waves and the angles $\theta$ and $\phi$ for the receiver direction. They are summarized below:
 	\begin{align}
-		\theta &= \pi/2 \label{eq:bragg-theta}\\
-		\cos{\alpha} = \mp \frac{q}{2k} &= \mp \frac{\lambda}{2\Lambda} \label{eq:bragg-alpha}\\
-		\phi &= \mp \pi + 2\alpha \label{eq:bragg-phi}
+		\theta &= \pi/2 \label{eq:app-bragg-theta}\\
+		\cos{\alpha} = \mp \frac{q}{2k} &= \mp \frac{\lambda}{2\Lambda} \label{eq:app-bragg-alpha}\\
+		\phi &= \mp \pi + 2\alpha \label{eq:app-bragg-phi}
 		%\tan{\frac{\phi}{2}} = \pm \sqrt{\frac{q^2}{4k^2-q^2}} &= \pm \sqrt{\frac{\lambda^2}{4\Lambda^2-\lambda^2}} \label{eq:bragg-phi}
 	\end{align}
 	
-	In acousto-optics the interaction occurs in a single plane, which is what (\ref{eq:bragg-theta}) describes. There is also a Bragg condition defining the angle between an acoustic and optic wave which is required for maximum reflection. This is presented in \cite{Saleh2007} as
+	In acousto-optics the interaction occurs in a single plane, which is what \eqref{eq:app-bragg-theta} describes. There is also a Bragg condition defining the angle between an acoustic and optic wave which is required for maximum reflection. This is presented in \cite{Saleh2007} as
 	\begin{equation*}
 		\sin{\theta_B} = \frac{\lambda}{2\Lambda}
 	\end{equation*}
-	The relationship between the angles in acousto-optics and those used in this model are shown in figure \ref{fig:bragg-comparison} with $\phi_i = \phi_r = \theta_B$ \cite{Saleh2007}. From the figure it is clear that $\alpha = \pi/2 \pm \theta_B$. In this model (\ref{eq:bragg-alpha}) is used to obtain the optimal angle between electromagnetic and acoustic waves, and the transformation between $\alpha$ and $\theta_B$ can be inserted as
+	The relationship between the angles in acousto-optics and those used in this model are shown in figure \ref{fig:bragg-comparison} with $\phi_i = \phi_r = \theta_B$ \cite{Saleh2007}. From the figure it is clear that $\alpha = \pi/2 \pm \theta_B$. In this model \eqref{eq:app-bragg-alpha} is used to obtain the optimal angle between electromagnetic and acoustic waves, and the transformation between $\alpha$ and $\theta_B$ can be inserted as
 	\begin{equation*}
 		\cos{\alpha} = \cos(\pi/2 \pm \theta_B) = \mp \sin{\theta_B}
 	\end{equation*}
-	The RHS of (\ref{eq:bragg-alpha}) is $\mp \lambda/2\Lambda$. This should be equal to the RHS above, which directly gives the Bragg condition.
+	The RHS of \eqref{eq:app-bragg-alpha} is $\mp \lambda/2\Lambda$. This should be equal to the RHS above, which directly gives the Bragg condition.
 	
 	In acousto-optics it is assumed that the reflection angle equals the incidence angle. This is not directly stated here, but can be obtained by changing from the angles $\alpha$, $\phi$ to the incidence angle $\phi_i$ and reflection angle $\phi_r$ shown in figure \ref{fig:bragg-comparison}. It is clear from the figure that
 	\begin{align*}
@@ -1291,7 +1297,7 @@
 			2\pi - \phi - \phi_i &\text{ (- case)}
 		\end{cases}
 	\end{align*}
-	Now the condition for $\phi_i$ and (\ref{eq:bragg-phi}) are inserted in the condition for $\phi_r$, giving
+	Now the condition for $\phi_i$ and \eqref{eq:app-bragg-phi} are inserted in the condition for $\phi_r$, giving
 	\begin{equation*}
 		\phi_r =
 		\begin{cases}
@@ -1313,6 +1319,50 @@
 		\end{subfigure}
 		\caption{\label{fig:bragg-comparison} Comparison of angles used in this model and angles of incidence and reflection. Both for the + and - cases.}
 	\end{figure}
+
+\subsection{Refined interaction region}
+For the refined interaction region described in section \ref{sec:app-derivations-refined} the derivation for finding a maximum scattering geometry is different than above. However, a first hypothesis would be that the resulting condition would be the same. To test this, the angles described by equations \eqref{eq:app-bragg-theta}, \eqref{eq:app-bragg-alpha}, \eqref{eq:app-bragg-phi} are inserted in $\Phi_p^{\pm}(\theta, \phi)$ from section \ref{sec:app-derivations-refined}. The function can be written as
+\begin{equation*}
+\begin{split}
+	\Phi_p^{\pm}(\theta, \phi) &= \text{sinc}\left( \frac{d_a}{2\pi \sin{\alpha}}(k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha}) \right) \\
+	&\cdot \text{sinc}\left( \frac{d_e}{2\pi \tan{\alpha}}
+	(k - k\sin{\theta}(\cos{\phi} + \sin{\phi}\tan{\alpha}) \pm q(\cos{\alpha} + \sin{\alpha}\tan{\alpha})) \right) \\
+	&\cdot \text{sinc}\left( -\frac{L_z}{2\pi} k\cos{\theta} \right)
+\end{split}
+\end{equation*}
+As for the function used in derivations for the cuboid geometry, the maximum value of this function is 1. This happens only when the arguments of all sinc's are 0. Due to this fact, the problem is simplified by only considering the parts of the arguments required to be zero, namely
+\begin{numcases}{}
+	k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} \label{eq:app-bragg-ref1} \\
+	k - k\sin{\theta}(\cos{\phi} + \sin{\phi}\tan{\alpha}) \pm q(\cos{\alpha} + \sin{\alpha}\tan{\alpha} \label{eq:app-bragg-ref2} \\
+	-\frac{L_z}{2\pi} k\cos{\theta} \label{eq:app-bragg-ref3}
+\end{numcases}
+Now the equations \eqref{eq:app-bragg-theta}, \eqref{eq:app-bragg-alpha}, \eqref{eq:app-bragg-phi} are inserted. In the derivations the following relations are well used
+\begin{align*}
+	\cos(\mp \pi + 2\alpha) &= \sin^2{\alpha} - \cos^2{\alpha} \\
+	\sin(\mp \pi + 2\alpha) &= -2\sin{\alpha}\cos{\alpha} \\
+	q &= \mp 2k\cos{\alpha}
+\end{align*}
+Argument \eqref{eq:app-bragg-ref1} is now written as
+\begin{equation*}
+\begin{split}
+	k &- k\sin(\pi/2)\cos(\mp \pi + 2\alpha) \pm q\cos{\alpha} = k \left( 1 - (\sin^2{\alpha} - \cos^2{\alpha}) \pm (\mp 2\cos^2{\alpha}) \right) \\
+	&= k \left( 1 - \sin^2{\alpha} - \cos^2{\alpha} \right) = 0
+\end{split}
+\end{equation*}
+Since it is equal to zero, the first sinc is maximized. Now argument \eqref{eq:app-bragg-ref2} is written as
+\begin{equation*}
+\begin{split}
+	k &- k\sin(\pi/2)(\cos(\mp \pi + 2\alpha) + \sin(\mp \pi + 2\alpha)\tan{\alpha}) \pm q(\cos{\alpha} + \sin{\alpha}\tan{\alpha} \\
+	&= k \left( 1 - (\sin^2{\alpha} - \cos^2{\alpha} - 2\sin{\alpha}\cos{\alpha}\tan{\alpha}) \pm (\mp 2\cos{\alpha})(\cos{\alpha} + \sin{\alpha}\tan{\alpha}) \right) \\
+	&= k \left( 1 - \sin^2{\alpha} + \cos^2{\alpha} + 2\sin^2{\alpha} - 2\cos^2{\alpha} - 2\sin^2{\alpha} \right) \\
+	&= k \left( 1 - \sin^2{\alpha} - \cos^2{\alpha} \right) = 0
+\end{split}
+\end{equation*}
+Since it is equal to zero, the second sinc is maximized. Finally, argument \eqref{eq:app-bragg-ref3} is written as
+\begin{equation*}
+	-\frac{L_z}{2\pi} k\cos{\pi/2} = 0
+\end{equation*}
+Since it is equal to zero, the third sinc is also maximized. Thus, all sinc functions are maximized which maximizes $\Phi_p^{\pm}$. This shows that the same condition (equations \eqref{eq:app-bragg-theta}, \eqref{eq:app-bragg-alpha}, \eqref{eq:app-bragg-phi}) maximizes the scattering for both the simple cuboid geometry and the refined geometry based on beams. \todoint{Explain factor 1/sin(alpha) related to scattering volume and why this is not included in the maximization thing}
 	
 %	In acousto-optics there is no separate equation for the scattering angle as in (\ref{eq:bragg-phi}) above. This is simply assumed to be the same as the incident angle, which gives $\phi = \pm 2\theta_B$ (again, see figures 19.1-2 and 19.1-5 in \cite{Saleh2007}). This is inserted, giving
 %	\begin{equation*}

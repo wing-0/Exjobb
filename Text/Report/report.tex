@@ -270,35 +270,48 @@
 	\subsection{Acoustic intensity and relations between quantities}
 	\todoint[inline]{This is a bit of a mess... Need to find good references for everything and standardize notation a bit. The notation needs to be standardized overall, but for some reason the clashes are very apparent here}
 	\todoint[inline]{Sign errors??? Check everything!!}
-	An acoustic wave is usually described using pressure, but it is possible to relate this to a displacement of the particles involved. The relation between pressure and displacement can be written as \cite{Schmerr2016}
+	An acoustic wave is usually described using pressure, but it is possible to relate this to a displacement of the particles involved. For a compressible fluid, this is found from the constitutive relation \cite{Schmerr2016}
+	\begin{equation}
+		p = -K \nabla \cdot \bm{u}
+		\label{eq:th-pressure-from-displ}
+	\end{equation}
+	Using this it is straight-forward to calculate the pressure for a given displacement. This can also be rewritten for strains as
+	\begin{equation*}
+		p = -K \left( \frac{\partial u_x}{\partial x} + \frac{\partial u_y}{\partial y} + \frac{\partial u_z}{\partial z} \right) = -K (s_{xx} + s_{yy} + s_{zz})
+	\end{equation*}
+	If instead the displacement is unknown, it is easier to use the equation \cite{Schmerr2016}
 	\begin{equation*}
 		-\nabla p + \bm{f} = \rho_0 \frac{\partial^2 \bm{u}}{\partial t^2}
 	\end{equation*}
-	If the body force is set to zero, $\bm{f} = \bm{0}$, and a plane wave is considered, $p(\bm{r}, t) = p_p \cos(\Omega t - qx)$, the equation can be written as
-	\begin{equation*}
-		\frac{\partial^2 \bm{u}}{\partial t^2} = -\frac{p_p q}{\rho_0} \sin(\Omega t - qx) \bm{\hat{x}}
-	\end{equation*}
-	This is integrated twice with respect to time to obtain the displacement vector
-	\begin{equation*}
-		\bm{u}(\bm{r}) = \frac{p_p q}{\rho_0 \Omega^2} \sin(\Omega t - qx) \bm{\hat{x}} + \bm{A}(\bm{r})t + \bm{B}(\bm{r})
-	\end{equation*}
-	The functions $\bm{A}(\bm{r})$ and $\bm{B}(\bm{r})$ are results of the integration. If the particle velocity $\partial \bm{u}/\partial t$ is assumed to be zero in the absence of an acoustic wave, $\bm{A}(\bm{r})$ must be zero. Similarly, if the particle displacement $\bm{u}$ is assumed to be zero in the absence of an acoustic wave and $\bm{A}(\bm{r}) = \bm{0}$, $\bm{B}(\bm{r})$ must be zero as well. The remainder of the RHS is a plane wave as the original pressure, but with a phase shift. The amplitudes of the pressure and displacement waves can now be related as
-	\begin{equation}\label{eq:pressure-displ}
-		p_p = \frac{\rho_0 \Omega^2}{q} u_p = q \rho_0 v^2 u_p
+	If the body force is set to zero, $\bm{f} = \bm{0}$, and indefinite integration is done twice with respect to time the result is
+	\begin{equation}
+	\bm{u} = -\frac{1}{\rho_0} \iint \nabla p \, \mathrm{d}t \mathrm{d}t
+	\label{eq:th-displ-from-pressure}
 	\end{equation}
+	This calculation obviously depends on both the space- and time-dependencies of the pressure field.
 	
-	In photoelasticity the strain in a material is related to dielectric properties. Strain is relative displacement and it is therefore possible to relate a strain amplitude to the displacement amplitude of an acoustic wave. A plane displacement wave is introduced as
-	\begin{equation*}
-		u_x (x,t) = u_p \cos(\Omega t - qx)
-	\end{equation*}
-	The only strain resulting from this wave is linear in $x$, and can be written as \addref
-	\begin{equation*}
-		s_{xx} = \frac{\partial u_x}{\partial x} = qu_p \sin(\Omega t - qx)
-	\end{equation*}
-	It can be seen that this is also a plane wave in $x$ (with a phase shift relative to the displacement wave) and the strain amplitude can be written as
-	\begin{equation} \label{eq:strain-displ}
-		s_p = qu_p
-	\end{equation}
+%	If a plane wave is considered, $p(\bm{r}, t) = p_p \cos(\Omega t - qx)$, the displacement can be written as
+%	\begin{equation*}
+%		\bm{u} = -\frac{1}{\rho_0} \iint p_p q\sin(\Omega t - qx) \bm{\hat{x}} \, \mathrm{d}t \mathrm{d}t = \frac{p_p q}{\rho_0 \Omega^2} \sin(\Omega t - qx) \bm{\hat{x}} + \bm{A}(\bm{r})t + \bm{B}(\bm{r})
+%	\end{equation*}
+%	The functions $\bm{A}(\bm{r})$ and $\bm{B}(\bm{r})$ are results of the integration. If the particle velocity $\partial \bm{u}/\partial t$ is assumed to be zero in the absence of an acoustic wave, $\bm{A}(\bm{r})$ must be zero. Similarly, if the particle displacement $\bm{u}$ is assumed to be zero in the absence of an acoustic wave and $\bm{A}(\bm{r}) = \bm{0}$, $\bm{B}(\bm{r})$ must be zero as well. The remainder of the RHS is a plane wave as the original pressure, but with a phase shift. The amplitudes of the pressure and displacement waves can now be related as
+%	\begin{equation}
+%		p_p = \frac{\rho_0 \Omega^2}{q} u_p = q \rho_0 v^2 u_p
+%		\label{eq:theory-pressure-displ-ampl}
+%	\end{equation}
+%	
+%	In photoelasticity the strain in a material is related to dielectric properties. Strain is relative displacement and it is therefore possible to relate a strain amplitude to the displacement amplitude of an acoustic wave. A plane displacement wave is introduced as
+%	\begin{equation*}
+%		u_x (x,t) = u_p \cos(\Omega t - qx)
+%	\end{equation*}
+%	The only strain resulting from this wave is linear in $x$, and can be written as \addref
+%	\begin{equation*}
+%		s_{xx} = \frac{\partial u_x}{\partial x} = qu_p \sin(\Omega t - qx)
+%	\end{equation*}
+%	It can be seen that this is also a plane wave in $x$ (with a phase shift relative to the displacement wave) and the strain amplitude can be written as
+%	\begin{equation} \label{eq:theory-strain-displ-ampl}
+%		s_p = qu_p
+%	\end{equation}
 	
 	A common quantity for strength of acoustic waves in fluids is sound pressure level (SPL) which is measured in dB an defined as
 	\begin{equation*}
@@ -306,7 +319,7 @@
 	\end{equation*}
 	$p_0$ is a reference pressure which is defined as 20 $\mu$Pa in air \cite{Rossing2014}.
 	
-	For ultrasound it is sometimes more common to use acoustic intensity instead of SPL, especially if the propagation is not in air. This is often taken as the time-average of the acoustic power per unit area in the propagation direction \cite{Rossing2014}. It can be related to the strain amplitude as \cite{Saleh2007}
+	For ultrasound it is sometimes more common to use acoustic intensity instead of SPL, especially if the propagation is not in air. This is often taken as the time-average of the acoustic power per unit area in the propagation direction \cite{Rossing2014}. It can be related to the amplitude of a strain field, $s_p$, as \cite{Saleh2007}
 	\begin{equation*}
 		I_s = \frac{1}{2} \rho_0 v^3 s_p^2
 	\end{equation*}
@@ -368,11 +381,23 @@
 		p_{ij} &= 0 \text{ for others}
 	\end{split}
 	\end{equation*}
-	where $\mathfrak{p}$ was introduced as a scalar photoelastic constant. One thing to note is that since $p_{33} = p_{44} = p_{55} = 0$, shear strain does not have any effect in this simplified model. If the unperturbed permittivity is isotropic, a scalar relation can be written as
-	\begin{equation}\label{eq:PE-scalar}
-		\Delta \varepsilon_r = -\varepsilon_r^2 \mathfrak{p} \Delta
+	where $\mathfrak{p}$ was introduced as a scalar photoelastic constant. One thing to note is that since $p_{33} = p_{44} = p_{55} = 0$, shear strain does not have any effect in this simplified model. If the unperturbed permittivity is isotropic ($\varepsilon_{r_1} = \varepsilon_{r_2} = \varepsilon_{r_3}$, $\varepsilon_{r_i} = 0$ for $i=4,5,6$) a scalar relation can be written as
+	\begin{equation*}
+		\varepsilon_1 = -\varepsilon_r^2 \mathfrak{p} (s_1 + s_2 + s_3)
+	\end{equation*}
+	Here $\varepsilon_1$ was introduced as the isotropic change in relative permittivity, $\varepsilon_1 = \Delta \varepsilon_{r_1} = \Delta \varepsilon_{r_2} = \Delta \varepsilon_{r_3}$. At this stage it is more practical to use Cartesian coordinates than index notation since much other theory uses that convention. Vector notation is also used when appropriate. Using this convention, it follows that
+	\begin{equation}
+	\begin{split}
+		\varepsilon_1 &= -\varepsilon_r^2 \mathfrak{p} (s_{xx} + s_{yy} + s_{zz}) = -\varepsilon_r^2 \mathfrak{p} \left( \frac{\partial u_x}{\partial x} + \frac{\partial u_y}{\partial y} + \frac{\partial u_z}{\partial z} \right) \\
+		&= -\varepsilon_r^2 \mathfrak{p} (\nabla \cdot \bm{u})
+	\end{split}
+	\label{eq:th-PE-scalar}
 	\end{equation}
-	Here $\Delta \varepsilon_r$ is the isotropic change in relative permittivity and $\Delta$ is the dilatation, which in Cartesian coordinates can be written as $\Delta = s_1 + s_2 + s_3$ \cite{Schmerr2016}. For clarity, it can be good to note that $\Delta \varepsilon_r$ is denoted $\varepsilon_1$ in other sections of this work.
+	Using equation \eqref{eq:th-pressure-from-displ} this relation can now be expressed using pressure
+	\begin{equation}
+		\varepsilon_1 = \frac{\varepsilon_r^2 \mathfrak{p}}{K} \,p = \frac{\varepsilon_r^2 \mathfrak{p}}{\rho_0 v^2} \,p
+		\label{eq:th-PE-scalar-p}
+	\end{equation}
 	
 	To obtain a model for calculating this simplified constant $\mathfrak{p}$, another starting point for the problem is utilized. This is the Lorentz-Lorenz relation, which can be used to obtain the following equations for photoelasticity \cite{Korpel1988}
 	\begin{align*}
@@ -384,16 +409,14 @@
 	\begin{equation*}
 		\Delta \varepsilon_r = \frac{1}{3} (\varepsilon_r - 1)(\varepsilon_r + 2) S
 	\end{equation*}
-	The condensation can be related to dilatation using the relation $-\rho_a/\rho_0 = \nabla \cdot \bm{u}$ where $\rho_a$ is the change in density \cite{Kaufman2000}. Thus,
+	The condensation can be related to dilatation using the relation $-\rho_a/\rho_0 = \nabla \cdot \bm{u}$ where $\rho_a$ is the change in density \cite{Kaufman2000}. Since the condensation can be written as $S = \rho_a/\rho_0$ \cite{Korpel1988} the relation is rewritten as
 	\begin{equation*}
-		S = \frac{\rho_a}{\rho_0} = - \nabla \cdot \bm{u} = - \Delta
+		\Delta \varepsilon_r = -\frac{1}{3} (\varepsilon_r - 1)(\varepsilon_r + 2) (\nabla \cdot \bm{u})
 	\end{equation*}
-	
-	This can be compared with equation \eqref{eq:PE-scalar} to obtain an equivalent photoelasticity 
-	\todoext{All steps are not fully written out here, should be done later}
-	\todoint[inline]{Sign error???? Things seem very strange. Think that increased density should mean increased permittivity...}
-	\begin{equation}\label{eq:PE-liquid-model}
-		\mathfrak{p} = -\frac{(\varepsilon_r - 1)(\varepsilon_r + 2)}{3\varepsilon_r^2}
+	This can be compared with equation \eqref{eq:th-PE-scalar} to obtain an equivalent photoelasticity
+	\begin{equation}
+		\mathfrak{p} = \frac{(\varepsilon_r - 1)(\varepsilon_r + 2)}{3\varepsilon_r^2}
+		\label{eq:th-PE-liquid-model}
 	\end{equation}
 	A plot of $\mathfrak{p}$ as a function of $\varepsilon_r$ is shown in figure \ref{fig:photoelastic-liquid}. It can be seen clearly that the interaction strength increases with $\varepsilon_r$ close to 1. However, at around $\varepsilon_r = 4$ an extreme is reached, and further on $\mathfrak{p}$ planes out. Thus, there is a bound on the interaction strength for this relation. It should be noted that this model is extremely simplistic and is probably only accurate for a limited range of materials.
 	\begin{figure}[h]
@@ -407,13 +430,9 @@
 	\begin{equation*}
 		\varepsilon_1 = \frac{1.13 \cdot 10^{-6} p}{T}
 	\end{equation*}
-	The simple model using equations \eqref{eq:PE-scalar} and \eqref{eq:PE-liquid-model} can be written as (with $\varepsilon_1$ instead of $\Delta \varepsilon_r$)
+	The equations \eqref{eq:th-PE-scalar-p} and \eqref{eq:th-PE-liquid-model} can be combined to give the simple model
 	\begin{equation*}
-		\varepsilon_1 = -\mathfrak{p} \varepsilon_r^2 \Delta = \frac{1}{3}(\varepsilon_r - 1)(\varepsilon_r + 2) s_{xx}
-	\end{equation*}
-	assuming that the strain can be seen as a plane wave in x near the area of interest. Now, this can be related to pressure using equations \eqref{eq:strain-displ} and \eqref{eq:pressure-displ} as
-	\begin{equation*}
-		\varepsilon_1 = \frac{1}{3}(\varepsilon_r - 1)(\varepsilon_r + 2) s_{xx} = \frac{1}{3}(\varepsilon_r - 1)(\varepsilon_r + 2) q u_x = \frac{(\varepsilon_r - 1)(\varepsilon_r + 2) p}{3 \rho_0 v^2}
+		\varepsilon_1 = \frac{\varepsilon_r^2 \mathfrak{p}}{\rho_0 v^2} \,p = \frac{(\varepsilon_r - 1)(\varepsilon_r + 2)}{3\rho_0 v^2} \,p
 	\end{equation*}
 	Dry air at 0 $^\circ$C (273 K) has the properties $\rho_0 = 1.293$ kg/m$^3$ and $v = 331.45$ m/s \cite{Onda2003}. In addition, the relative permittivity cannot be approximated to 1 for this case, so the value of $\varepsilon_r \approx 1.00059$ is used \cite{Hector1936}. The simple model presented here can then be written as
 	\begin{equation*}
@@ -679,6 +698,9 @@
 	
 	\subsection{Modeling of Ultrasonic Transducer}
 	An ultrasonic transducer was modeled using the normal acceleration boundary condition. The acceleration was set to "inward acceleration" \todoint{Check this}. The value of the acceleration amplitude was calculated from a displacement amplitude using $a_p = \Omega^2 u_p$ where the displacement amplitude is the same as described in the theory. To reduce the sidelobe level, a taper was added to the transducer as described before.
+	
+	\subsection{Photoelasticity model}
+	To model photoelasticity in COMSOL, equation \eqref{eq:th-PE-scalar-p} was used with the photoelastic constant defined by equation \eqref{eq:th-PE-liquid-model}.
 	
 	\section{Verification of analytical model}
 	\todoext{Description of how the simple scattering problem was modeled.}

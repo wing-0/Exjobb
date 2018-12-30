@@ -642,11 +642,11 @@
 	where $k_B$ is Boltzmann's constant, $T_0$ is the standard temperature 290 K, $B$ is the receiver bandwidth, $F$ is the noise ratio of the receiver and $N$ is the number of samples recorded. This equation assumes that coherent demodulation and integration is used to boost the SNR.
 	
 	Inspection of the equations for either scattered power or SNR shows that all geometry dependence is contained in the function $\Phi^\pm$. This depends on the observation angles $\theta$, $\phi$ and the angle between EM and Ac. wavevectors $\alpha$. Conditions for the angles maximizing scattering are derived in \ref{sec:app-derivations-bragg} and can be summarized as:
-	\begin{align*}
-		\theta &= \pi/2\\
-		\cos{\alpha} = \mp \frac{q}{2k} &= \mp \frac{\lambda}{2\Lambda}\\
-		\phi &= \mp \pi + 2\alpha
-	\end{align*}
+	\begin{align}
+		\theta &= \pi/2 \label{eq:an-bragg-theta} \\
+		\cos{\alpha} = \mp \frac{q}{2k} &= \mp \frac{\lambda}{2\Lambda} \label{eq:an-bragg-alpha} \\
+		\phi &= \mp \pi + 2\alpha \label{eq:an-bragg-phi}
+	\end{align}
 	The $\mp$-sign here is related to the $\pm$-sign indicating frequency shift of the scattered wave. These equations correspond directly to the Bragg condition used in acousto-optics (see \ref{sec:app-derivations-bragg} for derivation). This gives the model some validation since the acousto-optic Bragg condition is derived from a slightly different starting point, but for the same basic phenomenon \cite{Saleh2007}.
 	
 	\todoext{I have a new derivation which is based on a parallelogram interaction region (still based on plane waves, but uses beam widths to define the interaction region). This could be added here to show the result of another interaction region.}
@@ -657,14 +657,7 @@
 	\todoint[inline]{Description of how different basic things (such as antennas and transducers) are modeled. Details on COMSOL and other similar stuff.}
 	The problem was simulated in COMSOL Multiphysics for verification and further investigation of more complex scenarios than the one modeled analytically. The two physics interfaces used were the "Pressure Acoustics, Frequency Domain" from the basic COMSOL Multiphysics and "Electromagnetic Waves, Frequency Domain" from the RF Module.
 	
-	\subsection{Simulation Flow}
-	\begin{figure}[h]
-		\centering
-		\resizebox{\textwidth}{!}{
-			\input{simulationflow.tikz}
-		}
-		\caption{\label{fig:simulationflow} Simulation work flow}
-	\end{figure}
+	\todoint[inline]{Describe why the frequency shift is not visible, and why this is not possible with the particular simulations used}
 	
 	\subsection{Tapering of apertures}
 	To reduce sidelobe levels, both the electromagnetic ports and acoustic acceleration boundaries had amplitude tapers applied to them. \addref This had the effect of lowering the electric field or acoustic acceleration near the edges of apertures. The specific taper used was a Gaussian taper, which multiplies values at the aperture with a Gaussian function given by
@@ -705,9 +698,41 @@
 	\subsection{Material}
 	The material model used was based on a foam core. The reason for this was that foam material is fairly homogeneous and isotropic (compared to honeycombs) and is used in aerospace applications \addref. The specific core selected was Divinycell HT251 from Diab Group, which is an aerospace core with applications described as "Primary structures, radomes, control surfaces and interior components" \cite{Diab2016}.
 	
+	\subsection{Simulation Flow}
+	The simulations were conducted slightly differently depending on the purpose. Nevertheless, the simulations were very similar and the work flow for a simple simulation is described here.
+	
+	First, the frequencies, material and geometry were defined. The geometry was in many parts defined as a function of the frequencies and material properties in order to obtain reasonably sized domains and apertures placed according to the Bragg condition.
+	
+	The boundary conditions were set accordingly for both the acoustic and electromagnetic problem. This included placing apertures (Ac. normal acceleration, EM port) with correct excitation and tapering. For the electromagnetic problem, a perfectly matched layer (PML) was used to emulate an infinite domain, while the acoustic problem used a cylindrical radiation boundary condition \todoint{Describe better}.
+	
+	The geometry was then meshed twice. One mesh was adapted for the acoustic problem and one for the electromagnetic problem. The meshes were triangular in the main computational domain with a maximum size of $\lambda/10$ where $\lambda$ is the relevant wavelength. For the PML in the electromagnetic problem, the mesh was mapped from the main domain.
+	
+	Now the actual simulations were done. The work flow for these is illustrated in figure \ref{fig:simulationflow}. First, an acoustic frequency domain study was run using the acoustic frequency and mesh. The result from this was a complex pressure field. Real part convention was used when relating this complex field to the actual pressure.
+	
+	To transform the pressure to relative permittivity, a variable was used in the material model to define the relative permittivity. This variable took the real part of the pressure field as its input, and used equations \eqref{eq:th-PE-scalar} and \eqref{eq:th-PE-scalar-p} to calculate a corresponding field for $\varepsilon_1$.
+	
+	An electromagnetic frequency domain study was now run using the electromagnetic frequency and mesh. The acoustic study was used for calculating initial values for variables not solved for. This was necessary for the pressure field to be available in both studies. Since the photoelastic effect is usually very small, the scattered field was not possible to distinguish with the incident field present. To be able to isolate the scattered field, two simulations were run: one where the relative permittivity of the material was unperturbed and one where it was perturbed by $\varepsilon_1$. The difference between fields resulting from these simulations were identified as the scattered fields.
+	
+	Due to limitations in the postprocessing capabilities of COMSOL, the $E_z$, $H_x$ and $H_y$ fields at the boundary were exported together with $x$ and $y$ coordinates after the electromagnetic simulation was finished. This was done both for the simulation with and without perturbation. The fields were exported to csv-files which were then imported and processed using SciPy.
+	
+	After importing the result files with SciPy, the differences between fields were calculated to obtain the scattered fields. The power density was calculated as
+	\begin{align*}
+		S_x &= -\frac{1}{2} \text{Re} \{ E_z H_y^* \} \\
+		S_y &= \frac{1}{2} \text{Re} \{ E_z H_x^* \}
+	\end{align*}
+	Due to it being easier to visualize, the 2-norm of the power density was also calculated. Using the $x$ and $y$ coordinates, the observation angle for each point was calculated and the data was sorted according to this. A measure for the total scattered power was calculated by integrating the norm of the power density over the entire boundary. This was done using the trapezoidal method with the distances between points calculated from the coordinates. For plotting of the power density, the propagation angles were calculated for each data point. These are more relevant than the observation angle since the observation angle depends on the geometry while the propagation angle does not.
+	
+	\begin{figure}[h]
+		\centering
+		\resizebox{\textwidth}{!}{
+			\input{simulationflow.tikz}
+		}
+		\caption{\label{fig:simulationflow} Simulation flow chart}
+	\end{figure}
+	
 	\section{Verification of analytical model}
 	\todoext{Description of how the simple scattering problem was modeled.}
-	To verify the results from section \ref{sec:analytical-radar}
+	To verify the results from section \ref{sec:analytical-radar} the frequencies of the acoustic and electromagnetic waves were matched to a Bragg angle of $40^\circ$ while the angle $\alpha$ between the wavevectors was swept between $\pm 5^\circ$ of the optimal angle. This was done both for (+) and (-) scattering by sweeping around either $\alpha = 40^\circ$ or $\alpha = 120^\circ$, as these angles are the ones given by equation \eqref{eq:an-bragg-alpha}. The expected result would be a maximum of the total scattered power at the $\alpha = 40^\circ$ as well as a scattering angle $\phi$ given by equation \eqref{eq:an-bragg-phi}.
 	
 	\section{Effect of voids}
 	\todoext{Description of how voids were modeled. Relate to delaminations.}
@@ -1217,20 +1242,6 @@
 	\end{equation}
 	Since $q$ and $k$ are non-negative it is clear that $\pi/2 \leq \alpha \leq \pi$.
 	
-%	\begin{align*}
-%	k - k\cos{\phi} - \frac{q^2}{2k} &= 0 \\
-%	-k\sin{\phi} \pm q\sqrt{1-\frac{q^2}{4k^2}} &= 0
-%	\end{align*}
-%	Rearranging gives
-%	\begin{align*}
-%	\cos{\phi} &= 1 - \frac{q^2}{2k^2} \\
-%	\sin{\phi} &= \pm \frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}
-%	\end{align*}
-%	The second equation can be further constrained by utilizing $0 \leq \alpha \leq \pi$. This gives $\sin{\alpha} \geq 0$. With $k,q \geq 0$ and equation \ref{eq:bragg-sinc2}: $\sin{\phi} = \frac{q}{k}\sin{\alpha} \geq 0$. Thus, the only valid solution is the positive one. Now, the cos and sin equations are combined into a tan equation:
-%	\begin{equation*}
-%	\tan{\frac{\phi}{2}} = \frac{1 - \cos{\phi}}{\sin{\phi}} = \frac{1 - \left( 1 - \frac{q^2}{2k^2} \right)}{\frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}} = \frac{\frac{q^2}{2k^2} }{\frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}} = \frac{q}{2k\sqrt{1-\frac{q^2}{4k^2}}} = \sqrt{\frac{q^2}{4k^2-q^2}}
-%	\end{equation*}
-	
 	\subsubsection{(-) case}
 	This case is the same as the (+) case, but with some sign changes. Begin with equation \eqref{eq:app-bragg-sinc1}:
 	\begin{equation*}
@@ -1253,23 +1264,8 @@
 		\cos{\alpha} = \frac{q}{2k} \label{eq:app-bragg-cos-}
 	\end{equation}
 	Since $q$ and $k$ are non-negative it is clear that $0 \leq \alpha \leq \pi/2$.
-%	This is now inserted in equation \ref{eq:bragg-sinc1} and \ref{eq:bragg-sinc2}:
-%	\begin{align*}
-%	k - k\cos{\phi} - \frac{q^2}{2k} &= 0 \\
-%	-k\sin{\phi} \pm q\sqrt{1-\frac{q^2}{4k^2}} &= 0
-%	\end{align*}
-%	Rearranging gives
-%	\begin{align*}
-%	\cos{\phi} &= 1 - \frac{q^2}{2k^2} \\
-%	\sin{\phi} &= \pm \frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}
-%	\end{align*}
-%	The second equation can be further constrained by utilizing $0 \leq \alpha \leq \pi$. This gives $\sin{\alpha} \geq 0$. With $k,q \geq 0$ and equation \ref{eq:bragg-sinc2}: $\sin{\phi} = -\frac{q}{k}\sin{\alpha} \leq 0$. Thus, the only valid solution is the negative one. Now, the cos and sin equations are combined into a tan equation:
-%	\begin{equation*}
-%	\tan{\frac{\phi}{2}} = \frac{1 - \cos{\phi}}{\sin{\phi}} = \frac{1 - \left( 1 - \frac{q^2}{2k^2} \right)}{-\frac{q}{k} \sqrt{1-\frac{q^2}{4k^2}}} = -\sqrt{\frac{q^2}{4k^2-q^2}}
-%	\end{equation*}
 
 	\subsection{Condition for $\phi$}
-	
 	If either of equations \eqref{eq:app-bragg-cos+} or \eqref{eq:app-bragg-cos-} is inserted in the system \eqref{eq:app-bragg-sinc1}, \eqref{eq:app-bragg-sinc2} the following is obtained:
 	\begin{align*}
 		\cos{\phi} &= 1 - 2\cos^2{\alpha} = -\cos{2\alpha} \\
@@ -1388,16 +1384,5 @@ Since it is equal to zero, the second sinc is maximized. Finally, argument \eqre
 	-\frac{L_z}{2\pi} k\cos{\pi/2} = 0
 \end{equation*}
 Since it is equal to zero, the third sinc is also maximized. Thus, all sinc functions are maximized which maximizes $\Phi_p^{\pm}$. This shows that the same condition (equations \eqref{eq:app-bragg-theta}, \eqref{eq:app-bragg-alpha}, \eqref{eq:app-bragg-phi}) maximizes the scattering for both the simple cuboid geometry and the refined geometry based on beams. \todoint{Explain factor 1/sin(alpha) related to scattering volume and why this is not included in the maximization thing}
-	
-%	In acousto-optics there is no separate equation for the scattering angle as in (\ref{eq:bragg-phi}) above. This is simply assumed to be the same as the incident angle, which gives $\phi = \pm 2\theta_B$ (again, see figures 19.1-2 and 19.1-5 in \cite{Saleh2007}). This is inserted, giving
-%	\begin{equation*}
-%	\tan{\frac{\phi}{2}} = \tan(\pm \theta_B) = \pm \frac{\sin{\theta_B}}{\cos{\theta_B}} = \pm \sqrt{\frac{\sin^2{\theta_B}}{1-\sin^2{\theta_B}}}
-%	\end{equation*}
-%	The RHS of (\ref{eq:bragg-phi}) is
-%	\begin{equation*}
-%	\pm \sqrt{\frac{\lambda^2}{4\Lambda^2-\lambda^2}} = \pm \sqrt{\frac{(\lambda/2/\Lambda)^2}{1-(\lambda/2\Lambda)^2}}
-%	\end{equation*}
-%	If this is compared with the RHS above, the Bragg condition is once again obtained.
-%	So, from simple variable substitutions the same results as in acousto-optics are obtained. This gives the model some validation since it is in agreement with an already established theory.
 	
 \end{document}

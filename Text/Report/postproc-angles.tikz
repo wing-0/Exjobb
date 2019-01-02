@@ -1,0 +1,46 @@
+\begin{tikzpicture}
+	% Draw coordinate lines (dashed)
+	\draw[dashed] (0,0) -- (4.5,0);
+	
+	% Draw boundary
+	\draw (0:4) arc(0:172:4) (188:4) arc(188:214:4) (226:4) arc(226:360:4);
+	\draw[very thick] (172:4) -- (188:4) (214:4) -- (226:4);
+	
+	% Draw incident beams
+	\fill[red,opacity=0.2] (172:4) -- (8:4) arc(8:-8:4) -- (188:4) -- cycle;
+	\fill[blue,opacity=0.2] (214:4) -- (46:4) arc(46:34:4) -- (226:4) -- cycle;
+	
+	% Find intersections for interaction region definition
+	\draw (172:4) coordinate(em1a) (8:4) coordinate(em1b) (188:4) coordinate(em2a) (-8:4) coordinate(em2b);
+	\draw (214:4) coordinate(ac1a) (46:4) coordinate(ac1b) (226:4) coordinate(ac2a) (34:4) coordinate(ac2b);
+	\coordinate (c1) at (intersection of em2a--em2b and ac1a--ac1b);
+	\coordinate (c2) at (intersection of em1a--em1b and ac1a--ac1b);
+	\coordinate (c3) at (intersection of em1a--em1b and ac2a--ac2b);
+	
+	% Draw scattered beam
+	\begin{scope}
+		\clip (0,0) circle(4);
+		\fill[gray,opacity=0.1] (c1) -- (c2) -- (c3) -- ([shift={(c3)}] 260:6) -- ([shift={(c1)}] 260:6) -- cycle;
+	\end{scope}
+	
+	% Draw field vectors
+	\draw[->, shift={(260:4)}, rotate=260] (-0.5,0) -- (0.5,0);
+	\draw[->, shift={(268:4)}, rotate=260] (-0.5,0) -- (0.5,0);
+	\draw[->, shift={(276:4)}, rotate=260] (-0.5,0) -- (0.5,0);
+	\draw[->, shift={(252:4)}, rotate=260] (-0.5,0) -- (0.5,0);
+	\draw[->, shift={(244:4)}, rotate=260] (-0.5,0) -- (0.5,0);
+	
+	% Draw lines from origin to vectors
+	\draw[dashed] (260:0) -- (260:3.5);
+	\draw[dashed] (0,0) -- ([shift={(244:4)}, rotate=260] 0,0);
+	
+	% Draw angles
+	\draw ([shift={(0:0.5)}] 0,0) arc(0:260:0.5) (100:0.8) node{$\phi_{prop}$};
+	\draw ([shift={(0:1.5)}] 0,0) arc(0:244:1.5) (120:1.8) node{$\phi_{obs}$};
+	
+	% Descriptions for beams
+	\draw (180:4) node[anchor=east] {EM aperture};
+	\draw (220:4) node[anchor=north east] {Ac. aperture};
+	\draw (276:4) node[anchor=north west] {Scattered EM};
+	
+\end{tikzpicture}

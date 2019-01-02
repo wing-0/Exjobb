@@ -695,8 +695,13 @@
 	\subsection{Photoelasticity model}
 	To model photoelasticity in COMSOL, equation \eqref{eq:th-PE-scalar-p} was used with the photoelastic constant defined by equation \eqref{eq:th-PE-liquid-model}.
 	
+	\subsection{Geometry and boundary conditions}
+	The basic geometry is shown in figure
+	
+	\subsection{Mesh}
+	
 	\subsection{Material}
-	The material model used was based on a foam core. The reason for this was that foam material is fairly homogeneous and isotropic (compared to honeycombs) and is used in aerospace applications \addref. The specific core selected was Divinycell HT251 from Diab Group, which is an aerospace core with applications described as "Primary structures, radomes, control surfaces and interior components" \cite{Diab2016}.
+	The material model used was based on a foam core. The reason for this was that foam material is fairly homogeneous and isotropic (compared to honeycombs) and is used in aerospace applications \addref. The specific core selected was Divinycell HT251 from Diab Group, which is an aerospace core with applications described as "Primary structures, radomes, control surfaces and interior components" \cite{Diab2016}. The relevant material properties were density ($\rho_0$), bulk modulus ($K$) and relative permittivity ($\varepsilon_r$). These were $\rho_0 = 250$ kg/m$^3$, $K = kkkk$ MPa \todoint{look up} and $\varepsilon_r = 1.29$ \cite{Diab2016}. In COMSOL, the required properties were density, speed of sound, relative permittivity, relative permeability and electric conductivity \todoint{More properties?}. The speed of sound was calculated using $v = \sqrt{K/\rho_0}$ \todoint{reference equation}, the relative permeability was set to 1 and the conductivity to 0. The assumption was that the material was perfectly non-conducting and non-magnetic.
 	
 	\subsection{Simulation Flow}
 	The simulations were conducted slightly differently depending on the purpose. Nevertheless, the simulations were very similar and the work flow for a simple simulation is described here.
@@ -707,20 +712,13 @@
 	
 	The geometry was then meshed twice. One mesh was adapted for the acoustic problem and one for the electromagnetic problem. The meshes were triangular in the main computational domain with a maximum size of $\lambda/10$ where $\lambda$ is the relevant wavelength. For the PML in the electromagnetic problem, the mesh was mapped from the main domain.
 	
-	Now the actual simulations were done. The work flow for these is illustrated in figure \ref{fig:simulationflow}. First, an acoustic frequency domain study was run using the acoustic frequency and mesh. The result from this was a complex pressure field. Real part convention was used when relating this complex field to the actual pressure.
+	Now the actual simulations were run. The work flow for these is illustrated in figure \ref{fig:simulationflow}. First, an acoustic frequency domain study was run using the acoustic frequency and mesh. The result from this was a complex pressure field. Real part convention was used when relating this complex field to the actual pressure.
 	
 	To transform the pressure to relative permittivity, a variable was used in the material model to define the relative permittivity. This variable took the real part of the pressure field as its input, and used equations \eqref{eq:th-PE-scalar} and \eqref{eq:th-PE-scalar-p} to calculate a corresponding field for $\varepsilon_1$.
 	
 	An electromagnetic frequency domain study was now run using the electromagnetic frequency and mesh. The acoustic study was used for calculating initial values for variables not solved for. This was necessary for the pressure field to be available in both studies. Since the photoelastic effect is usually very small, the scattered field was not possible to distinguish with the incident field present. To be able to isolate the scattered field, two simulations were run: one where the relative permittivity of the material was unperturbed and one where it was perturbed by $\varepsilon_1$. The difference between fields resulting from these simulations were identified as the scattered fields.
 	
-	Due to limitations in the postprocessing capabilities of COMSOL, the $E_z$, $H_x$ and $H_y$ fields at the boundary were exported together with $x$ and $y$ coordinates after the electromagnetic simulation was finished. This was done both for the simulation with and without perturbation. The fields were exported to csv-files which were then imported and processed using SciPy.
-	
-	After importing the result files with SciPy, the differences between fields were calculated to obtain the scattered fields. The power density was calculated as
-	\begin{align*}
-		S_x &= -\frac{1}{2} \text{Re} \{ E_z H_y^* \} \\
-		S_y &= \frac{1}{2} \text{Re} \{ E_z H_x^* \}
-	\end{align*}
-	Due to it being easier to visualize, the 2-norm of the power density was also calculated. Using the $x$ and $y$ coordinates, the observation angle for each point was calculated and the data was sorted according to this. A measure for the total scattered power was calculated by integrating the norm of the power density over the entire boundary. This was done using the trapezoidal method with the distances between points calculated from the coordinates. For plotting of the power density, the propagation angles were calculated for each data point. These are more relevant than the observation angle since the observation angle depends on the geometry while the propagation angle does not.
+	Due to limitations in the postprocessing capabilities of COMSOL, the $E_z$, $H_x$ and $H_y$ fields at the boundary were exported together with $x$ and $y$ coordinates after the electromagnetic simulation was finished. This was done both for the simulation with and without perturbation.
 	
 	\begin{figure}[h]
 		\centering
@@ -730,6 +728,20 @@
 		\caption{\label{fig:simulationflow} Simulation flow chart}
 	\end{figure}
 	
+	\subsection{Postprocessing}
+	The simulation results were further processed in SciPy for better visualization of the results than what was possible in COMSOL. The $E_z$, $H_x$ and $H_y$ fields (both with and without photoelastic perturbation) on the domain boundary were exported from COMSOL and loaded in SciPy. The differences between the fields were calculated to obtain the scattered fields. The power density was then calculated as
+	\begin{align*}
+	S_x &= -\frac{1}{2} \text{Re} \{ E_z H_y^* \} \\
+	S_y &= \frac{1}{2} \text{Re} \{ E_z H_x^* \}
+	\end{align*}
+	Due to it being easier to visualize, the 2-norm of the power density was also calculated. Using the $x$ and $y$ coordinates, the observation angle $\phi_{obs}$ for each point was calculated and the data was sorted according to this. A measure for the total scattered power was calculated by integrating the norm of the power density over the entire boundary. This was done using the trapezoidal method with the distances between points calculated from the coordinates. For plotting of the power density vector, the propagation angle $\phi_{prop}$ was calculated for each data point. The two angles $\phi_{obs}$ and $\phi_{prop}$ are shown in figure \ref{fig:numsim-postproc-angles} together with the geometry of the problem. From this figure it can be seen that the observation angle depends highly on the measurement point while the propagation angle is a property of the scattered field. For this reason, the propagation angle was chosen for use in plots of vector quantities.
+	
+	\begin{figure}[h]
+		\centering
+		\input{postproc-angles.tikz}
+		\caption{\label{fig:numsim-postproc-angles} Propagation and observation angle near the edge of the scattered beam.}
+	\end{figure}
+		
 	\section{Verification of analytical model}
 	\todoext{Description of how the simple scattering problem was modeled.}
 	To verify the results from section \ref{sec:analytical-radar} the frequencies of the acoustic and electromagnetic waves were matched to a Bragg angle of $40^\circ$ while the angle $\alpha$ between the wavevectors was swept between $\pm 5^\circ$ of the optimal angle. This was done both for (+) and (-) scattering by sweeping around either $\alpha = 40^\circ$ or $\alpha = 120^\circ$, as these angles are the ones given by equation \eqref{eq:an-bragg-alpha}. The expected result would be a maximum of the total scattered power at the $\alpha = 40^\circ$ as well as a scattering angle $\phi$ given by equation \eqref{eq:an-bragg-phi}.

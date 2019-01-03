@@ -83,13 +83,14 @@
 		\item LHS - Left-Hand Side
 		\item LNA - Low-Noise Amplifier
 		\item NDT - Nondestructive Testing
-		\item PML - Perfectly matched layer
+		\item PEC - Perfect Electric Conductor
+		\item PML - Perfectly Matched Layer
 		\item RASS - Radio Acoustic Sounding System
 		\item RF - Radio Frequency
 		\item RHS - Right-Hand Side
 		\item rx - Receiver
 		\item SNR - Signal-to-Noise Ratio
-		\item SPL - Sound pressure level
+		\item SPL - Sound Pressure Level
 		\item tx - Transmitter
 	\end{itemize}
 	
@@ -97,6 +98,9 @@
 	\todoext{Tries to collect important symbols, needs to be updated as more material is included in the report. Also tries to gather symbols by phenomena. Symbols need to be checked in the report so they are standardized.}
 		Electromagnetics
 		\begin{itemize}
+			\item $\bm{E}$ - Electric field
+			\item $\bm{H}$ - Magnetic field
+			\item $\bm{S}$ - Poynting vector
 			\item $\mu_0$ - Magnetic permeability
 			\item $\varepsilon$ - Electric permittivity
 			\item $\varepsilon_0$ - Electric permittivity in vacuum
@@ -143,7 +147,6 @@
 			\item $\mathfrak{p}$ - scalar photoelastic constant
 			\item $\varepsilon_{r_i}$ - $i$ component of the relative permittivity tensor (compact notation)
 			\item $\Delta \varepsilon_{r_i}$ - Perturbation in $i$ component of the relative permittivity tensor (compact notation)
-			\item $\Delta \varepsilon_r$ - Isotropic perturbation in relative permittivity
 		\end{itemize}
 	
 	\cleardoublepage
@@ -405,13 +408,13 @@
 		C' &= \left[ \frac{(n^2-1)(n^2+2)}{6n} \right](1-\Lambda_0) \\
 		\Lambda_0 &= -\left( \frac{\rho}{\alpha} \right) \frac{\mathrm{d} \alpha}{\mathrm{d} \rho}
 	\end{align*}
-	where $S$ is the condensation (relative change in density), $\rho$ is the density and $\alpha$ is the molecular polarizability. Here the anisotropic effects are contained in the parameter $\Lambda_0$ \cite{Korpel1988}. If anisotropy should be considered, the tensor model is probably better to use, but if $\Lambda_0$ is neglected a simplified model is obtained. This type of model is usually accurate for liquids, but many solids do not have this behavior \cite{Korpel1988}. Nevertheless, the simplified relation can be written for permittivity (using $\varepsilon_r = n^2$ and $\Delta \varepsilon_r = 2n \Delta n$) as
+	where $S$ is the condensation (relative change in density), $\rho$ is the density and $\alpha$ is the molecular polarizability. Here the anisotropic effects are contained in the parameter $\Lambda_0$ \cite{Korpel1988}. If anisotropy should be considered, the tensor model is probably better to use, but if $\Lambda_0$ is neglected a simplified model is obtained. This type of model is usually accurate for liquids, but many solids do not have this behavior \cite{Korpel1988}. Nevertheless, the simplified relation can be written for permittivity (using $\varepsilon_r = n^2$ and $\varepsilon_1 = 2n \Delta n$) as
 	\begin{equation*}
-		\Delta \varepsilon_r = \frac{1}{3} (\varepsilon_r - 1)(\varepsilon_r + 2) S
+		\varepsilon_1 = \frac{1}{3} (\varepsilon_r - 1)(\varepsilon_r + 2) S
 	\end{equation*}
 	The condensation can be related to dilatation using the relation $-\rho_a/\rho_0 = \nabla \cdot \bm{u}$ where $\rho_a$ is the change in density \cite{Kaufman2000}. Since the condensation can be written as $S = \rho_a/\rho_0$ \cite{Korpel1988} the relation is rewritten as
 	\begin{equation*}
-		\Delta \varepsilon_r = -\frac{1}{3} (\varepsilon_r - 1)(\varepsilon_r + 2) (\nabla \cdot \bm{u})
+		\varepsilon_1 = -\frac{1}{3} (\varepsilon_r - 1)(\varepsilon_r + 2) (\nabla \cdot \bm{u})
 	\end{equation*}
 	This can be compared with equation \eqref{eq:th-PE-scalar} to obtain an equivalent photoelasticity
 	\begin{equation}
@@ -421,7 +424,9 @@
 	A plot of $\mathfrak{p}$ as a function of $\varepsilon_r$ is shown in figure \ref{fig:photoelastic-liquid}. It can be seen clearly that the interaction strength increases with $\varepsilon_r$ close to 1. However, at around $\varepsilon_r = 4$ an extreme is reached, and further on $\mathfrak{p}$ planes out. Thus, there is a bound on the interaction strength for this relation. It should be noted that this model is extremely simplistic and is probably only accurate for a limited range of materials.
 	\begin{figure}[h]
 		\centering
-		\input{photoelastic-liquid.pgf}
+		\resizebox{\textwidth}{!}{
+			\input{photoelastic-liquid.pgf}
+		}
 		\caption{\label{fig:photoelastic-liquid} Simplified photoelastic constant $\mathfrak{p}$ as a function of $\varepsilon_r$.}
 	\end{figure}
 	
@@ -584,21 +589,21 @@
 	\end{equation*}
 	One important detail to note is that two distinct frequency components arise: one where the frequency is shifted up by $\Omega$ ($E_A^+$) and one where it is shifted down by $\Omega$ ($E_A^-$).
 	
-	To obtain a more practical expression, the equations are now transformed into power. The scattered power density is given by
+	To obtain a more practical expression, the equations are now transformed into power. The time average on the short time-scale ($\omega$, not $\Omega$) of the Poynting vector is \cite{Kristensson2008}
 	\begin{equation*}
-		\bm{S}_{sc} = \frac{1}{2} \bm{E}_{sc} \times \bm{H}_{sc}^*
+	\left< \bm{S}_{sc} \right> = \frac{1}{2} \mathrm{Re}\left\{ \bm{E}_{sc} \times \bm{H}_{sc}^* \right\}
 	\end{equation*}
-	with the magnetic field $\bm{H}_{sc}$ given by
+	where the E- and H-fields are complex with long time-scale time dependence. The magnetic field $\bm{H}_{sc}$ is given by \cite{Kristensson2008}
 	\begin{equation*}
-		\bm{H}_{sc} \approx \frac{1}{ik \eta_0 \eta} \nabla \times \bm{E}_{sc}
+	\bm{H}_{sc} \approx \frac{1}{ik \eta_0 \eta} \nabla \times \bm{E}_{sc}
 	\end{equation*}
-	where $\eta_0$ is the wave impedance of free space and $\eta_0 \eta$ the wave impedance in the material. The scattered electric field is inserted, and in the far-field the power density can then be calculated to be
+	where $\eta_0$ is the wave impedance of free space and $\eta_0 \eta$ the wave impedance in the material. The scattered electric field is inserted, and in the far-field the cross product can then be calculated to be
 	\begin{equation*}
-		\bm{S}_{sc} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{i0}|^2 |E_A (\bm{r},t)|^2
+	\bm{E}_{sc} \times \bm{H}_{sc}^* = \frac{\bm{\hat{r}}}{\eta_0 \eta} |\bm{E}_{i0}|^2 |E_A (\bm{r},t)|^2
 	\end{equation*}
-	Since there is an implied $e^{-\omega t}$ time-dependence, this is added back in to obtain a time-average on the short time-scale ($\omega$ and not $\Omega$). This is
+	The time-averaged Poynting vector is now calculated as
 	\begin{equation*}
-		\left< \bm{S}_{sc} e^{-i\omega t} \right> = \mathrm{Re}\left\{ \bm{S}_{sc} e^{-i\omega t} \right\} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{i0}|^2 |E_A (\bm{r},t)|^2
+	\left< \bm{S}_{sc} \right> = \frac{1}{2}\mathrm{Re}\left\{ \bm{E}_{sc} \times \bm{H}_{sc}^* \right\} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{i0}|^2 |E_A (\bm{r},t)|^2
 	\end{equation*}
 	If the two frequency components are now considered individually,
 	\begin{equation*}
@@ -611,12 +616,12 @@
 	\end{equation*}
 	where $P_T$ is the power accepted by the antenna, $G_T$ is the maximum gain of the antenna and $R_T$ is the distance from the antenna to the scattering center. This is inserted into the time-average of the power density, giving
 	\begin{equation*}
-		\left< \bm{S}_{sc} e^{-i\omega t} \right>^\pm = \bm{\hat{r}} \frac{P_T G_T}{4\pi R_T^2} \frac{\varepsilon_r^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 s_p^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
+		\left< \bm{S}_{sc} \right>^\pm = \bm{\hat{r}} \frac{P_T G_T}{4\pi R_T^2} \frac{\varepsilon_r^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 s_p^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
 	
 	Now the effects of the receiving antenna are considered. It is assumed that this antenna is optimally directed towards the scattering center. The received power is then
 	\begin{equation*}
-		P_R^\pm = \left| \left< \bm{S}_{sc} e^{-i\omega t} \right>^\pm \right| A_e
+		P_R^\pm = \left| \left< \bm{S}_{sc} \right>^\pm \right| A_e
 	\end{equation*}
 	where $A_e$ is the effective area of the antenna, which can be rewritten as
 	\begin{equation*}
@@ -660,7 +665,7 @@
 	\todoint[inline]{Describe why the frequency shift is not visible, and why this is not possible with the particular simulations used}
 	
 	\subsection{Tapering of apertures}
-	To reduce sidelobe levels, both the electromagnetic ports and acoustic acceleration boundaries had amplitude tapers applied to them. \addref This had the effect of lowering the electric field or acoustic acceleration near the edges of apertures. The specific taper used was a Gaussian taper, which multiplies values at the aperture with a Gaussian function given by
+	To reduce sidelobe levels, both the electromagnetic and acoustic apertures had amplitude tapers applied to them. \addref This had the effect of lowering the electric field or acoustic acceleration near the edges of apertures. The specific taper used was a Gaussian taper, which multiplies values at the aperture with a Gaussian function given by
 	\begin{equation*}
 	e^{-(Ay')^2}
 	\end{equation*}
@@ -684,41 +689,61 @@
 	\begin{equation*}
 		y' = -x\sin{\phi} + y\cos{\phi}
 	\end{equation*}
-	The geometry is the same as previously shown in figure \ref{fig:radareq-geom-main}. As such, $\phi = \pi$ for EM and $\phi = \pi + \alpha$ for Ac. For the coefficient $A$, it was found that $A = 4/d_a$ gave a good taper. $d_a$ is then the aperture length.
+	The geometry is the same as previously shown in figure \ref{fig:radareq-geom-main}. As such, $\phi = \pi$ for EM and $\phi = \pi + \alpha$ for Ac. For the coefficient $A$, it was found that $A = 4/d_a$ gave a good taper for an aperture length $d_a$.
 	
 	\subsection{Modeling of Electromagnetic Antenna}
-	An electromagnetic antenna was modeled using the port boundary condition. 
+	An electromagnetic antenna was modeled using the "Port" boundary condition with options "User Defined" and wave excitation turned on. The port input power was set to 15 dBm. Due to it being located on an interior boundary, the slit condition was activated with a domain-backed slit. For the port mode, the electric field was set as the input quantity with a tapered field in z defined as
+	\begin{equation*}
+		E_{0z} = e^{-(4y/d_a)^2}
+	\end{equation*}
+	where $y$ is a coordinate and $d_a$ the aperture length. The propagation constant was set to the wave number in the material using "emw.k".
 	
 	\subsection{Modeling of Ultrasonic Transducer}
-	An ultrasonic transducer was modeled using the normal acceleration boundary condition. The acceleration was set to "inward acceleration" \todoint{Check this}. The value of the acceleration amplitude was calculated from a displacement amplitude using $a_p = \Omega^2 u_p$ where the displacement amplitude is the same as described in the theory. To reduce the sidelobe level, a taper was added to the transducer as described before.
+	An ultrasonic transducer was modeled using the "Normal Acceleration" boundary condition. The acceleration was set to "Inward acceleration". The value of the acceleration amplitude was calculated from a displacement amplitude using $a_0 = \Omega^2 u_p$ where the displacement amplitude is the same as described in the theory. The acceleration was tapered as
+	\begin{equation*}
+		a_n = a_0 e^{-(4(x\sin{\alpha} - y\cos{\alpha})/d_a)^2}
+	\end{equation*}
+	where $x$ and $y$ are coordinates and $d_a$ the aperture length.
 	
 	\subsection{Photoelasticity model}
 	To model photoelasticity in COMSOL, equation \eqref{eq:th-PE-scalar-p} was used with the photoelastic constant defined by equation \eqref{eq:th-PE-liquid-model}.
 	
 	\subsection{Geometry and boundary conditions}
-	The basic geometry is shown in figure
+	The basic geometry is shown in figure \ref{fig:sim-geometry} for the acoustic and electromagnetic simulations. The only difference in geometry between the two is the Perfectly Matched Layer (PML) which is used in the electromagnetic simulation but not the acoustic simulation. Additionally, the boundary conditions are different for the two simulations which is also shown. One boundary of special interest is the "Measurement boundary". This is where the physics domain ends, and the fields were measured at this boundary for post-processing.
 	
-	\subsection{Mesh}
+	The PML was used to emulate an open boundary at the measurement boundary for the electromagnetic problem. It was a cylindrical type with center in the center of the geometry and a width of $2\lambda$. It used polynomial coordinate stretching with a typical wavelength taken from the electromagnetic physics interface. The PML scaling factor and PML scaling curvature parameter were both set to 1. At the exterior boundary, a Perfect Electric Conductor (PEC) boundary condition was used.
+	
+	The PML function was not available for the basic pressure acoustics interface used here. However, the Cylindrical Wave Radiation boundary condition was available and was used for the same purpose as a PML.
+	
+	\begin{figure}
+		\centering
+		\input{sim-geometry-Ac.tikz}
+		\vspace{5 mm}
+		
+		\input{sim-geometry-EM.tikz}
+		\caption{\label{fig:sim-geometry} Simulation geometry with boundary conditions for Ac. and EM simulations.}
+	\end{figure}
 	
 	\subsection{Material}
-	The material model used was based on a foam core. The reason for this was that foam material is fairly homogeneous and isotropic (compared to honeycombs) and is used in aerospace applications \addref. The specific core selected was Divinycell HT251 from Diab Group, which is an aerospace core with applications described as "Primary structures, radomes, control surfaces and interior components" \cite{Diab2016}. The relevant material properties were density ($\rho_0$), bulk modulus ($K$) and relative permittivity ($\varepsilon_r$). These were $\rho_0 = 250$ kg/m$^3$, $K = kkkk$ MPa \todoint{look up} and $\varepsilon_r = 1.29$ \cite{Diab2016}. In COMSOL, the required properties were density, speed of sound, relative permittivity, relative permeability and electric conductivity \todoint{More properties?}. The speed of sound was calculated using $v = \sqrt{K/\rho_0}$ \todoint{reference equation}, the relative permeability was set to 1 and the conductivity to 0. The assumption was that the material was perfectly non-conducting and non-magnetic.
+	The material model used was based on a foam core. The reason for this was that foam material is fairly homogeneous and isotropic (compared to honeycombs) and is used in aerospace applications \addref. The specific core selected was Divinycell HT251 from Diab Group, which is an aerospace core with applications described as "Primary structures, radomes, control surfaces and interior components" \cite{Diab2016}. The relevant material properties were density ($\rho_0$), bulk modulus ($K$) and relative permittivity ($\varepsilon_r$). These were $\rho_0 = 250$ kg/m$^3$, $K = 400$ MPa (nominal) and $\varepsilon_r = 1.29$ \cite{Diab2016}. In COMSOL, the required properties were density, speed of sound, relative permittivity, relative permeability and electric conductivity \todoint{More properties?}. The speed of sound was calculated using $v = \sqrt{K/\rho_0}$ \todoint{reference equation}, the relative permeability was set to 1 and the conductivity to 0. The assumption was that the material was perfectly non-conducting and non-magnetic.
 	
-	\subsection{Simulation Flow}
-	The simulations were conducted slightly differently depending on the purpose. Nevertheless, the simulations were very similar and the work flow for a simple simulation is described here.
+	\subsection{Mesh}
+	Two meshes were used in simulations: one for the acoustic simulation and one for the electromagnetic simulation. The reason for this was primarily the difference in wavelength.
 	
-	First, the frequencies, material and geometry were defined. The geometry was in many parts defined as a function of the frequencies and material properties in order to obtain reasonably sized domains and apertures placed according to the Bragg condition.
+	The acoustic mesh was defined on both the physics domain and PML domain even though only the physics domain was simulated in this case. A free triangular mesh was used with element size between $\Lambda/10$ and $\Lambda/10 \cdot 3 \cdot 10^{-2}$ in the physics domain, and "Fine" in the PML domain. Before running the free triangular meshing, the mesh was defined on the measurement boundary.
 	
-	The boundary conditions were set accordingly for both the acoustic and electromagnetic problem. This included placing apertures (Ac. normal acceleration, EM port) with correct excitation and tapering. For the electromagnetic problem, a perfectly matched layer (PML) was used to emulate an infinite domain, while the acoustic problem used a cylindrical radiation boundary condition \todoint{Describe better}.
+	The electromagnetic mesh used a free triangular mesh in the physics domain and a mapped mesh in the PML domain. The element size in the physics domain was between $\lambda/10$ and $\lambda/10 \cdot 3 \cdot 10^{-2}$. Before running the free triangular meshing, the mesh was defined on the measurement boundary.
 	
-	The geometry was then meshed twice. One mesh was adapted for the acoustic problem and one for the electromagnetic problem. The meshes were triangular in the main computational domain with a maximum size of $\lambda/10$ where $\lambda$ is the relevant wavelength. For the PML in the electromagnetic problem, the mesh was mapped from the main domain.
+	\subsection{Simulation studies}
+	Before starting simulations, the frequencies, material and geometry were defined. The geometry was in many parts defined as a function of the frequencies and material properties in order to obtain reasonably sized domains and apertures placed according to the Bragg condition.
 	
-	Now the actual simulations were run. The work flow for these is illustrated in figure \ref{fig:simulationflow}. First, an acoustic frequency domain study was run using the acoustic frequency and mesh. The result from this was a complex pressure field. Real part convention was used when relating this complex field to the actual pressure.
+	For the actual simulations, the work flow is illustrated in figure \ref{fig:simulationflow}. First, an acoustic frequency domain study was run using the acoustic frequency and mesh. The result from this was a complex pressure field. Real part convention was used when relating this complex field to the actual pressure.
 	
 	To transform the pressure to relative permittivity, a variable was used in the material model to define the relative permittivity. This variable took the real part of the pressure field as its input, and used equations \eqref{eq:th-PE-scalar} and \eqref{eq:th-PE-scalar-p} to calculate a corresponding field for $\varepsilon_1$.
 	
 	An electromagnetic frequency domain study was now run using the electromagnetic frequency and mesh. The acoustic study was used for calculating initial values for variables not solved for. This was necessary for the pressure field to be available in both studies. Since the photoelastic effect is usually very small, the scattered field was not possible to distinguish with the incident field present. To be able to isolate the scattered field, two simulations were run: one where the relative permittivity of the material was unperturbed and one where it was perturbed by $\varepsilon_1$. The difference between fields resulting from these simulations were identified as the scattered fields.
 	
-	Due to limitations in the postprocessing capabilities of COMSOL, the $E_z$, $H_x$ and $H_y$ fields at the boundary were exported together with $x$ and $y$ coordinates after the electromagnetic simulation was finished. This was done both for the simulation with and without perturbation.
+	Due to limitations in the post-processing capabilities of COMSOL, the $E_z$, $H_x$ and $H_y$ fields at the boundary were exported together with $x$ and $y$ coordinates after the electromagnetic simulation was finished. This was done both for the simulation with and without perturbation.
 	
 	\begin{figure}[h]
 		\centering
@@ -728,28 +753,43 @@
 		\caption{\label{fig:simulationflow} Simulation flow chart}
 	\end{figure}
 	
-	\subsection{Postprocessing}
-	The simulation results were further processed in SciPy for better visualization of the results than what was possible in COMSOL. The $E_z$, $H_x$ and $H_y$ fields (both with and without photoelastic perturbation) on the domain boundary were exported from COMSOL and loaded in SciPy. The differences between the fields were calculated to obtain the scattered fields. The power density was then calculated as
+	\subsection{Post-processing}
+	The simulation results were further processed in SciPy for better visualization of the results than what was possible in COMSOL. The $E_z$, $H_x$ and $H_y$ fields (both with and without photoelastic perturbation) on the domain boundary were exported from COMSOL and loaded in SciPy. The differences between the fields were calculated to obtain the scattered fields. The time-averaged Poynting vector was then calculated as
 	\begin{align*}
-	S_x &= -\frac{1}{2} \text{Re} \{ E_z H_y^* \} \\
-	S_y &= \frac{1}{2} \text{Re} \{ E_z H_x^* \}
+	\left< S_x \right> &= -\frac{1}{2} \text{Re} \{ E_z H_y^* \} \\
+	\left< S_y \right> &= \frac{1}{2} \text{Re} \{ E_z H_x^* \}
 	\end{align*}
-	Due to it being easier to visualize, the 2-norm of the power density was also calculated. Using the $x$ and $y$ coordinates, the observation angle $\phi_{obs}$ for each point was calculated and the data was sorted according to this. A measure for the total scattered power was calculated by integrating the norm of the power density over the entire boundary. This was done using the trapezoidal method with the distances between points calculated from the coordinates. For plotting of the power density vector, the propagation angle $\phi_{prop}$ was calculated for each data point. The two angles $\phi_{obs}$ and $\phi_{prop}$ are shown in figure \ref{fig:numsim-postproc-angles} together with the geometry of the problem. From this figure it can be seen that the observation angle depends highly on the measurement point while the propagation angle is a property of the scattered field. For this reason, the propagation angle was chosen for use in plots of vector quantities.
+	Due to it being easier to visualize, the magnitude of the time-averaged Poynting vector was also calculated. Using the $x$ and $y$ coordinates, the observation angle $\phi_{obs}$ for each point was calculated and the data was sorted according to this. A measure for the total scattered power was calculated by integrating the magnitude of the time-averaged Poynting vector over the entire boundary. This was done using the trapezoidal method with the distances between points calculated from the coordinates.
+	
+	One thing to note is that the definition for radiated power is
+	\begin{equation*}
+		\int_S \left< \bm{S} \right> \cdot \bm{\hat{n}} \, dS
+	\end{equation*}
+	where $\bm{\hat{n}}$ is the normal to the surface. However, here the calculation was instead
+	\begin{equation*}
+		\int_S \left| \left< \bm{S} \right> \right|  \, dS
+	\end{equation*}
+	The reason behind this is that the boundary curvature was large when compared with the beams of interest. This would cause scattered field originating away from the center of the geometry to have less influence on the measure for total scattered power. This can be seen in figure \ref{fig:sim-postproc-angles} where the propagation angle, $\phi_{prop}$, differs from the observation angle normal to the boundary, $\phi_{obs}$, for much of the scattered field. Using the magnitude of the Poynting vector instead decreases the influence of the boundary geometry.
+	
+	For plotting of the time-averaged Poynting vector magnitude, the propagation angle $\phi_{prop}$ was calculated for each data point. The two angles $\phi_{obs}$ and $\phi_{prop}$ are shown in figure \ref{fig:sim-postproc-angles} together with the geometry of the problem. From this figure it can be seen that the observation angle depends highly on the measurement point while the propagation angle is a property of the scattered field. For this reason, the propagation angle was chosen for use in plots where the angle mattered.
 	
 	\begin{figure}[h]
 		\centering
 		\input{postproc-angles.tikz}
-		\caption{\label{fig:numsim-postproc-angles} Propagation and observation angle near the edge of the scattered beam.}
+		\caption{\label{fig:sim-postproc-angles} Propagation and observation angle near the edge of the scattered beam.}
 	\end{figure}
 		
 	\section{Verification of analytical model}
 	\todoext{Description of how the simple scattering problem was modeled.}
-	To verify the results from section \ref{sec:analytical-radar} the frequencies of the acoustic and electromagnetic waves were matched to a Bragg angle of $40^\circ$ while the angle $\alpha$ between the wavevectors was swept between $\pm 5^\circ$ of the optimal angle. This was done both for (+) and (-) scattering by sweeping around either $\alpha = 40^\circ$ or $\alpha = 120^\circ$, as these angles are the ones given by equation \eqref{eq:an-bragg-alpha}. The expected result would be a maximum of the total scattered power at the $\alpha = 40^\circ$ as well as a scattering angle $\phi$ given by equation \eqref{eq:an-bragg-phi}.
+	To verify the results from section \ref{sec:analytical-radar} the frequencies of the acoustic and electromagnetic waves were matched to a Bragg angle of $40^\circ$ while the angle $\alpha$ between the wavevectors was swept between $\pm 5^\circ$ of the optimal angle. This was done both for (+) and (-) scattering by sweeping around either $\alpha = 40^\circ$ or $\alpha = 120^\circ$, as these angles are the ones given by equation \eqref{eq:an-bragg-alpha} as angles for maximum scattering.
 	
 	\section{Effect of voids}
 	\todoext{Description of how voids were modeled. Relate to delaminations.}
 	
 	\section{Effect of conductive defects}
+	To examine the effect of a defect with electromagnetic contrast but no acoustic contrast, simulations were run with a conductive defect. The geometry of this problem was based on the basic geometry shown in figure \ref{fig:sim-geometry}. The addition was a circle in the center of the physics domain representing a defect. This had the diameter equal to the electromagnetic wavelength $\lambda$. The material in this region was the same as in the physics domain, but with a nonzero electric conductivity.
+	
+	To demonstrate the effect of conductivity, the electric conductivity of the defect was swept between 0 and 10 S/m.
 	
 	\chapter{Results and Discussion}
 	\todoext{It might be better to have results and discussion separated?}
@@ -1020,11 +1060,11 @@
 	\end{equation*}
 	
 	\subsection{Solution in terms of power}
-	This treatment has primarily been focused around the electric field. To obtain a more practical expression, this is now transformed into power. The scattered power density is given by
+	This treatment has primarily been focused around the electric field. To obtain a more practical expression, this is now transformed into power. The time average on the short time-scale ($\omega$, not $\Omega$) of the Poynting vector is \cite{Kristensson2008}
 	\begin{equation*}
-		\bm{S}_{sc} = \frac{1}{2} \bm{E}_{sc} \times \bm{H}_{sc}^*
+		\left< \bm{S}_{sc} \right> = \frac{1}{2} \mathrm{Re}\left\{ \bm{E}_{sc} \times \bm{H}_{sc}^* \right\}
 	\end{equation*}
-	with the magnetic field $\bm{H}_{sc}$ given by
+	where the E- and H-fields are complex with long time-scale time dependence. The magnetic field $\bm{H}_{sc}$ is given by \cite{Kristensson2008}
 	\begin{equation*}
 		\bm{H}_{sc} \approx \frac{1}{ik \eta_0 \eta} \nabla \times \bm{E}_{sc}
 	\end{equation*}
@@ -1032,7 +1072,7 @@
 	\begin{equation*}
 		\nabla \times \bm{E}_{sc} = -\nabla \times (\bm{E}_{i0} E_A (\bm{r},t)) = -\nabla E_A (\bm{r},t) \times \bm{E}_{i0}
 	\end{equation*}
-	In spherical coordinates the gradient is written
+	In spherical coordinates the gradient is written \addref
 	\begin{equation*}
 		\nabla E_A = \frac{\partial E_A}{\partial r} \bm{\hat{r}} + \frac{1}{r} \frac{\partial E_A}{\partial \theta} \bm{\hat{\theta}} + \frac{1}{r\sin{\theta}} \frac{\partial E_A}{\partial \phi} \bm{\hat{\phi}}
 	\end{equation*}
@@ -1048,17 +1088,17 @@
 	\begin{equation*}
 		\bm{H}_{sc} = \frac{1}{ik \eta_0 \eta} (-ikE_A \bm{\hat{r}} \times \bm{E}_{i0}) = \frac{E_A}{ \eta_0 \eta} \bm{\hat{r}} \times \bm{E}_{i0}
 	\end{equation*}
-	Now, the power density is written as
+	Now, the cross product with the electric field is calculated as
 	\begin{equation*}
-		\bm{S}_{sc} = \frac{1}{2} E_A \bm{E}_{i0} \times \left( \frac{E_A}{ \eta_0 \eta} \bm{\hat{r}} \times \bm{E}_{i0} \right)^* = \frac{|E_A|^2}{2\eta_0 \eta} \left( \bm{\hat{r}} (\bm{E}_{i0} \cdot \bm{E}_{i0}^*) - \bm{E}_{i0}^* (\bm{E}_{i0} \cdot \bm{\hat{r}}) \right)
+		\bm{E}_{sc} \times \bm{H}_{sc}^* = E_A \bm{E}_{i0} \times \left( \frac{E_A}{ \eta_0 \eta} \bm{\hat{r}} \times \bm{E}_{i0} \right)^* = \frac{|E_A|^2}{\eta_0 \eta} \left( \bm{\hat{r}} (\bm{E}_{i0} \cdot \bm{E}_{i0}^*) - \bm{E}_{i0}^* (\bm{E}_{i0} \cdot \bm{\hat{r}}) \right)
 	\end{equation*}
-	In the far-field $\bm{E}_{sc} \cdot \bm{\hat{r}} = 0$ and since $\bm{E}_{sc} \parallel \bm{E}_{i0}$ the power density is simplified to
+	In the far-field $\bm{E}_{sc} \cdot \bm{\hat{r}} = 0$ \addref and since $\bm{E}_{sc} \parallel \bm{E}_{i0}$ the cross product is simplified to
 	\begin{equation*}
-		\bm{S}_{sc} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{i0}|^2 |E_A (\bm{r},t)|^2
+		\bm{E}_{sc} \times \bm{H}_{sc}^* = \frac{\bm{\hat{r}}}{\eta_0 \eta} |\bm{E}_{i0}|^2 |E_A (\bm{r},t)|^2
 	\end{equation*}
-	Since there is an implied $e^{-\omega t}$ time-dependence, this is added back in to obtain a time-average on the short time-scale ($\omega$ and not $\Omega$). This is
+	The time-averaged Poynting vector is now calculated as
 	\begin{equation*}
-		\left< \bm{S}_{sc} e^{-i\omega t} \right> = \mathrm{Re}\left\{ \bm{S}_{sc} e^{-i\omega t} \right\} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{i0}|^2 |E_A (\bm{r},t)|^2
+		\left< \bm{S}_{sc} \right> = \frac{1}{2}\mathrm{Re}\left\{ \bm{E}_{sc} \times \bm{H}_{sc}^* \right\} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{i0}|^2 |E_A (\bm{r},t)|^2
 	\end{equation*}
 	If the two frequency components are now considered individually,
 	\begin{equation*}
@@ -1083,12 +1123,12 @@
 	\end{equation*}
 	Now this is inserted into the time-average of the power density
 	\begin{equation*}
-		\left< \bm{S}_{sc} e^{-i\omega t} \right>^\pm = \bm{\hat{r}} \frac{P_T G_T}{4\pi R_T^2} \frac{\varepsilon_r^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
+		\left< \bm{S}_{sc} \right>^\pm = \bm{\hat{r}} \frac{P_T G_T}{4\pi R_T^2} \frac{\varepsilon_r^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 S_0^2 L_x^2 L_y^2 L_z^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
 	
 	Now the effects of the receiving antenna are considered. It is assumed that this antenna is optimally directed towards the scattering center. The received power is then
 	\begin{equation*}
-		P_R^\pm = \left| \left< \bm{S}_{sc} e^{-i\omega t} \right>^\pm \right| A_e
+		P_R^\pm = \left| \left< \bm{S}_{sc} \right>^\pm \right| A_e
 	\end{equation*}
 	where $A_e$ is the effective area of the antenna, which can be rewritten as
 	\begin{equation*}
@@ -1395,6 +1435,7 @@ Since it is equal to zero, the second sinc is maximized. Finally, argument \eqre
 \begin{equation*}
 	-\frac{L_z}{2\pi} k\cos{\pi/2} = 0
 \end{equation*}
-Since it is equal to zero, the third sinc is also maximized. Thus, all sinc functions are maximized which maximizes $\Phi_p^{\pm}$. This shows that the same condition (equations \eqref{eq:app-bragg-theta}, \eqref{eq:app-bragg-alpha}, \eqref{eq:app-bragg-phi}) maximizes the scattering for both the simple cuboid geometry and the refined geometry based on beams. \todoint{Explain factor 1/sin(alpha) related to scattering volume and why this is not included in the maximization thing}
+Since it is equal to zero, the third sinc is also maximized. Thus, all sinc functions are maximized which maximizes $\Phi_p^{\pm}$. This shows that the same condition (equations \eqref{eq:app-bragg-theta}, \eqref{eq:app-bragg-alpha}, \eqref{eq:app-bragg-phi}) maximizes the scattering for both the simple cuboid geometry and the refined geometry based on beams.
+\todoint[inline]{Explain factor 1/sin(alpha) related to scattering volume and why this is not included in the maximization thing}
 	
 \end{document}

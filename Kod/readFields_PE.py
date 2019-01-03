@@ -49,7 +49,7 @@ def readEHS_PE(files_pe, files_nope):
     x = np.array(xt).T
     y = np.array(yt).T
 
-    # Calculate time avg. power flow
+    # Calculate time avg. Poynting vector
     Sx = -0.5*(Ez*np.conj(Hy)).real
     Sy = 0.5*(Ez*np.conj(Hx)).real
 
@@ -90,7 +90,7 @@ def readEHS_PE_various(files_pe, files_nope):
 
     minlen = min([len(a) for a in xt])
     for i in range(0, len(xt)):
-        if(len(xt[i]) > minlen):
+        while(len(xt[i]) > minlen):
             xt[i] = np.delete(xt[i], -1, axis=0)
             yt[i] = np.delete(yt[i], -1, axis=0)
             Ezt[i] = np.delete(Ezt[i], -1, axis=0)
@@ -106,7 +106,7 @@ def readEHS_PE_various(files_pe, files_nope):
     x = np.array(xt).T
     y = np.array(yt).T
 
-    # Calculate time avg. power flow
+    # Calculate time avg. Poynting vector
     Sx = -0.5*(Ez*np.conj(Hy)).real
     Sy = 0.5*(Ez*np.conj(Hx)).real
 

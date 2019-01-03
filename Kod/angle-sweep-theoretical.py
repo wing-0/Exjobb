@@ -16,7 +16,7 @@ pm = -1
 opta = 40
 
 # Wavelengths and wavenumbers
-la = 0.03
+la = 0.0028
 le = 2*la*np.cos(np.radians(opta))
 k = 2*np.pi/le
 q = 2*np.pi/la
@@ -25,16 +25,30 @@ q = 2*np.pi/la
 r = 30*la
 angles = np.linspace(35, 45, 101)
 alpha = np.radians((180*(pm + 1)/2 - pm*angles))
-phi = np.linspace(0, 2*np.pi, 800)
+#phi = np.linspace(0, 2*np.pi, 800)
+phi = np.linspace(0, 360, 721)
+phi = np.radians(phi)
 [alpha_m, phi_m] = np.meshgrid(alpha, phi)
 we = 8*le
 wa = 8*la
-Lx = wa/np.sin(alpha_m)
+Lx = wa#/np.sin(alpha_m)
 Ly = we
 
 # Cuboid phi (with xy-dimensions), no z sinc
 Phi = Lx*Ly*(np.sinc(Lx/2/np.pi*(k - k*np.cos(phi_m) + pm*q*np.cos(alpha_m))) *
              np.sinc(Ly/2/np.pi*(-k*np.sin(phi_m) + pm*q*np.sin(alpha_m))))
+
+# Stuff for comparing which alpha give larger Phi. Assymmetric due to Phi2
+Phi1 = np.sinc(Lx/2/np.pi*(k - k*np.cos(phi_m) + pm*q*np.cos(alpha_m)))
+Phi2 = np.sinc(Ly/2/np.pi*(-k*np.sin(phi_m) + pm*q*np.sin(alpha_m)))
+plt.figure()
+plt.grid()
+plt.plot(np.degrees(phi), Phi1[:, ::10])
+plt.gca().set_prop_cycle(None)
+plt.plot(np.degrees(phi), Phi2[:, ::10], ':')
+plt.gca().set_prop_cycle(None)
+plt.plot(np.degrees(phi), Phi[:, ::10]/Lx/Ly, '--')
+plt.legend(angles[::10])
 
 # Parallelogram phi (with xy-dimensions), no z sinc
 Phi_p = (wa*we/np.sin(alpha_m) *

@@ -1,0 +1,25 @@
+\begin{tikzpicture}
+	
+	% Fill domain
+	\fill[gray!10] (0:4) arc(0:180-12:4) -- (180+12:4) arc(180+12:220-8:4) -- (220+8:4) arc(220+8:360:4);
+	
+	% Draw port
+	\draw[red] (220-8:4) -- (220+8:4);
+	
+	% Draw inner boundary
+	\draw[blue] (0:4) arc(0:180-12:4) -- (180+12:4) arc(180+12:220-8:4) (220+8:4) arc(220+8:360:4);
+	
+	% Draw outer boundary
+	\draw[dashed] (0,0) circle(4.5);
+	
+	% Label domains
+	\draw (0,1) node[anchor=south] {Physics domain};
+	
+	% Label boundaries
+	\draw (220:{4*cos(8)}) -- (-2.8,-1) node[anchor=south west] {Normal Acceleration};
+	\draw (280:4) -- (280:3) node[anchor=south, align=left] {Cylindrical Wave Radiation\\(Measurement boundary)};
+	
+	% Ac label
+	\draw (180:5) node[anchor=east, align=left] {Ac.\\geometry};
+	
+\end{tikzpicture}

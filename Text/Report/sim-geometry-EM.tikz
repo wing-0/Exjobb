@@ -1,0 +1,30 @@
+\begin{tikzpicture}
+	
+	% Fill domain
+	\fill[gray!10] (0:4) arc(0:180-12:4) -- (180+12:4) arc(180+12:220-8:4) -- (220+8:4) arc(220+8:360:4);
+	
+	% Draw PML
+	\fill[fill=gray!40, even odd rule] (0,0) circle(4.5) (0:4) arc(0:180-12:4) -- (180+12:4) arc(180+12:220-8:4) -- (220+8:4) arc(220+8:360:4);
+	
+	% Draw port
+	\draw[red] (180-12:4) -- (180+12:4);
+	
+	% Draw inner boundary
+	\draw[dashed] (0:4) arc(0:180-12:4) (180+12:4) arc(180+12:220-8:4) -- (220+8:4) arc(220+8:360:4);
+	
+	% Draw outer boundary
+	\draw[blue] (0,0) circle(4.5);
+	
+	% Label domains
+	\draw (0,1) node[anchor=south] {Physics domain};
+	\draw (75:4.2) -- (65:4.8) node[anchor=west] {PML domain};
+	
+	% Label boundaries
+	\draw (-60:4.5) -- (-55:5) node[anchor=west, align=left] {PEC};
+	\draw (-{4*cos(12)},-0.3) -- (-3,-0.5) node[anchor=west] {Port};
+	\draw (310:4) -- (310:3.5) node[anchor=south east, align=left] {Interior boundary\\(Measurement boundary)};
+	
+	% EM label
+	\draw (180:5) node[anchor=east, align=left] {EM\\geometry};
+	
+\end{tikzpicture}

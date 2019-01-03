@@ -6,38 +6,49 @@ Created on Mon Nov 19 12:23:13 2018
 
 Takes input from COMSOL data (Ez,Hx,Hy) on a circular-ish boundary with and
 without photoelastic interaction. Calculates the difference fields and from
-those the power flow is calculated. This is done for the case of a homogenoeus
-domain and one with a circular void in the center
+those the power flow is calculated. This is done for a sweep of the angle
+between wave vectors for either (+) or (-) scattering (this can be selected)
 
 """
 
 import numpy as np
 import matplotlib.pyplot as plt
 import readFields_PE as read
+import scipy.interpolate as interp
 
 plt.close('all')
 
-# Conductivities
-sigs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# Read data and plot (+) or (-) scattering
+pm = -1
+pmchar = '+'
+if(pm == -1):
+    pmchar = '-'
+
+# Optimal angle for Bragg scattering
+opta = 40
+
+# Angles between wave vectors used (in filenames for both (+) and (-)) and the
+# corresponding alpha values which depend on pm
+angles = np.arange(35, 46)
+alpha = (180*(pm + 1)/2 - pm*angles).astype('int')
 
 # %% Load data and process it into correct format
 
 # File directory
-loc = ('..\\Simulation\\All parameters correct 2018-12-28\\Cond defect\\' +
+loc = ('..\\Simulation\\All parameters correct 2018-12-28\\Angle sweep\\' +
        'Results')
 
-# Import data without and with photoelasticity (with taper)
-files_pe = [loc + '\\cond_a_40_d_le_centered_sig_' + str(a) + '_phon_1.csv'
-            for a in sigs]
-files_nope = [loc + '\\cond_a_40_d_le_centered_sig_' + str(a) + '_phon_0.csv'
-              for a in sigs]
-Ez, Hx, Hy, Sx, Sy, x, y = read.readEHS_PE(files_pe, files_nope)
+files_pe = [(loc + '\\anglesweep(' + pmchar + ')_' + str(a) +
+             '_pe.csv') for a in angles]
+files_nope = [(loc + '\\anglesweep(' + pmchar + ')_' + str(a) +
+               '_nope.csv') for a in angles]
+Ez, Hx, Hy, Sx, Sy, x, y = read.readEHS_PE_various(files_pe, files_nope)
 
 # Calculate angle from x and y values (angle is counterclockwise from x-axis)
 theta = np.mod(np.arctan2(y, x), 2*np.pi)
 
 # Sort by angle (since COMSOL does not)
-for i in range(0, len(sigs)):
+for i in range(0, len(alpha)):
     ind = np.argsort(theta[:, i])
     theta[:, i] = theta[ind, i]
     x[:, i] = x[ind, i]
@@ -45,10 +56,7 @@ for i in range(0, len(sigs)):
     Sx[:, i] = Sx[ind, i]
     Sy[:, i] = Sy[ind, i]
 
-# Convert conductivities into an array
-sigs = np.array(sigs)
-
-# %% Plot using Poynting vector magnitude
+# %% Plot using the Poynting vector magnitude
 
 # Magnitude of the Poynting vector
 normS = np.sqrt(Sx**2 + Sy**2)
@@ -60,13 +68,15 @@ ydiff = np.diff(np.vstack((y, y[0, :])), axis=0)
 dist = np.linalg.norm(np.array([xdiff, ydiff]), axis=0)
 arc = np.cumsum(dist, axis=0)
 
-# Integrate Poynting vector magnitude for all angles and plot against sigma
+# Integrate Poynting vector magnitude for all angles and plot against the
+# angle between wave vectors
 Stot = np.trapz(normS, x=arc, axis=0)
 
 plt.figure()
-plt.plot(sigs, Stot/Stot.max(), '.-')
+plt.grid()
+plt.plot(alpha, Stot/Stot.max(), '.-')
 plt.title('Total scattered power (normalized)')
-plt.xlabel('$\sigma$ [S/m]')
+plt.xlabel('$\\alpha$ [$^\\circ$]')
 plt.ylabel('P/P$_{max}$')
 
 # %% Plotting using propagation angle and not observation angle
@@ -74,22 +84,33 @@ plt.ylabel('P/P$_{max}$')
 # Calculate propagation angles for all points and sort data by this angle
 # instead of by the observation angle
 propang = np.mod(np.arctan2(Sy, Sx), 2*np.pi)
-for i in range(0, len(sigs)):
+for i in range(0, len(alpha)):
     ind = propang[:, i].argsort()
     propang[:, i] = propang[ind, i]
     Sx[:, i] = Sx[ind, i]
     Sy[:, i] = Sy[ind, i]
     normS[:, i] = normS[ind, i]
 
+# Average of propagation angle weighted by Poynting vector magnitude
+wavgang = np.average(propang, axis=0, weights=normS)
 
-# Plot the Poynting vector magnitude for all PROPAGATION angles
+# Plot the weighted average of the propagation angle for each alpha
+plt.figure()
+plt.grid()
+plt.plot(alpha, np.degrees(wavgang), '.-')
+plt.title('Wieghted avg. of propagation angle (weighted by ' +
+          '$\\left| \\left<\\mathbf{S}\\right> \\right|$)')
+plt.xlabel('$\\alpha$ [$^\\circ$]')
+plt.ylabel('Propagation angle $\\phi$ [$^\\circ$]')
+
+# Plot Poynting vector magnitude for all PROPAGATION angles
 plt.figure()
 plt.polar(propang, normS/normS.max())
 plt.title('Poynting vector (time avg.), normalized magnitude')
 plt.xlabel('Propagation angle $\\phi$')
 plt.ylabel('$\\left| \\left<\\mathbf{S}\\right> \\right|$ / ' +
            '$\\left| \\left<\\mathbf{S}\\right> \\right|_{max}$')
-plt.legend(sigs, title='$\sigma$ [S/m]')
+plt.legend([str(a) + '$^\\circ$' for a in alpha], title='$\\alpha$')
 
 # "Clean up" the data by removing all points with a Poynting vector magnitude
 # below 5 % of the mean
@@ -97,7 +118,7 @@ sig = normS > 0.05*normS.mean(axis=0)
 
 plt.figure()
 
-for i in range(0, len(sigs)):
+for i in range(0, len(alpha)):
     plt.plot(np.degrees(propang[sig[:, i], i]), normS[sig[:, i], i] /
              normS.max())
 
@@ -106,6 +127,6 @@ plt.title('Poynting vector (time avg.), normalized magnitude\nValues below' +
 plt.xlabel('Propagation angle $\\phi$')
 plt.ylabel('$\\left| \\left<\\mathbf{S}\\right> \\right|$ / ' +
            '$\\left| \\left<\\mathbf{S}\\right> \\right|_{max}$')
-plt.legend(sigs, title='$\sigma$ [S/m]')
+plt.legend([str(a) + '$^\\circ$' for a in alpha], title='$\\alpha$')
 
 

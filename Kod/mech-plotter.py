@@ -7,7 +7,7 @@ Created on Mon Nov 19 12:23:13 2018
 Takes input from COMSOL data (Ez,Hx,Hy) on a circular-ish boundary with and
 without photoelastic interaction. Calculates the difference fields and from
 those the power flow is calculated. This is done for the case of a homogenoeus
-domain and one with a circular conductive defect in the center
+domain and one with a circular mechanically different defect in the center
 
 """
 
@@ -17,36 +17,33 @@ import readFields_PE as read
 
 plt.close('all')
 
-# Conductivities
-sigs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# Bulk modulus
+rhos = np.arange(100, 410, 25)
 
 # %% Load data and process it into correct format
 
 # File directory
-loc = ('..\\Simulation\\All parameters correct 2018-12-28\\Cond defect\\' +
+loc = ('..\\Simulation\\All parameters correct 2018-12-28\\Mech defect\\' +
        'Results')
 
 # Import data without and with photoelasticity (with taper)
-files_pe = [loc + '\\cond_a_40_d_le_centered_sig_' + str(a) + '_phon_1.csv'
-            for a in sigs]
-files_nope = [loc + '\\cond_a_40_d_le_centered_sig_' + str(a) + '_phon_0.csv'
-              for a in sigs]
+files_pe = [loc + '\\mech_a_40_d_le_centered_rho_1_' + str(a) + '_phon_1.csv'
+            for a in rhos]
+files_nope = [loc + '\\mech_a_40_d_le_centered_rho_1_' + str(a) + '_phon_0.csv'
+              for a in rhos]
 Ez, Hx, Hy, Sx, Sy, x, y = read.readEHS_PE(files_pe, files_nope)
 
 # Calculate angle from x and y values (angle is counterclockwise from x-axis)
 theta = np.mod(np.arctan2(y, x), 2*np.pi)
 
 # Sort by angle (since COMSOL does not)
-for i in range(0, len(sigs)):
+for i in range(0, len(rhos)):
     ind = np.argsort(theta[:, i])
     theta[:, i] = theta[ind, i]
     x[:, i] = x[ind, i]
     y[:, i] = y[ind, i]
     Sx[:, i] = Sx[ind, i]
     Sy[:, i] = Sy[ind, i]
-
-# Convert conductivities into an array
-sigs = np.array(sigs)
 
 # %% Plot using Poynting vector magnitude
 
@@ -64,9 +61,9 @@ arc = np.cumsum(dist, axis=0)
 Stot = np.trapz(normS, x=arc, axis=0)
 
 plt.figure()
-plt.plot(sigs, Stot/Stot.max(), '.-')
+plt.plot(rhos, Stot/Stot.max(), '.-')
 plt.title('Total scattered power (normalized)')
-plt.xlabel('$\sigma$ [S/m]')
+plt.xlabel('$\\rho$ [kg/m$^3$]')
 plt.ylabel('P/P$_{max}$')
 
 # %% Plotting using propagation angle and not observation angle
@@ -74,7 +71,7 @@ plt.ylabel('P/P$_{max}$')
 # Calculate propagation angles for all points and sort data by this angle
 # instead of by the observation angle
 propang = np.mod(np.arctan2(Sy, Sx), 2*np.pi)
-for i in range(0, len(sigs)):
+for i in range(0, len(rhos)):
     ind = propang[:, i].argsort()
     propang[:, i] = propang[ind, i]
     Sx[:, i] = Sx[ind, i]
@@ -89,7 +86,7 @@ plt.title('Poynting vector (time avg.), normalized magnitude')
 plt.xlabel('Propagation angle $\\phi$')
 plt.ylabel('$\\left| \\left<\\mathbf{S}\\right> \\right|$ / ' +
            '$\\left| \\left<\\mathbf{S}\\right> \\right|_{max}$')
-plt.legend(sigs, title='$\sigma$ [S/m]')
+plt.legend(rhos, title='$\\rho$ [kg/m$^3$]')
 
 # "Clean up" the data by removing all points with a Poynting vector magnitude
 # below 5 % of the mean
@@ -97,7 +94,7 @@ sig = normS > 0.05*normS.mean(axis=0)
 
 plt.figure()
 
-for i in range(0, len(sigs)):
+for i in range(0, len(rhos)):
     plt.plot(np.degrees(propang[sig[:, i], i]), normS[sig[:, i], i] /
              normS.max())
 
@@ -106,6 +103,6 @@ plt.title('Poynting vector (time avg.), normalized magnitude\nValues below' +
 plt.xlabel('Propagation angle $\\phi$')
 plt.ylabel('$\\left| \\left<\\mathbf{S}\\right> \\right|$ / ' +
            '$\\left| \\left<\\mathbf{S}\\right> \\right|_{max}$')
-plt.legend(sigs, title='$\sigma$ [S/m]')
+plt.legend(rhos, title='$\\rho$ [kg/m$^3$]')
 
 

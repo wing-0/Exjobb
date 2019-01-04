@@ -509,11 +509,3 @@ dmypy.json
 
 # zip archives
 *.zip
-
-# Directories with unnecessary results (useful if results need to be uploaded)
-/Simulation/Angle sweep verification/Incorrect acceleration (DO NOT USE)
-/Simulation/Circular geometry
-/Simulation/Circular geometry test
-/Simulation/Misc. stuff test
-/Simulation/Port-scatter comparison
-/Simulation/Water jet test

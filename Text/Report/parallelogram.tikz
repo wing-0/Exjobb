@@ -4,19 +4,19 @@
 	% Draw EM beam
 	\filldraw[red,opacity=0.2] (-5,-1) rectangle(5,1);
 	\draw[<->] (-5,-1) -- (-5,1);
-	\draw (-5,0) node[anchor=west]{$d_e$};
+	\draw (-5,0) node[anchor=west]{$d_\mrm{e}$};
 	
 	% Draw Ac beam
 	\filldraw[blue,rotate=45,opacity=0.2] (-5,-0.75) rectangle(5,0.75);
 	\draw[<->,rotate=45] (-5,-0.75) -- (-5,0.75);
-	\draw[rotate=45] (-5,0) node[anchor=south west]{$d_a$};
+	\draw[rotate=45] (-5,0) node[anchor=south west]{$d_\mrm{a}$};
 	
 	% Draw parallelogram
 	\draw (-2.061,-1) -- (-0.061,1) -- (2.061,1) -- (0.061,-1) -- cycle;
 	\draw[<->] (-2.061,-1.1) -- (0.061, -1.1);
-	\draw (-1.061, -1.4) node{$d_a/\sin{\alpha}$};
+	\draw (-1.061, -1.4) node{$d_\mrm{a}/\sin{\alpha}$};
 	\draw[<->, shift={(135:0.1)}] (-2.061,-1) -- (-0.061,1);
-	\draw[shift={(135:0.4)}] (-1,0) node[anchor=center,rotate=45] {$d_e/\sin{\alpha}$};
+	\draw[shift={(135:0.4)}] (-1,0) node[anchor=center,rotate=45] {$d_\mrm{e}/\sin{\alpha}$};
 	
 	% Draw angle alpha
 	\draw ([shift={(-1.061,-1)}] 0,0) arc(0:45:1) ([shift={(22.5:1.2)}] -2.061,-1) node{$\alpha$};

@@ -18,6 +18,8 @@ import scipy.interpolate as interp
 
 plt.close('all')
 
+savefigs = 0
+
 # Read data and plot (+) or (-) scattering
 pm = -1
 pmchar = '+'
@@ -76,8 +78,18 @@ plt.figure()
 plt.grid()
 plt.plot(alpha, Stot/Stot.max(), '.-')
 plt.title('Total scattered power (normalized)')
-plt.xlabel('$\\alpha$ [$^\\circ$]')
-plt.ylabel('P/P$_{max}$')
+plt.xlabel('$\\alpha$')
+plt.ylabel('P/P$_\\mathrm{max}$')
+
+# Adds degree sign to x ticks
+aloc = plt.xticks()[0]
+alab = [str(int(a)) + '$^\\circ$' for a in aloc]
+plt.xticks(aloc, alab)
+
+# Save as pgf
+if(savefigs):
+    plt.rcParams['axes.unicode_minus'] = False
+    plt.savefig('../Text/Report/angle-sweep-power.pgf')
 
 # %% Plotting using propagation angle and not observation angle
 
@@ -99,18 +111,46 @@ plt.figure()
 plt.grid()
 plt.plot(alpha, np.degrees(wavgang), '.-')
 plt.title('Wieghted avg. of propagation angle (weighted by ' +
-          '$\\left| \\left<\\mathbf{S}\\right> \\right|$)')
-plt.xlabel('$\\alpha$ [$^\\circ$]')
-plt.ylabel('Propagation angle $\\phi$ [$^\\circ$]')
+          '$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> \\right|$)')
+plt.xlabel('$\\alpha$')
+plt.ylabel('$\\overline{\\phi}_\\mathrm{prop}$')
+
+# Adds degree sign to x and y ticks
+aloc = plt.xticks()[0]
+alab = [str(int(a)) + '$^\\circ$' for a in aloc]
+plt.xticks(aloc, alab)
+aloc = plt.yticks()[0]
+alab = [str(int(a)) + '$^\\circ$' for a in aloc]
+plt.yticks(aloc, alab)
+
+# Save as pgf
+if(savefigs):
+    plt.rcParams['axes.unicode_minus'] = False
+    plt.savefig('../Text/Report/angle-sweep-angles.pgf')
 
 # Plot Poynting vector magnitude for all PROPAGATION angles
 plt.figure()
 plt.polar(propang, normS/normS.max())
-plt.title('Poynting vector (time avg.), normalized magnitude')
-plt.xlabel('Propagation angle $\\phi$')
-plt.ylabel('$\\left| \\left<\\mathbf{S}\\right> \\right|$ / ' +
-           '$\\left| \\left<\\mathbf{S}\\right> \\right|_{max}$')
-plt.legend([str(a) + '$^\\circ$' for a in alpha], title='$\\alpha$')
+plt.polar(np.radians(260)*np.ones(2), np.arange(2), 'k:')
+plt.ylim([0, 1])
+plt.title('Poynting vector (time avg.), normalized magnitude ' +
+          '$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> \\right|$ / ' +
+          '$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> ' +
+          '\\right|_\\mathrm{max}$\n')
+plt.xlabel('$\\phi_\\mathrm{prop}$')
+plt.legend([str(a) + '$^\\circ$' for a in alpha], title='$\\alpha$',
+           bbox_to_anchor=(1.1, 0.5), loc='center left')
+plt.gca().set_rlabel_position(70)
+
+# Fixes degree sign not displaying correctly in LaTeX
+aloc = plt.xticks()[0]
+alab = [str(int(a)) + '$^\\circ$' for a in np.degrees(aloc)]
+plt.xticks(aloc, alab)
+
+# Save as pgf
+if(savefigs):
+    plt.rcParams['axes.unicode_minus'] = False
+    plt.savefig('../Text/Report/angle-sweep-polar.pgf')
 
 # "Clean up" the data by removing all points with a Poynting vector magnitude
 # below 5 % of the mean
@@ -124,9 +164,9 @@ for i in range(0, len(alpha)):
 
 plt.title('Poynting vector (time avg.), normalized magnitude\nValues below' +
           ' 5 % of mean discarded')
-plt.xlabel('Propagation angle $\\phi$')
+plt.xlabel('$\\phi_\\mathrm{prop}$')
 plt.ylabel('$\\left| \\left<\\mathbf{S}\\right> \\right|$ / ' +
-           '$\\left| \\left<\\mathbf{S}\\right> \\right|_{max}$')
+           '$\\left| \\left<\\mathbf{S}\\right> \\right|_\\mathrm{max}$')
 plt.legend([str(a) + '$^\\circ$' for a in alpha], title='$\\alpha$')
 
 

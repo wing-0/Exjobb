@@ -4,7 +4,7 @@
 	\draw[->] (0,-3) -- (0,3);
 	\draw[->,rotate=-30] (-3,0) -- (-0.15,0);
 	\draw[->,rotate=30] (0,0) -- (3,0);
-	\draw (3,1.55) node{$\bm{k_{sc}}$} (0.25,3) node{$\bm{q}$} (-0.25,0.5) node{$\bm{k}$};
+	\draw (3,1.55) node{$\bm{k_\mrm{sc}}$} (0.25,3) node{$\bm{q}$} (-0.25,0.5) node{$\bm{k}$};
 	
 	% Draw dashed lines
 	\draw[dashed,rotate=-30] (-0.15,0) -- (3,0);
@@ -13,7 +13,7 @@
 	% Draw angles
 	\draw ([shift={(-30:2)}] 0,0) arc(-30:30:2) (0:2.3) node{$\phi$};
 	\draw ([shift={(-210:2)}] 0,0) arc(-210:-90:2) (-150:2.3) node{$\alpha$};
-	\draw ([shift={(-210:1)}] 0,0) arc(-210:-180:1) (-195:1.3) node{$\phi_i$};
-	\draw ([shift={(0:1)}] 0,0) arc(0:30:1) (15:1.3) node{$\phi_r$};
+	\draw ([shift={(-210:1)}] 0,0) arc(-210:-180:1) (-195:1.3) node{$\phi_\mrm{i}$};
+	\draw ([shift={(0:1)}] 0,0) arc(0:30:1) (15:1.3) node{$\phi_\mrm{r}$};
 	
 \end{tikzpicture}

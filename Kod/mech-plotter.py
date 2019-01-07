@@ -17,6 +17,8 @@ import readFields_PE as read
 
 plt.close('all')
 
+savefigs = 0
+
 # Bulk modulus
 rhos = np.arange(100, 410, 25)
 
@@ -61,10 +63,16 @@ arc = np.cumsum(dist, axis=0)
 Stot = np.trapz(normS, x=arc, axis=0)
 
 plt.figure()
+plt.grid()
 plt.plot(rhos, Stot/Stot.max(), '.-')
 plt.title('Total scattered power (normalized)')
-plt.xlabel('$\\rho$ [kg/m$^3$]')
-plt.ylabel('P/P$_{max}$')
+plt.xlabel('$\\rho_0$ [kg/m$^3$]')
+plt.ylabel('P/P$_\\mathrm{max}$')
+
+# Save as pgf
+if(savefigs):
+    plt.rcParams['axes.unicode_minus'] = False
+    plt.savefig('../Text/Report/mech-power.pgf')
 
 # %% Plotting using propagation angle and not observation angle
 
@@ -82,11 +90,25 @@ for i in range(0, len(rhos)):
 # Plot the Poynting vector magnitude for all PROPAGATION angles
 plt.figure()
 plt.polar(propang, normS/normS.max())
-plt.title('Poynting vector (time avg.), normalized magnitude')
-plt.xlabel('Propagation angle $\\phi$')
-plt.ylabel('$\\left| \\left<\\mathbf{S}\\right> \\right|$ / ' +
-           '$\\left| \\left<\\mathbf{S}\\right> \\right|_{max}$')
-plt.legend(rhos, title='$\\rho$ [kg/m$^3$]')
+plt.polar(np.radians(260)*np.ones(2), np.arange(2), 'k:')
+plt.ylim([0, 1])
+plt.title('Poynting vector (time avg.), normalized magnitude ' +
+          '$\\left| \\left<\\mathbf{S}\\right> \\right|$ / ' +
+          '$\\left| \\left<\\mathbf{S}\\right> \\right|_\\mathrm{max}$\n')
+plt.xlabel('$\\phi_\\mathrm{prop}$')
+plt.legend(rhos, title='$\\rho_0$ [kg/m$^3$]', bbox_to_anchor=(1.1, 0.5),
+           loc='center left')
+plt.gca().set_rlabel_position(70)
+
+# Fixes degree sign not displaying correctly in LaTeX
+aloc = plt.xticks()[0]
+alab = [str(int(a)) + '$^\\circ$' for a in np.degrees(aloc)]
+plt.xticks(aloc, alab)
+
+# Save as pgf
+if(savefigs):
+    plt.rcParams['axes.unicode_minus'] = False
+    plt.savefig('../Text/Report/mech-polar.pgf')
 
 # "Clean up" the data by removing all points with a Poynting vector magnitude
 # below 5 % of the mean
@@ -100,9 +122,9 @@ for i in range(0, len(rhos)):
 
 plt.title('Poynting vector (time avg.), normalized magnitude\nValues below' +
           ' 5 % of mean discarded')
-plt.xlabel('Propagation angle $\\phi$')
+plt.xlabel('$\\phi_\\mathrm{prop}$')
 plt.ylabel('$\\left| \\left<\\mathbf{S}\\right> \\right|$ / ' +
-           '$\\left| \\left<\\mathbf{S}\\right> \\right|_{max}$')
+           '$\\left| \\left<\\mathbf{S}\\right> \\right|_\\mathrm{max}$')
 plt.legend(rhos, title='$\\rho$ [kg/m$^3$]')
 
 

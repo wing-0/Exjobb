@@ -137,3 +137,11 @@ plt.legend(['$\\Phi_p^2$ integrated over $\\phi$', 'Max value of $\\Phi_p^2$',
             'Max value of $A_i\\Phi_p^2$'])
 plt.xlabel('$\\alpha$')
 plt.ylabel('Normalized value')
+
+###############################################################################
+# Integrated Poynting vector magnitude, parallelogram
+###############################################################################
+
+
+
+

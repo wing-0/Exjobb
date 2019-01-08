@@ -14,7 +14,7 @@ v = 344                     # Speed of sound (293 K)
 er = 1.00059                # Relative permittivity
 
 # Photoelastic constant from scalar model
-ph = -1/3*(er-1)*(er+2)/er**2
+ph = 1/3*(er-1)*(er+2)/er**2
 
 # Acoustic transducer properties SensComp 40KPT25
 fa = 40e3                   # Frequency

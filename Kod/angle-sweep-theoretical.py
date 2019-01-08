@@ -30,7 +30,12 @@ phi = np.radians(phi)
 [alpha_m, phi_m] = np.meshgrid(alpha, phi)
 de = 8*le
 da = 8*la
-Lx = da/np.sin(alpha_m)
+
+# Aperture taper adjustment (use FWHM as beam diameters)
+#de = de/2*np.sqrt(np.log(2))
+#da = da/2*np.sqrt(np.log(2))
+
+Lx = da#/np.sin(alpha_m)
 Ly = de
 
 # Cuboid phi, no z sinc
@@ -73,7 +78,9 @@ plt.legend(angles[::10])
 # Polar plot of Phi^2
 ###############################################################################
 plt.figure()
-plt.polar(phi, P_ang[:, ::10])
+plt.plot(phi, P_ang[:, ::10])
+plt.plot(np.radians(260)*np.ones(2), np.arange(2), 'k:')
+plt.ylim([0, 1])
 plt.legend(angles[::10])
 
 ###############################################################################
@@ -110,7 +117,9 @@ plt.ylabel('Normalized value')
 # Polar plot of Phi_p^2
 ###############################################################################
 plt.figure()
-plt.polar(phi, P_ang_p[:, ::10])
+plt.plot(phi, P_ang_p[:, ::10])
+plt.plot(np.radians(260)*np.ones(2), np.arange(2), 'k:')
+plt.ylim([0, 1])
 plt.legend(angles[::10])
 
 ###############################################################################
@@ -139,9 +148,81 @@ plt.xlabel('$\\alpha$')
 plt.ylabel('Normalized value')
 
 ###############################################################################
-# Integrated Poynting vector magnitude, parallelogram
+# Power estimates using equivalent plane wave power
 ###############################################################################
 
+# 15 dBm input power (assumed to be equal to radiated power)
+Pt = 10**(15/10)*1e-3
 
+# Beamwidth of EM beam (estimated from COMSOL)
+theta = np.radians(20)
 
+# Antenna gain, same as directivity here
+Gt = 16/theta**2
 
+# Relative permittivity
+er = 1.29
+
+# Photoelastic constant
+ph = (er-1)*(er+2)/3/er**2
+
+# Pressure amplitude (estimated from COMSOL)
+p_p = 2500
+
+# Strain amplitude (pressure amplitude divided by bulk modulus)
+s0 = p_p/400e6
+
+# Correction factor for equivalent plane wave power
+gam = np.pi**2/256
+
+# Integrated Poynting vector magnitude, cuboid
+powerC = (Pt*Gt/4/np.pi/r**2 * er**2*k**4/64/np.pi**2/r**2 *
+          ph**2*s0**2*Lx**2*Ly**2 * Ptot * gam)
+
+# Integrated Poynting vector magnitude, parallelogram
+powerP = (Pt*Gt/4/np.pi/r**2 * er**2*k**4/64/np.pi**2/r**2 *
+          ph**2*s0**2*da**2*de**2/np.sin(alpha)**2 * Ptot_p * gam)
+
+plt.figure()
+plt.grid()
+plt.plot(angles, powerC, angles, powerP)
+plt.xlabel('$\\alpha$')
+plt.ylabel('P [W]')
+plt.legend(['Cuboid', 'Parallelogram'])
+
+###############################################################################
+# Power estimates using decomposition of beams into plane waves
+###############################################################################
+
+# Electric field amplitude at aperture center (estimated from COMSOL)
+E00 = 44.17
+
+# Pressure amplitude at aperture center (estimated from COMSOL)
+p00 = 4483
+
+# Bulk modulus
+kbm = 400e6
+
+# Speed of light
+c0 = 299792458
+
+# Permeability of free space
+mu0 = 4*np.pi*1e-7
+
+# Integrated Poynting vector magnitude, cuboid
+powerC = (E00**2*de**2*er**(5/2)*k**4/(2**15*mu0*c0*r**2) *
+          ph**2*p00**2*da**2/kbm**2 *
+          Lx**2*Ly**2 * Ptot)
+
+# Integrated Poynting vector magnitude, parallelogram
+powerP = (E00**2*de**2*er**(5/2)*k**4/(2**15*mu0*c0*r**2) *
+          ph**2*p00**2*da**2/kbm**2 *
+          da**2*de**2/np.sin(alpha)**2 * Ptot_p)
+
+plt.figure()
+plt.grid()
+plt.plot(angles, powerC, angles, powerP)
+plt.xlabel('$\\alpha$')
+plt.ylabel('P [W]')
+plt.legend(['Cuboid', 'Parallelogram'])
+plt.title('Only $k_x = k$, $q_{y\'} = q$ plane wave components used')

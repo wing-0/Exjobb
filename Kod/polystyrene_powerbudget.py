@@ -16,7 +16,7 @@ v = 2400                    # Speed of sound
 er = 2.6                    # Relative permittivity
 
 # Photoelastic constant from scalar model
-ph = -1/3*(er-1)*(er+2)/er**2
+ph = 1/3*(er-1)*(er+2)/er**2
 
 # Acoustic transducer properties from paper
 # https://academic.oup.com/ptj/article/88/1/50/2747229

@@ -435,12 +435,11 @@
 		\caption{\label{fig:photoelastic-liquid} Simplified photoelastic constant $\mathfrak{p}$ as a function of $\varepsilon_\mrm{r}$.}
 	\end{figure}
 	
-	\todoext{Move to separate part in the modeling chapter? Unclear}
 	This simple model can be compared with a model for dry air found in the RASS literature. The perturbation in relative permittivity can then be related to pressure as \cite{Rapoport1997}
 	\begin{equation*}
 		\varepsilon_1 = \frac{1.13 \cdot 10^{-6} p}{T}
 	\end{equation*}
-	The equations \eqref{eq:th-PE-scalar-p} and \eqref{eq:th-PE-liquid-model} can be combined to give the simple model
+	where $p$ is the pressure in Pa and $T$ is the temperature in K (which would give the constant a unit of K/Pa) \todo{Decide on how to handle units here}. The equations \eqref{eq:th-PE-scalar-p} and \eqref{eq:th-PE-liquid-model} can be combined to give the simple model
 	\begin{equation*}
 		\varepsilon_1 = \frac{\varepsilon_\mrm{r}^2 \mathfrak{p}}{\rho_0 v^2} \,p = \frac{(\varepsilon_\mrm{r} - 1)(\varepsilon_\mrm{r} + 2)}{3\rho_0 v^2} \,p
 	\end{equation*}
@@ -559,6 +558,7 @@
 		\caption{\label{fig:radareq-geom-main} Geometry for the scattering problem.}
 	\end{figure}
 	The $xy$-plane is defined as the plane formed by the acoustic and electromagnetic wavevectors (they are assumed to be non-parallel). The scattering volume is a cuboid with dimensions $L_{x}$, $L_{y}$ and $L_{z}$. It is centered in the origin of the coordinate system, and both the acoustic and electromagnetic waves are approximated as plane waves close to the origin. Thus, the electromagnetic and dielectric perturbation fields near the origin are defined as
+	\todo[inline]{Change from strain amplitude to pressure since that is more reasonable (strain amplitude should be changed to dilatation, but then you might as well use pressure instead)}
 	\begin{align}
 		\bm{E}_\mrm{i} (\bm{r}',t) &= \bm{E}_\mrm{i} (\bm{r}') = \bm{E}_{\mrm{i}0} \eu^{\iu \bm{k}\cdot\bm{r}'} \label{eq:an-radar-planeE} \\
 		\varepsilon_1 (\bm{r}',t) &= -\mathfrak{p} \varepsilon_\mrm{r}^2 s_\mrm{p} \cos(\bm{q} \cdot \bm{r}' - \Omega t) \label{eq:an-radar-planeEps}
@@ -715,19 +715,19 @@
 	\begin{equation*}
 		y' = -x\sin{\phi} + y\cos{\phi}
 	\end{equation*}
-	The geometry is the same as previously shown in figure \ref{fig:radareq-geom-main}. As such, $\phi = \pi$ for EM and $\phi = \pi + \alpha$ for Ac. For the coefficient $A$, it was found that $A = 4/d_\mrm{a}$ gave a good taper for an aperture length $d_\mrm{a}$.
+	The geometry is the same as previously shown in figure \ref{fig:radareq-geom-main}. As such, $\phi = \pi$ for EM and $\phi = \pi + \alpha$ for Ac. For the coefficient $A$, it was found that $A = 4/D$ gave a good taper for an aperture width $D$.
 	
 	\subsection{Modeling of Electromagnetic Aperture}
-	An electromagnetic aperture was designed to produce a fairly low beam width while not taking up too much space on the boundary. The model used a "Port" boundary condition on a boundary segment with length $d_\mrm{a} = 8\lambda$. The port options "User Defined" and wave excitation were turned on. The port input power was set to 15 dBm. Due to it being located on an interior boundary, the slit condition was activated with a domain-backed slit. For the port mode, the electric field was set as the input quantity with a tapered field in z defined as
+	An electromagnetic aperture was designed to produce a fairly low beam width while not taking up too much space on the boundary. The model used a "Port" boundary condition on a boundary segment with length $D = 8\lambda$. The port options "User Defined" and wave excitation were turned on. The port input power was set to 15 dBm. Due to it being located on an interior boundary, the slit condition was activated with a domain-backed slit. For the port mode, the electric field was set as the input quantity with a tapered field in z defined as
 	\begin{equation*}
-		E_{0z} = e^{-(4y/d_\mrm{a})^2}
+		E_{0z} = e^{-(4y/D)^2}
 	\end{equation*}
 	where $y$ is a coordinate. The propagation constant was set to the wave number in the material using "emw.k".
 	
 	\subsection{Modeling of Acoustic Aperture}
-	The qualities of beam width and space usage for the electromagnetic aperture were also taken into consideration in the design of the acoustic aperture. The model used a "Normal Acceleration" boundary condition on a boundary segment with length $d_\mrm{a} = 8\Lambda$. The acceleration was set to "Inward acceleration". The value of the acceleration amplitude was calculated from a displacement amplitude using $a_0 = \Omega^2 u_\mrm{p}$ where the displacement amplitude is the same as described in the theory. The acceleration was tapered as
+	The qualities of beam width and space usage for the electromagnetic aperture were also taken into consideration in the design of the acoustic aperture. The model used a "Normal Acceleration" boundary condition on a boundary segment with length $D = 8\Lambda$. The acceleration was set to "Inward acceleration". The value of the acceleration amplitude was calculated from a displacement amplitude using $a_0 = \Omega^2 u_\mrm{p}$ where the displacement amplitude is the same as described in the theory. The acceleration was tapered as
 	\begin{equation*}
-		a_\mrm{n} = a_0 \eu^{-(4(x\sin{\alpha} - y\cos{\alpha})/d_\mrm{a})^2}
+		a_\mrm{n} = a_0 \eu^{-(4(x\sin{\alpha} - y\cos{\alpha})/D)^2}
 	\end{equation*}
 	where $x$ and $y$ are coordinates and $\alpha$ the angle between wave vectors.
 	
@@ -789,22 +789,24 @@
 		\caption{\label{fig:sim-postproc-angles} Propagation and observation angle near the edge of the scattered beam.}
 	\end{figure}
 		
-	\section{Verification of Analytical Model}
-	To verify the results from section \ref{sec:analytical-radar} the frequencies of the acoustic and electromagnetic waves were matched to a Bragg angle of $40^\circ$ while the angle $\alpha$ between the wavevectors was swept between $\pm 5^\circ$ of the optimal angle. This was done both for (+) and (-) scattering by sweeping around either $\alpha = 40^\circ$ or $\alpha = 120^\circ$, as these angles are the ones given by equation \eqref{eq:an-bragg-alpha} as angles for maximum scattering.
+	\section{Comparison with Analytical Model - Angles}
+	To compare with the results from section \ref{sec:analytical-radar} the frequencies of the acoustic and electromagnetic waves were matched to a Bragg angle of $40^\circ$ while the angle $\alpha$ between the wavevectors was swept between $\pm 5^\circ$ of the optimal angle. This was done both for (+) and (-) scattering by sweeping around either $\alpha = 40^\circ$ or $\alpha = 120^\circ$, as these angles are the ones given by equation \eqref{eq:an-bragg-alpha} as angles for maximum scattering.
 	
-	To compare the power measure with the theoretical calculation, the integral of the Poynting vector was calculated using the theoretical value for both cuboid and parallelogram interaction regions (see appendix \ref{app:derivations}).
+	\section{Comparision with Analytical Model - Power}
+	\todoint[inline]{Needs another simulation since the analytical solution is based on far-field things and the angle sweep is not there at all... Might not work wither way since I don't think this would solve the issue with plane waves vs. beams. Plane waves as in the analytic derivation have constant amplitude throughout their cross-section while beams have a Gaussian profile... So the mean amplitude is considerably lower for beams than for plane waves.}
+	To compare the power measure with the analytical calculation, the integral of the Poynting vector was calculated using the theoretical value for both cuboid and parallelogram interaction regions (see appendix \ref{app:derivations}).
 	\begin{align*}
-		P_\mrm{cub} &= \int_{C_\mrm{mb}} \left| \left< \bm{S}_\mrm{sc}^\pm \right> \right| \mrm{d}l
-		= \frac{P_\mrm{T} G_\mrm{T}}{4\pi R_\mrm{T}^2} \frac{\varepsilon_\mrm{r}^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 S_0^2 L_{x}^2 L_{y}^2 L_{z}^2 \int_{C_\mrm{mb}} \Phi^\pm (\theta,\phi)^2 \mrm{d}l \\
-		P_\mrm{par} &= \int_{C_\mrm{mb}} \left| \left< \bm{S}_\mrm{sc}^\pm \right> \right| \mrm{d}l
-		= \frac{P_\mrm{T} G_\mrm{T}}{4\pi R_\mrm{T}^2} \frac{\varepsilon_\mrm{r}^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 S_0^2 \frac{d_\mrm{a} d_\mrm{e} L_z}{\sin{\alpha}} \int_{C_\mrm{mb}} \Phi_\mrm{p}^\pm (\theta,\phi)^2 \mrm{d}l
+	P_\mrm{cub} &= \int_{C_\mrm{mb}} \left| \left< \bm{S}_\mrm{sc}^\pm \right> \right| \mrm{d}l
+	= \frac{P_\mrm{T} G_\mrm{T}}{4\pi R_\mrm{T}^2} \frac{\varepsilon_\mrm{r}^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 S_0^2 L_{x}^2 L_{y}^2 L_{z}^2 \int_{C_\mrm{mb}} \Phi^\pm (\theta,\phi)^2 \mrm{d}l \\
+	P_\mrm{par} &= \int_{C_\mrm{mb}} \left| \left< \bm{S}_\mrm{sc}^\pm \right> \right| \mrm{d}l
+	= \frac{P_\mrm{T} G_\mrm{T}}{4\pi R_\mrm{T}^2} \frac{\varepsilon_\mrm{r}^2 k^4}{64 \pi^2 r^2} \mathfrak{p}^2 S_0^2 \frac{d_\mrm{a}^2 d_\mrm{e}^2 L_z^2}{\sin^2{\alpha}} \int_{C_\mrm{mb}} \Phi_\mrm{p}^\pm (\theta,\phi)^2 \mrm{d}l
 	\end{align*}
-	where the indices cub and par denote cuboid and parallelogram interaction regions. $\Phi$ and $\Phi_\mrm{p}$ are given by equation. \todo{refer to correct equations from before} The integrals were calculated numerically using the trapezoid method. The measurement boundary was then approximated by a circle with the radius $30\Lambda$, which was also the value for $R_\mrm{T}$ and $r$. $S_0$ was calculated using the acoustic pressure in the origin from COMSOL \todo{equation for pressure stuff}. The geometry variables $L_x$, $L_y$, $d_\mrm{a}$ and $d_\mrm{e}$ were estimated from the center of the interaction region in the COMSOL simulation. The value for $L_z$ was taken as \todo[inline]{Check how COMSOL handles 2D things. The units are correct for 3D (V/m, W/m2 and such) so perhaps they just set the z-width to 1? They are not showing quantities per unit z, because then the units in the results would be different!}
-	To obtain $G_\mrm{T}$, the beamwidth $\Delta \theta_B$ of the electromagnetic beam was estimated. This, together with an assumption of small beamwidth gives \cite{Orfanidis2016}
+	where the indices cub and par denote cuboid and parallelogram interaction regions. $\Phi$ and $\Phi_\mrm{p}$ are given by equation. \todo{refer to correct equations from before} The integrals were calculated numerically using the trapezoid method. The measurement boundary was then approximated by a circle with the radius $30\Lambda$, which was also the value for $R_\mrm{T}$ and $r$. $S_0$ was calculated using the peak acoustic pressure close to the origin from COMSOL \todo{equation for pressure stuff}. The geometry variables $L_x$, $L_y$, $d_\mrm{a}$ and $d_\mrm{e}$ were estimated from the center of the interaction region in the COMSOL simulation. The value for $L_z$ was taken as \todo[inline]{Check how COMSOL handles 2D things. The units are correct for 3D (V/m, W/m2 and such) so perhaps they just set the z-width to 1? They are not showing quantities per unit z, because then the units in the results would be different!}
+	To obtain $G_\mrm{T}$, the beamwidth $\Delta \theta_B$ of the electromagnetic beam was estimated. With an assumption of small beamwidth and lossless antenna it holds that \cite{Orfanidis2016}
 	\begin{equation*}
-		G_\mrm{T} \approx D_\mrm{max} = \frac{16}{\Delta \theta_B^2}
+	G_\mrm{T} = D_\mrm{max} = \frac{16}{(\Delta \theta_B)^2}
 	\end{equation*}
-	where $D_\mrm{max}$ is the peak directivity, which is equal to the gain for lossless antennas \cite{Orfanidis2016}.
+	where $D_\mrm{max}$ is the peak directivity and the beamwidth is for the full beam \cite{Orfanidis2016}.
 	
 	\section{Conductive Defect}
 	To examine the effect of a defect with electromagnetic contrast but no acoustic contrast, simulations were run with a conductive defect. The geometry of this problem was based on the basic geometry shown in figure \ref{fig:sim-geometry}. The addition was a circle in the center of the physics domain representing a defect. This had the diameter equal to the electromagnetic wavelength $\lambda$. The material in this region was the same as in the physics domain, but with a nonzero electric conductivity.
@@ -821,7 +823,7 @@
 	
 	\section{Numerical Simulation Results}
 	
-	\subsection{Verification of Analytical Model}
+	\subsection{Comparison with Analytical Model - Angle}
 	\todoint[inline]{Comparison of results from the simulation with the analytical model. Primarily a verification of the Bragg condition, but maybe also some comparison of the power levels.}
 	
 	\begin{figure}[h]
@@ -846,7 +848,12 @@
 			\input{angle-sweep-polar.pgf}
 		}
 		\caption{\label{fig:res-angle-sweep-polar} Polar plot of the Poynting vector for varying angles $\phi_\mrm{prop}$ and $\alpha$. Dotted line at $\phi_\mrm{prop} = 260^\circ$. Normalized by maximum value.}
-	\end{figure}	
+	\end{figure}
+	
+	\subsection{Comparison with Analytical Model - Power}
+	Issues due to the analytical model having an assumption on plane waves. This is not actually valid since the "target" is an overlap between two beams. This overlap is necessarily defined by the beam profiles, and an assumption of plane waves with an otherwise correct interaction region will automatically assume a constant amplitude beam profile. This will lead to much higher scattering than with actual beam profiles since plane waves have "more amplitude" for both EM and Ac. waves in the interaction region.
+	
+	One way to alleviate the issue would be to instead use some sort of "equivalent amplitude", i.e. use plane wave amplitude values which will cause the total field energy to be equal to that of the spherical wave (inside the same interaction region). This might require some thinking to get correct, but I think it should work (at least better than the original one).
 	
 	\subsection{Conductive Defect}
 	\todoext{Decreased scattering with higher conductivity. Multiple reasons behind this: Electric field is pushed out of defect which directly decreases beam overlap. Shadowing of electric field behind defect which also decreases beam overlap. Diffraction of electric field which changes the angle between beams and unfulfills the Bragg condition.}
@@ -1060,6 +1067,7 @@
 		\caption{\label{fig:radareq-geom} Geometry for the scattering problem.}
 	\end{figure}
 	The $xy$-plane is defined as the plane formed by the acoustic and electromagnetic wavevectors (they are assumed to be non-parallel). The scattering volume is centered in the origin of the coordinate system, and both the acoustic and electromagnetic waves are approximated as plane waves close to the origin. Thus, the electromagnetic and dielectric perturbation fields near the origin are defined as
+	\todo[inline]{Change from strain amplitude to pressure since that is more reasonable (strain amplitude should be changed to dilatation, but then you might as well use pressure instead)}
 	\begin{align}
 		\bm{E}_\mrm{i} (\bm{r}',t) &= \bm{E}_\mrm{i} (\bm{r}') = \bm{E}_{\mrm{i}0} \eu^{\iu \bm{k}\cdot\bm{r}'} \label{eq:app-radar-planeE} \\
 		\varepsilon_1 (\bm{r}',t) &= -\mathfrak{p} \varepsilon_\mrm{r}^2 s_\mrm{p} \cos(\bm{q} \cdot \bm{r}' - \Omega t) \label{eq:app-radar-planeEps}

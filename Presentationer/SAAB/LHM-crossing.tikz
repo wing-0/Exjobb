@@ -1,0 +1,13 @@
+\begin{tikzpicture}
+	% Blue beam
+	\draw[shift={(2.5,0)},rotate={90+30}] (0,-0.15) rectangle (0.2,0.15) -- (0.4,0.3) -- (0.4,-0.3) -- (0.2,-0.15);
+	\fill[blue,shift={(2.5,0)},rotate=30,opacity=0.5] (-0.25,0.4) rectangle (0.25,10);
+	\draw (2.6,0) node[anchor=west]{$\cos((\Omega_0 - \Delta \Omega)t)$};
+	
+	% Red beam
+	\draw[shift={(-2.5,0)},rotate={90-30}] (0,-0.15) rectangle (0.2,0.15) -- (0.4,0.3) -- (0.4,-0.3) -- (0.2,-0.15);
+	\fill[red,shift={(-2.5,0)},rotate=-30,opacity=0.5] (-0.25,0.4) rectangle (0.25,10);
+	\draw (-2.2,0) node[anchor=west]{$\cos((\Omega_0 + \Delta \Omega)t)$};
+
+	\draw[->] (1,4.33) node[anchor=west]{$2\cos(\Omega_0 t)\cos(\Delta \Omega t)$} -- (0,4.33);
+\end{tikzpicture}

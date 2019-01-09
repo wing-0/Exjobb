@@ -43,24 +43,102 @@
 	
 	\section{Bakgrund}
 	
-	\begin{frame}{Bakgrund}{Icke-förstörande provning}
-		content...
+	\begin{frame}{Bakgrund}{Oförstörande provning}
+		\begin{itemize}
+			\item Elektromagnetiska och akustiska fenomen används separat inom oförstörande provning (OFP)
+			\begin{itemize}
+				\pause
+				\item Ultraljudsmetoder etablerade sedan länge
+				\pause
+				\item Mikrovågs/mm-vågsavbildning relativt nytt
+			\end{itemize}
+			\pause
+			\item Kombination kan ge mer information
+			\pause
+			\item Kunskap om möjliga interaktionsmekanismer krävs
+		\end{itemize}
 	\end{frame}
 	
-	\begin{frame}{Bakgrund}{Akusto-EM - akusto-optik}
-		content...
+	\begin{frame}{Bakgrund}{Akusto-optik}
+		\begin{columns}
+			\begin{column}{0.6\textwidth}
+				\begin{itemize}
+					\item<1-> Interaktion mellan vågor i storleksordningarna ultraljud och optik
+					\item<2-> Akustisk våg ger periodiskt störning i brytningsindex
+					\item<3-> Konstruktiv interferens vid givet villkor (Braggvillkor)
+					\begin{equation*}
+						\sin{\theta_B} = \frac{\lambda}{2\Lambda}
+					\end{equation*}
+					\item<4-> Används inom fotonik för modulatorer, filter etc.
+				\end{itemize}
+			\end{column}
+			\begin{column}{0.4\textwidth}
+				\uncover<2->{
+					\resizebox{\textwidth}{!}{
+						\input{acousto-optics.tikz}
+					}
+				}
+			\end{column}
+		\end{columns}
 	\end{frame}
 	
-	\begin{frame}{Bakgrund}{Akusto-EM - RASS}
-		content...
+	\begin{frame}{Bakgrund}{RASS}
+		\begin{itemize}
+			\item Radio Acoustic Sounding System
+			\pause
+			\item Storleksordning MHz - GHz (EM) och hörbart ljud
+			\pause
+			\item Samma mekanism för interaktion som akusto-optik
+			\pause
+			\item Temperatur påverkar Braggvillkor genom akustisk våglängd
+			\pause
+			\item Används för att mäta temperaturprofiler i atmosfären
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}{Bakgrund}{Lokaliserad harmonisk rörelse}
+		\begin{itemize}
+			\item<1-> Lokaliserad vibration genom akustisk strålningskraft
+		\end{itemize}
+		\begin{columns}
+			\begin{column}{0.45\textwidth}
+				\begin{itemize}
+					\item<2-> Ultraljud amplitudmoduleras lokalt
+					\item<3-> Elektromagnetisk frekvens skiftas med vibrationsfrekvens
+				\end{itemize}
+			\end{column}
+			\begin{column}{0.3\textwidth}
+				\uncover<2->{
+					\resizebox{!}{0.5\textheight}{
+						\input{LHM-crossing.tikz}
+					}
+				}
+			\end{column}
+			\hspace{0.05\textwidth}
+			\begin{column}{0.2\textwidth}
+				\uncover<2->{
+					\resizebox{!}{0.5\textheight}{
+						\input{LHM-focused.tikz}
+					}
+				}
+			\end{column}
+		\end{columns}
 	\end{frame}
 	
 	\section{Teori}
 	
-	\begin{frame}{Teori}{}
+	\begin{frame}{Teori}{Fotoelasticitet}
 		content...
 	\end{frame}
 	
+	\begin{frame}{Teori}{Spridning mot dielektrisk störning}
+		content...
+	\end{frame}
+
+	\begin{frame}{Teori}{Radarekvation - plana vågor}
+		content...
+	\end{frame}
+
 	\section{Numeriska simuleringar}
 	
 	\begin{frame}{Numeriska simuleringar}{Geometri}

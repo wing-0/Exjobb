@@ -18,7 +18,7 @@ import scipy.interpolate as interp
 
 plt.close('all')
 
-savefigs = 0
+savefigs = -1
 
 # Read data and plot (+) or (-) scattering
 pm = -1
@@ -62,6 +62,7 @@ for i in range(0, len(alpha)):
 
 # Magnitude of the Poynting vector
 normS = np.sqrt(Sx**2 + Sy**2)
+scalS = Sx*np.cos(np.radians(260)) + Sy*np.sin(np.radians(260))
 
 # Calculate distances between all points (x,y) and construct an axis based on
 # arc length from theta = 0 to theta = 2*pi
@@ -73,6 +74,7 @@ arc = np.cumsum(dist, axis=0)
 # Integrate Poynting vector magnitude for all angles and plot against the
 # angle between wave vectors
 Stot = np.trapz(normS, x=arc, axis=0)
+Stot2 = np.trapz(scalS, x=arc, axis=0)
 
 plt.figure()
 plt.grid()
@@ -89,7 +91,7 @@ plt.xticks(aloc, alab)
 # Save as pgf
 if(savefigs):
     plt.rcParams['axes.unicode_minus'] = False
-    plt.savefig('../Text/Report/angle-sweep-power.pgf')
+    plt.savefig('../Text/Report/angle-sweep-power(' + pmchar + ').pgf')
 
 # %% Plotting using propagation angle and not observation angle
 
@@ -126,12 +128,13 @@ plt.yticks(aloc, alab)
 # Save as pgf
 if(savefigs):
     plt.rcParams['axes.unicode_minus'] = False
-    plt.savefig('../Text/Report/angle-sweep-angles.pgf')
+    plt.savefig('../Text/Report/angle-sweep-angles(' + pmchar + ').pgf')
 
 # Plot Poynting vector magnitude for all PROPAGATION angles
 plt.figure()
 plt.polar(propang, normS/normS.max())
-plt.polar(np.radians(260)*np.ones(2), np.arange(2), 'k:')
+plt.polar(np.radians((180 - pm*2*opta))*np.ones(2),
+          np.arange(2), 'k:')
 plt.ylim([0, 1])
 plt.title('Poynting vector (time avg.), normalized magnitude ' +
           '$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> \\right|$ / ' +
@@ -150,7 +153,7 @@ plt.xticks(aloc, alab)
 # Save as pgf
 if(savefigs):
     plt.rcParams['axes.unicode_minus'] = False
-    plt.savefig('../Text/Report/angle-sweep-polar.pgf')
+    plt.savefig('../Text/Report/angle-sweep-polar(' + pmchar + ').pgf')
 
 # "Clean up" the data by removing all points with a Poynting vector magnitude
 # below 5 % of the mean

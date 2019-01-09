@@ -31,10 +31,6 @@ phi = np.radians(phi)
 de = 8*le
 da = 8*la
 
-# Aperture taper adjustment (use FWHM as beam diameters)
-#de = de/2*np.sqrt(np.log(2))
-#da = da/2*np.sqrt(np.log(2))
-
 Lx = da#/np.sin(alpha_m)
 Ly = de
 

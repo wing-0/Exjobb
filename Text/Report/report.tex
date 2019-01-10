@@ -235,7 +235,7 @@
 	For this work, a mechanism needs to be relevant at microwave frequencies to be considered. The assumption on which the theory rests is that of dynamic multiple light scattering \cite{Leutz1995}. In the existing mm-wave imaging system there is an assumption of sparse defects being the only scatterers \cite{Helander2017}. This is in complete contrast to the theory of dynamic multiple light scattering, which is based on a large number of moving scatterers \cite{Leutz1995}. Since the basic assumptions of the problem and theory are in such stark contrast, it seems likely that this interaction mechanism holds little relevance to the problem at hand.
 	
 	\subsection{Main Subjects of Interest}
-	The mechanisms presented above were the major ones found in a wide search of the literature. Of the four presented, two could be ruled out for not being applicable to the problem of interest. The "Localized Harmonic Motion" and "Acousto-Optics" interaction mechanisms are presented in further detail later in this chapter.
+	The mechanisms presented above were the major ones found in a wide search of the literature. Of the four presented, two could be ruled out for not being applicable to the problem of interest. The ``Localized Harmonic Motion'' and ``Acousto-Optics'' interaction mechanisms are presented in further detail later in this chapter.
 	
 	\section{Ultrasonic Wave Propagation}
 	\todoext{This section should probably be expanded a bit more}
@@ -333,8 +333,8 @@
 	\end{equation*}
 	
 	\section{Photoelastic Interaction}
-	\todoext{There should be an overview of the interaction here before "Photoelasticity"}
-	\todoint[inline]{Explain clearly that this is acousto-optics, but derived directly from Maxwell and without the word "optics" in the name}
+	\todoext{There should be an overview of the interaction here before ``Photoelasticity''}
+	\todoint[inline]{Explain clearly that this is acousto-optics, but derived directly from Maxwell and without the word ``optics'' in the name}
 	
 	\subsection{Photoelasticity}
 	\todoint[inline]{Add all other names such as strain-optic, elasto-optic}
@@ -430,7 +430,7 @@
 	\begin{figure}[h]
 		\centering
 		\resizebox{\textwidth}{!}{
-			\input{photoelastic-liquid.pgf}
+			\input{fig/photoelastic-liquid.pgf}
 		}
 		\caption{\label{fig:photoelastic-liquid} Simplified photoelastic constant $\mathfrak{p}$ as a function of $\varepsilon_\mrm{r}$.}
 	\end{figure}
@@ -503,7 +503,7 @@
 	\begin{figure}[h]
 		\centering
 		\resizebox{\textwidth}{!}{
-			\input{scatteringgeom.tikz}
+			\input{fig/scatteringgeom.tikz}
 		}
 		\caption{\label{fig:an-radar-geom} Geometry for the scattering problem.}
 	\end{figure}
@@ -541,7 +541,7 @@
 	
 	To obtain a more practical expression, the equations are now transformed into power. For this, the time-averaged Poynting vector is calculated as (see appendix \ref{sec:app-derivations-radar-power})
 	\begin{equation*}
-		\left< \bm{S}_\mrm{sc}^\pm \right> = \frac{1}{2}\mathrm{Re}\left\{ \bm{E}_\mrm{sc}^\pm \times \bm{H}_\mrm{sc}^{\pm*} \right\} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{\mrm{i}0}|^2 |E_\mrm{A}^\pm (\bm{r},t)|^2
+		\left< \bm{S}_\mrm{sc}^\pm \right> (\bm{r}) = \frac{1}{2}\mathrm{Re}\left\{ \bm{E}_\mrm{sc}^\pm (\bm{r},t) \times \bm{H}_\mrm{sc}^{\pm*} (\bm{r},t) \right\} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{\mrm{i}0}|^2 |E_\mrm{A}^\pm (\bm{r},t)|^2
 	\end{equation*}
 	where $|E_\mrm{A}^\pm (\bm{r},t)|^2$ is given by
 	\begin{equation*}
@@ -553,7 +553,7 @@
 	\end{equation*}
 	where $P_\mrm{T}$ is the power accepted by the antenna, $G_\mrm{T}$ is the maximum gain of the antenna and $R_\mrm{T}$ is the distance from the antenna to the scattering center. This is inserted into the time-average of the power density, giving
 	\begin{equation*}
-		\left< \bm{S}_\mrm{sc}^\pm \right> = \bm{\hat{r}} \frac{P_\mrm{T} G_\mrm{T}}{4\pi R_\mrm{T}^2} \frac{\varepsilon_\mrm{r}^2 k^4 \mathfrak{p}^2 p_0^2}{64\pi^2 r^2 K^2} L_{x}^2 L_{y}^2 L_{z}^2 \Phi^\pm (\theta,\phi)^2
+		\left< \bm{S}_\mrm{sc}^\pm \right> (\bm{r}) = \bm{\hat{r}} \frac{P_\mrm{T} G_\mrm{T}}{4\pi R_\mrm{T}^2} \frac{\varepsilon_\mrm{r}^2 k^4 \mathfrak{p}^2 p_0^2}{64\pi^2 r^2 K^2} L_{x}^2 L_{y}^2 L_{z}^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
 	Now the effects of the receiving antenna are considered. It is assumed that this antenna is optimally directed towards the scattering center. The received power can then be written as (see appendix \ref{sec:app-derivations-radar-power})
 	\begin{equation*}
@@ -583,20 +583,20 @@
 	
 	\todoext{I have a new derivation which is based on a parallelogram interaction region (still based on plane waves, but uses beam widths to define the interaction region). This could be added here to show the result of another interaction region.}
 	
-	\todoext{Describe how "maximum scattering" is only relevant for one point $(\theta, \phi, \alpha)$. If power is measured on a surface (for example an antenna), the $\Phi$ function must be integrated, and the maximum for the integral must be found. This is cumbersome to do analytically, but through numerical integration and plotting it can be done.}
+	\todoext{Describe how ``maximum scattering'' is only relevant for one point $(\theta, \phi, \alpha)$. If power is measured on a surface (for example an antenna), the $\Phi$ function must be integrated, and the maximum for the integral must be found. This is cumbersome to do analytically, but through numerical integration and plotting it can be done.}
 	
 	\chapter{Numerical Simulation}
 	
 	\section{Overview}
 	\todoint[inline]{Description of how different basic things (such as antennas and transducers) are modeled. Details on COMSOL and other similar stuff.}
-	The problem was simulated in COMSOL Multiphysics for verification and further investigation of more complex scenarios than the one modeled analytically. The two physics interfaces used were the "Pressure Acoustics, Frequency Domain" from the basic COMSOL Multiphysics and "Electromagnetic Waves, Frequency Domain" from the RF Module.
+	The problem was simulated in COMSOL Multiphysics for verification and further investigation of more complex scenarios than the one modeled analytically. The two physics interfaces used were the ``Pressure Acoustics, Frequency Domain'' from the basic COMSOL Multiphysics and ``Electromagnetic Waves, Frequency Domain'' from the RF Module.
 	
 	For all simulations the acoustic frequency was set to 450 MHz, which was used in acoustic frequency domain simulations. From this value and material properties, the acoustic wavelength $\Lambda$ was determined. Using the desired angle $\alpha$ between beams and equation \eqref{eq:an-bragg-alpha}, the electromagnetic wavelength $\lambda$ was calculated. From $\lambda$ and material properties the electromagnetic frequency was calculated, which was used in electromagnetic frequency domain simulations. For the material and angle mostly used, the electromagnetic frequency was approximately 61.29 GHz.
 	
 	\todoint[inline]{Describe why the frequency shift is not visible, and why this is not possible with the particular simulations used}
 	
 	\subsection{Geometry and boundary conditions}
-	The basic geometry is shown in figure \ref{fig:sim-geometry} for the acoustic and electromagnetic simulations. The only difference in geometry between the two is the Perfectly Matched Layer (PML) which is used in the electromagnetic simulation but not the acoustic simulation. Additionally, the boundary conditions are different for the two simulations which is also shown. One boundary of special interest is the "Measurement boundary". This is where the physics domain ends, and the fields were measured at this boundary for post-processing. The radius of the measurement boundary was $30\Lambda$ everywhere except for the apertures which were chords of this circle.
+	The basic geometry is shown in figure \ref{fig:sim-geometry} for the acoustic and electromagnetic simulations. The only difference in geometry between the two is the Perfectly Matched Layer (PML) which is used in the electromagnetic simulation but not the acoustic simulation. Additionally, the boundary conditions are different for the two simulations which is also shown. One boundary of special interest is the ``Measurement boundary''. This is where the physics domain ends, and the fields were measured at this boundary for post-processing. The radius of the measurement boundary was $30\Lambda$ everywhere except for the apertures which were chords of this circle.
 	
 	The PML was used to emulate an open boundary at the measurement boundary for the electromagnetic problem. It was a cylindrical type with center in the center of the geometry and a width of $2\lambda$. It used polynomial coordinate stretching with a typical wavelength taken from the electromagnetic physics interface. The PML scaling factor and PML scaling curvature parameter were both set to 1. At the exterior boundary, a Perfect Electric Conductor (PEC) boundary condition was used.
 	
@@ -604,10 +604,10 @@
 	
 	\begin{figure}
 		\centering
-		\input{sim-geometry-Ac.tikz}
+		\input{fig/sim-geometry-Ac.tikz}
 		\vspace{5 mm}
 		
-		\input{sim-geometry-EM.tikz}
+		\input{fig/sim-geometry-EM.tikz}
 		\caption{\label{fig:sim-geometry} Simulation geometry with boundary conditions for Ac. and EM simulations.}
 	\end{figure}
 	
@@ -639,14 +639,14 @@
 	The geometry is the same as previously shown in figure \ref{fig:an-radar-geom}. As such, $\phi = \pi$ for EM and $\phi = \pi + \alpha$ for Ac. For the coefficient $A$, it was found that $A = 4/D$ gave a good taper for an aperture width $D$.
 	
 	\subsection{Modeling of Electromagnetic Aperture}
-	An electromagnetic aperture was designed to produce a fairly low beam width while not taking up too much space on the boundary. The model used a "Port" boundary condition on a boundary segment with length $D = 8\lambda$. The port options "User Defined" and wave excitation were turned on. The port input power was set to 15 dBm. Due to it being located on an interior boundary, the slit condition was activated with a domain-backed slit. For the port mode, the electric field was set as the input quantity with a tapered field in z defined as
+	An electromagnetic aperture was designed to produce a fairly low beam width while not taking up too much space on the boundary. The model used a ``Port'' boundary condition on a boundary segment with length $D = 8\lambda$. The port options ``User Defined'' and wave excitation were turned on. The port input power was set to 15 dBm. Due to it being located on an interior boundary, the slit condition was activated with a domain-backed slit. For the port mode, the electric field was set as the input quantity with a tapered field in z defined as
 	\begin{equation*}
 		E_{0z} = e^{-(4y/D)^2}
 	\end{equation*}
-	where $y$ is a coordinate. The propagation constant was set to the wave number in the material using "emw.k".
+	where $y$ is a coordinate. The propagation constant was set to the wave number in the material using ``emw.k''.
 	
 	\subsection{Modeling of Acoustic Aperture}
-	The qualities of beam width and space usage for the electromagnetic aperture were also taken into consideration in the design of the acoustic aperture. The model used a "Normal Acceleration" boundary condition on a boundary segment with length $D = 8\Lambda$. The acceleration was set to "Inward acceleration". The value of the acceleration amplitude was calculated from a displacement amplitude using $a_0 = \Omega^2 u_\mrm{p}$ where the displacement amplitude is the same as described in the theory. The acceleration was tapered as
+	The qualities of beam width and space usage for the electromagnetic aperture were also taken into consideration in the design of the acoustic aperture. The model used a ``Normal Acceleration'' boundary condition on a boundary segment with length $D = 8\Lambda$. The acceleration was set to ``Inward acceleration''. The value of the acceleration amplitude was calculated from a displacement amplitude using $a_0 = \Omega^2 u_\mrm{p}$ where the displacement amplitude is the same as described in the theory. The acceleration was tapered as
 	\begin{equation*}
 		a_\mrm{n} = a_0 \eu^{-(4(x\sin{\alpha} - y\cos{\alpha})/D)^2}
 	\end{equation*}
@@ -656,12 +656,12 @@
 	To model photoelasticity in COMSOL, equation \eqref{eq:th-PE-scalar-p} was used with the photoelastic constant defined by equation \eqref{eq:th-PE-liquid-model}.
 	
 	\subsection{Material}
-	The material model used was based on a foam core. The reason for this was that foam material is fairly homogeneous and isotropic (compared to honeycombs) and is used in aerospace applications \addref. The specific core selected was Divinycell HT251 from Diab Group, which is an aerospace core with applications described as "Primary structures, radomes, control surfaces and interior components" \cite{Diab2016}. The relevant material properties were density ($\rho_0$), bulk modulus ($K$) and relative permittivity ($\varepsilon_\mrm{r}$). These were $\rho_0 = 250$ kg/m$^3$, $K = 400$ MPa (nominal) and $\varepsilon_\mrm{r} = 1.29$ \cite{Diab2016}. In COMSOL, the required properties were density, speed of sound, relative permittivity, relative permeability and electric conductivity \todoint{More properties?}. The speed of sound was calculated using $v = \sqrt{K/\rho_0}$ \todoint{reference equation}, the relative permeability was set to 1 and the conductivity to 0. The assumption was that the material was perfectly non-conducting and non-magnetic.
+	The material model used was based on a foam core. The reason for this was that foam material is fairly homogeneous and isotropic (compared to honeycombs) and is used in aerospace applications \addref. The specific core selected was Divinycell HT251 from Diab Group, which is an aerospace core with applications described as ``Primary structures, radomes, control surfaces and interior components'' \cite{Diab2016}. The relevant material properties were density ($\rho_0$), bulk modulus ($K$) and relative permittivity ($\varepsilon_\mrm{r}$). These were $\rho_0 = 250$ kg/m$^3$, $K = 400$ MPa (nominal) and $\varepsilon_\mrm{r} = 1.29$ \cite{Diab2016}. In COMSOL, the required properties were density, speed of sound, relative permittivity, relative permeability and electric conductivity \todoint{More properties?}. The speed of sound was calculated using $v = \sqrt{K/\rho_0}$ \todoint{reference equation}, the relative permeability was set to 1 and the conductivity to 0. The assumption was that the material was perfectly non-conducting and non-magnetic.
 	
 	\subsection{Mesh}
 	Two meshes were used in simulations: one for the acoustic simulation and one for the electromagnetic simulation. The reason for this was primarily the difference in wavelength.
 	
-	The acoustic mesh was defined on both the physics domain and PML domain even though only the physics domain was simulated in this case. A free triangular mesh was used with element size between $\Lambda/10$ and $\Lambda/10 \cdot 3 \cdot 10^{-2}$ in the physics domain, and "Fine" in the PML domain. Before running the free triangular meshing, the mesh was defined on the measurement boundary.
+	The acoustic mesh was defined on both the physics domain and PML domain even though only the physics domain was simulated in this case. A free triangular mesh was used with element size between $\Lambda/10$ and $\Lambda/10 \cdot 3 \cdot 10^{-2}$ in the physics domain, and ``Fine'' in the PML domain. Before running the free triangular meshing, the mesh was defined on the measurement boundary.
 	
 	The electromagnetic mesh used a free triangular mesh in the physics domain and a mapped mesh in the PML domain. The element size in the physics domain was between $\lambda/10$ and $\lambda/10 \cdot 3 \cdot 10^{-2}$. Before running the free triangular meshing, the mesh was defined on the measurement boundary.
 	
@@ -679,7 +679,7 @@
 	\begin{figure}[h]
 		\centering
 		\resizebox{\textwidth}{!}{
-			\input{simulationflow.tikz}
+			\input{fig/simulationflow.tikz}
 		}
 		\caption{\label{fig:simulationflow} Simulation flow chart}
 	\end{figure}
@@ -706,7 +706,7 @@
 	
 	\begin{figure}[h]
 		\centering
-		\input{postproc-angles.tikz}
+		\input{fig/postproc-angles.tikz}
 		\caption{\label{fig:sim-postproc-angles} Propagation and observation angle near the edge of the scattered beam.}
 	\end{figure}
 		
@@ -751,13 +751,13 @@
 		\centering
 		\begin{subfigure}{\textwidth}
 			\resizebox{\textwidth}{!}{
-				\input{angle-sweep-power(-).pgf}
+				\input{fig/angle-sweep-power(-).pgf}
 			}
 			\caption{(-) case}
 		\end{subfigure}
 		\begin{subfigure}{\textwidth}
 			\resizebox{\textwidth}{!}{
-				\input{angle-sweep-power(+).pgf}
+				\input{fig/angle-sweep-power(+).pgf}
 			}
 			\caption{(+) case}
 		\end{subfigure}
@@ -768,13 +768,13 @@
 		\centering
 		\begin{subfigure}{\textwidth}
 			\resizebox{\textwidth}{!}{
-				\input{angle-sweep-angles(-).pgf}
+				\input{fig/angle-sweep-angles(-).pgf}
 			}
 			\caption{(-) case}
 		\end{subfigure}
 		\begin{subfigure}{\textwidth}
 			\resizebox{\textwidth}{!}{
-				\input{angle-sweep-angles(+).pgf}
+				\input{fig/angle-sweep-angles(+).pgf}
 			}
 			\caption{(+) case}
 		\end{subfigure}
@@ -785,13 +785,13 @@
 		\centering
 		\begin{subfigure}{\textwidth}
 			\resizebox{\textwidth}{!}{
-				\input{angle-sweep-polar(-).pgf}
+				\input{fig/angle-sweep-polar(-).pgf}
 			}
 			\caption{(-) case}
 		\end{subfigure}
 		\begin{subfigure}{\textwidth}
 			\resizebox{\textwidth}{!}{
-				\input{angle-sweep-polar(+).pgf}
+				\input{fig/angle-sweep-polar(+).pgf}
 			}
 			\caption{(+) case}
 		\end{subfigure}
@@ -799,9 +799,9 @@
 	\end{figure}
 	
 	\subsection{Comparison with Analytical Model - Power}
-	Issues due to the analytical model having an assumption on plane waves. This is not actually valid since the "target" is an overlap between two beams. This overlap is necessarily defined by the beam profiles, and an assumption of plane waves with an otherwise correct interaction region will automatically assume a constant amplitude beam profile. This will lead to much higher scattering than with actual beam profiles since plane waves have "more amplitude" for both EM and Ac. waves in the interaction region.
+	Issues due to the analytical model having an assumption on plane waves. This is not actually valid since the ``target'' is an overlap between two beams. This overlap is necessarily defined by the beam profiles, and an assumption of plane waves with an otherwise correct interaction region will automatically assume a constant amplitude beam profile. This will lead to much higher scattering than with actual beam profiles since plane waves have ``more amplitude'' for both EM and Ac. waves in the interaction region.
 	
-	One way to alleviate the issue would be to instead use some sort of "equivalent amplitude", i.e. use plane wave amplitude values which will cause the total field energy to be equal to that of the spherical wave (inside the same interaction region). This might require some thinking to get correct, but I think it should work (at least better than the original one).
+	One way to alleviate the issue would be to instead use some sort of ``equivalent amplitude'', i.e. use plane wave amplitude values which will cause the total field energy to be equal to that of the spherical wave (inside the same interaction region). This might require some thinking to get correct, but I think it should work (at least better than the original one).
 	
 	\subsection{Conductive Defect}
 	\todoext{Decreased scattering with higher conductivity. Multiple reasons behind this: Electric field is pushed out of defect which directly decreases beam overlap. Shadowing of electric field behind defect which also decreases beam overlap. Diffraction of electric field which changes the angle between beams and unfulfills the Bragg condition.}
@@ -810,7 +810,7 @@
 	\begin{figure}[h]
 		\centering
 		\resizebox{\textwidth}{!}{
-			\input{cond-power.pgf}
+			\input{fig/cond-power.pgf}
 		}
 		\caption{\label{fig:res-cond-power} Poynting vector magnitude integrated over measurement boundary for different conductivity $\sigma$ of defect. Normalized by maximum value.}
 	\end{figure}
@@ -818,7 +818,7 @@
 	\begin{figure}[h]
 		\centering
 		\resizebox{\textwidth}{!}{
-			\input{cond-polar.pgf}
+			\input{fig/cond-polar.pgf}
 		}
 		\caption{\label{fig:res-cond-polar} Polar plot of the Poynting vector magnitude for varying angle $\phi_\mrm{prop}$ and conductivity $\sigma$ of defect. Dotted line at $\phi_\mrm{prop} = 260^\circ$. Normalized by maximum value.}
 	\end{figure}
@@ -828,7 +828,7 @@
 	\begin{figure}[h]
 		\centering
 		\resizebox{\textwidth}{!}{
-			\input{mech-power.pgf}
+			\input{fig/mech-power.pgf}
 		}
 		\caption{\label{fig:res-mech-power} Poynting vector magnitude integrated over measurement boundary for different density $\rho_0$ of defect. Normalized by maximum value.}
 	\end{figure}
@@ -836,7 +836,7 @@
 	\begin{figure}[h]
 		\centering
 		\resizebox{\textwidth}{!}{
-			\input{mech-polar.pgf}
+			\input{fig/mech-polar.pgf}
 		}
 		\caption{\label{fig:res-mech-polar} Polar plot of the Poynting vector for varying angle $\phi_\mrm{prop}$ and density $\rho_0$ of defect. Dotted line at $\phi_\mrm{prop} = 260^\circ$. Normalized by maximum value.}
 	\end{figure}
@@ -874,7 +874,7 @@
 		&\bm{\mathcal{E}}(\bm{r},t) = \bm{E}(\bm{r},t) \eu^{-\iu\omega t} \\
 		&\bm{\mathcal{H}}(\bm{r},t) = \bm{H}(\bm{r},t) \eu^{-\iu\omega t}
 	\end{align*}
-	This is used to remove the e$^{-i\omega t}$ dependence in the equations and only keep "slower" time dependencies. The new equations are
+	This is used to remove the e$^{-i\omega t}$ dependence in the equations and only keep ``slower'' time dependencies. The new equations are
 	\begin{align}
 		&\nabla \times \bm{E} = \iu\omega \mu_0 \bm{H} - \mu_0 \frac{\partial \bm{H}}{\partial t} \label{eq:app-scatter-faraday} \\
 		&\nabla \times \bm{H} = -\iu\omega \varepsilon \bm{E} + \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} \label{eq:app-scatter-ampere} \\
@@ -1010,7 +1010,7 @@
 	\begin{figure}[h]
 		\centering
 		\resizebox{\textwidth}{!}{
-			\input{scatteringgeom.tikz}
+			\input{fig/scatteringgeom.tikz}
 		}
 		\caption{\label{fig:app-radar-geom} Geometry for the scattering problem.}
 	\end{figure}
@@ -1098,43 +1098,49 @@
 	\subsection{Solution in terms of power \label{sec:app-derivations-radar-power}}
 	This treatment has primarily been focused around the electric field. To obtain a more practical expression, this is now transformed into power. The power is calculated for the individual frequency shifted components, since they are distinct and single-frequency. The time average for one frequency component of the Poynting vector is \cite{Kristensson2008}
 	\begin{equation*}
-		\left< \bm{S}_\mrm{sc}^\pm \right> = \frac{1}{2} \mathrm{Re}\left\{ \left( \bm{E}_\mrm{sc}^\pm \eu^{-i\omega t} \right) \times \left( \bm{H}_\mrm{sc}^{\pm} \eu^{-i\omega t} \right)^* \right\} = \frac{1}{2} \mathrm{Re}\left\{ \bm{E}_\mrm{sc}^\pm \times \bm{H}_\mrm{sc}^{\pm*} \right\}
+	\begin{split}
+		\left< \bm{S}_\mrm{sc}^\pm \right> (\bm{r}) &= \frac{1}{2} \mathrm{Re}\left\{ \left( \bm{E}_\mrm{sc}^\pm (\bm{r}, t) \eu^{-i\omega t} \right) \times \left( \bm{H}_\mrm{sc}^{\pm} (\bm{r}, t) \eu^{-i\omega t} \right)^* \right\} \\
+		&= \frac{1}{2} \mathrm{Re}\left\{ \bm{E}_\mrm{sc}^\pm (\bm{r}, t) \times \bm{H}_\mrm{sc}^{\pm} (\bm{r}, t)^* \right\}
+	\end{split}
 	\end{equation*}
-	where the time-dependence of the incident electromagnetic wave was re-introduced. The magnetic field $\bm{H}_\mrm{sc}^\pm$ is given by \cite{Kristensson2008}
+	where the time-dependence of the incident electromagnetic wave was re-introduced. The magnetic field $\bm{H}_\mrm{sc}^\pm (\bm{r}, t)$ is given by \cite{Kristensson2008}
 	\begin{equation*}
-		\bm{H}_\mrm{sc}^\pm \approx \frac{1}{\iu k \eta_0 \eta} \nabla \times \bm{E}_\mrm{sc}^\pm
+		\bm{H}_\mrm{sc}^\pm (\bm{r}, t) \approx \frac{1}{\iu k \eta_0 \eta} \nabla \times \bm{E}_\mrm{sc}^\pm (\bm{r}, t)
 	\end{equation*}
-	where $\eta_0$ is the wave impedance of free space and $\eta_0 \eta$ the wave impedance in the material. An approximation has been made for $k$, where this is assumed to have the same value as before scattering. Since there is a frequency shift this is known to not be the case, but given a small acoustic frequency compared to the electromagnetic frequency, the error is small. The curl of $\bm{E}_\mrm{sc}^\pm$ is now written as
+	where $\eta_0$ is the wave impedance of free space and $\eta_0 \eta$ the wave impedance in the material. An approximation has been made for $k$, where this is assumed to have the same value as before scattering. Since there is a frequency shift this is known to not be the case, but given a small acoustic frequency compared to the electromagnetic frequency, the error is small. The curl of $\bm{E}_\mrm{sc}^\pm (\bm{r}, t)$ is now written as
 	\begin{equation*}
-		\nabla \times \bm{E}_\mrm{sc}^\pm = \nabla \times (\bm{E}_{\mrm{i}0} E_\mrm{A}^\pm (\bm{r},t)) = \nabla E_\mrm{A}^\pm (\bm{r},t) \times \bm{E}_{\mrm{i}0}
+		\nabla \times \bm{E}_\mrm{sc}^\pm (\bm{r}, t) = \nabla \times (\bm{E}_{\mrm{i}0} E_\mrm{A}^\pm (\bm{r},t)) = \nabla E_\mrm{A}^\pm (\bm{r},t) \times \bm{E}_{\mrm{i}0}
 	\end{equation*}
 	In spherical coordinates the gradient is written \addref
 	\begin{equation*}
-		\nabla E_\mrm{A}^\pm = \frac{\partial E_\mrm{A}^\pm}{\partial r} \bm{\hat{r}} + \frac{1}{r} \frac{\partial E_\mrm{A}^\pm}{\partial \theta} \bm{\hat{\theta}} + \frac{1}{r\sin{\theta}} \frac{\partial E_\mrm{A}^\pm}{\partial \phi} \bm{\hat{\phi}}
+		\nabla f = \frac{\partial f}{\partial r} \bm{\hat{r}} + \frac{1}{r} \frac{\partial f}{\partial \theta} \bm{\hat{\theta}} + \frac{1}{r\sin{\theta}} \frac{\partial f}{\partial \phi} \bm{\hat{\phi}}
 	\end{equation*}
-	$E_\mrm{A}^\pm$ contains a factor $1/r$, so the two last terms in the gradient will be $\sim 1/r^2$ and are neglected. The gradient is now written as
+	$E_\mrm{A}^\pm (\bm{r}, t)$ contains a factor $1/r$, so the two last terms in the gradient will be $\sim 1/r^2$ and are neglected. The gradient is now written as
 	\begin{equation*}
 	\begin{split}
-		\nabla E_\mrm{A}^\pm &\approx \frac{\partial E_\mrm{A}}{\partial r} \bm{\hat{r}} \\
+		\nabla E_\mrm{A}^\pm (\bm{r}, t) &\approx \frac{\partial E_\mrm{A}}{\partial r} \bm{\hat{r}} \\
 		&= \left( \frac{\iu k\eu^{\iu kr}}{r} - \frac{\eu^{\iu kr}}{r^2} \right) \frac{\varepsilon_\mrm{r}k^2 \mathfrak{p} p_0}{8\pi K} L_{x} L_{y} L_{z} \left( \eu^{- \iu \Omega t} \Phi^+ (\theta,\phi) + \eu^{\iu \Omega t} \Phi^- (\theta,\phi) \right) \bm{\hat{r}} \\
-		&\approx \iu kE_\mrm{A}^\pm \bm{\hat{r}}
+		&\approx \iu kE_\mrm{A}^\pm (\bm{r}, t) \bm{\hat{r}}
 	\end{split}
 	\end{equation*}
 	where the $1/r^2$ term was neglected. These results are inserted into the expression for the magnetic field, giving
 	\begin{equation*}
-		\bm{H}_\mrm{sc}^\pm = \frac{1}{\iu k \eta_0 \eta} (\iu kE_\mrm{A}^\pm \bm{\hat{r}} \times \bm{E}_{\mrm{i}0}) = \frac{E_\mrm{A}^\pm}{ \eta_0 \eta} \bm{\hat{r}} \times \bm{E}_{\mrm{i}0}
+		\bm{H}_\mrm{sc}^\pm (\bm{r}, t) = \frac{1}{\iu k \eta_0 \eta} (\iu kE_\mrm{A}^\pm (\bm{r}, t) \bm{\hat{r}} \times \bm{E}_{\mrm{i}0}) = \frac{E_\mrm{A}^\pm (\bm{r}, t)}{ \eta_0 \eta} \bm{\hat{r}} \times \bm{E}_{\mrm{i}0}
 	\end{equation*}
 	Now, the cross product with the electric field is calculated as
 	\begin{equation*}
-		\bm{E}_\mrm{sc}^\pm \times \bm{H}_\mrm{sc}^{\pm*} = E_\mrm{A}^\pm \bm{E}_{\mrm{i}0} \times \left( \frac{E_\mrm{A}^\pm}{ \eta_0 \eta} \bm{\hat{r}} \times \bm{E}_{\mrm{i}0} \right)^* = \frac{|E_\mrm{A}^\pm|^2}{\eta_0 \eta} \left( \bm{\hat{r}} (\bm{E}_{\mrm{i}0} \cdot \bm{E}_{\mrm{i}0}^*) - \bm{E}_{\mrm{i}0}^* (\bm{E}_{\mrm{i}0} \cdot \bm{\hat{r}}) \right)
+	\begin{split}
+		\bm{E}_\mrm{sc}^\pm (\bm{r}, t) \times \bm{H}_\mrm{sc}^{\pm} (\bm{r}, t)^* &= E_\mrm{A}^\pm (\bm{r}, t) \bm{E}_{\mrm{i}0} \times \left( \frac{E_\mrm{A}^\pm (\bm{r}, t)}{ \eta_0 \eta} \bm{\hat{r}} \times \bm{E}_{\mrm{i}0} \right)^* \\
+		&= \frac{|E_\mrm{A}^\pm (\bm{r}, t)|^2}{\eta_0 \eta} \left( \bm{\hat{r}} (\bm{E}_{\mrm{i}0} \cdot \bm{E}_{\mrm{i}0}^*) - \bm{E}_{\mrm{i}0}^* (\bm{E}_{\mrm{i}0} \cdot \bm{\hat{r}}) \right)
+	\end{split}
 	\end{equation*}
 	In the far-field $\bm{E}_\mrm{sc} \cdot \bm{\hat{r}} = 0$ \addref and since $\bm{E}_\mrm{sc} \parallel \bm{E}_{\mrm{i}0}$ the cross product is simplified to
 	\begin{equation*}
-		\bm{E}_\mrm{sc}^\pm \times \bm{H}_\mrm{sc}^{\pm*} = \frac{\bm{\hat{r}}}{\eta_0 \eta} |\bm{E}_{\mrm{i}0}|^2 |E_\mrm{A}^\pm (\bm{r},t)|^2
+		\bm{E}_\mrm{sc}^\pm (\bm{r}, t) \times \bm{H}_\mrm{sc}^{\pm} (\bm{r}, t)^* = \frac{\bm{\hat{r}}}{\eta_0 \eta} |\bm{E}_{\mrm{i}0}|^2 |E_\mrm{A}^\pm (\bm{r},t)|^2
 	\end{equation*}
 	The time-averaged Poynting vector is now calculated as
 	\begin{equation*}
-		\left< \bm{S}_\mrm{sc}^\pm \right> = \frac{1}{2}\mathrm{Re}\left\{ \bm{E}_\mrm{sc}^\pm \times \bm{H}_\mrm{sc}^{\pm*} \right\} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{\mrm{i}0}|^2 |E_\mrm{A}^\pm (\bm{r},t)|^2
+		\left< \bm{S}_\mrm{sc}^\pm \right> (\bm{r}) = \frac{1}{2}\mathrm{Re}\left\{ \bm{E}_\mrm{sc}^\pm (\bm{r}, t) \times \bm{H}_\mrm{sc}^{\pm} (\bm{r}, t)^* \right\} = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{\mrm{i}0}|^2 |E_\mrm{A}^\pm (\bm{r},t)|^2
 	\end{equation*}
 	where $|E_\mrm{A}^\pm (\bm{r},t)|^2$ is given by
 	\begin{equation*}
@@ -1159,14 +1165,14 @@
 	\end{equation*}
 	Now this is inserted into the time-average of the power density
 	\begin{equation*}
-		\left< \bm{S}_\mrm{sc}^\pm \right> = \bm{\hat{r}} \frac{P_\mrm{T} G_\mrm{T}}{4\pi R_\mrm{T}^2} \frac{\varepsilon_\mrm{r}^2 k^4 \mathfrak{p}^2 p_0^2}{64\pi^2 r^2 K^2} L_{x}^2 L_{y}^2 L_{z}^2 \Phi^\pm (\theta,\phi)^2
+		\left< \bm{S}_\mrm{sc}^\pm \right> (\bm{r}) = \bm{\hat{r}} \frac{P_\mrm{T} G_\mrm{T}}{4\pi R_\mrm{T}^2} \frac{\varepsilon_\mrm{r}^2 k^4 \mathfrak{p}^2 p_0^2}{64\pi^2 r^2 K^2} L_{x}^2 L_{y}^2 L_{z}^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
 	
 	Now the effects of the receiving antenna are considered. It is assumed that this antenna is optimally directed towards the scattering center. The received power is then
 	\begin{equation*}
-		P_\mrm{R}^\pm = \left| \left< \bm{S}_\mrm{sc}^\pm \right> \right| A_\mrm{e}
+		P_\mrm{R}^\pm = \left| \left< \bm{S}_\mrm{sc}^\pm \right> (R_\mrm{R}, \theta, \phi) \right| A_\mrm{e}
 	\end{equation*}
-	where $A_\mrm{e}$ is the effective area of the antenna, which can be rewritten as
+	where $R_\mrm{R}$ is the distance between the scattering center and the receiver, and the receiver is located in the direction $(\theta,\phi)$ as seen from the scattering center. $A_\mrm{e}$ is the effective area of the antenna, which can be rewritten as
 	\begin{equation*}
 		A_\mrm{e} = \frac{\lambda_\mrm{R}^2 G_\mrm{R}}{4\pi}
 	\end{equation*}
@@ -1174,7 +1180,7 @@
 	\begin{equation*}
 		P_\mrm{R}^\pm = \frac{\lambda_\mrm{R}^2 G_\mrm{R}}{4\pi} \frac{P_\mrm{T} G_\mrm{T}}{4\pi R_\mrm{T}^2} \frac{\varepsilon_\mrm{r}^2 k^4 \mathfrak{p}^2 p_0^2}{64\pi^2 R_\mrm{R}^2 K^2} L_{x}^2 L_{y}^2 L_{z}^2 \Phi^\pm (\theta,\phi)^2
 	\end{equation*}
-	where $R_\mrm{R}$ is the distance between the scattering center and the receiver, and the receiver is located in the direction $(\theta,\phi)$ as seen from the scattering center. For a more traditional bistatic radar equation \cite{Richards2012} this can be written as
+	For a more traditional bistatic radar equation \cite{Richards2012} this can be written as
 	\begin{equation*}
 		P_\mrm{R}^\pm = \frac{P_\mrm{T} G_\mrm{T} G_\mrm{R} \lambda_\mrm{R}^2 \sigma^\pm (\theta,\phi)}{(4\pi)^3 R_\mrm{T}^2 R_\mrm{R}^2}
 	\end{equation*}
@@ -1210,7 +1216,7 @@
 	\begin{figure}[h]
 		\centering
 		\resizebox{\textwidth}{!}{
-			\input{parallelogram.tikz}
+			\input{fig/parallelogram.tikz}
 		}
 		\caption{\label{fig:parallelogram} Parallelogram interaction region}
 	\end{figure}
@@ -1418,11 +1424,11 @@
 	\begin{figure}[h]
 		\centering
 		\begin{subfigure}{0.45\textwidth}
-			\input{braggcomparison+.tikz}
+			\input{fig/braggcomparison+.tikz}
 			\caption{+ case}
 		\end{subfigure}
 		\begin{subfigure}{0.45\textwidth}
-			\input{braggcomparison-.tikz}
+			\input{fig/braggcomparison-.tikz}
 			\caption{- case}
 		\end{subfigure}
 		\caption{\label{fig:bragg-comparison} Comparison of angles used in this model and angles of incidence and reflection. Both for the + and - cases.}

@@ -18,7 +18,9 @@ import scipy.interpolate as interp
 
 plt.close('all')
 
-savefigs = -1
+savefigs = 0
+
+dBm = 1
 
 # Read data and plot (+) or (-) scattering
 pm = -1
@@ -62,7 +64,6 @@ for i in range(0, len(alpha)):
 
 # Magnitude of the Poynting vector
 normS = np.sqrt(Sx**2 + Sy**2)
-scalS = Sx*np.cos(np.radians(260)) + Sy*np.sin(np.radians(260))
 
 # Calculate distances between all points (x,y) and construct an axis based on
 # arc length from theta = 0 to theta = 2*pi
@@ -74,14 +75,13 @@ arc = np.cumsum(dist, axis=0)
 # Integrate Poynting vector magnitude for all angles and plot against the
 # angle between wave vectors
 Stot = np.trapz(normS, x=arc, axis=0)
-Stot2 = np.trapz(scalS, x=arc, axis=0)
 
 plt.figure()
 plt.grid()
 plt.plot(alpha, Stot/Stot.max(), '.-')
 plt.title('Total scattered power (normalized)')
 plt.xlabel('$\\alpha$')
-plt.ylabel('P/P$_\\mathrm{max}$')
+plt.ylabel('$P_\\mathrm{sc}/P_\\mathrm{sc, max}$')
 
 # Adds degree sign to x ticks
 aloc = plt.xticks()[0]
@@ -91,7 +91,26 @@ plt.xticks(aloc, alab)
 # Save as pgf
 if(savefigs):
     plt.rcParams['axes.unicode_minus'] = False
-    plt.savefig('../Text/Report/angle-sweep-power(' + pmchar + ').pgf')
+    plt.savefig('../Text/Report/fig/angle-sweep-power(' + pmchar + ').pgf')
+
+# dBm version
+if(dBm):
+    plt.figure()
+    plt.grid()
+    plt.plot(alpha, 10*np.log10(Stot/1e-3), '.-')
+    plt.title('Total scattered power')
+    plt.xlabel('$\\alpha$')
+    plt.ylabel('$P_\\mathrm{sc}$ [dBm]')
+
+    # Adds degree sign to x ticks
+    aloc = plt.xticks()[0]
+    alab = [str(int(a)) + '$^\\circ$' for a in aloc]
+    plt.xticks(aloc, alab)
+
+    # Save as pgf
+    if(savefigs):
+        plt.rcParams['axes.unicode_minus'] = False
+        plt.savefig('../Text/Report/fig/angle-sweep-dBm(' + pmchar + ').pgf')
 
 # %% Plotting using propagation angle and not observation angle
 
@@ -128,7 +147,7 @@ plt.yticks(aloc, alab)
 # Save as pgf
 if(savefigs):
     plt.rcParams['axes.unicode_minus'] = False
-    plt.savefig('../Text/Report/angle-sweep-angles(' + pmchar + ').pgf')
+    plt.savefig('../Text/Report/fig/angle-sweep-angles(' + pmchar + ').pgf')
 
 # Plot Poynting vector magnitude for all PROPAGATION angles
 plt.figure()
@@ -153,7 +172,7 @@ plt.xticks(aloc, alab)
 # Save as pgf
 if(savefigs):
     plt.rcParams['axes.unicode_minus'] = False
-    plt.savefig('../Text/Report/angle-sweep-polar(' + pmchar + ').pgf')
+    plt.savefig('../Text/Report/fig/angle-sweep-polar(' + pmchar + ').pgf')
 
 # "Clean up" the data by removing all points with a Poynting vector magnitude
 # below 5 % of the mean

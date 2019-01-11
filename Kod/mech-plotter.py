@@ -19,6 +19,8 @@ plt.close('all')
 
 savefigs = 0
 
+dBm = 1
+
 # Bulk modulus
 rhos = np.arange(100, 410, 25)
 
@@ -67,12 +69,26 @@ plt.grid()
 plt.plot(rhos, Stot/Stot.max(), '.-')
 plt.title('Total scattered power (normalized)')
 plt.xlabel('$\\rho_0$ [kg/m$^3$]')
-plt.ylabel('P/P$_\\mathrm{max}$')
+plt.ylabel('$P_\\mathrm{sc}/P_\\mathrm{sc, max}$')
 
 # Save as pgf
 if(savefigs):
     plt.rcParams['axes.unicode_minus'] = False
-    plt.savefig('../Text/Report/mech-power.pgf')
+    plt.savefig('../Text/Report/fig/mech-power.pgf')
+
+# dBm version
+if(dBm):
+    plt.figure()
+    plt.grid()
+    plt.plot(rhos, 10*np.log10(Stot/1e-3), '.-')
+    plt.title('Total scattered power')
+    plt.xlabel('$\\rho_0$ [kg/m$^3$]')
+    plt.ylabel('$P_\\mathrm{sc}$ [dBm]')
+
+    # Save as pgf
+    if(savefigs):
+        plt.rcParams['axes.unicode_minus'] = False
+        plt.savefig('../Text/Report/fig/mech-dBm.pgf')
 
 # %% Plotting using propagation angle and not observation angle
 
@@ -93,8 +109,9 @@ plt.polar(propang, normS/normS.max())
 plt.polar(np.radians(260)*np.ones(2), np.arange(2), 'k:')
 plt.ylim([0, 1])
 plt.title('Poynting vector (time avg.), normalized magnitude ' +
-          '$\\left| \\left<\\mathbf{S}\\right> \\right|$ / ' +
-          '$\\left| \\left<\\mathbf{S}\\right> \\right|_\\mathrm{max}$\n')
+          '$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> \\right|$ / ' +
+          '$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> ' +
+          '\\right|_\\mathrm{max}$\n')
 plt.xlabel('$\\phi_\\mathrm{prop}$')
 plt.legend(rhos, title='$\\rho_0$ [kg/m$^3$]', bbox_to_anchor=(1.1, 0.5),
            loc='center left')
@@ -108,7 +125,7 @@ plt.xticks(aloc, alab)
 # Save as pgf
 if(savefigs):
     plt.rcParams['axes.unicode_minus'] = False
-    plt.savefig('../Text/Report/mech-polar.pgf')
+    plt.savefig('../Text/Report/fig/mech-polar.pgf')
 
 # "Clean up" the data by removing all points with a Poynting vector magnitude
 # below 5 % of the mean

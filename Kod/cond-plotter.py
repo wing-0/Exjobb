@@ -19,6 +19,8 @@ plt.close('all')
 
 savefigs = 0
 
+dBm = 1
+
 # Conductivities
 sigs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
@@ -70,12 +72,26 @@ plt.grid()
 plt.plot(sigs, Stot/Stot.max(), '.-')
 plt.title('Total scattered power (normalized)')
 plt.xlabel('$\sigma$ [S/m]')
-plt.ylabel('P/P$_\\mathrm{max}$')
+plt.ylabel('$P_\\mathrm{sc}/P_\\mathrm{sc, max}$')
 
 # Save as pgf
 if(savefigs):
     plt.rcParams['axes.unicode_minus'] = False
-    plt.savefig('../Text/Report/cond-power.pgf')
+    plt.savefig('../Text/Report/fig/cond-power.pgf')
+
+# dBm version
+if(dBm):
+    plt.figure()
+    plt.grid()
+    plt.plot(sigs, 10*np.log10(Stot/1e-3), '.-')
+    plt.title('Total scattered power')
+    plt.xlabel('$\sigma$ [S/m]')
+    plt.ylabel('$P_\\mathrm{sc}$ [dBm]')
+
+    # Save as pgf
+    if(savefigs):
+        plt.rcParams['axes.unicode_minus'] = False
+        plt.savefig('../Text/Report/fig/cond-dBm.pgf')
 
 # %% Plotting using propagation angle and not observation angle
 
@@ -96,8 +112,9 @@ plt.polar(propang, normS/normS.max())
 plt.polar(np.radians(260)*np.ones(2), np.arange(2), 'k:')
 plt.ylim([0, 1])
 plt.title('Poynting vector (time avg.), normalized magnitude ' +
-          '$\\left| \\left<\\mathbf{S}\\right> \\right|$ / ' +
-          '$\\left| \\left<\\mathbf{S}\\right> \\right|_\\mathrm{max}$\n')
+          '$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> \\right|$ / ' +
+          '$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> ' +
+          '\\right|_\\mathrm{max}$\n')
 plt.xlabel('$\\phi_\\mathrm{prop}$')
 plt.legend(sigs, title='$\sigma$ [S/m]', bbox_to_anchor=(1.1, 0.5),
            loc='center left')

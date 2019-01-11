@@ -328,6 +328,11 @@
 	\end{frame}
 	
 	\begin{frame}{Numeriska simuleringar}{Svep av vinkel $\alpha$, total spridningseffekt}
+		Storleken av poyntingvektorn integrerad över randen
+		\begin{equation*}
+		P_\mrm{sc} = \int_{C_\mrm{mb}} \left| \left< \bm{S}_\mrm{sc}^\pm \right> (\bm{r}) \right|  \, \mrm{d}l
+		\end{equation*}
+		\pause
 		\begin{columns}
 			\begin{column}{0.5\textwidth}
 				\begin{figure}
@@ -344,24 +349,150 @@
 				\end{figure}
 			\end{column}
 		\end{columns}
-		\todo{Fix integral, should not have $\bm{r}$ but instead something to denote the measurement boundary}
-		\begin{equation*}
-		P_\mrm{sc} = \int_{C_\mrm{mb}} \left| \left< \bm{S}_\mrm{sc}^\pm \right> (\bm{r}) \right|  \, \mrm{d}l
-		\end{equation*}
 	\end{frame}
 		
-	\begin{frame}{Numeriska simuleringar}{Defekt med elektromagnetisk kontrast}
-		content...
+	\begin{frame}{Numeriska simuleringar}{Defekt med elektromagnetisk kontrast, $\sigma = 10$ S/m}
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\begin{figure}
+					\centering
+					\begin{overprint}
+						\onslide<1>
+						\includegraphics[width=\textwidth]{../../Text/Report/fig/cond_fig_10_p.png}
+						\caption*{$p$}
+						
+						\onslide<2>
+						\includegraphics[width=\textwidth]{../../Text/Report/fig/cond_fig_10_diff.png}
+						\caption*{$E_{\mrm{sc}, z}^-$}
+					\end{overprint}
+				\end{figure}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{figure}
+					\centering
+					\begin{overprint}
+						\onslide<1>
+						\includegraphics[width=\textwidth]{../../Text/Report/fig/cond_fig_10_Ez.png}
+						\caption*{$E_{\mrm{i}, z}$}
+						
+						\onslide<2>
+						\includegraphics[width=\textwidth]{../../Text/Report/fig/cond_fig_10_power.png}
+						\caption*{$\left< \bm{S}_\mrm{sc}^- \right>$}
+					\end{overprint}
+				\end{figure}
+			\end{column}
+		\end{columns}
 	\end{frame}
 	
-	\begin{frame}{Numeriska simuleringar}{Defekt med mekanisk kontrast}
-		content...
+	\begin{frame}{Numeriska simuleringar}{Defekt med elektromagnetisk kontrast, total spridningseffekt}
+		\begin{figure}
+			\centering
+			\resizebox{!}{0.8\textheight}{\input{../../Text/Report/fig/cond-dBm.pgf}}
+			\caption*{$\omega + \Omega$}
+		\end{figure}
 	\end{frame}
 	
-	\section{Slutsatser}
+	\begin{frame}{Numeriska simuleringar}{Defekt med akustisk kontrast, $\rho_0 = 100$ kg/m$^2$}
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\begin{figure}
+					\centering
+					\begin{overprint}
+						\onslide<1>
+						\includegraphics[width=\textwidth]{../../Text/Report/fig/mech_fig_100_p.png}
+						\caption*{$p$}
+						
+						\onslide<2>
+						\includegraphics[width=\textwidth]{../../Text/Report/fig//mech_fig_100_diff.png}
+						\caption*{$E_{\mrm{sc}, z}^-$}
+					\end{overprint}
+				\end{figure}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{figure}
+					\centering
+					\begin{overprint}
+						\onslide<1>
+						\includegraphics[width=\textwidth]{../../Text/Report/fig//mech_fig_100_Ez.png}
+						\caption*{$E_{\mrm{i}, z}$}
+						
+						\onslide<2>
+						\includegraphics[width=\textwidth]{../../Text/Report/fig//mech_fig_100_power.png}
+						\caption*{$\left< \bm{S}_\mrm{sc}^- \right>$}
+					\end{overprint}
+				\end{figure}
+			\end{column}
+		\end{columns}
+	\end{frame}
 	
-	\begin{frame}{Slutsatser}
-		content...
+	\begin{frame}{Numeriska simuleringar}{Defekt med akustisk kontrast, $\rho_0 = 400$ kg/m$^2$}
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\begin{figure}
+					\centering
+					\begin{overprint}
+						\onslide<1>
+						\includegraphics[width=\textwidth]{../../Text/Report/fig/mech_fig_400_p.png}
+						\caption*{$p$}
+						
+						\onslide<2>
+						\includegraphics[width=\textwidth]{../../Text/Report/fig//mech_fig_400_diff.png}
+						\caption*{$E_{\mrm{sc}, z}^-$}
+					\end{overprint}
+				\end{figure}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{figure}
+					\centering
+					\begin{overprint}
+						\onslide<1>
+						\includegraphics[width=\textwidth]{../../Text/Report/fig//mech_fig_400_Ez.png}
+						\caption*{$E_{\mrm{i}, z}$}
+						
+						\onslide<2>
+						\includegraphics[width=\textwidth]{../../Text/Report/fig//mech_fig_400_power.png}
+						\caption*{$\left< \bm{S}_\mrm{sc}^- \right>$}
+					\end{overprint}
+				\end{figure}
+			\end{column}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}{Numeriska simuleringar}{Defekt med akustisk kontrast, total spridningseffekt}
+		\begin{figure}
+			\centering
+			\resizebox{!}{0.8\textheight}{\input{../../Text/Report/fig/mech-dBm.pgf}}
+			\caption*{$\omega + \Omega$}
+		\end{figure}
+	\end{frame}
+	
+	\section{Diskussion}
+	
+	\begin{frame}{Diskussion}{Sammanfattning och diskussion av resultat}
+		\begin{itemize}
+			\item Analytsisk modell ger korrekt villkor för fasmatchning
+			\pause
+			\item Både elektromagnetisk och akustisk kontrast påverkar interaktionen
+			\pause
+			\item Möjligheter för detektion av svag elektromagnetisk och akustisk kontrast
+			\pause
+			\item Upplösning kan vara ett problem
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Diskussion}{Framtida arbete}
+		\begin{itemize}
+			\item Experiment
+			\pause
+			\item Förbättra fotoelastisk modell
+			\pause
+			\item Undersöka möjligheter för OFP djupare
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\centering \huge
+		Frågor
 	\end{frame}
 
 \end{document}

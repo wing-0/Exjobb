@@ -20,7 +20,7 @@ plt.close('all')
 
 savefigs = 0
 
-dBm = 1
+dBm = 0
 
 # Read data and plot (+) or (-) scattering
 pm = -1
@@ -111,6 +111,64 @@ if(dBm):
     if(savefigs):
         plt.rcParams['axes.unicode_minus'] = False
         plt.savefig('../Text/Report/fig/angle-sweep-dBm(' + pmchar + ').pgf')
+
+# %% Comparison with analytical values (peak Poynting vector and Phi)
+
+# Wavelengths and wavenumbers
+la = 0.0028
+le = 2*la*np.cos(np.radians(opta))
+k = 2*np.pi/le
+q = 2*np.pi/la
+
+# Geometry
+r = 30*la
+angles_th = np.linspace(35, 45, 101)
+alpha_th = np.radians((180*(pm + 1)/2 - pm*angles_th))
+phi_th = np.linspace(0, 360, 721)
+phi_th = np.radians(phi_th)
+[alpha_m, phi_m] = np.meshgrid(alpha_th, phi_th)
+de = 8*le
+da = 8*la
+
+Lx = da#/np.sin(alpha_m)
+Ly = de
+
+# Cuboid phi, no z sinc
+Phi = (np.sinc(Lx/2/np.pi*(k - k*np.cos(phi_m) + pm*q*np.cos(alpha_m))) *
+       np.sinc(Ly/2/np.pi*(-k*np.sin(phi_m) + pm*q*np.sin(alpha_m))))
+
+# Parallelogram phi, no z sinc
+Phi_p = (np.sinc(da/2/np.pi/np.sin(alpha_m) *
+                 (k - k*np.cos(phi_m) + pm*q*np.cos(alpha_m))) *
+         np.sinc(de/2/np.pi/np.tan(alpha_m) *
+                 (k - k*(np.cos(phi_m) + np.sin(phi_m)*np.tan(alpha_m)) +
+                  pm*q*(np.cos(alpha_m) + np.sin(alpha_m)*np.tan(alpha_m)))))
+
+# Squared phi functions
+Phi2 = Phi**2 * Lx**2 * Ly**2
+Phi_p2 = Phi_p**2 * da**2 * de**2 / np.sin(alpha_m)**2
+
+# Plot peak scattered power
+plt.figure()
+plt.grid()
+plt.plot(alpha, normS.max(axis=0)/normS.max(), '.-')
+
+# Plot maximum of Phi^2 for both geometries
+plt.plot(angles_th, Phi2.max(axis=0)/Phi2.max(), '--')
+plt.plot(angles_th, Phi_p2.max(axis=0)/Phi_p2.max(), ':')
+
+plt.title('Peak scattered Poynting vector (normalized)')
+plt.xlabel('$\\alpha$')
+plt.ylabel('Normalized value')
+plt.legend(['$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> \\right|$' +
+            '$_\mathrm{max}$ (simulated)',
+            '$\Phi^2_\mathrm{max}$ (analytical cuboid)',
+            '$\Phi^2_\mathrm{p,max}$ (analytical parallelogram)'])
+
+# Save as pgf
+if(savefigs):
+    plt.rcParams['axes.unicode_minus'] = False
+    plt.savefig('../Text/Report/fig/angle-sweep-peak(' + pmchar + ').pgf')
 
 # %% Plotting using propagation angle and not observation angle
 

@@ -1,4 +1,4 @@
-\documentclass[11pt]{beamer}
+\documentclass[11pt, final]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -36,9 +36,12 @@
 	\newcommand{\eu}{\mrm{e}}
 	\newcommand{\iu}{\mrm{i}}	
 	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% Räkna 5 min bakgrund, 6 min teori, 6 min simuleringar, 3 min diskussion
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\author{Niklas Wingren}
 	\title[Akusto-elektromagnetisk växelverkan]{Akusto-elektromagnetisk växelverkan i material}
-	\subtitle{saker}
+	\subtitle{Examensarbete i teoretisk elektroteknik}
 	\date{2019-01-15}
 	\frame[plain]{\maketitle}
 	
@@ -56,17 +59,16 @@
 	
 	\begin{frame}{Bakgrund}{Oförstörande provning}
 		\begin{itemize}
-			\item Elektromagnetiska och akustiska fenomen används separat inom oförstörande provning
+			\item Elektromagnetiska och akustiska fenomen används separat inom oförstörande provning (OFP)
 			\begin{itemize}
 				\pause
-				\item Ultraljudsmetoder etablerade sedan länge
-				\pause
-				\item Mikrovågs/mm-vågsavbildning relativt nytt
+				\item Ultraljudstestning
+				\item Mikrovågs/mm-vågsavbildning
 			\end{itemize}
 			\pause
 			\item Kombination kan ge mer information
 			\pause
-			\item Kunskap om möjliga interaktionsmekanismer krävs
+			\item Kunskap om möjliga mekanismer för växelverkan krävs
 		\end{itemize}
 	\end{frame}
 	
@@ -74,17 +76,17 @@
 		\begin{columns}
 			\begin{column}{0.6\textwidth}
 				\begin{itemize}
-					\item<1-> Interaktion mellan vågor i storleksordningarna ultraljud och optik
-					\item<2-> Akustisk våg ger periodiskt störning i brytningsindex
-					\item<3-> Konstruktiv interferens vid givet villkor (Braggvillkor) fasmatchning
+					\item<1-> Växelverkan mellan ultraljud och laser
+					\item<2-> Akustisk våg ger periodisk störning i brytningsindex
+					\item<3-> Fasmatchning vid givet villkor (Braggvillkor)
 					\begin{equation*}
 						\sin{\theta_B} = \frac{\lambda}{2\Lambda}
 					\end{equation*}
-					\item<4-> Används inom fotonik för modulatorer, filter etc.
+					\item<4-> Används inom fotonik för manipulation av laserstrålar
 				\end{itemize}
 			\end{column}
 			\begin{column}{0.4\textwidth}
-				\uncover<2->{
+				\uncover<3->{
 					\resizebox{\textwidth}{!}{
 						\input{../../Text/Report/fig/acousto-optics.tikz}
 					}
@@ -97,44 +99,25 @@
 		\begin{itemize}
 			\item Radio Acoustic Sounding System
 			\pause
-			\item Storleksordning MHz - GHz (EM) och hörbart ljud
+			\item Meteorologi
 			\pause
-			\item Samma mekanism för interaktion som akusto-optik
+			\item Samma mekanism för växelverkan som akusto-optik
 			\pause
-			\item Temperatur påverkar Braggvillkor genom akustisk våglängd
+			\item Storleksordning hörbart ljud och radio (MHz - GHz)
 			\pause
 			\item Används för att mäta temperaturprofiler i atmosfären
 		\end{itemize}
 	\end{frame}
 
-	\begin{frame}{Bakgrund}{Lokaliserad harmonisk rörelse}
-		\begin{itemize}
-			\item<1-> Lokaliserad vibration genom akustisk strålningskraft
-		\end{itemize}
-		\begin{columns}
-			\begin{column}{0.45\textwidth}
-				\begin{itemize}
-					\item<2-> Ultraljud amplitudmoduleras lokalt
-					\item<3-> Elektromagnetisk frekvens skiftas med vibrationsfrekvens
-				\end{itemize}
-			\end{column}
-			\begin{column}{0.3\textwidth}
-				\uncover<2->{
-					\resizebox{!}{0.5\textheight}{
-						\input{../../Text/Report/fig/LHM-crossing.tikz}
-					}
-				}
-			\end{column}
-			\hspace{0.05\textwidth}
-			\begin{column}{0.2\textwidth}
-				\uncover<2->{
-					\resizebox{!}{0.5\textheight}{
-						\input{../../Text/Report/fig/LHM-focused.tikz}
-					}
-				}
-			\end{column}
-		\end{columns}
-	\end{frame}
+%	\begin{frame}{Bakgrund}{Lokaliserad harmonisk rörelse}
+%		\begin{itemize}
+%			\item Lokaliserad vibration genom akustisk strålningskraft
+%			\pause
+%			\item Ultraljud amplitudmoduleras lokalt
+%			\pause
+%			\item Elektromagnetisk frekvens skiftas med vibrationsfrekvens
+%		\end{itemize}
+%	\end{frame}
 	
 	\section{Teori}
 	
@@ -142,17 +125,15 @@
 		\begin{itemize}
 			\item Tensorrelation mellan töjning och dielektrisk störning
 			\pause
-			\item Isotropisk skalär modell
+			\item Isotropisk skalär modell för akustiskt tryck
 			\begin{equation*}
-				\varepsilon_1 = \frac{\varepsilon_\mrm{r}^2 \mathfrak{p}}{K} \,p
+				\varepsilon = \varepsilon_0 (\varepsilon_\mrm{r} + \varepsilon_1), \qquad \varepsilon_1 = \frac{\varepsilon_\mrm{r}^2 \mathfrak{p}}{K} \,p
 			\end{equation*}
 			\pause
 			\item Enkel modell för fotoelastisk konstant
 			\begin{equation*}
 				\mathfrak{p} = \frac{(\varepsilon_\mrm{r} - 1)(\varepsilon_\mrm{r} + 2)}{3\varepsilon_\mrm{r}^2}
 			\end{equation*}
-			\pause
-			\item Stämmer överens med modell från litteratur (i luft)
 		\end{itemize}
 	\end{frame}
 	
@@ -199,14 +180,9 @@
 		\resizebox{!}{0.6\textheight}{
 			\input{../../Text/Report/fig/scatteringgeom.tikz}
 		}
+		
 		\pause
-		\begin{equation*}
-			\begin{array}{ll}
-				&\bm{E}_\mrm{i} (\bm{r}',t) = \bm{E}_\mrm{i} (\bm{r}') = \bm{E}_{\mrm{i}0} \eu^{\iu \bm{k}\cdot\bm{r}'} \\
-				&\varepsilon_1 (\bm{r}',t) = \frac{\varepsilon_\mrm{r}^2 \mathfrak{p}}{K} p_0 \cos(\bm{q} \cdot \bm{r}' - \Omega t)
-			\end{array}
-			\text{ nära origo. Polarisation } \bm{E}_{i0} \parallel \bm{\hat{z}}
-		\end{equation*}
+		Plana vågor nära origo. Polarisation $\bm{E}_\mrm{i} \parallel \bm{\hat{z}}$
 	\end{frame}
 	
 	\begin{frame}{Teori}{Radarekvation - plana vågor}
@@ -216,7 +192,6 @@
 			\begin{equation*}
 				\bm{E}_\mrm{sc} (\bm{r},t) = \bm{E}_{\mrm{i}0} \left( E_\mrm{A}^+ (\bm{r},t) + E_\mrm{A}^- (\bm{r},t) \right)
 			\end{equation*}
-			\pause
 			\begin{equation*}
 				E_\mrm{A}^\pm (\bm{r},t) = \frac{\varepsilon_\mrm{r}k^2 \eu^{\iu kr} \mathfrak{p} p_0}{8\pi r K} L_{x} L_{y} L_{z} e^{\mp \iu \Omega t} \Phi^\pm (\theta,\phi)
 			\end{equation*}
@@ -250,18 +225,21 @@
 				\item ''Electromagnetic Waves, Frequency Domain''
 			\end{itemize}
 			\pause
+			\item Cirkulär geometri i 2D
+			\item Randvillkor simulerar öppen rand
+			\pause
+			\item Fasmatchning vid $\alpha = 40^\circ$ (-) och $\alpha = 140^\circ$ (+)
+			\pause
+			\item Studier:
+			\begin{itemize}
+				\item Svep av vinkel $\alpha$
+				\item Defekt med elektrisk kontrast
+				\item Defekt med akustisk kontrast
+			\end{itemize}
 		\end{itemize}
-		\begin{columns}
-			\begin{column}{0.5\textwidth}
-				\resizebox{\textwidth}{!}{\input{../../Text/Report/fig/sim-geometry-Ac.tikz}}
-			\end{column}
-			\begin{column}{0.5\textwidth}
-				\resizebox{\textwidth}{!}{\input{../../Text/Report/fig/sim-geometry-EM.tikz}}
-			\end{column}
-		\end{columns}
 	\end{frame}
 	
-	\begin{frame}{Numeriska simuleringar}{Svep av vinkel $\alpha$, frekvens $\omega - \Omega$}
+	\begin{frame}{Numeriska simuleringar}{$\alpha = 40^\circ$, Frekvensskift $-\Omega$}
 		\begin{columns}
 			\begin{column}{0.5\textwidth}
 				\begin{figure}
@@ -294,7 +272,7 @@
 		\end{columns}
 	\end{frame}
 	
-	\begin{frame}{Numeriska simuleringar}{Svep av vinkel $\alpha$, frekvens $\omega + \Omega$}
+	\begin{frame}{Numeriska simuleringar}{$\alpha = 140^\circ$, Frekvensskift $+\Omega$}
 		\begin{columns}
 			\begin{column}{0.5\textwidth}
 				\begin{figure}
@@ -306,7 +284,7 @@
 						
 						\onslide<2>
 						\includegraphics[width=\textwidth]{../../Text/Report/fig/anglesweep(+)_fig_40_diff.png}
-						\caption*{$E_{\mrm{sc}, z}^-$}
+						\caption*{$E_{\mrm{sc}, z}^+$}
 					\end{overprint}
 				\end{figure}
 			\end{column}
@@ -320,7 +298,7 @@
 						
 						\onslide<2>
 						\includegraphics[width=\textwidth]{../../Text/Report/fig/anglesweep(+)_fig_40_power.png}
-						\caption*{$\left< \bm{S}_\mrm{sc}^- \right>$}
+						\caption*{$\left< \bm{S}_\mrm{sc}^+ \right>$}
 					\end{overprint}
 				\end{figure}
 			\end{column}
@@ -338,14 +316,14 @@
 				\begin{figure}
 					\centering
 					\resizebox{\textwidth}{!}{\input{../../Text/Report/fig/angle-sweep-dBm(-).pgf}}
-					\caption*{$\omega - \Omega$}
+					\caption*{Frekvensskift $-\Omega$}
 				\end{figure}
 			\end{column}
 			\begin{column}{0.5\textwidth}
 				\begin{figure}
 					\centering
 					\resizebox{\textwidth}{!}{\input{../../Text/Report/fig/angle-sweep-dBm(+).pgf}}
-					\caption*{$\omega + \Omega$}
+					\caption*{Frekvensskift $+ \Omega$}
 				\end{figure}
 			\end{column}
 		\end{columns}
@@ -356,29 +334,15 @@
 			\begin{column}{0.5\textwidth}
 				\begin{figure}
 					\centering
-					\begin{overprint}
-						\onslide<1>
-						\includegraphics[width=\textwidth]{../../Text/Report/fig/cond_fig_10_p.png}
-						\caption*{$p$}
-						
-						\onslide<2>
-						\includegraphics[width=\textwidth]{../../Text/Report/fig/cond_fig_10_diff.png}
-						\caption*{$E_{\mrm{sc}, z}^-$}
-					\end{overprint}
+					\includegraphics[width=\textwidth]{../../Text/Report/fig/cond_fig_10_p.png}
+					\caption*{$p$}
 				\end{figure}
 			\end{column}
 			\begin{column}{0.5\textwidth}
 				\begin{figure}
 					\centering
-					\begin{overprint}
-						\onslide<1>
-						\includegraphics[width=\textwidth]{../../Text/Report/fig/cond_fig_10_Ez.png}
-						\caption*{$E_{\mrm{i}, z}$}
-						
-						\onslide<2>
-						\includegraphics[width=\textwidth]{../../Text/Report/fig/cond_fig_10_power.png}
-						\caption*{$\left< \bm{S}_\mrm{sc}^- \right>$}
-					\end{overprint}
+					\includegraphics[width=\textwidth]{../../Text/Report/fig/cond_fig_10_Ez.png}
+					\caption*{$E_{\mrm{i}, z}$}
 				\end{figure}
 			\end{column}
 		\end{columns}
@@ -392,67 +356,20 @@
 		\end{figure}
 	\end{frame}
 	
-	\begin{frame}{Numeriska simuleringar}{Defekt med akustisk kontrast, $\rho_0 = 100$ kg/m$^2$}
+	\begin{frame}{Numeriska simuleringar}{Defekt med akustisk kontrast, $\rho_0 = 100$ kg/m$^3$}
 		\begin{columns}
 			\begin{column}{0.5\textwidth}
 				\begin{figure}
 					\centering
-					\begin{overprint}
-						\onslide<1>
-						\includegraphics[width=\textwidth]{../../Text/Report/fig/mech_fig_100_p.png}
-						\caption*{$p$}
-						
-						\onslide<2>
-						\includegraphics[width=\textwidth]{../../Text/Report/fig//mech_fig_100_diff.png}
-						\caption*{$E_{\mrm{sc}, z}^-$}
-					\end{overprint}
+					\includegraphics[width=\textwidth]{../../Text/Report/fig/mech_fig_100_p.png}
+					\caption*{$p$}
 				\end{figure}
 			\end{column}
 			\begin{column}{0.5\textwidth}
 				\begin{figure}
 					\centering
-					\begin{overprint}
-						\onslide<1>
-						\includegraphics[width=\textwidth]{../../Text/Report/fig//mech_fig_100_Ez.png}
-						\caption*{$E_{\mrm{i}, z}$}
-						
-						\onslide<2>
-						\includegraphics[width=\textwidth]{../../Text/Report/fig//mech_fig_100_power.png}
-						\caption*{$\left< \bm{S}_\mrm{sc}^- \right>$}
-					\end{overprint}
-				\end{figure}
-			\end{column}
-		\end{columns}
-	\end{frame}
-	
-	\begin{frame}{Numeriska simuleringar}{Defekt med akustisk kontrast, $\rho_0 = 400$ kg/m$^2$}
-		\begin{columns}
-			\begin{column}{0.5\textwidth}
-				\begin{figure}
-					\centering
-					\begin{overprint}
-						\onslide<1>
-						\includegraphics[width=\textwidth]{../../Text/Report/fig/mech_fig_400_p.png}
-						\caption*{$p$}
-						
-						\onslide<2>
-						\includegraphics[width=\textwidth]{../../Text/Report/fig//mech_fig_400_diff.png}
-						\caption*{$E_{\mrm{sc}, z}^-$}
-					\end{overprint}
-				\end{figure}
-			\end{column}
-			\begin{column}{0.5\textwidth}
-				\begin{figure}
-					\centering
-					\begin{overprint}
-						\onslide<1>
-						\includegraphics[width=\textwidth]{../../Text/Report/fig//mech_fig_400_Ez.png}
-						\caption*{$E_{\mrm{i}, z}$}
-						
-						\onslide<2>
-						\includegraphics[width=\textwidth]{../../Text/Report/fig//mech_fig_400_power.png}
-						\caption*{$\left< \bm{S}_\mrm{sc}^- \right>$}
-					\end{overprint}
+					\includegraphics[width=\textwidth]{../../Text/Report/fig//mech_fig_100_Ez.png}
+					\caption*{$E_{\mrm{i}, z}$}
 				\end{figure}
 			\end{column}
 		\end{columns}
@@ -472,9 +389,9 @@
 		\begin{itemize}
 			\item Analytsisk modell ger korrekt villkor för fasmatchning
 			\pause
-			\item Både elektromagnetisk och akustisk kontrast påverkar interaktionen
+			\item Både elektromagnetisk och akustisk kontrast påverkar spridningseffekt
 			\pause
-			\item Möjligheter för detektion av svag elektromagnetisk och akustisk kontrast
+			\item Kombination av elektromagnetisk och akustisk kontrast intressant
 			\pause
 			\item Upplösning kan vara ett problem
 		\end{itemize}
@@ -485,6 +402,8 @@
 			\item Experiment
 			\pause
 			\item Förbättra fotoelastisk modell
+			\pause
+			\item Undersöka andra mekanismer för växelverkan djupare
 			\pause
 			\item Undersöka möjligheter för OFP djupare
 		\end{itemize}

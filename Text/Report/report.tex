@@ -634,6 +634,39 @@
 	This is quite similar to the cuboid result, with the differences being in the interaction volume factor $d_\mrm{a} d_\mrm{e} L_{z}/\sin{\alpha}$ instead of $L_x L_y L_z$ in $E_\mrm{A}$ and the function for angular dependence $\Phi^\pm$. This result is easily transferable to power and SNR quantities. It can be shown (see appendix \ref{sec:app-derivations-bragg-refined}) that the same conditions for maximum scattering hold for this refined interaction region as for the cuboid interaction region, i.e. equations \eqref{eq:an-bragg-theta}, \eqref{eq:an-bragg-alpha} and \eqref{eq:an-bragg-phi}.
 	\todoext{Write explicit equations for power and SNR}
 	
+	\subsection{2D solution}
+	When comparing analytical results to simulation results it is important to use the same assumptions for both. In the analytical derivations, 3D space has been assumed while simulations are done in 2D. To be able to compare results, a 2D solution to the problem was calculated. Much of the derivations are similar, and only the results are shown here (see appendix \ref{sec:app-derivations-2d} for full derivations). The Poynting vector of the scattered field in 2D can be written as (see appendix \ref{sec:app-derivations-2d})
+	\begin{equation}
+		\left< \bm{S}_\mrm{sc,2D}^\pm \right> (\bm{r}) = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{\mrm{i}0}|^2 |E_\mrm{A,2D}^\pm (\bm{r},t)|^2
+		\label{eq:an-2d-power-cuboid}
+	\end{equation}
+	where $|E_\mrm{A,2D}^\pm (\bm{r},t)|^2$ is given by
+	\begin{equation*}
+		|E_\mrm{A,2D}^\pm (\bm{r},t)|^2 = \frac{\varepsilon_\mrm{r}^2 k^3 \mathfrak{p}^2 p_0^2}{8\pi r K^2} L_{x}^2 L_{y}^2 \Phi_\mrm{2D}^\pm (\theta,\phi)^2
+	\end{equation*}
+	and
+	\begin{equation*}
+		\Phi_\mrm{2D}^\pm (\theta,\phi) = \text{sinc} \left( \frac{L_{x}}{2\pi} ( k - k\cos{\phi} \pm q\cos{\alpha} ) \right) \text{sinc} \left( \frac{L_{y}}{2\pi} ( - k\sin{\phi} \pm q\sin{\alpha} ) \right)
+	\end{equation*}
+	As for the 3D solution, the interaction region can be refined using a parallelogram geometry. This leads to the Poynting vector (see appendix \ref{sec:app-derivations-2d})
+	\begin{equation}
+		\left< \bm{S}_\mrm{sc,2D,p}^\pm \right> (\bm{r}) = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{\mrm{i}0}|^2 |E_\mrm{A,2D,p}^\pm (\bm{r},t)|^2
+		\label{eq:an-2d-power-parallelogram}
+	\end{equation}
+	where $|E_\mrm{A,2D,p}^\pm (\bm{r},t)|^2$ is given by
+	\begin{equation*}
+		|E_\mrm{A,2D,p}^\pm (\bm{r},t)|^2 = \frac{\varepsilon_\mrm{r}^2 k^3 \mathfrak{p}^2 p_0^2}{8\pi r K^2} \frac{d_\mrm{a}^2 d_\mrm{e}^2}{\sin^2{\alpha}} \Phi_\mrm{2D}^\pm (\theta,\phi)^2
+	\end{equation*}
+	and
+	\begin{equation*}
+	\begin{split}
+		\Phi_\mrm{2D,p}^\pm (\theta,\phi) = &\text{sinc}\left( \frac{d_\mrm{a}}{2\pi \sin{\alpha}}(k - k\cos{\phi} \pm q\cos{\alpha}) \right) \\
+		\cdot &\text{sinc}\left( \frac{d_\mrm{e}}{2\pi \tan{\alpha}}
+		(k - k(\cos{\phi} + \sin{\phi}\tan{\alpha}) \pm q(\cos{\alpha} + \sin{\alpha}\tan{\alpha})) \right)
+	\end{split}
+	\end{equation*}
+	
+	
 	\chapter{Numerical Simulation}
 	
 	\section{Overview}
@@ -737,8 +770,8 @@
 	\subsection{Post-processing}
 	The simulation results were further processed in SciPy for better visualization of the results than what was possible in COMSOL. The $E_z$, $H_x$ and $H_y$ fields (both with and without photoelastic perturbation) on the domain boundary were exported from COMSOL and loaded in SciPy. The differences between the fields were calculated to obtain the scattered fields. The time-averaged Poynting vector (for scattered fields) was then calculated as
 	\begin{align*}
-	\left< S_{\mrm{sc},x} \right> &= -\frac{1}{2} \text{Re} \{ E_{\mrm{sc},z} H_{\mrm{sc},y}^* \} \\
-	\left< S_{\mrm{sc},y} \right> &= \frac{1}{2} \text{Re} \{ E_{\mrm{sc},z} H_{\mrm{sc},x}^* \}
+		\left< S_{\mrm{sc},x} \right> &= -\frac{1}{2} \text{Re} \{ E_{\mrm{sc},z} H_{\mrm{sc},y}^* \} \\
+		\left< S_{\mrm{sc},y} \right> &= \frac{1}{2} \text{Re} \{ E_{\mrm{sc},z} H_{\mrm{sc},x}^* \}
 	\end{align*}
 	Due to it being easier to visualize, the magnitude of the time-averaged Poynting vector was also calculated. Using the $x$ and $y$ coordinates, the observation angle $\phi_\mrm{obs}$ for each point was calculated and the data was sorted according to this. A measure for the total scattered power was calculated by integrating the magnitude of the time-averaged Poynting vector over the entire boundary. This was done using the trapezoidal method with the distances between points calculated from the coordinates.
 	
@@ -762,6 +795,8 @@
 		
 	\section{Comparison with Analytical Model - Angles}
 	To compare with the results from section \ref{sec:analytical-radar} the frequencies of the acoustic and electromagnetic waves were matched to a Bragg angle of $40^\circ$ while the angle $\alpha$ between the wavevectors was swept between $\pm 5^\circ$ of the optimal angle. This was done both for (+) and (-) scattering by sweeping around either $\alpha = 40^\circ$ or $\alpha = 140^\circ$, as these angles are the ones given by equation \eqref{eq:an-bragg-alpha} as angles for maximum scattering.
+	
+	The maximum Poynting vector magnitude was calculated for each $\alpha$ and plotted against this angle. This was done to find the angle $\alpha$ giving maximum scattering. For comparison, the 2D versions of Poynting vector were also plotted for both cuboid and parallelogram geometries using equation \eqref{eq:an-2d-power-cuboid} and \eqref{eq:an-2d-power-parallelogram}. The dimensions were selected such that $d_\mrm{a}$ was the acoustic aperture width, $d_\mrm{e}$ the electrical aperture width and $L_x = d_\mrm{e}$, $L_y = d_\mrm{a}$. \todo{Write about how the pressure and electric field amplitudes were selected (from COMSOL and using a plane wave equivalent power correction factor)}
 	
 	\section{Comparision with Analytical Model - Power}
 	\todoext{Not correct, 2D version of the derivations should be done to compare with COMSOL results}
@@ -800,17 +835,17 @@
 		\centering
 		\begin{subfigure}{\textwidth}
 			\resizebox{\textwidth}{!}{
-				\input{fig/angle-sweep-peak(-).pgf}
+				\input{fig/angle-sweep-peak-an(-).pgf}
 			}
 			\caption{(-) case}
 		\end{subfigure}
-		%		\begin{subfigure}{\textwidth}
-		%			\resizebox{\textwidth}{!}{
-		%				\input{fig/angle-sweep-peak(+).pgf}
-		%			}
-		%			\caption{(+) case}
-		%		\end{subfigure}
-		\caption{\label{fig:res-angle-sweep-peak} Peak value of Poynting vector magnitude for different angles $\alpha$. Analytical equivalents plotted for both cuboid and parallelogram geometries using $\Phi^2$. Normalized by maximum values.}
+		\begin{subfigure}{\textwidth}
+			\resizebox{\textwidth}{!}{
+				\input{fig/angle-sweep-peak-an(+).pgf}
+			}
+			\caption{(+) case}
+		\end{subfigure}
+		\caption{\label{fig:res-angle-sweep-peak} Peak value of Poynting vector magnitude for different angles $\alpha$. Analytical equivalents plotted for both cuboid and parallelogram geometries.}
 	\end{figure}
 	Figure \ref{fig:res-angle-sweep-peak} shows that the peak photelastically scattered Poynting vector magnitude was maximized at an angle $\alpha = 40^\circ$ for (-) scattering (negative frequency shift) and at $\alpha = 140^\circ$ for (+) scattering (positive frequency shift). Analytically, the angular dependence in the Poynting vector magnitude is found entirely in $\Phi^2$ (and the interaction region for the parallelogram model). The peak of $\Phi^2$ is plotted in the same figure for both interaction regions for comparison. It can be seen that the peak of the curves is at the same angle $\alpha$ for the simulated values and both analytical models. As described in the numerical simulations chapter \todoint{Add reference to section}, the wavelengths were selected such that these angles would maximize the scattering. This was done using equation \eqref{eq:an-bragg-alpha}, and it is clear that the results presented in figure \ref{fig:res-angle-sweep-peak} are in agreement with this equation. However, further from the peak value the simulation results deviate from both analytical models. This could be due to the interaction region not being refined enough, but one factor which might play a part is that of spherical waves. The analytical model is based entirely on plane waves, which means that a suboptimal angle $\alpha$ should not lead to much interaction. The simulation, on the other hand, uses more realistic wave propagation with spherical waves. A spherical wave can be decomposed into a sum of plane waves with different propagation direction. This essentially means that the condition in equation \eqref{eq:an-bragg-alpha} is satisfied for every angle $\alpha$ for some combination of plane wave components. However, the plane wave components have different amplitudes and the strongest components are the ones with the same propagation direction as the original beams. These components are the same as those used in the analytical models, which explains why the peak in figure \ref{fig:res-angle-sweep-peak} is the same for all curves.
 	\todoext{Add plot for (+) scattering in fig 6.1. Also describe that part better both here and in the "Numerical Simulations" chapter (this was added quite late). The parameters used in the Phi functions for interaction region should also be presented beforehand (and maybe tweaked a bit). The asymmetry of the simulated data should also be discussed (it is probably related to the interaction region being larger for smaller $\alpha$, but also the asymmetry of the problem itself. Might be explainable if considering the beams as a sum of plane waves.}
@@ -858,17 +893,17 @@
 		\centering
 		\begin{subfigure}{\textwidth}
 			\resizebox{\textwidth}{!}{
-				\input{fig/angle-sweep-dBm(-).pgf}
+				\input{fig/angle-sweep-power-an(-).pgf}
 			}
 			\caption{(-) case}
 		\end{subfigure}
 		\begin{subfigure}{\textwidth}
 			\resizebox{\textwidth}{!}{
-				\input{fig/angle-sweep-dBm(+).pgf}
+				\input{fig/angle-sweep-power-an(+).pgf}
 			}
 			\caption{(+) case}
 		\end{subfigure}
-		\caption{\label{fig:res-angle-sweep-power} Poynting vector magnitude integrated over measurement boundary for different angles $\alpha$.}
+		\caption{\label{fig:res-angle-sweep-power} Poynting vector magnitude integrated over measurement boundary for different angles $\alpha$. Analytical equivalents plotted for both cuboid and parallelogram geometries.}
 	\end{figure}
 	Figure \ref{fig:res-angle-sweep-power} shows that the peak photelastically scattered Power was maximized at an angle $\alpha = 40^\circ$ for (-) scattering (negative frequency shift) and at $\alpha = 140^\circ$ for (+) scattering (positive frequency shift). This shows that the angle $\alpha$ which maximizes the peak value of the Poynting vector magnitude also maximizes the total photoelastically scattered power.
 	\todoext{Include plot of the analytically calculated total power. This requires 2D derivations of the radar equation since the simulations are done in 2D and the radar equation is in 3D.}
@@ -1014,7 +1049,7 @@
 	\begin{equation*}
 		\nabla^2\bm{E}_\mrm{sc} + k^2 \bm{E}_\mrm{sc} =	-k^2 \frac{\varepsilon_1}{\varepsilon_\mrm{r}} \bm{E}_\mrm{i} -\frac{1}{\varepsilon_\mrm{r}}\nabla(\bm{E}_\mrm{i} \cdot \nabla \varepsilon_1) - \frac{2\iu k}{c\varepsilon_0\varepsilon_\mrm{r}} \frac{\partial (\varepsilon \bm{E}_\mrm{i})}{\partial t} + \frac{1}{c^2 \varepsilon_0 \varepsilon_\mrm{r}} \frac{\partial^2 (\varepsilon \bm{E}_\mrm{i})}{\partial t^2}
 	\end{equation*}
-	This is an inhomogeneous Helmholtz equation which under a Sommerfeld radiation condition has the solution \addref
+	This is an inhomogeneous Helmholtz equation which in three dimensions, and under a Sommerfeld radiation condition has the solution \addref
 	\begin{equation*}
 	\begin{split}
 		\bm{E}_\mrm{sc}(\bm{r},t) =& \int_{V_\mrm{sc}} \frac{\eu^{\iu k |\bm{r}-\bm{r'}| }}{4\pi |\bm{r}-\bm{r'}|} \\
@@ -1370,6 +1405,76 @@
 	For the major results of the derivations in section \ref{sec:app-derivations-radar}, the interaction region is easily changed from cuboid to beam-based. The geometry only matters in the calculation of the integral, so the only necessary changes are from there. This means that the interaction volume needs to be changed from $L_{x} L_{y} L_{z}$ to $d_\mrm{a} d_\mrm{e} L_{z}/\sin{\alpha}$ and the function $\Phi^\pm$ changed to $\Phi_\mrm{p}^\pm$. The same expressions as before for electric fields, received power, SNR, etc. can be used if these changes are made.
 	
 	\todoext{Write explicit equations for field, power and SNR quantities.}
+	
+	\section{2D derivations} \label{sec:app-derivations-2d}
+	The derivations leading to the radar equation in appendix \ref{sec:app-derivations-scatter} and \ref{sec:app-derivations-radar} are based on the assumption of three dimensional space. While this is reasonable for modeling reality, simulations are often done in two dimensions for computational speed and simplicity. If the analytical model is to be compared with 2D simulation results, a 2D analytical model is necessary. The first thing to identify in order to achieve this goal is where the first assumption of 3D space is done. This is in the solution of the inhomogeneous Helmholtz equation, so that is where this 2D derivation must start. It is assumed that the condition $v/c << |\varepsilon_1|/\varepsilon_\mrm{r}$ holds, which allows for some terms to be ignored (see appendix \ref{sec:app-derivations-scatter-approx}), giving
+	\begin{equation*}
+		\nabla^2\bm{E}_\mrm{sc} + k^2 \bm{E}_\mrm{sc} = \\
+		-k^2 \frac{\varepsilon_1}{\varepsilon_\mrm{r}} \bm{E}_\mrm{i} -\frac{1}{\varepsilon_\mrm{r}}\nabla(\bm{E}_\mrm{i} \cdot \nabla \varepsilon_1)
+	\end{equation*}
+	This has a similar solution in 2D as in 3D, but with a different Green's function. The solution to this in two dimensions, and under a Sommerfeld radiation condition \addref is instead
+	\begin{equation*}
+	\begin{split}
+		\bm{E}_\mrm{sc,2D}(\bm{r},t) = \frac{1}{\varepsilon_\mrm{r}} \int_{S_\mrm{sc}} & \frac{\iu}{4} H_0^{(1)}( k |\bm{r}-\bm{r'}|) \\
+		&\cdot \left( k^2 \bm{E}_\mrm{i} (\bm{r'},t) \varepsilon_1 (\bm{r'},t) + \nabla (\bm{E}_\mrm{i} (\bm{r'},t) \cdot \nabla \varepsilon_1 (\bm{r'},t)) \right) \mathrm{d}s'
+	\end{split}
+	\end{equation*}
+	where $H_0^{(1)}$ is a Hankel function. The same geometry as in \ref{sec:app-derivations-radar-sol} can now be used to calculate the scattered field (see figure \ref{fig:app-radar-geom}). The change is that the interaction region is now limited to the $xy$-plane, as are coordinates for the observation point. The incident fields are defined as in equations \eqref{eq:app-radar-planeE} and \eqref{eq:app-radar-planeEps}, but with the coordinates $\bm{r}'$ being 2D, i.e. $\bm{r}' = x'\bm{\hat{x}} + y'\bm{\hat{y}}$. The polarization of the incident electric field, however, is still in z regardless of the 2D geometry otherwise used. This can be done since it is not dependent on the coordinate $z$, only the unit vector $\bm{\hat{z}}$. Insertion of the incident fields now gives
+	\begin{equation*}
+		\bm{E}_\mrm{sc,2D}(\bm{r},t) = \frac{k^2}{\varepsilon_\mrm{r}} \int_{S_\mrm{sc}} \frac{\iu}{4} H_0^{(1)}( k |\bm{r}-\bm{r'}|) \bm{E}_{\mrm{i}0} \eu^{\iu \bm{k} \cdot \bm{r}'} \frac{\varepsilon_\mrm{r}^2 \mathfrak{p}}{K} p_0 \cos(\bm{q} \cdot \bm{r}' - \Omega t) \mathrm{d}s'
+	\end{equation*}
+	Assumption of far-field can be used to approximate the Hankel function. This is done as \addref \todo[inline]{\url{http://www.cv.titech.ac.jp/~hiro-lab/lecture/Vibration_Wave_Analysis/text-9.pdf}}
+	\begin{equation*}
+		\frac{\iu}{4} H_0^{(1)}( k |\bm{r}-\bm{r'}|) \approx \frac{\eu^{\iu (kr + \pi/4)}}{\sqrt{8\pi kr}} \eu^{-\iu k \bm{\hat{r}} \cdot \bm{r}'}
+	\end{equation*}
+	which is inserted in the integral, giving
+	\begin{equation*}
+		\bm{E}_\mrm{sc,2D}(\bm{r},t) = \frac{\varepsilon_\mrm{r}k^2 \eu^{\iu (kr + \pi/4)} \bm{E}_{\mrm{i}0} \mathfrak{p} p_0}{K \sqrt{8\pi kr}} \int_{S_\mrm{sc}} \eu^{\iu k ( \bm{\hat{k}} - \bm{\hat{r}} ) \cdot \bm{r}'} \cos(\bm{q} \cdot \bm{r}' - \Omega t) \mathrm{d}s'
+	\end{equation*}
+	Inspection of this equation shows that it is the same integral as the one solved in section \ref{sec:app-derivations-radar-sol}, but in 2D instead of 3D. All other differences are in the factor in front of the integral. Thus, the scattered field can be written as
+	\begin{equation*}
+		\bm{E}_\mrm{sc,2D} (\bm{r},t) = \bm{E}_{\mrm{i}0} \left( E_\mrm{A,2D}^+ (\bm{r},t) + E_\mrm{A,2D}^- (\bm{r},t) \right)
+	\end{equation*}
+	where
+	\begin{equation*}
+		E_\mrm{A,2D}^\pm (\bm{r},t) = \frac{\varepsilon_\mrm{r}k^2 \eu^{\iu (kr + \pi/4)} \mathfrak{p} p_0}{K \sqrt{8\pi kr}} L_{x} L_{y} e^{\mp \iu \Omega t} \Phi_\mrm{2D}^\pm (\theta,\phi)
+	\end{equation*}
+	and
+	\begin{equation*}
+		\Phi_\mrm{2D}^\pm (\theta,\phi) = \text{sinc} \left( \frac{L_{x}}{2\pi} ( k - k\cos{\phi} \pm q\cos{\alpha} ) \right) \text{sinc} \left( \frac{L_{y}}{2\pi} ( - k\sin{\phi} \pm q\sin{\alpha} ) \right)
+	\end{equation*}
+	Since the integral was calculated in 2D instead of 3D this time, the $L_z$ factor was removed as well as one of the sinc functions in $\Phi$. The argument of the sinc functions was also slightly altered since $\sin{\theta} = 1$ in the xy-plane. Calculation of the Poynting vector is unaffected by the change from 3D to 2D, with an exception being the change in $E_A^\pm$. The time-average of the Poynting vector is then written as
+	\begin{equation*}
+		\left< \bm{S}_\mrm{sc,2D}^\pm \right> (\bm{r}) = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{\mrm{i}0}|^2 |E_\mrm{A,2D}^\pm (\bm{r},t)|^2
+	\end{equation*}
+	where $|E_\mrm{A,2D}^\pm (\bm{r},t)|^2$ is given by
+	\begin{equation*}
+		|E_\mrm{A,2D}^\pm (\bm{r},t)|^2 = \frac{\varepsilon_\mrm{r}^2 k^3 \mathfrak{p}^2 p_0^2}{8\pi r K^2} L_{x}^2 L_{y}^2 \Phi_\mrm{2D}^\pm (\theta,\phi)^2
+	\end{equation*}
+	The parallelogram geometry introduced in section \ref{sec:app-derivations-refined} can be used in 2D to refine the interaction region. As discussed in section \ref{sec:app-derivations-refined}, using this geometry only affects the interaction region factors and the $\Phi$ function. The scattered field using this interaction region is then written as
+	\begin{equation*}
+		\bm{E}_\mrm{sc,2D,p} (\bm{r},t) = \bm{E}_{\mrm{i}0} \left( E_\mrm{A,2D,p}^+ (\bm{r},t) + E_\mrm{A,2D,p}^- (\bm{r},t) \right)
+	\end{equation*}
+	where
+	\begin{equation*}
+		E_\mrm{A,2D,p}^\pm (\bm{r},t) = \frac{\varepsilon_\mrm{r}k^2 \eu^{\iu (kr + \pi/4)} \mathfrak{p} p_0}{K \sqrt{8\pi kr}} \frac{d_\mrm{a} d_\mrm{e}}{\sin{\alpha}} e^{\mp \iu \Omega t} \Phi_\mrm{2D,p}^\pm (\theta,\phi)
+	\end{equation*}
+	and
+	\begin{equation*}
+	\begin{split}
+		\Phi_\mrm{2D,p}^\pm (\theta,\phi) = &\text{sinc}\left( \frac{d_\mrm{a}}{2\pi \sin{\alpha}}(k - k\cos{\phi} \pm q\cos{\alpha}) \right) \\
+		\cdot &\text{sinc}\left( \frac{d_\mrm{e}}{2\pi \tan{\alpha}}
+		(k - k(\cos{\phi} + \sin{\phi}\tan{\alpha}) \pm q(\cos{\alpha} + \sin{\alpha}\tan{\alpha})) \right)
+	\end{split}
+	\end{equation*}
+	The Poynting vector is also written down as
+	\begin{equation*}
+		\left< \bm{S}_\mrm{sc,2D,p}^\pm \right> (\bm{r}) = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{\mrm{i}0}|^2 |E_\mrm{A,2D,p}^\pm (\bm{r},t)|^2
+	\end{equation*}
+	where $|E_\mrm{A,2D,p}^\pm (\bm{r},t)|^2$ is given by
+	\begin{equation*}
+		|E_\mrm{A,2D,p}^\pm (\bm{r},t)|^2 = \frac{\varepsilon_\mrm{r}^2 k^3 \mathfrak{p}^2 p_0^2}{8\pi r K^2} \frac{d_\mrm{a}^2 d_\mrm{e}^2}{\sin^2{\alpha}} \Phi_\mrm{2D}^\pm (\theta,\phi)^2
+	\end{equation*}
 	
 	\section{Geometry for maximum scattering \label{sec:app-derivations-bragg}}
 	Let us begin with the $\Phi$ angular dependence function:

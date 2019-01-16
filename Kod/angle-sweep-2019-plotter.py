@@ -14,7 +14,6 @@ between wave vectors for either (+) or (-) scattering (this can be selected)
 import numpy as np
 import matplotlib.pyplot as plt
 import readFields_PE as read
-import scipy.interpolate as interp
 
 plt.close('all')
 
@@ -36,7 +35,9 @@ opta = 40
 angles = np.arange(35, 46)
 alpha = (180*(pm + 1)/2 - pm*angles).astype('int')
 
-# %% Load data and process it into correct format
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Load data and process it into correct format
+###############################################################################
 
 # File directory
 loc = ('..\\Simulation\\All parameters correct 2018-12-28\\Angle sweep\\' +
@@ -60,7 +61,9 @@ for i in range(0, len(alpha)):
     Sx[:, i] = Sx[ind, i]
     Sy[:, i] = Sy[ind, i]
 
-# %% Plot using the Poynting vector magnitude
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Plot using the Poynting vector magnitude
+###############################################################################
 
 # Magnitude of the Poynting vector
 normS = np.sqrt(Sx**2 + Sy**2)
@@ -112,7 +115,9 @@ if(dBm):
         plt.rcParams['axes.unicode_minus'] = False
         plt.savefig('../Text/Report/fig/angle-sweep-dBm(' + pmchar + ').pgf')
 
-# %% Comparison with analytical values (peak Poynting vector and Phi)
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Comparison with analytical results
+###############################################################################
 
 # Wavelengths and wavenumbers
 la = 0.0028
@@ -122,55 +127,121 @@ q = 2*np.pi/la
 
 # Geometry
 r = 30*la
-angles_th = np.linspace(35, 45, 101)
-alpha_th = np.radians((180*(pm + 1)/2 - pm*angles_th))
-phi_th = np.linspace(0, 360, 721)
-phi_th = np.radians(phi_th)
-[alpha_m, phi_m] = np.meshgrid(alpha_th, phi_th)
+angles_an = np.linspace(35, 45, 101)
+angles_an = 180*(pm + 1)/2 - pm*angles_an
+alpha_an = np.radians(angles_an)
+phi_an = np.linspace(0, 360, 721)
+phi_an = np.radians(phi_an)
+[alpha_m, phi_m] = np.meshgrid(alpha_an, phi_an)
+
+# Relative permittivity
+er = 1.29
+
+# Photoelastic constant
+ph = (er-1)*(er+2)/3/er**2
+
+# Electric field amplitude at aperture center (estimated from COMSOL)
+Ei0 = 44.17
+
+# Pressure amplitude at aperture center (estimated from COMSOL)
+p0 = 4483
+
+# Bulk modulus
+kbm = 400e6
+
+# Speed of light
+c0 = 299792458
+
+# Permeability of free space
+mu0 = 4*np.pi*1e-7
+
+# Wave impedance in material (eta_0*eta)
+wi = mu0*c0/np.sqrt(er)
+
+# Interaction region dimensions (most simple case)
 de = 8*le
 da = 8*la
-
-Lx = da#/np.sin(alpha_m)
+Lx = da
 Ly = de
 
-# Cuboid phi, no z sinc
-Phi = (np.sinc(Lx/2/np.pi*(k - k*np.cos(phi_m) + pm*q*np.cos(alpha_m))) *
-       np.sinc(Ly/2/np.pi*(-k*np.sin(phi_m) + pm*q*np.sin(alpha_m))))
+# Cuboid phi, 2D
+Phi_c = (np.sinc(Lx/2/np.pi*(k - k*np.cos(phi_m) + pm*q*np.cos(alpha_m))) *
+         np.sinc(Ly/2/np.pi*(-k*np.sin(phi_m) + pm*q*np.sin(alpha_m))))
 
-# Parallelogram phi, no z sinc
+
+# Parallelogram phi, 2D
 Phi_p = (np.sinc(da/2/np.pi/np.sin(alpha_m) *
                  (k - k*np.cos(phi_m) + pm*q*np.cos(alpha_m))) *
          np.sinc(de/2/np.pi/np.tan(alpha_m) *
                  (k - k*(np.cos(phi_m) + np.sin(phi_m)*np.tan(alpha_m)) +
                   pm*q*(np.cos(alpha_m) + np.sin(alpha_m)*np.tan(alpha_m)))))
 
-# Squared phi functions
-Phi2 = Phi**2 * Lx**2 * Ly**2
-Phi_p2 = Phi_p**2 * da**2 * de**2 / np.sin(alpha_m)**2
+# Poynting vector magnitude, cuboid
+Sm_c = (0.5/wi * Ei0**2 * er**2*k**3*ph**2*p0**2/8/np.pi/r/kbm**2 *
+        Lx**2*Ly**2 * Phi_c**2)
 
-# Plot peak scattered power
+# Poynting vector magnitude, parallelogram
+Sm_p = (0.5/wi * Ei0**2 * er**2*k**3*ph**2*p0**2/8/np.pi/r/kbm**2 *
+        da**2*de**2/np.sin(alpha_m)**2 * Phi_p**2)
+
+# Compensation factor for transforming peak amplitude to equivalent plane
+# wave power. This is multiplied to the Poynting vectors
+gamma = np.pi/256
+Sm_c = gamma*Sm_c
+Sm_p = gamma*Sm_p
+
+# Total scattering power, cuboid
+Ptot_c = np.trapz(Sm_c, x=r*phi_an, axis=0)
+
+# Total scattering power, parallelogram
+Ptot_p = np.trapz(Sm_p, x=r*phi_an, axis=0)
+
+# Plot total power in dBm for sim, cuboid and parallelogram
 plt.figure()
 plt.grid()
-plt.plot(alpha, normS.max(axis=0)/normS.max(), '.-')
-
-# Plot maximum of Phi^2 for both geometries
-plt.plot(angles_th, Phi2.max(axis=0)/Phi2.max(), '--')
-plt.plot(angles_th, Phi_p2.max(axis=0)/Phi_p2.max(), ':')
-
-plt.title('Peak scattered Poynting vector (normalized)')
+plt.plot(alpha, 10*np.log10(Stot/1e-3), '.-')
+plt.plot(angles_an, 10*np.log10(Ptot_c/1e-3), '--')
+plt.plot(angles_an, 10*np.log10(Ptot_p/1e-3), ':')
+plt.title('Total scattered power')
 plt.xlabel('$\\alpha$')
-plt.ylabel('Normalized value')
-plt.legend(['$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> \\right|$' +
-            '$_\mathrm{max}$ (simulated)',
-            '$\Phi^2_\mathrm{max}$ (analytical cuboid)',
-            '$\Phi^2_\mathrm{p,max}$ (analytical parallelogram)'])
+plt.ylabel('$P_\\mathrm{sc}$ [dBm]')
+plt.legend(['Simulated', 'Cuboid', 'Parallelogram'])
+
+# Adds degree sign to x ticks
+aloc = plt.xticks()[0]
+alab = [str(int(a)) + '$^\\circ$' for a in aloc]
+plt.xticks(aloc, alab)
 
 # Save as pgf
 if(savefigs):
     plt.rcParams['axes.unicode_minus'] = False
-    plt.savefig('../Text/Report/fig/angle-sweep-peak(' + pmchar + ').pgf')
+    plt.savefig('../Text/Report/fig/angle-sweep-power-an(' + pmchar + ').pgf')
 
-# %% Plotting using propagation angle and not observation angle
+# Plot maximum Poynting magnitude in W/m2 for sim, cuboid and parallelogram
+plt.figure()
+plt.grid()
+plt.plot(alpha, normS.max(axis=0), '.-')
+plt.plot(angles_an, Sm_c.max(axis=0), '--')
+plt.plot(angles_an, Sm_p.max(axis=0), ':')
+plt.title('Maximum of the Poynting vector (time avg.)')
+plt.xlabel('$\\alpha$')
+plt.ylabel('$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> \\right|$' +
+           '$_\\mathrm{max}$ [W/m$^2$]')
+plt.legend(['Simulated', 'Cuboid', 'Parallelogram'])
+
+# Adds degree sign to x ticks
+aloc = plt.xticks()[0]
+alab = [str(int(a)) + '$^\\circ$' for a in aloc]
+plt.xticks(aloc, alab)
+
+# Save as pgf
+if(savefigs):
+    plt.rcParams['axes.unicode_minus'] = False
+    plt.savefig('../Text/Report/fig/angle-sweep-peak-an(' + pmchar + ').pgf')
+
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Plotting using propagation angle and not observation angle
+###############################################################################
 
 # Calculate propagation angles for all points and sort data by this angle
 # instead of by the observation angle
@@ -248,5 +319,3 @@ plt.xlabel('$\\phi_\\mathrm{prop}$')
 plt.ylabel('$\\left| \\left<\\mathbf{S}\\right> \\right|$ / ' +
            '$\\left| \\left<\\mathbf{S}\\right> \\right|_\\mathrm{max}$')
 plt.legend([str(a) + '$^\\circ$' for a in alpha], title='$\\alpha$')
-
-

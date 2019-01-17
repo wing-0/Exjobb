@@ -164,6 +164,12 @@ da = 8*la
 Lx = da
 Ly = de
 
+# Interaction region dimensions (refined)
+#de = 12*le
+#da = 12*la
+#Lx = da
+#Ly = de
+
 # Cuboid phi, 2D
 Phi_c = (np.sinc(Lx/2/np.pi*(k - k*np.cos(phi_m) + pm*q*np.cos(alpha_m))) *
          np.sinc(Ly/2/np.pi*(-k*np.sin(phi_m) + pm*q*np.sin(alpha_m))))

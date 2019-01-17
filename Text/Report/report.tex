@@ -605,7 +605,7 @@
 	
 	\todoint[inline]{Describe how ``maximum scattering'' is only relevant for one point $(\theta, \phi, \alpha)$. If power is measured on a surface (for example an antenna), the $\Phi$ function must be integrated, and the maximum for the integral must be found. This is cumbersome to do analytically, but through numerical integration and plotting it can be done.}
 	
-	\subsection{Refined interaction region}
+	\subsection{Refined interaction region} \label{sec:analytical-radar-refined}
 	The analytical results presented above are based on a cuboid interaction region. This makes for simple calculations and is fairly straight-forward at a conceptual level. However, it is difficult to find good dimensions $L_x$, $L_y$, $L_z$ based on a real-life system using electromagnetic antennas and ultrasonic transducers. For this reason, the interaction region was refined for simple adaptation to real-life parameters. Other idealizations such as plane waves were still kept. The interaction region was now based on ''infinitely sharp´´ beams, meaning that fields behave as plane waves inside of the beam diameter and are zero outside. Two crossing beams form a parallelogram as shown in figure \ref{fig:an-parallelogram}.
 	\begin{figure}[h]
 		\centering
@@ -631,7 +631,7 @@
 	&\cdot \text{sinc}\left( -\frac{L_{z}}{2\pi} k\cos{\theta} \right)
 	\end{split}
 	\end{equation*}
-	This is quite similar to the cuboid result, with the differences being in the interaction volume factor $d_\mrm{a} d_\mrm{e} L_{z}/\sin{\alpha}$ instead of $L_x L_y L_z$ in $E_\mrm{A}$ and the function for angular dependence $\Phi^\pm$. This result is easily transferable to power and SNR quantities. It can be shown (see appendix \ref{sec:app-derivations-bragg-refined}) that the same conditions for maximum scattering hold for this refined interaction region as for the cuboid interaction region, i.e. equations \eqref{eq:an-bragg-theta}, \eqref{eq:an-bragg-alpha} and \eqref{eq:an-bragg-phi}.
+	This is quite similar to the cuboid result, with the differences being in the interaction volume factor $d_\mrm{a} d_\mrm{e} L_{z}/\sin{\alpha}$ instead of $L_x L_y L_z$ in $E_\mrm{A}$ and the function for angular dependence $\Phi^\pm$. This result is easily transferable to power and SNR quantities. It can be shown (see appendix \ref{sec:app-derivations-bragg-refined}) that the same conditions for maximizing $\Phi$ hold for this refined interaction region as for the cuboid interaction region, i.e. equations \eqref{eq:an-bragg-theta}, \eqref{eq:an-bragg-alpha} and \eqref{eq:an-bragg-phi}. One thing to keep in mind though, is that the parallelogram geometry has a factor $1/\sin{\alpha}$ in the interaction region which is not present in the cuboid geometry. The effect of this is that the angle $\alpha$ for maximum scattering can be shifted down in the (-) case and up in the (+) case. The exact shift depends highly on the geometry of the interaction region (see appendix \ref{sec:app-derivations-bragg-refined}).
 	\todoext{Write explicit equations for power and SNR}
 	
 	\subsection{2D solution}
@@ -834,13 +834,15 @@
 		\end{subfigure}
 		\caption{\label{fig:res-angle-sweep-peak} Peak value of Poynting vector magnitude for different angles $\alpha$. Analytical equivalents plotted for both cuboid and parallelogram geometries.}
 	\end{figure}
-	Figure \ref{fig:res-angle-sweep-peak} shows that the peak photelastically scattered Poynting vector magnitude was maximized at an angle $\alpha = 40^\circ$ for (-) scattering (negative frequency shift) and at $\alpha = 140^\circ$ for (+) scattering (positive frequency shift). The analytical comparisons are shown for the cuboid and parallelogram geometries. It can be seen that the peak of the curves is at the same angle $\alpha$ for the simulated values and the cuboid analytical model. Since the wavelengths were selected such that these angles would maximize the scattering (using equation \eqref{eq:an-bragg-alpha}), this would be expected. However, the parallelogram analytical model has its maximum at another angle $\alpha$. The reason behind this might be that equation \eqref{eq:an-2d-power-parallelogram} which was used has more dependencies on $\alpha$ than for the cuboid case. As described before, the dimensions of the interaction regions were selected using the aperture widths. Since the actual beams diameters were not constant, the dimensions of the interaction region should be slightly larger. Increasing these dimensions slightly would lead to the parallelogram curve having its peak closer to the same $\alpha$ as simulations, but it is difficult to match the interaction region size perfectly.
+	Figure \ref{fig:res-angle-sweep-peak} shows that the peak photelastically scattered Poynting vector magnitude was maximized at an angle $\alpha = 40^\circ$ for (-) scattering (negative frequency shift) and at $\alpha = 140^\circ$ for (+) scattering (positive frequency shift). The analytical comparisons are shown for the cuboid and parallelogram geometries. It can be seen that the peak of the curves is at the same angle $\alpha$ for the simulated values and the cuboid analytical model. Since the wavelengths were selected such that these angles would maximize the scattering (using equation \eqref{eq:an-bragg-alpha}), this would be expected. The parallelogram analytical model has its maximum at another angle $\alpha$, but as discussed in section \ref{sec:analytical-radar-refined} there could be a slight change in this angle $\alpha$. The predicted change was that the angle $\alpha$ of maximum scattering would shift down for (-) scattering and up for (+) scattering, which is what can be seen in figure \ref{fig:res-angle-sweep-peak}.
 	
+	What is interesting is that the $\alpha$ shift for the parallelogram geometry is not seen in the simulation results, even though the parallelogram geometry should be more realistic than the cuboid one. This might be due to the length of the $\alpha$ shift being strongly related to interaction region geometry. As described before, the dimensions of the interaction regions were selected using the aperture widths. Since the actual beams diameters were not constant, the dimensions of the interaction region should be slightly larger. Increasing these dimensions slightly lead to the parallelogram curve having its peak closer to the same $\alpha$ as simulations. If the simulation curve is observed, a slight asymmetry can be seen around the $\alpha$ for the peak (easier to see for (-) tan (+)). This might be indication of a very slight shift in $\alpha$ compared with 40$^\circ$/140$^\circ$, but difficult to exactly replicate analytically with the geometry parameters available in the parallelogram model.
 	
-	\todo{Rewrite this}
-	However, further from the peak value the simulation results deviate from both analytical models. This could be due to the interaction region not being refined enough, but one factor which might play a part is that of spherical waves. The analytical model is based entirely on plane waves, which means that a suboptimal angle $\alpha$ should not lead to much interaction. The simulation, on the other hand, uses more realistic wave propagation with spherical waves. A spherical wave can be decomposed into a sum of plane waves with different propagation direction. This essentially means that the condition in equation \eqref{eq:an-bragg-alpha} is satisfied for every angle $\alpha$ for some combination of plane wave components. However, the plane wave components have different amplitudes and the strongest components are the ones with the same propagation direction as the original beams. These components are the same as those used in the analytical models, which explains why the peak in figure \ref{fig:res-angle-sweep-peak} is the same for all curves.
-	\todoext{Add plot for (+) scattering in fig 6.1. Also describe that part better both here and in the "Numerical Simulations" chapter (this was added quite late). The parameters used in the Phi functions for interaction region should also be presented beforehand (and maybe tweaked a bit). The asymmetry of the simulated data should also be discussed (it is probably related to the interaction region being larger for smaller $\alpha$, but also the asymmetry of the problem itself. Might be explainable if considering the beams as a sum of plane waves.}
-	\todoext{One detail which was omitted in the discussion above is the effect of interaction region on the analytical Poynting vector. In the cuboid case it is constant, and would then not influence the behavior from $\Phi^2$ shown in figure \ref{fig:res-angle-sweep-peak}. However, the parallelogram interaction area contains a factor $1/\sin{\alpha}$, which affects the graph. This must be considered. There are some issues with obtaining an interaction region which is close to the corresponding region in simulations so I need to work a bit with the plotting script (and of course be more clear in the report with exactly what values I'm using for plotting analytical solutions)}
+	While the angle $\alpha$ of the peak in figure \ref{fig:res-angle-sweep-peak} shows fair correspondence between analytical and simulated cases, the magnitude of the Poynting vector is quite different. Neither of the analytical geometries lead to a correct shape of the curve or correct value for $\left| \left< \bm{S}_\mrm{sc} \right> \right|_\mrm{max}$ when compared to the simulation. The reason behind this might be the interaction region not being the correct size. Neither the cuboid or parallelogram geometry takes into account the spherical nature of the simulated beams which affects the interaction region. For better correspondence, the dimensions of the interaction region might be estimated from the COMSOL simulations. However, this would have the effect of increasing the dependence on simulation data even more for the theoretical calculations (which already require field values for $\bm{E}_\mrm{i0}$ and $p_0$).
+	
+	The spherical wave nature has another effect which might be a reason for the difference in the shape of the curves in figure \ref{fig:res-angle-sweep-peak}. The analytical model is based entirely on plane waves, which means that a suboptimal angle $\alpha$ should not lead to much interaction. The simulation, on the other hand, uses more realistic wave propagation with spherical waves. A spherical wave can be decomposed into a sum of plane waves with different propagation direction. This essentially means that the condition in equation \eqref{eq:an-bragg-alpha} is satisfied for every angle $\alpha$ for some combination of plane wave components. However, the plane wave components have different amplitudes and the strongest components are the ones with the same propagation direction as the original beams. This causes the Poynting vector magnitude to be smaller for suboptimal $\alpha$, but still larger than if there had been no Bragg matched components at all.
+	
+	Nevertheless, the peaks for simulation, cuboid and parallelogram cases in figure \ref{fig:res-angle-sweep-peak} are at angles $\alpha$ fairly close to each other and all values for $\left| \left< \bm{S}_\mrm{sc} \right> \right|_\mrm{max}$ are in the same order of magnitude. This is the case even though geometric parameters used in the analytical models could have been selected with more care. \todo{Maybe more?}
 	
 	\begin{figure}[h]
 		\centering
@@ -895,13 +897,32 @@
 			}
 			\caption{(+) case}
 		\end{subfigure}
-		\caption{\label{fig:res-angle-sweep-power} Poynting vector magnitude integrated over measurement boundary for different angles $\alpha$. Analytical equivalents plotted for both cuboid and parallelogram geometries.}
+		\caption{\label{fig:res-angle-sweep-power-c} Poynting vector magnitude integrated over measurement boundary for different angles $\alpha$. Analytical equivalents plotted for both cuboid and parallelogram geometries.}
 	\end{figure}
-	Figure \ref{fig:res-angle-sweep-power} shows that the peak photelastically scattered Power was maximized at an angle $\alpha = 40^\circ$ for (-) scattering (negative frequency shift) and at $\alpha = 140^\circ$ for (+) scattering (positive frequency shift). This shows that the angle $\alpha$ which maximizes the peak value of the Poynting vector magnitude also maximizes the total photoelastically scattered power.
-	\todoext{Include plot of the analytically calculated total power. This requires 2D derivations of the radar equation since the simulations are done in 2D and the radar equation is in 3D.}
-	\todoint[inline]{Issues due to the analytical model having an assumption on plane waves. This is not actually valid since the "target" is an overlap between two beams. This overlap is necessarily defined by the beam profiles, and an assumption of plane waves with an otherwise correct interaction region will automatically assume a constant amplitude beam profile. This will lead to much higher scattering than with actual beam profiles since plane waves have "more amplitude" for both EM and Ac. waves in the interaction region. One way to alleviate the issue would be to instead use some sort of "equivalent amplitude", i.e. use plane wave amplitude values which will cause the total field energy to be equal to that of the spherical wave (inside the same interaction region). This might require some thinking to get correct, but I think it should work (at least better than the original one).}
+	Figure \ref{fig:res-angle-sweep-power-c} shows that the peak photelastically scattered Power was maximized at an angle $\alpha = 40^\circ$ for (-) scattering (negative frequency shift) and at $\alpha = 140^\circ$ for (+) scattering (positive frequency shift). This shows that the angle $\alpha$ which maximizes the peak value of the Poynting vector magnitude also maximizes the total photoelastically scattered power. The analytical cases have their peaks close to these as well, but there is a shift in the angle $\alpha$ for the parallelogram curve. This shift is down in $\alpha$ for the (-) case and up for the (+) case, so it directly follows the shift observed in figure \ref{fig:res-angle-sweep-peak} and explained in section \ref{sec:analytical-radar-refined}.
 	
-	In figure \ref{fig:res-angle-sweep-power} it can be seen that the (+) scattering results in a higher total scattered power than (-) scattering. This can be explained by the interaction region being larger for (+) than it is for (-) scattering. The problem is such that (-) scattering happens at angles $0 < \alpha < \pi/2$ and (+) scattering for $\pi/2 < \alpha < \pi$ (see appendix \ref{sec:app-derivations-bragg}). For the beams used in this particular simulation, the (-) scattering geometry leads to a region near the apertures where there is no overlap between acoustic and electromagnetic beams. On the other hand, in the (+) scattering geometry there is always some overlap between the beams as the apertures are at two different sides of the domain. \todo{Insert comsol images to better explain this}. The total scattered power is directly proportional to the square of the interaction region in the simple model from section \ref{sec:analytical-radar} \todo{reference equation}, so from these observations it is reasonable that the (+) scattering leads to higher power levels. 
+	The peaks of the total scattering power for simulation, cuboid and parallelogram cases are within 2 dB of each other, so in the same order of magnitude. As explained before, the geometry parameters in the analytical models could be selected with more care which might improve analytical results. One clear difference between simulated and analytical curves is that the analytical ones drop much faster than the simulated when moving away from the peak. This can be explained by the difference between plane and spherical waves. As explained earlier, spherical waves can be decomposed as a sum of plane waves with different propagation directions giving pairs of matched plane wave components at more than one angle $\alpha$. The higher scattering power away from the peak in the simulated case could then simply be due to scattering of these other pairs of matched components.
+	
+	\begin{figure}[h]
+		\centering
+		\begin{subfigure}{\textwidth}
+			\resizebox{\textwidth}{!}{
+				\input{fig/angle-sweep-dBm(-).pgf}
+			}
+			\caption{(-) case}
+		\end{subfigure}
+		\begin{subfigure}{\textwidth}
+			\resizebox{\textwidth}{!}{
+				\input{fig/angle-sweep-dBm(+).pgf}
+			}
+			\caption{(+) case}
+		\end{subfigure}
+		\caption{\label{fig:res-angle-sweep-power} Poynting vector magnitude integrated over measurement boundary for different angles $\alpha$.}
+	\end{figure}
+	
+	%\todoint[inline]{Issues due to the analytical model having an assumption on plane waves. This is not actually valid since the "target" is an overlap between two beams. This overlap is necessarily defined by the beam profiles, and an assumption of plane waves with an otherwise correct interaction region will automatically assume a constant amplitude beam profile. This will lead to much higher scattering than with actual beam profiles since plane waves have "more amplitude" for both EM and Ac. waves in the interaction region. One way to alleviate the issue would be to instead use some sort of "equivalent amplitude", i.e. use plane wave amplitude values which will cause the total field energy to be equal to that of the spherical wave (inside the same interaction region). This might require some thinking to get correct, but I think it should work (at least better than the original one).}
+	
+	Figure \ref{fig:res-angle-sweep-power} shows the same simulation results as in figure \ref{fig:res-angle-sweep-power-c}, but without the analytical results. This makes it easier to compare (+) and (-) scattering.	It can be seen that the (+) scattering results in a higher total scattered power than (-) scattering. This can be explained by the interaction region being larger for (+) than it is for (-) scattering. It holds that (-) scattering happens at angles $0 < \alpha < \pi/2$ and (+) scattering for $\pi/2 < \alpha < \pi$ (see appendix \ref{sec:app-derivations-bragg}). For the beams used in this particular simulation, the (-) scattering geometry leads to a region near the apertures where there is no overlap between acoustic and electromagnetic beams. On the other hand, in the (+) scattering geometry there is always some overlap between the beams as the apertures are at two different sides of the domain. \todo{Insert comsol images to better explain this}. The total scattered power is directly proportional to the square of the interaction region in the simple model from section \ref{sec:analytical-radar} \todo{reference equation}, so from these observations it is reasonable that the (+) scattering leads to higher power levels. 
 	
 	\subsection{Conductive Defect}
 	The results from the sweep of defect conductivity is shown in figure \ref{fig:res-cond-power}. This shows the total scattered power (calculated in the same way as in the angle sweep) as a function of conductivity of the defect. It can be seen that the scattered power decreases as the conductivity of the defect increases. The relation between conductivity and scattered power looks approximately inversely exponential as the decrease in power is strongest at small conductivities and plateaus at higher levels.
@@ -920,15 +941,22 @@
 		\caption{\label{fig:res-cond-power} Poynting vector magnitude integrated over measurement boundary for different conductivity $\sigma$ of defect. Normalized by maximum value.}
 	\end{figure}
 	
-	\begin{figure}[h]
-		\centering
-		\resizebox{\textwidth}{!}{
-			\input{fig/cond-polar.pgf}
-		}
-		\caption{\label{fig:res-cond-polar} Polar plot of the Poynting vector magnitude for varying angle $\phi_\mrm{prop}$ and conductivity $\sigma$ of defect. Dotted line at $\phi_\mrm{prop} = 260^\circ$. Normalized by maximum value.}
-	\end{figure}
+%	\begin{figure}[h]
+%		\centering
+%		\resizebox{\textwidth}{!}{
+%			\input{fig/cond-polar.pgf}
+%		}
+%		\caption{\label{fig:res-cond-polar} Polar plot of the Poynting vector magnitude for varying angle $\phi_\mrm{prop}$ and conductivity $\sigma$ of defect. Dotted line at $\phi_\mrm{prop} = 260^\circ$. Normalized by maximum value.}
+%	\end{figure}
 	
 	\subsection{Mechanical Defects}
+	The results of the sweep of defect density is shown in figure \ref{fig:res-mech-power}. This shows the total scattered power (calculated in the same way as in the angle sweep) as a function of density of the defect. For reference, the rest of the domain had the density $\rho_0 = 250$ kg/m$^3$. It can be seen that the scattered power is affected by a change in density in the defect area. At defect densities far away from the background density 250 kg/m$^3$ the effect is a decrease in scattered power.
+	
+	One interesting detail is that the maximum of the scattered power is not obtained at a defect density of 250 kg/m$^3$, but instead slightly higher at 275 kg/m$^3$. This can be understood by observing the pressure field from COMSOL \todo{Add COMSOL figures?}. At a defect density slightly above the background density the acoustic beam is focused into a more plane wave than before. This can be understood by viewing the defect as an acoustic lens. In geometrical optics, a lens is typically a region with higher refractive index than its surroundings bounded by spherical surfaces \cite{Saleh2007}. A higher refractive index in optics corresponds to a lower wave speed. In acoustics, the wave speed is defined as $v = \sqrt{K/\rho_0}$, so an increase in density also has the effect of lowering wave speed. The properties of the spherical defect with a higher density than the background should then give it some lens properties. A significant difference between typical lenses and the case here is that the lens size is usually much larger than the wavelength, while they are in the same order of magnitude here. This case is very far from geometrical optics, and the physics required to explain focusing is vastly different \cite{Fletcher2001}.
+	
+	The lensing effect increases the scattered power for a small increase in defect density as the beam spread is counteracted. However, for even higher defect densities other effects instead cause a decrease in scattered power. A diffraction pattern appears behind the defect where regions of the wave with different propagation direction are separated by nodal lines \todo{COMSOL images?}.
+	
+	One thing to note is that the increase in scattered power from this lensing phenomenon is not very large as the power at background density is at more than 95\% of the peak power. Additionally, this effect is highly dependent on geometry as the spherical shape of the defect causes the increase in power. This effect should not be expected from an arbitrarily shaped defect. \todo{Explain more on arbitrary defects?}
 	
 	\begin{figure}[h]
 		\centering
@@ -938,13 +966,13 @@
 		\caption{\label{fig:res-mech-power} Poynting vector magnitude integrated over measurement boundary for different density $\rho_0$ of defect. Normalized by maximum value.}
 	\end{figure}
 	
-	\begin{figure}[h]
-		\centering
-		\resizebox{\textwidth}{!}{
-			\input{fig/mech-polar.pgf}
-		}
-		\caption{\label{fig:res-mech-polar} Polar plot of the Poynting vector for varying angle $\phi_\mrm{prop}$ and density $\rho_0$ of defect. Dotted line at $\phi_\mrm{prop} = 260^\circ$. Normalized by maximum value.}
-	\end{figure}
+%	\begin{figure}[h]
+%		\centering
+%		\resizebox{\textwidth}{!}{
+%			\input{fig/mech-polar.pgf}
+%		}
+%		\caption{\label{fig:res-mech-polar} Polar plot of the Poynting vector for varying angle $\phi_\mrm{prop}$ and density $\rho_0$ of defect. Dotted line at $\phi_\mrm{prop} = 260^\circ$. Normalized by maximum value.}
+%	\end{figure}
 	
 	\section{Possibilities for NDT}
 	
@@ -1653,7 +1681,8 @@ Since it is equal to zero, the second sinc is maximized. Finally, argument \eqre
 \begin{equation*}
 	-\frac{L_{z}}{2\pi} k\cos{\pi/2} = 0
 \end{equation*}
-Since it is equal to zero, the third sinc is also maximized. Thus, all sinc functions are maximized which maximizes $\Phi_\mrm{p}^{\pm}$. This shows that the same condition (equations \eqref{eq:app-bragg-theta}, \eqref{eq:app-bragg-alpha}, \eqref{eq:app-bragg-phi}) maximizes the scattering for both the simple cuboid geometry and the refined geometry based on beams.
-\todoint[inline]{Explain factor 1/sin(alpha) related to scattering volume and why this is not included in the maximization thing}
+Since it is equal to zero, the third sinc is also maximized. Thus, all sinc functions are maximized which maximizes $\Phi_\mrm{p}^{\pm}$. This shows that the same condition (equations \eqref{eq:app-bragg-theta}, \eqref{eq:app-bragg-alpha}, \eqref{eq:app-bragg-phi}) maximizes the $\Phi$ function for both the simple cuboid geometry and the refined geometry based on beams.
+
+One difference is that there is a factor $1/\sin{\alpha}$ in the parallelogram interaction region while the cuboid interaction region is constant. This should affect the angle $\alpha$ giving maximum scattering in the parallelogram case. To find a maximum of this and not just the function $\Phi$ would require other derivations than those done for maximizing three sinc functions. Since this was not done, this factor should be kept in mind when discussing Bragg matching. One thing which can be noted though is how the factor might change the peak scattering qualitatively. The square of the factor $1/\sin^2{\alpha}$ is what matters for the scattered power. This has a minimum at $\alpha = \pi/2$ and increases as $\alpha$ tends towards 0 or $\pi$. What this means for the total scattering is that the decrease in scattering when moving away from the $\alpha$ given by equation \eqref{eq:app-bragg-alpha} can be slightly counteracted. In the (-) case, $0 < \alpha < \pi/2$, so $1/\sin^2{\alpha}$ is larger at smaller angles than the one given by equation \eqref{eq:app-bragg-alpha}. Due to this, the maximum scattering can be shifted to a smaller angle $\alpha$. Similarly, in the (+) case, $\pi/2 < \alpha < \pi$, so $1/\sin^2{\alpha}$ is larger at larger angles than from equation \eqref{eq:app-bragg-alpha}. Maximum scattering can then be shifted to a larger $\alpha$. The size of the shift in $\alpha$ depends on how fast $\Phi$ decreases when the angle $\alpha$ tends away from that in equation \eqref{eq:app-bragg-alpha}. The function $\Phi$ is comprised of sinc functions, and the main factor determining this is the width of the main lobe of the sinc's. This is determined from the argument of the functions, which in turn depend on the geometry of the problem. Once again, the derivation is not done but it is noted that the exact geometry can have an effect on how large the shift in $\alpha$ is when compared to the Bragg maximum from equation \eqref{eq:app-bragg-alpha}.
 	
 \end{document}

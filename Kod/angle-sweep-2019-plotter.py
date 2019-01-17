@@ -165,8 +165,8 @@ Lx = da
 Ly = de
 
 # Interaction region dimensions (refined)
-#de = 12*le
-#da = 12*la
+#de = 10*le
+#da = 10*la
 #Lx = da
 #Ly = de
 

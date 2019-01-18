@@ -266,7 +266,7 @@ wavgang = np.average(propang, axis=0, weights=normS)
 plt.figure()
 plt.grid()
 plt.plot(alpha, np.degrees(wavgang), '.-')
-plt.title('Wieghted avg. of propagation angle (weighted by ' +
+plt.title('Weighted avg. of propagation angle (weighted by ' +
           '$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> \\right|$)')
 plt.xlabel('$\\alpha$')
 plt.ylabel('$\\overline{\\phi}_\\mathrm{prop}$')

@@ -689,7 +689,7 @@
 \pgfusepath{stroke}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[x=3.280000in,y=4.307333in,,base]{\sffamily\fontsize{12.000000}{14.400000}\selectfont Wieghted avg. of propagation angle (weighted by \(\displaystyle \left| \left<\mathbf{S}_\mathrm{sc}\right> \right|\))}%
+\pgftext[x=3.280000in,y=4.307333in,,base]{\sffamily\fontsize{12.000000}{14.400000}\selectfont Weighted avg. of propagation angle (weighted by \(\displaystyle \left| \left<\mathbf{S}_\mathrm{sc}\right> \right|\))}%
 \end{pgfscope}%
 \end{pgfpicture}%
 \makeatother%

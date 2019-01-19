@@ -19,8 +19,6 @@ plt.close('all')
 
 savefigs = 0
 
-dBm = 0
-
 # Read data and plot (+) or (-) scattering
 pm = -1
 pmchar = '+'
@@ -62,11 +60,14 @@ for i in range(0, len(alpha)):
     Sy[:, i] = Sy[ind, i]
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# Plot using the Poynting vector magnitude
+# Plot using the Poynting vector normal component
 ###############################################################################
 
 # Magnitude of the Poynting vector
 normS = np.sqrt(Sx**2 + Sy**2)
+
+# Normal component of the Poynting vector along boundary
+perpS = Sx*np.cos(theta) + Sy*np.sin(theta)
 
 # Calculate distances between all points (x,y) and construct an axis based on
 # arc length from theta = 0 to theta = 2*pi
@@ -75,9 +76,9 @@ ydiff = np.diff(np.vstack((y, y[0, :])), axis=0)
 dist = np.linalg.norm(np.array([xdiff, ydiff]), axis=0)
 arc = np.cumsum(dist, axis=0)
 
-# Integrate Poynting vector magnitude for all angles and plot against the
-# angle between wave vectors
-Stot = np.trapz(normS, x=arc, axis=0)
+# Integrate normal component of Poynting vector for all angles and plot
+# against the angle between wave vectors
+Stot = np.trapz(perpS, x=arc, axis=0)
 
 plt.figure()
 plt.grid()
@@ -92,28 +93,27 @@ alab = [str(int(a)) + '$^\\circ$' for a in aloc]
 plt.xticks(aloc, alab)
 
 # Save as pgf
-if(savefigs):
-    plt.rcParams['axes.unicode_minus'] = False
-    plt.savefig('../Text/Report/fig/angle-sweep-power(' + pmchar + ').pgf')
+#if(savefigs):
+#    plt.rcParams['axes.unicode_minus'] = False
+#    plt.savefig('../Text/Report/fig/angle-sweep-power(' + pmchar + ').pgf')
 
 # dBm version
-if(dBm):
-    plt.figure()
-    plt.grid()
-    plt.plot(alpha, 10*np.log10(Stot/1e-3), '.-')
-    plt.title('Total scattered power')
-    plt.xlabel('$\\alpha$')
-    plt.ylabel('$P_\\mathrm{sc}$ [dBm]')
+plt.figure()
+plt.grid()
+plt.plot(alpha, 10*np.log10(Stot/1e-3), '.-')
+plt.title('Total scattered power, (' + pmchar + ') case')
+plt.xlabel('$\\alpha$')
+plt.ylabel('$P_\\mathrm{sc}$ [dBm]')
 
-    # Adds degree sign to x ticks
-    aloc = plt.xticks()[0]
-    alab = [str(int(a)) + '$^\\circ$' for a in aloc]
-    plt.xticks(aloc, alab)
+# Adds degree sign to x ticks
+aloc = plt.xticks()[0]
+alab = [str(int(a)) + '$^\\circ$' for a in aloc]
+plt.xticks(aloc, alab)
 
-    # Save as pgf
-    if(savefigs):
-        plt.rcParams['axes.unicode_minus'] = False
-        plt.savefig('../Text/Report/fig/angle-sweep-dBm(' + pmchar + ').pgf')
+# Save as pgf
+if(savefigs):
+    plt.rcParams['axes.unicode_minus'] = False
+    plt.savefig('../Text/Report/fig/angle-sweep-dBm(' + pmchar + ').pgf')
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Comparison with analytical results
@@ -182,25 +182,27 @@ Phi_p = (np.sinc(da/2/np.pi/np.sin(alpha_m) *
                  (k - k*(np.cos(phi_m) + np.sin(phi_m)*np.tan(alpha_m)) +
                   pm*q*(np.cos(alpha_m) + np.sin(alpha_m)*np.tan(alpha_m)))))
 
-# Poynting vector magnitude, cuboid
-Sm_c = (0.5/wi * Ei0**2 * er**2*k**3*ph**2*p0**2/8/np.pi/r/kbm**2 *
+# Normal component of Poynting vector, cuboid
+# This is the same as the magnitude for a circular boundary
+Sn_c = (0.5/wi * Ei0**2 * er**2*k**3*ph**2*p0**2/8/np.pi/r/kbm**2 *
         Lx**2*Ly**2 * Phi_c**2)
 
-# Poynting vector magnitude, parallelogram
-Sm_p = (0.5/wi * Ei0**2 * er**2*k**3*ph**2*p0**2/8/np.pi/r/kbm**2 *
+# Normal component of Poynting vector, parallelogram
+# This is the same as the magnitude for a circular boundary
+Sn_p = (0.5/wi * Ei0**2 * er**2*k**3*ph**2*p0**2/8/np.pi/r/kbm**2 *
         da**2*de**2/np.sin(alpha_m)**2 * Phi_p**2)
 
 # Compensation factor for transforming peak amplitude to equivalent plane
 # wave power. This is multiplied to the Poynting vectors
 gamma = np.pi/256
-Sm_c = gamma*Sm_c
-Sm_p = gamma*Sm_p
+Sn_c = gamma*Sn_c
+Sn_p = gamma*Sn_p
 
 # Total scattering power, cuboid
-Ptot_c = np.trapz(Sm_c, x=r*phi_an, axis=0)
+Ptot_c = np.trapz(Sn_c, x=r*phi_an, axis=0)
 
 # Total scattering power, parallelogram
-Ptot_p = np.trapz(Sm_p, x=r*phi_an, axis=0)
+Ptot_p = np.trapz(Sn_p, x=r*phi_an, axis=0)
 
 # Plot total power in dBm for sim, cuboid and parallelogram
 plt.figure()
@@ -208,7 +210,7 @@ plt.grid()
 plt.plot(alpha, 10*np.log10(Stot/1e-3), '.-')
 plt.plot(angles_an, 10*np.log10(Ptot_c/1e-3), '--')
 plt.plot(angles_an, 10*np.log10(Ptot_p/1e-3), ':')
-plt.title('Total scattered power')
+plt.title('Total scattered power, (' + pmchar + ') case')
 plt.xlabel('$\\alpha$')
 plt.ylabel('$P_\\mathrm{sc}$ [dBm]')
 plt.legend(['Simulated', 'Cuboid', 'Parallelogram'])
@@ -227,9 +229,9 @@ if(savefigs):
 plt.figure()
 plt.grid()
 plt.plot(alpha, normS.max(axis=0), '.-')
-plt.plot(angles_an, Sm_c.max(axis=0), '--')
-plt.plot(angles_an, Sm_p.max(axis=0), ':')
-plt.title('Maximum of the Poynting vector (time avg.)')
+plt.plot(angles_an, Sn_c.max(axis=0), '--')
+plt.plot(angles_an, Sn_p.max(axis=0), ':')
+plt.title('Maximum of the Poynting vector, (' + pmchar + ') case')
 plt.xlabel('$\\alpha$')
 plt.ylabel('$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> \\right|$' +
            '$_\\mathrm{max}$ [W/m$^2$]')
@@ -267,7 +269,8 @@ plt.figure()
 plt.grid()
 plt.plot(alpha, np.degrees(wavgang), '.-')
 plt.title('Weighted avg. of propagation angle (weighted by ' +
-          '$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> \\right|$)')
+          '$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> \\right|$), (' +
+          pmchar + ') case')
 plt.xlabel('$\\alpha$')
 plt.ylabel('$\\overline{\\phi}_\\mathrm{prop}$')
 
@@ -290,10 +293,10 @@ plt.polar(propang, normS/normS.max())
 plt.polar(np.radians((180 - pm*2*opta))*np.ones(2),
           np.arange(2), 'k:')
 plt.ylim([0, 1])
-plt.title('Poynting vector (time avg.), normalized magnitude ' +
+plt.title('Normalized poynting vector magnitude ' +
           '$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> \\right|$ / ' +
           '$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> ' +
-          '\\right|_\\mathrm{max}$\n')
+          '\\right|_\\mathrm{max}$, (' + pmchar + ') case\n')
 plt.xlabel('$\\phi_\\mathrm{prop}$')
 plt.legend([str(a) + '$^\\circ$' for a in alpha], title='$\\alpha$',
            bbox_to_anchor=(1.1, 0.5), loc='center left')

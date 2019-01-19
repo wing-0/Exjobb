@@ -44,6 +44,9 @@
 % Enables multiple column parts
 \usepackage{multicol}
 
+% Generates lorem ipsum dummy text
+\usepackage{lipsum}
+
 \begin{document}
 	
 	% Add custom todocommands, use 'disable' inside the square brackets for any of the commands to hide that type of todo's from the pdf
@@ -70,15 +73,14 @@
 	\frontmatter    % Page numbering for front pages (small roman)
 	
 	\chapter*{Abstract}
+	\todoext{Write this}
 	
 	\chapter*{Acknowledgments}
+	\todoext{Write this}
 	
-	\chapter*{Popular Science Summary}
+	%\chapter*{Popular Science Summary}
 	\tableofcontents
-	\listoffigures
-	\todoext{Will only keep this list if it is necessary}
-	\listoftables
-	\todoext{Will only keep this list if it is necessary}
+	%\listoffigures
 	\chapter*{List of Abbreviations}
 	\begin{itemize}
 		\item Ac. - Acoustic
@@ -169,8 +171,22 @@
 	
 	One NDT technique which has become more popular relatively recently is microwave and mm-wave imaging \addref. Technical advances in microwave electronics together with better data processing performance has made this field increasingly attractive \addref. \todo{Relation to aerospace}
 	
-	\section{Related Work}
-	\todoext{List other work related to this. The paper detailing the mm-wave imaging system developed at EIT should probably be here. Other related work might be development by Top et.al. (HMMDI) for localized harmonic motion, Russian (Soviet) derivations of the acousto-optic-like theory from basic EM. Probably even more.}
+	The combination of multiple NDT techniques has been proposed as a way of improving performance. In particular, \todo{Fink (multiwave), Buerkle, vibro-acoustography, maybe even more? Search for combinations of phenomena}
+	
+	Interaction between acoustic and electromagnetic phenomena \todo{Introduce how long acousto-EM interaction has been known for, where it is used etc.}
+	
+	\section{Related Work}	
+	A mm-wave imaging system was developed and tested on composite panels at the Department of Electrical and Information Technology, Lund University \cite{Helander2017}. While not directly connected, the current work is inspired by the mm-wave imaging work made at the department. Additionally, the simulations and experiments described in the paper were highly useful for understanding properties of a mm-wave NDT system and relevant test materials. For an overview of microwave and mm-wave imaging for use in NDT, \cite{Kharkovsky2007} and \cite{Dobmann2012} introduce techniques and applications while not delving too deep into specifics.
+	
+	For the well established technique of ultrasonic testing, the book by Schmerr \cite{Schmerr2016} is a good reference and introduction to the general topic. More specifically, modern aerospace NDT is described in \cite{Garnier2011}, \cite{Katunin2015} and \cite{Riegert2006}. These papers compare various NDT techniques, of which ultrasonic testing is one.
+	
+	For acousto-optics, the dedicated chapter in \cite{Saleh2007} provides a good overview of the topic. For more detailed study, the monography by Korpel \cite{Korpel1988} covers much of the topic in great detail and with different approaches.
+	
+	A type of acousto-electromagnetic phenomena where the wavelengths involved are on the same order of magnitude is described in the RASS literature. Early work in \cite{Tonning1957} contains electromagnetic derivations related to the problem. Good descriptions of functional RASS systems can be found in \cite{Marshall1972} and \cite{May1990}, although they do not present much theoretical background. A good reference deriving basic theory for RASS performance is \cite{Gurvich1987}, which describes the problem with a beginning in basic electromagnetic scattering. An earlier work related to this is the book by Tatarskii \cite{Tatarskii1971} which is focused on turbulence and wave propagation. Much of the theory it presents regarding the effect of turbulence on electromagnetic waves is easily transferable to the acousto-electromagnetic problem, and chapter 2 of the book was heavily used for parts of this work.
+	
+	Another acousto-electromagnetic interaction mechanism is based on acoustically exciting radar targets. This was investigated as a way of detecting land mines by Scott and Martin \cite{Scott1999}. More mathematical modeling of this problem was performed by Buerkle, Sarabandi and Lawrence in \cite{Lawrence2001}, \cite{Buerkle2008}, \cite{Buerkle2009} where the last one relates the mechanism to NDT. The thesis by Buerkle \cite{Buerkle2007} provides a good summary of this interaction mechanism, possible applications and techniques.
+	
+	Vibrations can also be caused inside an object by using through acoustic radiation pressure. This has been used in multiple medical imaging methods described in \cite{Wang2018}. One well-known method using ultrasound to cause vibraitons in tissue is vibro-acoustography, which was introduced by Fatemi and Greenleaf \cite{Fatemi1998}. A method combining acoustic radiation pressure and microwave imaging, Harmonic Motion Microwave Doppler Imaging (HMMDI), was proposed by Top and Gençer as a way of  to improve Breast cancer detection \cite{Top2014}. The method was tested successfully on imaging phantoms (artificial model of human tissue) in \cite{Top2016} and \cite{Tafreshi2017}.
 	
 	\section{Purpose and Goals}
 	Three goals were set up before starting the work in the form of questions to be answered by the thesis:
@@ -182,8 +198,10 @@
 	The goals were not written in a very specific way due to them being decided before a thorough review of the literature. However, during the literature review process more information was obtained and the goals were appended with more specific questions and sub-goals.
 	
 	\section{Structure of Report}
+	\todoext{Write this}
 	
 	\chapter{Technology \label{sh:tech}}
+	\todoext{Introduce chapter}
 	
 	\section{Nondestructive Testing Techniques}
 	Nondestructive testing has been ... In industries with high demands for quality and safety, NDT is often a necessity. Aerospace is such an industry and has utilized NDT for a long time. \addref Modern aircraft increasingly use composite materials due to superior properties such as low weight \cite{Katunin2015}. The difference of these materials when compared with traditional metal structures requires changes in the NDT procedures \cite{Riegert2006}. One old technique which is used widely for aerospace composites is ultrasonic testing \cite{Garnier2011}. Another technique which has been developed more recently than ultrasonic testing is microwave/mm-wave imaging, which may hold promises in various NDT applications \cite{Kharkovsky2007}.
@@ -215,6 +233,7 @@
 %	\end{equation*}
 	
 	\chapter{Theory \label{ch:theory}}
+	\todoext{Introduce chapter}
 	
 	\section{Overview of Interaction Mechanisms}
 	To introduce the subject, four types of interaction mechanisms between acoustic and electromagnetic waves are presented. This is by no means a complete list of possible ways of combining the phenomena. Instead, these mechanisms are those which could be found in the literature relatively easily.
@@ -380,8 +399,7 @@
 %	This calculation obviously depends on both the space- and time-dependencies of the pressure field.
 	
 	\section{Photoelasticity}
-	\todoint[inline]{Add all other names such as strain-optic, elasto-optic}
-	To understand how the interaction between the two wave phenomena works, the first step is to understand how an acoustic or elastic wave affects electromagnetic properties. The theory of photoelasticity relates strains from linear elasticity with the relative permittivity of a material. With a starting point in solid mechanics, a tensor-based theory is somewhat inevitable. However, a simplified model is shown later which condenses the tensor relations down to a scalar relation.
+	To understand how the basic interaction from acousto-optics works, the first step is to understand how an acoustic or elastic wave affects electromagnetic properties. The theory of photoelasticity relates strains from linear elasticity with the relative permittivity of a material. With a starting point in solid mechanics, a tensor-based theory is somewhat inevitable. However, a simplified model is shown later which condenses the tensor relations down to a scalar relation. Since the interaction between acoustic and electromagnetic waves in this case is based on photoelasticity, it will be called ''photoelastic interaction`` further on in the text instead of ''acousto-optics`` even though the underlying physics are the same. The reason for this is that ''acousto-optics`` is a misnomer for non-optical frequencies.
 	
 	A starting point can be found in the literature on acousto-optics in the relation \cite{Korpel1988}
 	\begin{equation*}
@@ -451,8 +469,9 @@
 		\varepsilon_1 = \frac{\varepsilon_\mrm{r}^2 \mathfrak{p}}{K} \,p
 		\label{eq:th-PE-scalar-p}
 	\end{equation}
+	Scalar models such as this might seem unreasonably simplified when the starting point is a much more complicated tensor relationship. However, in acousto-optics scalar relations similar to this are used  \cite{Saleh2007} \cite{Korpel1988}, and in many cases the only quantity used might be a scalar figure of merit for the interaction strength \cite{Korpel1988}.
 	
-	To obtain a model for calculating this simplified constant $\mathfrak{p}$, another starting point for the problem is utilized. This is the Lorentz-Lorenz relation, which can be used to obtain the following equations for photoelasticity \cite{Korpel1988}
+	To obtain a model for calculating the scalar constant $\mathfrak{p}$, another starting point for the problem is utilized. This is the Lorentz-Lorenz relation, which can be used to obtain the following equations for photoelasticity \cite{Korpel1988}
 	\begin{align*}
 		\Delta n &= C' S \\
 		C' &= \left[ \frac{(n^2-1)(n^2+2)}{6n} \right](1-\Lambda_0) \\
@@ -484,7 +503,7 @@
 	\begin{equation*}
 		\varepsilon_1 = \frac{1.13 \cdot 10^{-6} p}{T}
 	\end{equation*}
-	where $p$ is the pressure in Pa and $T$ is the temperature in K (which would give the constant a unit of K/Pa) \todoint{Decide on how to handle units here}. The equations \eqref{eq:th-PE-scalar-p} and \eqref{eq:th-PE-liquid-model} can be combined to give the simple model
+	where $p$ is the pressure in Pa and $T$ is the temperature in K (which would give the constant a unit of K/Pa). The equations \eqref{eq:th-PE-scalar-p} and \eqref{eq:th-PE-liquid-model} can be combined to give the simple model
 	\begin{equation*}
 		\varepsilon_1 = \frac{\varepsilon_\mrm{r}^2 \mathfrak{p}}{K} \,p = \frac{(\varepsilon_\mrm{r} - 1)(\varepsilon_\mrm{r} + 2)}{3\rho_0 v^2} \,p
 	\end{equation*}
@@ -498,11 +517,8 @@
 	\end{equation*}
 	Thus, the simple model presented here shows good agreement with another model from the literature in air.
 	
-	\todoint[inline]{Relate back to acousto-optics. Especially in this scalar simplified model since that is similar to what is presented in Saleh.}
-	
 	\chapter{Analytical Modeling \label{ch:analytical}}
-	
-	\section{Overview}
+	\todoext{Introduce chapter}
 	
 	\section{Scattering in a perturbed dielectric \label{sec:analytical-scatter}}
 	Scattering of electromagnetic waves in a dielectric perturbation is now considered in general. A full derivation can be found in appendix \ref{sec:app-derivations-scatter}, and only the main results are shown here. The starting point is Maxwell's equations for a linear, non-magnetic, source-free, isotropic dielectric. Note that the permittivity is not homogeneous.
@@ -616,9 +632,6 @@
 	\end{align}
 	The $\mp$-sign here is related to the $\pm$-sign indicating frequency shift of the scattered wave. These equations correspond directly to the Bragg condition used in acousto-optics (see appendix \ref{sec:app-derivations-bragg}). This gives the model some validation since the acousto-optic Bragg condition is derived from a slightly different starting point, but for the same basic phenomenon \cite{Saleh2007}.
 	
-	\subsection{Example calculations}
-	\todoext{Present example calculations from powerbudget scripts. "Here's how you can cause acousto-electromagnetic interaction using materials found in your own home!"}
-	
 	\subsection{Refined interaction region} \label{sec:analytical-radar-refined}
 	The analytical results presented above are based on a cuboid interaction region. This makes for simple calculations and is fairly straight-forward at a conceptual level. However, it is difficult to find good dimensions $L_x$, $L_y$, $L_z$ based on a real-life system using electromagnetic antennas and ultrasonic transducers. For this reason, the interaction region was refined for simple adaptation to real-life parameters. Other idealizations such as plane waves were still kept. The interaction region was now based on abrupt beams where the fields behave as plane waves inside of the beam diameter and are zero outside. Two crossing beams form a parallelogram as shown in figure \ref{fig:an-parallelogram}.
 	\begin{figure}[h]
@@ -628,7 +641,7 @@
 		}
 		\caption{\label{fig:an-parallelogram} Parallelogram interaction region. Electromagnetic beam diameter $d_\mrm{e}$, acoustic beam diameter $d_\mrm{a}$, angle between wavevectors $\alpha$.}
 	\end{figure}
-	This new interaction region alters the derivation somewhat in that the scattering integral \eqref{eq:an-scatter-int} is calculated over another region. The resulting scattered field is given by (see appendix \ref{sec:app-derivations-refined})
+	This new interaction region alters the derivation somewhat in that the scattering integral \eqref{eq:an-scatter-int} is calculated over another region. The resulting scattered field is given by (see appendix \ref{sec:app-derivations-radar-refined})
 	\begin{equation*}
 	\bm{E}_\mrm{sc,p} (\bm{r},t) = \bm{E}_{\mrm{i}0} \left( E_\mrm{A,p}^+ (\bm{r},t) + E_\mrm{A,p}^- (\bm{r},t) \right)
 	\end{equation*}
@@ -652,7 +665,7 @@
 	It can be shown (see appendix \ref{sec:app-derivations-bragg-refined}) that the same conditions for maximizing $\Phi$ hold for this refined interaction region as for the cuboid interaction region, i.e. equations \eqref{eq:an-bragg-theta}, \eqref{eq:an-bragg-alpha} and \eqref{eq:an-bragg-phi}. One thing to keep in mind though, is that the parallelogram geometry has a factor $1/\sin{\alpha}$ in the interaction region which is not present in the cuboid geometry. The effect of this is that the angle $\alpha$ for maximum scattering can be shifted down in the (-) case and up in the (+) case. The exact shift depends highly on the geometry of the interaction region (see appendix \ref{sec:app-derivations-bragg-refined}).
 	
 	\subsection{2D solution}
-	When comparing analytical results to simulation results it is important to use the same assumptions for both. In the analytical derivations, 3D space has been assumed while simulations are done in 2D. To be able to compare results, a 2D solution to the problem was calculated. Much of the derivations are similar, and only the results are shown here (see appendix \ref{sec:app-derivations-2d} for full derivations). The Poynting vector of the scattered field in 2D can be written as (see appendix \ref{sec:app-derivations-2d})
+	When comparing analytical results to simulation results it is important to use the same assumptions for both. In the analytical derivations, 3D space has been assumed while simulations are done in 2D. To be able to compare results, a 2D solution to the problem was calculated. Much of the derivations are similar, and only the results are shown here (see appendix \ref{sec:app-derivations-radar-2d} for full derivations). The Poynting vector of the scattered field in 2D can be written as (see appendix \ref{sec:app-derivations-radar-2d})
 	\begin{equation}
 		\left< \bm{S}_\mrm{sc,2D}^\pm \right> (\bm{r}) = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{\mrm{i}0}|^2 |E_\mrm{A,2D}^\pm (\bm{r},t)|^2
 		\label{eq:an-2d-power-cuboid}
@@ -665,7 +678,7 @@
 	\begin{equation*}
 		\Phi_\mrm{2D}^\pm (\theta,\phi) = \text{sinc} \left( \frac{L_{x}}{2\pi} ( k - k\cos{\phi} \pm q\cos{\alpha} ) \right) \text{sinc} \left( \frac{L_{y}}{2\pi} ( - k\sin{\phi} \pm q\sin{\alpha} ) \right)
 	\end{equation*}
-	As for the 3D solution, the interaction region can be refined using a parallelogram geometry. This leads to the Poynting vector (see appendix \ref{sec:app-derivations-2d})
+	As for the 3D solution, the interaction region can be refined using a parallelogram geometry. This leads to the Poynting vector (see appendix \ref{sec:app-derivations-radar-2d})
 	\begin{equation}
 		\left< \bm{S}_\mrm{sc,2D,p}^\pm \right> (\bm{r}) = \frac{\bm{\hat{r}}}{2\eta_0 \eta} |\bm{E}_{\mrm{i}0}|^2 |E_\mrm{A,2D,p}^\pm (\bm{r},t)|^2
 		\label{eq:an-2d-power-parallelogram}
@@ -684,12 +697,13 @@
 	\end{equation*}
 	
 	
-	\chapter{Numerical Simulation}
+	\chapter{Numerical Simulation} \label{ch:sim}
+	\todoext{Introduce chapter}
 	
-	\section{Overview}
-	The problem was simulated in COMSOL Multiphysics for verification and further investigation of more complex scenarios than the one modeled analytically. The two physics interfaces used were the ``Pressure Acoustics, Frequency Domain'' from the basic COMSOL Multiphysics and ``Electromagnetic Waves, Frequency Domain'' from the RF Module. Models were built in 2D for computational speed. One simulation required 1 acoustic and 2 electromagnetic frequency domain simulations to be run, and parameter sweeps would multiply the number required. It was decided that 3D simulations would be too time consuming with little gain when compared with 2D. \todoint{Details on 2D analytical model to compare with (and not 3D)}
+	\section{General Information}
+	The problem was simulated in COMSOL Multiphysics for verification and further investigation of more complex scenarios than the one modeled analytically. The two physics interfaces used were the ``Pressure Acoustics, Frequency Domain'' from the basic COMSOL Multiphysics and ``Electromagnetic Waves, Frequency Domain'' from the RF Module. Models were built in 2D for computational speed. One simulation required 1 acoustic and 2 electromagnetic frequency domain simulations to be run, and parameter sweeps would multiply the number required. It was decided that 3D simulations would be too time consuming with little gain when compared with 2D.
 	
-	The pressure acoustics model was used even though propagation in a solid medium was to be modeled. This was done under an assumption of pure p-wave propagation, which can be modeled using acoustic pressure with a different wave speed as shown in section \ref{sec:th-prop-solid}. However, in these simulations the wave speed was calculated using the acoustic wave speed $v = \sqrt{K/\rho_0}$ which is only correct for p-waves in materials with negligible shear modulus \cite{Schmerr2016}. The reason for this was that wave speed and density entered the COMSOL physics model at multiple places such as the boundary conditions which made it more difficult to determine exactly how to change the wave speed without affecting other parameters. \todoint{Look into this more!}
+	The pressure acoustics model was used even though propagation in a solid medium was to be modeled. This was done under an assumption of pure p-wave propagation, which can be modeled using acoustic pressure with a different wave speed as shown in section \ref{sec:th-prop-solid}. However, in these simulations the wave speed was calculated using the acoustic wave speed $v = \sqrt{K/\rho_0}$ which is only correct for p-waves in materials with negligible shear modulus \cite{Schmerr2016}. The reason for this was that wave speed and density entered the COMSOL physics model at multiple places such as the boundary conditions which made it more difficult to determine exactly how to change the wave speed without affecting other parameters. \todoint{Look into this more?!}
 	
 	For all simulations the acoustic frequency was set to 450 MHz, which was used in acoustic frequency domain simulations. From this value and material properties, the acoustic wavelength $\Lambda$ was determined. Using the desired angle $\alpha$ between beams and equation \eqref{eq:an-bragg-alpha}, the electromagnetic wavelength $\lambda$ was calculated. From $\lambda$ and material properties the electromagnetic frequency was calculated, which was used in electromagnetic frequency domain simulations. The electromagnetic frequency was approximately 61.29 GHz, where it was matched to the angles $\alpha = 40^\circ$ (negative frequency shift) or $\alpha = 140^\circ$ (positive frequency shift).
 	
@@ -736,7 +750,7 @@
 	\begin{equation*}
 		y' = -x\sin{\phi} + y\cos{\phi}
 	\end{equation*}
-	The geometry is the same as previously shown in figure \ref{fig:an-radar-geom}. As such, $\phi = \pi$ for EM and $\phi = \pi + \alpha$ for Ac. For the coefficient $A$, it was found that $A = 4/D$ gave a good taper for an aperture width $D$.
+	The geometry is the same as previously shown in figure \ref{fig:an-radar-geom}. As such, $\phi = \pi$ for EM and $\phi = \pi + \alpha$ for Ac. For the coefficient $A$, it was found that $A = 4/D$ gave a good taper for an aperture width $D$ (the value of the taper function was close to zero at the edge of the aperture).
 	
 	\subsection{Modeling of Electromagnetic Aperture}
 	An electromagnetic aperture was designed to produce a fairly low beam width while not taking up too much space on the boundary. The model used a ``Port'' boundary condition on a boundary segment with length $D = 8\lambda$. The port options ``User Defined'' and wave excitation were turned on. The port input power was set to 15 dBm. Due to it being located on an interior boundary, the slit condition was activated with a domain-backed slit. For the port mode, the electric field was set as the input quantity with a tapered field in z defined as
@@ -756,7 +770,7 @@
 	To model photoelasticity in COMSOL, equation \eqref{eq:th-PE-scalar-p} was used with the photoelastic constant defined by equation \eqref{eq:th-PE-liquid-model}.
 	
 	\subsection{Material}
-	The material model used was based on a foam core. The reason for this was that foam material is fairly homogeneous and isotropic (compared to honeycombs) and is used in aerospace applications \addref. The specific core selected was Divinycell HT251 from Diab Group, which is an aerospace core with applications described as ``Primary structures, radomes, control surfaces and interior components'' \cite{Diab2016}. The relevant material properties were density ($\rho_0$), bulk modulus ($K$) and relative permittivity ($\varepsilon_\mrm{r}$). These were $\rho_0 = 250$ kg/m$^3$, $K = 400$ MPa (nominal) and $\varepsilon_\mrm{r} = 1.29$ \cite{Diab2016}. In COMSOL, the required properties were density, speed of sound, relative permittivity, relative permeability and electric conductivity \todoint{More properties?}. The speed of sound was calculated using $v = \sqrt{K/\rho_0}$ \todoint{reference equation}, the relative permeability was set to 1 and the conductivity to 0. The assumption was that the material was perfectly non-conducting and non-magnetic.
+	The material model used was based on a foam core. The reason for this was that foam material is fairly homogeneous and isotropic (compared to honeycombs) and is used in aerospace applications \addref. The specific core selected was Divinycell HT251 from Diab Group, which is an aerospace core with applications described as ``Primary structures, radomes, control surfaces and interior components'' \cite{Diab2016}. The relevant material properties were density ($\rho_0$), bulk modulus ($K$) and relative permittivity ($\varepsilon_\mrm{r}$). These were $\rho_0 = 250$ kg/m$^3$, $K = 400$ MPa (nominal) and $\varepsilon_\mrm{r} = 1.29$ \cite{Diab2016}. In COMSOL, the required properties were density, speed of sound, relative permittivity, relative permeability and electrical conductivity. The speed of sound was calculated using $v = \sqrt{K/\rho_0}$, the relative permeability was set to 1 and the conductivity to 0. The assumption was that the material was perfectly non-conducting and non-magnetic.
 	
 	\subsection{Mesh}
 	Two meshes were used in simulations: one for the acoustic simulation and one for the electromagnetic simulation. The reason for this was primarily the difference in wavelength.
@@ -790,19 +804,13 @@
 		\left< S_{\mrm{sc},x} \right> &= -\frac{1}{2} \text{Re} \{ E_{\mrm{sc},z} H_{\mrm{sc},y}^* \} \\
 		\left< S_{\mrm{sc},y} \right> &= \frac{1}{2} \text{Re} \{ E_{\mrm{sc},z} H_{\mrm{sc},x}^* \}
 	\end{align*}
-	Due to it being easier to visualize, the magnitude of the time-averaged Poynting vector was also calculated. Using the $x$ and $y$ coordinates, the observation angle $\phi_\mrm{obs}$ for each point was calculated and the data was sorted according to this. A measure for the total scattered power was calculated by integrating the magnitude of the time-averaged Poynting vector over the entire boundary. This was done using the trapezoidal method with the distances between points calculated from the coordinates.
-	
-	One thing to note is that the definition for radiated power is \todoint{Define this in a good way (2D) and cite something}
+	Due to it being easier to visualize, the magnitude of the time-averaged Poynting vector was also calculated. Using the $x$ and $y$ coordinates, the observation angle $\phi_\mrm{obs}$ for each point was calculated and the data was sorted according to this. To calculate the total scattered power, the normal component of the time-averaged Poynting vector at the measurement boundary was calculated. This was done using
 	\begin{equation*}
-		\int_{C_\mrm{mb}} \left< \bm{S} \right> \cdot \bm{\hat{n}} \, \mrm{d}l
+		\bm{\hat{n}} \cdot \left< \bm{S} \right> \approx \left< S_{\mrm{sc},x} \right> \cos(\phi_\mrm{obs}) + \left< S_{\mrm{sc},y} \right> \sin(\phi_\mrm{obs})
 	\end{equation*}
-	where $\bm{\hat{n}}$ is the normal to the measurement boundary $C_\mrm{mb}$. However, here the calculation was instead
-	\begin{equation*}
-		\int_{C_\mrm{mb}} \left| \left< \bm{S} \right> \right|  \, \mrm{d}l
-	\end{equation*}
-	The reason behind this is that the boundary curvature was large when compared with the beams of interest. This would cause scattered field originating away from the center of the geometry to have less influence on the measure for total scattered power. This can be seen in figure \ref{fig:sim-postproc-angles} where the propagation angle, $\phi_\mrm{prop}$, differs from the observation angle normal to the boundary, $\phi_\mrm{obs}$, for much of the scattered field. Using the magnitude of the Poynting vector instead decreases the influence of the boundary geometry.
+	where $\bm{\hat{n}}$ is the normal vector to the measurement boundary. This is an approximate relation since the normal vector $\bm{\hat{n}} = \bm{\hat{x}} \cos{\phi} + \bm{\hat{y}} \sin{\phi}$ holds for a circular boundary. Due to the apertures, the measurement boundary is not perfectly circular, but it is still fairly close. The normal component of the Poynting vector was then integrated over the full measurement boundary using the trapezoidal method, with distance between data points calculated from the coordinates.
 	
-	For plotting of the time-averaged Poynting vector magnitude, the propagation angle $\phi_\mrm{prop}$ was calculated for each data point. The two angles $\phi_\mrm{obs}$ and $\phi_\mrm{prop}$ are shown in figure \ref{fig:sim-postproc-angles} together with the geometry of the problem. From this figure it can be seen that the observation angle depends highly on the measurement point while the propagation angle is a property of the scattered field. For this reason, the propagation angle was chosen for use in plots where the angle mattered.
+	For plotting of the time-averaged Poynting vector magnitude, the propagation angle $\phi_\mrm{prop}$ was calculated for each data point. The two angles $\phi_\mrm{obs}$ and $\phi_\mrm{prop}$ are shown in figure \ref{fig:sim-postproc-angles} together with the geometry of the problem. From this figure it can be seen that the observation angle depends highly on the measurement point while the propagation angle is a property of the scattered field. For this reason, the propagation angle was used in plots for the angle $\phi$.
 	
 	\begin{figure}[h]
 		\centering
@@ -813,13 +821,22 @@
 	\section{Specific Studies}
 	This section contains details specific to the different studies run in COMSOL.
 		
-	\subsection{Comparison with Analytical Model - Angles}
+	\subsection{Sweep of angle $\alpha$}
 	To compare with the results from section \ref{sec:analytical-radar} the frequencies of the acoustic and electromagnetic waves were matched to a Bragg angle of $40^\circ$ while the angle $\alpha$ between the wavevectors was swept between $\pm 5^\circ$ of the optimal angle. This was done both for (+) and (-) scattering by sweeping around either $\alpha = 40^\circ$ or $\alpha = 140^\circ$, as these angles are the ones given by equation \eqref{eq:an-bragg-alpha} as angles for maximum scattering.
 	
-	The maximum Poynting vector magnitude was calculated for each $\alpha$ and plotted against this angle. This was done to find the angle $\alpha$ giving maximum scattering. For comparison, the 2D versions of Poynting vector were also plotted for both cuboid and parallelogram geometries using equation \eqref{eq:an-2d-power-cuboid} and \eqref{eq:an-2d-power-parallelogram}. The dimensions were selected such that $d_\mrm{a}$ was the acoustic aperture width, $d_\mrm{e}$ the electrical aperture width and $L_x = d_\mrm{e}$, $L_y = d_\mrm{a}$. These dimensions were selected since they were easy to relate to the model, but had some drawbacks since the interaction regions were not that well reproduced. The equations \eqref{eq:an-2d-power-cuboid} and \eqref{eq:an-2d-power-parallelogram} also require values for $\bm{E}_\mrm{i0}$ and $p_0$. These were selected as the peak field values from the COMSOL simulations. The effect of this was obviously that the analytical comparisons became dependent on some part of the simulations. These peak field values would not be correct amplitudes for use in the equations since the waves in simulations were tapered. Due to this, a correction was used to ensure that the plane waves in analytical solutions would have the same total power as the tapered beams where the peak amplitudes were obtained. \todo{Write more about correction factor}
+	The maximum Poynting vector magnitude was calculated for each $\alpha$ and plotted against this angle. This was done to find the angle $\alpha$ giving maximum scattering. For comparison, the 2D versions of Poynting vector were also plotted for both cuboid and parallelogram geometries using equation \eqref{eq:an-2d-power-cuboid} and \eqref{eq:an-2d-power-parallelogram}. The dimensions were selected such that $d_\mrm{a}$ was the acoustic aperture width, $d_\mrm{e}$ the electrical aperture width and $L_x = d_\mrm{e}$, $L_y = d_\mrm{a}$. These dimensions were selected since they were easy to relate to the model, but had some drawbacks since the interaction regions were not that well reproduced. The equations \eqref{eq:an-2d-power-cuboid} and \eqref{eq:an-2d-power-parallelogram} also require values for $\bm{E}_\mrm{i0}$ and $p_0$. These were selected as the peak field values from the COMSOL simulations. The effect of this was obviously that the analytical comparisons became dependent on some part of the simulations. These peak field values would not be correct amplitudes for use in the equations since the waves in simulations were tapered. Due to this, the Poynting vector was multiplied by a correction factor to ensure that the plane waves in analytical solutions would have the same total power as the tapered beams where the peak amplitudes were obtained.
 	
-	\subsection{Comparision with Analytical Model - Power}
-	To compare the power measure with the analytical calculation, the integral of the Poynting vector magnitude was calculated using equations \eqref{eq:an-2d-power-cuboid} and \eqref{eq:an-2d-power-parallelogram}. The Poynting vectors were calculated the same way as for the angle comparison, and the integrals were calculated numerically using the trapezoid method. The measurement boundary was then approximated by a circle with the radius $30\Lambda$, which was also the value for $r$.
+	To obtain the correction factor, it was assumed that the total power in a simulated beam $P_\mrm{beam}$ would be related to the taper function as
+	\begin{equation*}
+		P_\mrm{beam} = S_\mrm{beam} \int_{-\infty}^{\infty} \left( \eu^{-(4y'/D)^2} \right)^2 \mrm{d}y' = S_\mrm{beam} \int_{-\infty}^{\infty} \eu^{-(16y'/D)^2} \mrm{d}y' = S_\mrm{beam} \frac{D\sqrt{\pi}}{16}
+	\end{equation*}
+	where $S_\mrm{beam}$ is a power density amplitude and a standard Gaussian integral solution was used \addref. The taper function was assumed to be zero outside of the region $-D/2 < y' D/2$ so that an infinite integral could be used. Since the taper function was defined to have this property, it was not an issue. The goal of the correction factor was to ensure that the total power of a plane wave inside a beam diameter $D$ was equal to the total power of the simulated beam. For this plane wave, the total power is simply a power density amplitude $S_\mrm{plane}$ multiplied with the beam diameter. For equal power it should then hold that
+	\begin{equation*}
+		S_\mrm{plane} D = S_\mrm{beam} \frac{D\sqrt{\pi}}{16}
+	\end{equation*}
+	If $D$ is canceled out, the correction factor when going from a beam amplitude to a plane wave amplitude is $\sqrt{\pi}/16$. Since this was done for both the acoustic and electromagnetic fields, a total correction factor of $\pi/256$ was applied to the analytical 2D Poynting vector.
+	
+	To compare the simulated values for total scattered power with the analytical ones, the normal component of the analytical Poynting vector at the measurement boundary was calculated. The measurement boundary was approximated by a circle with the radius $30\Lambda$, which was also the value for $r$. Due to the circular boundary and the vectors in equations \eqref{eq:an-2d-power-cuboid} and \eqref{eq:an-2d-power-parallelogram} being directed in $\bm{\hat{r}}$, the normal component of the Poynting vector was equal to its magnitude. The normal component was then integrated over the full boundary numerically using the trapezoid method.
 	
 	\subsection{Conductive Defect}
 	To examine the effect of a defect with electromagnetic contrast but no acoustic contrast, simulations were run with a conductive defect. The geometry of this problem was based on the basic geometry shown in figure \ref{fig:sim-geometry}. The addition was a circle in the center of the physics domain representing a defect. This had the diameter equal to the electromagnetic wavelength $\lambda$. The material in this region was the same as in the physics domain, but with a nonzero electric conductivity.
@@ -832,12 +849,18 @@
 	To demonstrate the effect of density change, the density was swept between 100 and 400 kg/m$^3$ in steps of 25 kg/m$^3$. The angle $\alpha$ was fixed at $40^\circ$ with $\lambda$ matched to $\Lambda$ and this angle.
 	
 	\chapter{Results and Discussion}
+	\todoext{Introduce chapter}
 	
 	\section{Numerical Simulation Results}
-	\todoext{Resize figures (so they fit inside page margins) and change font size of legends etc. Include (+) and (-) labels in matplotlib titles instead of in subcaptions (remove subcaptions entirely, only use the main one)}
+	In this section, the results from the numerical simulations described in chapter \ref{ch:sim} are shown and described. Comparisons are made with the analytical models from chapter \ref{ch:analytical}.
+	\todoext{Resize figures (so they fit inside page margins) and change font size of legends etc. Also add selected surface plots from COMSOL for easier understanding of how the incident and scattered beams look (really only for qualitative results and visualization, but that is also important).}
 	
-	\subsection{Comparison with Analytical Model - Angle}
-	The results from the sweep of the angle between wavevectors $\alpha$ are shown in figures \ref{fig:res-angle-sweep-peak} - \ref{fig:res-angle-sweep-polar} for both the (+) and (-) scattering cases. Figure \ref{fig:res-angle-sweep-peak} shows the peak of the scattered Poynting vector magnitude due to photoelasticity for the angles $\alpha = 40^\circ \pm 5^\circ$ together with analytical values. Figure \ref{fig:res-angle-sweep-angles} shows the relationship between scattering angle $\phi$ (using the propagation angle $\phi_\mrm{prop}$) and angle between wavevectors $\alpha$. This was plotted using a weighted average of the propagation angle with weights of the Poynting vector corresponding to that angle. This way scattering angles which were not contributing much to the power (such as noise) had their effect on the final value greatly reduced. Figure \ref{fig:res-angle-sweep-polar} shows the magnitude of the Poynting vector for different propagation angles $\phi_\mrm{prop}$ as a polar plot. The values are normalized.
+	\subsection{Sweep of angle $\alpha$}
+	The results from the sweep of the angle between wavevectors $\alpha$ are shown in figures \ref{fig:res-angle-sweep-peak} - \ref{fig:res-angle-sweep-power} for both the (+) and (-) scattering cases.
+	
+	Figure \ref{fig:res-angle-sweep-peak} shows that the peak photoelastically scattered Poynting vector magnitude was maximized at an angle $\alpha = 40^\circ$ for (-) scattering (negative frequency shift) and at $\alpha = 140^\circ$ for (+) scattering (positive frequency shift). The analytical comparisons are shown for the cuboid and parallelogram geometries. It can be seen that the peak of the curves is at the same angle $\alpha$ for the simulated values and the cuboid analytical model. Since the wavelengths were selected such that these angles would maximize the scattering (using equation \eqref{eq:an-bragg-alpha}), this would be expected. The parallelogram analytical model has its maximum at another angle $\alpha$, but as discussed in section \ref{sec:analytical-radar-refined} there could be a slight change in this angle $\alpha$. The predicted change was that the angle $\alpha$ of maximum scattering would shift down for (-) scattering and up for (+) scattering, which is what can be seen in figure \ref{fig:res-angle-sweep-peak}.
+	
+	If the analytical curves for (+) and (-) scattering are compared, the levels of power density are the same. For the simulated values however, the (+) scattering power density levels are lower than those for (-) scattering. This can be explained using the width of the scattered beams. In figure \ref{fig:res-angle-sweep-power} it can be seen that the total scattered power is the same for both (+) and (-). A lower power density of the (+) beam would require a wider scattered beam, which can be observed to be the case \todo{COMSOL figure}.
 	
 	\begin{figure}[H]
 		\centering
@@ -845,17 +868,14 @@
 			\resizebox{\textwidth}{!}{
 				\input{fig/angle-sweep-peak-an(-).pgf}
 			}
-			\caption{(-) case}
 		\end{subfigure}
 		\begin{subfigure}{\textwidth}
 			\resizebox{\textwidth}{!}{
 				\input{fig/angle-sweep-peak-an(+).pgf}
 			}
-			\caption{(+) case}
 		\end{subfigure}
 		\caption{\label{fig:res-angle-sweep-peak} Peak value of Poynting vector magnitude for different angles between wavevectors $\alpha$. Analytical equivalents plotted for both cuboid and parallelogram geometries.}
 	\end{figure}
-	Figure \ref{fig:res-angle-sweep-peak} shows that the peak photoelastically scattered Poynting vector magnitude was maximized at an angle $\alpha = 40^\circ$ for (-) scattering (negative frequency shift) and at $\alpha = 140^\circ$ for (+) scattering (positive frequency shift). The analytical comparisons are shown for the cuboid and parallelogram geometries. It can be seen that the peak of the curves is at the same angle $\alpha$ for the simulated values and the cuboid analytical model. Since the wavelengths were selected such that these angles would maximize the scattering (using equation \eqref{eq:an-bragg-alpha}), this would be expected. The parallelogram analytical model has its maximum at another angle $\alpha$, but as discussed in section \ref{sec:analytical-radar-refined} there could be a slight change in this angle $\alpha$. The predicted change was that the angle $\alpha$ of maximum scattering would shift down for (-) scattering and up for (+) scattering, which is what can be seen in figure \ref{fig:res-angle-sweep-peak}.
 	
 	What is interesting is that the $\alpha$ shift for the parallelogram geometry is not seen in the simulation results, even though the parallelogram geometry should be more realistic than the cuboid one. This might be due to the length of the $\alpha$ shift being strongly related to interaction region geometry. As described before, the dimensions of the interaction regions were selected using the aperture widths. Since the actual beams diameters were not constant, the dimensions of the interaction region should be slightly larger. Increasing these dimensions slightly lead to the parallelogram curve having its peak closer to the same $\alpha$ as simulations. If the simulation curve is observed, a slight asymmetry can be seen around the $\alpha$ for the peak (easier to see for (-) than for (+)). This might be indication of a very slight shift in $\alpha$ compared with 40$^\circ$/140$^\circ$, but difficult to exactly replicate analytically with the geometry parameters available in the parallelogram model.
 	
@@ -865,25 +885,23 @@
 	
 	Nevertheless, the peaks for simulation, cuboid and parallelogram cases in figure \ref{fig:res-angle-sweep-peak} are at angles $\alpha$ fairly close to each other and all values for $\left| \left< \bm{S}_\mrm{sc} \right> \right|_\mrm{max}$ are in the same order of magnitude. This is the case even though geometric parameters used in the analytical models could have been selected with more care. \todo{Maybe more?}
 	
-	\todoext{Figure after this still has typos in "weight" (the (+) scattering figure)}
 	\begin{figure}[H]
 		\centering
 		\begin{subfigure}{\textwidth}
 			\resizebox{\textwidth}{!}{
 				\input{fig/angle-sweep-angles(-).pgf}
 			}
-			\caption{(-) case}
 		\end{subfigure}
 		\begin{subfigure}{\textwidth}
 			\resizebox{\textwidth}{!}{
 				\input{fig/angle-sweep-angles(+).pgf}
 			}
-			\caption{(+) case}
 		\end{subfigure}
 		\caption{\label{fig:res-angle-sweep-angles} Weighted average of the propagation angle $\phi_\mrm{prop}$ as a function of angle between wavevectors $\alpha$. Weighted by corresponding Poynting vector.}
 	\end{figure}
 	Figure \ref{fig:res-angle-sweep-angles} shows a linear relationship between the angle $\alpha$ between incident wavevectors and the propagation angle $\phi_\mrm{prop}$. This can be compared with the analytical result in equation \eqref{eq:an-bragg-phi}, which gives a relationship valid at the point of maximum scattering. The propagation angles at $\alpha = 40^\circ$ and $\alpha = 140^\circ$ from the plot (the angles which maximized scattering) are $\phi_\mrm{prop} = 260^\circ$ and $\phi_\mrm{prop} = 100^\circ$ respectively. This is in agreement with the analytical values from equation \eqref{eq:an-bragg-phi}. Further from these angles $\alpha$, the analytical equation is no longer valid (since this is not at the point of maximum scattering). However, as discussed before the simulated beams can be decomposed as a sum of plane waves. This means that equation \eqref{eq:an-bragg-phi} is valid for some pair of plane wave components at every angle $\alpha$.
-	\todoext{This could be looked into more. Might be interesting to explore how the slope of the graphs is related to the combinations of EM and Ac. plane wave components.}
+	
+	%\todoext{This could be looked into more. Might be interesting to explore how the slope of the graphs is related to the combinations of EM and Ac. plane wave components.}
 	
 	\begin{figure}[H]
 		\centering
@@ -891,35 +909,29 @@
 			\resizebox{\textwidth}{!}{
 				\input{fig/angle-sweep-polar(-).pgf}
 			}
-			\caption{(-) case}
 		\end{subfigure}
 		\begin{subfigure}{\textwidth}
 			\resizebox{\textwidth}{!}{
 				\input{fig/angle-sweep-polar(+).pgf}
 			}
-			\caption{(+) case}
 		\end{subfigure}
 		\caption{\label{fig:res-angle-sweep-polar} Polar plot of the Poynting vector for varying propagation angles $\phi_\mrm{prop}$ and angle between wavevectors $\alpha$. Dotted line at $\phi_\mrm{prop} = 260^\circ$ (-) or $\phi_\mrm{prop} = 100^\circ$ (+-). Normalized by maximum value.}
 	\end{figure}
 	Figure \ref{fig:res-angle-sweep-polar} shows the angular behavior of the Poynting vector magnitude in a simple way. What is clear is that the scattering is quite directive - the Poynting vector magnitude drops sharply for propagation angles deviating from that of the peak value.
 	
-	\subsection{Comparison with Analytical Model - Power}
-	This part describes the results for total scattered power. Figure \ref{fig:res-angle-sweep-power} shows the total scattered power due to photoelasticity for the angles $\alpha = 40^\circ \pm 5^\circ$ together with analytical values.
 	\begin{figure}[H]
 		\centering
 		\begin{subfigure}{\textwidth}
 			\resizebox{\textwidth}{!}{
 				\input{fig/angle-sweep-power-an(-).pgf}
 			}
-			\caption{(-) case}
 		\end{subfigure}
 		\begin{subfigure}{\textwidth}
 			\resizebox{\textwidth}{!}{
 				\input{fig/angle-sweep-power-an(+).pgf}
 			}
-			\caption{(+) case}
 		\end{subfigure}
-		\caption{\label{fig:res-angle-sweep-power-c} Poynting vector magnitude integrated over measurement boundary for different angles between wavevectors $\alpha$. Analytical equivalents plotted for both cuboid and parallelogram geometries.}
+		\caption{\label{fig:res-angle-sweep-power-c} Total scattered power for different angles between wavevectors $\alpha$. Analytical equivalents plotted for both cuboid and parallelogram geometries.}
 	\end{figure}
 	Figure \ref{fig:res-angle-sweep-power-c} shows that the peak photoelastically scattered power was maximized at an angle $\alpha = 40^\circ$ for (-) scattering (negative frequency shift) and at $\alpha = 140^\circ$ for (+) scattering (positive frequency shift). This shows that the angle $\alpha$ which maximizes the peak value of the Poynting vector magnitude also maximizes the total photoelastically scattered power. The analytical cases have their peaks close to these as well, but there is a shift in the angle $\alpha$ for the parallelogram curve. This shift is down in $\alpha$ for the (-) case and up for the (+) case, so it directly follows the shift observed in figure \ref{fig:res-angle-sweep-peak} and explained in section \ref{sec:analytical-radar-refined}.
 	
@@ -931,39 +943,33 @@
 			\resizebox{\textwidth}{!}{
 				\input{fig/angle-sweep-dBm(-).pgf}
 			}
-			\caption{(-) case}
 		\end{subfigure}
 		\begin{subfigure}{\textwidth}
 			\resizebox{\textwidth}{!}{
 				\input{fig/angle-sweep-dBm(+).pgf}
 			}
-			\caption{(+) case}
 		\end{subfigure}
-		\caption{\label{fig:res-angle-sweep-power} Poynting vector magnitude integrated over measurement boundary for different angles between wavevectors $\alpha$.}
+		\caption{\label{fig:res-angle-sweep-power} Total scattered power for different angles between wavevectors $\alpha$.}
 	\end{figure}
 	
 	%\todoint[inline]{Issues due to the analytical model having an assumption on plane waves. This is not actually valid since the "target" is an overlap between two beams. This overlap is necessarily defined by the beam profiles, and an assumption of plane waves with an otherwise correct interaction region will automatically assume a constant amplitude beam profile. This will lead to much higher scattering than with actual beam profiles since plane waves have "more amplitude" for both EM and Ac. waves in the interaction region. One way to alleviate the issue would be to instead use some sort of "equivalent amplitude", i.e. use plane wave amplitude values which will cause the total field energy to be equal to that of the cylindrical wave (inside the same interaction region). This might require some thinking to get correct, but I think it should work (at least better than the original one).}
 	
-	Figure \ref{fig:res-angle-sweep-power} shows the same simulation results as in figure \ref{fig:res-angle-sweep-power-c}, but without the analytical results. This makes it easier to compare (+) and (-) scattering.	It can be seen that the (+) scattering results in a higher total scattered power than (-) scattering. This can be explained by the interaction region being larger for (+) than it is for (-) scattering. It holds that (-) scattering happens at angles $0 < \alpha < \pi/2$ and (+) scattering for $\pi/2 < \alpha < \pi$ (see appendix \ref{sec:app-derivations-bragg}). For the beams used in this particular simulation, the (-) scattering geometry leads to a region near the apertures where there is no overlap between acoustic and electromagnetic beams. On the other hand, in the (+) scattering geometry there is always some overlap between the beams as the apertures are at two different sides of the domain. \todo{Insert comsol images to better explain this}. The total scattered power is directly proportional to the square of the interaction region in the simple model from section \ref{sec:analytical-radar} \todo{reference equation}, so from these observations it is reasonable that the (+) scattering leads to higher power levels.
-	
-	If the absolute power levels are considered, they are between -82.6 and -82.7 dBm \todo{Change after using normal component instead of magnitude for Poynting vector integral} for both the (+) and (-) cases. This can be compared with the input power of 15 dBm, which means that the photoelastically scattered power is 97 dB lower than the input electromagnetic power in these simulations. \todo{continue}
+	Figure \ref{fig:res-angle-sweep-power} shows the same simulation results as in figure \ref{fig:res-angle-sweep-power-c}, but without the analytical results. This makes it easier to compare (+) and (-) scattering.	It can be seen that the (+) and (-) scattering result in very similar total scattered power levels. In absolute power, they are both close to -82.6 dBm . This can be compared with the input power of 15 dBm, which means that the photoelastically scattered power is 97.6 dB lower than the input electromagnetic power in these simulations.
 	
 	\subsection{Conductive Defect}
-	The results from the sweep of defect conductivity is shown in figure \ref{fig:res-cond-power}. This shows the total scattered power (calculated in the same way as in the angle sweep) as a function of conductivity of the defect. It can be seen that the scattered power decreases as the conductivity of the defect increases. The relation between conductivity and scattered power looks approximately inversely exponential as the decrease in power is strongest at small conductivities and plateaus at higher levels.
+	The results from the sweep of defect conductivity is shown in figure \ref{fig:res-cond-power}. This shows the total scattered power (calculated in the same way as in the angle sweep) as a function of conductivity of the defect. It can be seen that the scattered power decreases as the conductivity of the defect increases. As conductivity increases, scattered power decreases. The rate of decrease is larger at small conductivities, and the scattered power level seems to plateau at higher levels.
 	
 	\begin{figure}[h]
 		\centering
 		\resizebox{\textwidth}{!}{
-			\input{fig/cond-power.pgf}
+			\input{fig/cond-dBm.pgf}
 		}
 		\caption{\label{fig:res-cond-power} Poynting vector magnitude integrated over measurement boundary for different conductivity $\sigma$ of defect. Normalized by maximum value.}
 	\end{figure}
 	
 	The reasons behind the decrease in scattered power can be explained by looking at the electric field for different defect conductivities \todo{figures from comsol?}. The field is affected by conductivity in two ways: first, the field is pushed out of the defect as conductivity increases. Second, the field is also scattered against the defect which causes the electromagnetic beam to drastically change in appearance when compared to a defect-free case. One crucial effect is the altered propagation directions of the beam after the defect. This directly influences the Bragg condition, and then also the photoelastic scattering.
 	
-	As figure \ref{fig:res-cond-power} shows, there is a plateauing effect in that the decrease in power is not as large at high conductivities as it is at lower conductivities. This can be explained by the electric field being pushed out of the defect region. As the field is pushed out, the defect behaves increasingly as a PEC sphere. As such, the total scattering power also approaches the level obtained when the defect is a PEC sphere, and cannot decrease any further than this. \todo{Simulate using a PEC sphere to show this point}
-	
-	\todoext{Discuss how the conductivity is not included in the permittivity in a good way here (COMSOL does it internally). For a better model, the conductivity should also go into the photoelastic model in the form of an imaginary relative permittivity. However, it is not clear if the photoelastic model even supports this (it is very simple). Better PE model probably necessary. In addition, the interaction is basically destroyed just due to the behavior of the electric field. A slight change in the photoelastic properties would probably not cause any significant change to the observed effect.}
+	As figure \ref{fig:res-cond-power} shows, there is a plateauing effect in that the decrease in power is not as large at high conductivities as it is at lower conductivities. This can be explained by the electric field being pushed out of the defect region. As the field is pushed out, the defect behaves increasingly as a PEC sphere. As such, the total scattering power also approaches the level obtained when the defect is a PEC sphere, and cannot decrease any further than this.
 	
 %	\begin{figure}[h]
 %		\centering
@@ -979,7 +985,7 @@
 	\begin{figure}[h]
 		\centering
 		\resizebox{\textwidth}{!}{
-			\input{fig/mech-power.pgf}
+			\input{fig/mech-dBm.pgf}
 		}
 		\caption{\label{fig:res-mech-power} Poynting vector magnitude integrated over measurement boundary for different density $\rho_0$ of defect. Normalized by maximum value.}
 	\end{figure}
@@ -988,7 +994,7 @@
 	
 	The lensing effect increases the scattered power for a small increase in defect density as the beam spread is counteracted. However, for even higher defect densities other effects instead cause a decrease in scattered power. A diffraction pattern appears behind the defect where regions of the wave with different propagation direction are separated by nodal lines \todo{COMSOL images?}.
 	
-	One thing to note is that the increase in scattered power from this lensing phenomenon is not very large as the power at background density is at more than 95\% of the peak power. Additionally, this effect is highly dependent on geometry as the circular shape of the defect causes the increase in power. This effect should not be expected from an arbitrarily shaped defect. \todo{Explain more on arbitrary defects?}
+	One thing to note is that the increase in scattered power from this lensing phenomenon is not very large as the power at background density is less than 0.1 dB below the peak power. Additionally, this effect is highly dependent on geometry as the circular shape of the defect causes the increase in power. This effect should probably not be expected in general, but since it can exist for some geometries it is good to be aware of.
 	
 %	\begin{figure}[h]
 %		\centering
@@ -1004,26 +1010,44 @@
 	One possible way an acousto-electromagnetic system might outperform acoustic or electromagnetic systems is due to its ability to detect both electric and acoustic contrast. Directly, it allows for detection of more types of defects than existing systems by themselves. However, the possibility of different types of contrast leading to combined effects might be even more promising. The main mechanism allowing detection using photoelastic interaction was determined to be defects disrupting the incident beams, in turn leading to less advantageous conditions for the interaction. If a defect has both electric and acoustic contrast, the effect would be disruption of both the electromagnetic and acoustic beams. This should lead to a larger effect on the photoelastically scattered field than for just one mode of contrast. Due to this combination effect, it might be possible to detect a region with weak acoustic and electric contrasts with the same performance as a strong single contrast. If this is possible for acoustic and electric contrasts which are weak enough, an acousto-electromagnetic system might outperform a system using only one phenomenon for this type of defects. However, the photoelastic scattering against a combination of contrasts was not simulated in this work.
 	
 	A possible issue with photoelastic interaction in NDT is related to resolution. One crucial factor affecting the interaction strength is the size of the interaction region. To obtain a high photoelastically scattered power, this region should be as large as possible. On the other hand, the possible resolution of the system should decrease with large interaction regions. \todo{Might be ways to use very large interaction regions but still have resolution. A defect inside of the interaction region would only affect scattering after the defect. There should therefore be a dip in received power after the defect when looking from the start to the end of the scattered beam. Difficult to describe though, and this is also only a hypothesis}
+	\todoext{The discussion on NDT might be expanded}
 	
-	\section{Future Work}	
-	One issue which became apparent in comparisons between the analytical and simulated results was the assumption of plane waves in the analytical models. This was discussed as being a possible reason for discrepancies between simulated and analytical values in multiple cases. One idea for refining the analytical models is to utilize the fact that all waves can be decomposed into a sum of plane waves with varying propagation directions. More specifically, an arbitrary wave is related to plane wave amplitudes with specific propagation directions by a spatial Fourier transform \todo{Or is it the inverse transform here? Maybe write the equations}. With knowledge of the field distribution at an aperture, the plane wave components can be calculated \cite{Orfanidis2016}. The way this could be used for the analytical problem is by first defining field distributions at the electromagnetic and acoustic apertures and calculating plane wave components. All possible combinations of acoustic and electromagnetic components can then be input to the original model since they are all plane waves. The results of all combinations should then be transformed back to obtain a Poynting vector for the scattered field. Clearly, more work is required since the method is merely at a concept level at this stage. However, this might be a way to obtain more accurate results, though numeric calculations would probably be necessary due to the large number of combinations (using tools such as fft).
-	
-	More refined simulations would be interesting for future work. There are many possibilities in this region since the simulations in this work were very basic. The sources for acoustic and electromagnetic waves were very basic apertures, which could be improved. Modeling of a realistic antenna and ultrasonic transducer would require more complicated modeling and more computational resources, but might give more information on realistic performance. One interesting possibility related to this is the modeling of interfaces between the sources and test object. For the electromagnetic waves, some minor reflection might be caused by an air-test object boundary. For the acoustic waves on the other hand, the coupling of ultrasonic waves into the core material is often done using a fluid couplant between the transducer and test object, which would then be modeled \cite{Schmerr2016}. Better investigation of ultrasonic wave propagation would also require modeling of elastic waves instead of fluid acoustics. To implement the acoustic refinement ideas in COMSOL the easiest way would be to use the ''Acoustics Module`` and ''Structural Mechanics Module``, but it is possible to enter the required equations and boundary conditions manually with only the basic COMSOL distribution.
-	
-	To understand possibilities and limitations for use in NDT, more realistic defects need to be modeled as well as better geometries. \todo{Write more here}
-	
-	Aerospace composites are comprised of a core material laminated by reinforcing material \addref. In this work, acousto-electromagnetic interaction was modeled only for a homogeneous material, which was based on an aerospace composite core in simulations. The effect of a different material at the edges of the core were not considered, which might instead be an interesting topic for future work. Abrupt changes in material as at the core-reinforcement boundary might cause reflections for either the acoustic or electromagnetic wave. Additionally, if the thickness of the composite is on the same order of magnitude as the wavelengths reflections might become even more complicated. Another related topic is that of honeycomb cores. These were not used in simulations due to their anisotropy, and a foam core material was used instead. However, honeycombs are used frequently in aerospace composites so possible effects of their anisotropy would be interesting to investigate further.
-	
-	\subsection{Experiments}
+	\section{Future experiments}
 	\todoext{Experiments - simple verification of the photoelastic interaction mechanism at the specific combination of ultrasound/microwave or ultrasound/mm-wave frequencies. Primarily, the Bragg condition would be the most interesting thing to verify. Both the angle and frequency requirements and shifts are interesting.}
 	The next logical step after analytical modeling and numerical simulations is experimental testing to compare with the analytical and numerical results. Two important interaction properties to measure are the Bragg condition for incident/scattering angles (equations \eqref{eq:an-bragg-theta}, \eqref{eq:an-bragg-phi} and \eqref{eq:an-bragg-alpha}) and the frequency shift of scattered waves. The other important property to measure would be the received scattering power. However, measurement of the Bragg condition and frequency shift should be more robust to variation in the test environment than the received power. Bragg condition and frequency shift measurements  could then be important for verifying the analytical and/or simulation results. Specific measurement values for received power might be useful for understanding the order of magnitude of the interaction strength. However, comparison of received power at different angles, frequencies etc. should be more interesting when comparing experiments with analytical and simulation results.
 	
 	Some parts in the analytical models and numerical simulations can be identified at this stage to be less certain than others. One in particular, the photoelastic model is important to test experimentally since the model itself could not be verified in COMSOL. The coupling between acoustic pressure and relative permittivity was done entirely using equations \eqref{eq:th-PE-scalar-p} and \eqref{eq:th-PE-liquid-model}, which were admittedly very simplified when compared to the full tensor model. Thorough experimentation would give more insight to how accurate the simple model used here really is, and where its main drawbacks might lie. Some points worth looking into are the assumption of isotropy in the photoelastic tensor, the assumption of $p_{11} = p_{12}$ in the isotropic photoelastic tensor and the model for the photoelastic constant in equation \eqref{eq:th-PE-liquid-model}. All of these have connections to each other, so experiments should be designed with this in mind.
 	
-	A part which might be lacking in the analytical models and numerical simulations is that of ultrasonic wave propagation. Most of the analytical modeling was based on pure p-wave propagation, which might not be the case in reality. If also a more complicated photoelastic model is reuired, using a photoelastic tensor instead of the simplified photoelastic constant in equation \eqref{eq:th-PE-scalar-p}, s-waves would affect the interaction in a way not modeled analytically. Numerical simulations were even more simplistic when it came to ultrasonic wave propagation, assuming a negligible shear modulus. The result of this is that the wave speed equation is equal to that in fluid acoustics, which was used to model phenomena in the COMSOL "pressure acoustics" interface. However, for a non-negligible shear modulus the true p-wave speed is higher than that given by fluid acoustics. \todoext{Refer to equations or write them directly. This part should probably be moved to another part of the discussion since it is interesting for more than just future work (although it should be mentioned here as well)}
+	A part which might be lacking in the analytical models and numerical simulations is that of ultrasonic wave propagation. Most of the analytical modeling was based on pure p-wave propagation, which might not be the case in reality. If also a more complicated photoelastic model is reuired, using a photoelastic tensor instead of the simplified photoelastic constant in equation \eqref{eq:th-PE-scalar-p}, s-waves would affect the interaction in a way not modeled analytically. Numerical simulations were even more simplistic when it came to ultrasonic wave propagation, assuming a negligible shear modulus. The result of this is that the wave speed equation is equal to that in fluid acoustics, which was used to model phenomena in the COMSOL "pressure acoustics" interface. However, for a non-negligible shear modulus the true p-wave speed is higher than that given by fluid acoustics. \todoext{Refer to equations or write them directly.}
 	
-	\section{Conclusion}
+	\subsection{Example calculations}
+	\todoext{Present example calculations for two common materials and different transducer types (Air with cheap 40 kHz speaker and polystyrene with medical transducer using coupling agent)}
 	
+	\section{Summary and Conclusions}
+	To connect back to the introduction, the three main questions describing the purpose of the work are restated
+	\begin{enumerate}
+		\item How does acousto-electromagnetic interaction differ from acousto-optic theory with wavelengths in the same order of magnitude?
+		\item What properties do acoustic and electromagnetic waves have in homogeneous materials and laminated composites?
+		\item How can ultrasound improve mm-wave imaging of defects in composites?
+	\end{enumerate}
+	The first question is answered well in some respects, since the analytical model derived in this work did not have any conditions on the electromagnetic and acoustic wavelengths. One of the main results from acousto-optics is the Bragg condition. The analytical and simulated results in this work showed that this condition was at the very least a good approximation for the angles and wavevectors giving maximum scattering. The main difference analytically was a shift in the required angle between acoustic and electromagnetic beams for a parallelogram-based geometry. Simulations showed a very slight asymmetry eventually indicative of a shift, though very small. This work also presented radar equations describing total received power and SNR based on standard antenna parameters. These might be more useful than similar equations derived using optical parameters, even if their results only give an order of magnitude estimation. Of course, experiments are necessary to compare with both the analytical and simulated results.
+	
+	The reason why this first question is only answered well in some respects is that there are other interaction mechanisms which were not as  deeply investigated as the photoelastic interaction mechanism. In particular, the localized harmonic motion mechanism was identified as worth investigating but ended up being in the shadow of photoelastic interaction in this work. One reason was the difficulty of modeling acoustic radiation force as well as time constraints.
+	
+	The second question is only partly answered since laminated composites were not considered to any greater extent. Properties of both types of waves were required in the derivation of analytical models as well as for setting correct parameters for simulations. Properties of acoustic waves were examined in detail since they are highly different in fluids and solids. Unfortunately, simulations could only be run for the fluid version of acoustic waves, which limited possibilities of the investigations. However, due to the similarity of p-waves and acoustic waves in fluids, part of the problem in a solid could be simulated in a reasonable way.
+	
+	The third question was discussed previously in this chapter. One main way photoelastic interaction might be useful for improving NDT of composites is by allowing detection of both acoustic and electric contrast. However, it has not been discussed how a mm-wave imaging system might be improved using photoelastic interaction with ultrasound. Models presented in this work were entirely based on two crossing beams, which might be difficult to integrate with mm-wave imaging. A possible issue with photoelastic interaction was discussed as good interaction strength might be detrimental to resolution in a system. It might also be the case that photoelastic interaction is not the most effective way of combining mm-waves and ultrasound. Further investigation of localized harmonic motion should be undertaken to understand the possibilities better.
+	
+	\chapter{Future Work}
+	One issue which became apparent was related to the assumption of plane waves in analytical models. This was discussed as being a possible reason for discrepancies between simulated and analytical values. An idea for improving analytical results is to utilize the fact that all waves can be decomposed into a sum of plane waves with varying propagation directions. Using the same equations as before, it might be possible to use more realistic incident beams by decomposing them into plane waves before using the analytical equations.
+	
+	More refined simulations would be interesting for future work. Some areas with room for improvement are modeling of the electromagnetic antenna and ultrasonic transducer, interfaces between wave sources and the test object, modeling of laminations around the composite core and modeling of elastic waves instead of fluid acoustics. Most of these require more information on the physics involved than what was used in this work. For use of COMSOL, most possible refinements in the acoustic area would benefit from the ''Acoustics Module`` and ''Structural Mechanics Module``, although it would be possible to enter the required equations and boundary conditions manually with only the basic COMSOL distribution.
+	
+	This work only considered homogeneous, isotropic materials with very simple defects if any. For better knowledge of possibilities in NDT, the material should be modeled in greater detail. In general, aerospace composites are laminated which adds one piece of complexity to the problem. Laminations might cause reflections of either the electromagnetic or acoustic wave, and for material dimensions on the order of magnitude as the wavelengths these might cause significant effects. Another issue might be anisotropy in core materials such as honeycombs. More information on real defect properties might also be needed to accurately model their influence
+	
+	The bulk of this work was focused on acousto-electromagnetic interaction based in photoelasticity. This was however only one of interaction mechanisms found in the literature. While some mechanisms were discarded for use in NDT, the localized harmonic motion mechanism was a possible candidate for this application. To fully understand how ultrasound might be used in mm-wave imaging systems, this interaction mechanism needs to be studied more closely.
+	
+	Lastly, experiments are necessary for comparison with analytical models and simulations. Especially the photoelastic model needs experimental investigation.
 	
 	\bibliographystyle{../../Litteratur/IEEEtran}
 	\bibliography{../../Litteratur/litteratur}
@@ -1494,7 +1518,7 @@
 	\begin{equation*}
 		\bm{E}_\mrm{sc,2D}(\bm{r},t) = \frac{k^2}{\varepsilon_\mrm{r}} \int_{S_\mrm{sc}} \frac{\iu}{4} H_0^{(1)}( k |\bm{r}-\bm{r'}|) \bm{E}_{\mrm{i}0} \eu^{\iu \bm{k} \cdot \bm{r}'} \frac{\varepsilon_\mrm{r}^2 \mathfrak{p}}{K} p_0 \cos(\bm{q} \cdot \bm{r}' - \Omega t) \mathrm{d}s'
 	\end{equation*}
-	Assumption of far-field can be used to approximate the Hankel function. This is done as \addref \todo[inline]{\url{http://www.cv.titech.ac.jp/~hiro-lab/lecture/Vibration_Wave_Analysis/text-9.pdf}}
+	Assumption of far-field can be used to approximate the Hankel function. This is done as \addref \todoint[inline]{Some stuff in \url{http://www.cv.titech.ac.jp/~hiro-lab/lecture/Vibration_Wave_Analysis/text-9.pdf} other in "handbook of mathematical functions" \url{http://people.math.sfu.ca/~cbm/aands/abramowitz_and_stegun.pdf}}
 	\begin{equation*}
 		\frac{\iu}{4} H_0^{(1)}( k |\bm{r}-\bm{r'}|) \approx \frac{\eu^{\iu (kr + \pi/4)}}{\sqrt{8\pi kr}} \eu^{-\iu k \bm{\hat{r}} \cdot \bm{r}'}
 	\end{equation*}
@@ -1691,7 +1715,7 @@
 	\end{figure}
 
 \subsection{Refined interaction region \label{sec:app-derivations-bragg-refined}}
-For the refined interaction region described in section \ref{sec:app-derivations-refined} the derivation for finding a maximum scattering geometry is different than above. However, a first hypothesis would be that the resulting condition would be the same. To test this, the angles described by equations \eqref{eq:app-bragg-theta}, \eqref{eq:app-bragg-alpha}, \eqref{eq:app-bragg-phi} are inserted in $\Phi_\mrm{p}^{\pm}(\theta, \phi)$ from section \ref{sec:app-derivations-refined}. The function can be written as
+For the refined interaction region described in section \ref{sec:app-derivations-radar-refined} the derivation for finding a maximum scattering geometry is different than above. However, a first hypothesis would be that the resulting condition would be the same. To test this, the angles described by equations \eqref{eq:app-bragg-theta}, \eqref{eq:app-bragg-alpha}, \eqref{eq:app-bragg-phi} are inserted in $\Phi_\mrm{p}^{\pm}(\theta, \phi)$ from section \ref{sec:app-derivations-radar-refined}. The function can be written as
 \begin{equation*}
 \begin{split}
 	\Phi_\mrm{p}^{\pm}(\theta, \phi) &= \text{sinc}\left( \frac{d_\mrm{a}}{2\pi \sin{\alpha}}(k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha}) \right) \\

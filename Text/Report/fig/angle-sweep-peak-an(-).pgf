@@ -881,7 +881,7 @@
 \pgfusepath{stroke}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[x=3.280000in,y=4.307333in,,base]{\sffamily\fontsize{12.000000}{14.400000}\selectfont Maximum of the Poynting vector (time avg.)}%
+\pgftext[x=3.280000in,y=4.307333in,,base]{\sffamily\fontsize{12.000000}{14.400000}\selectfont Maximum of the Poynting vector, (-) case}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetbuttcap%

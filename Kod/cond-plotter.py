@@ -19,8 +19,6 @@ plt.close('all')
 
 savefigs = 0
 
-dBm = 1
-
 # Conductivities
 sigs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
@@ -57,6 +55,9 @@ sigs = np.array(sigs)
 # Magnitude of the Poynting vector
 normS = np.sqrt(Sx**2 + Sy**2)
 
+# Normal component of the Poynting vector along boundary
+perpS = Sx*np.cos(theta) + Sy*np.sin(theta)
+
 # Calculate distances between all points (x,y) and construct an axis based on
 # arc length from theta = 0 to theta = 2*pi
 xdiff = np.diff(np.vstack((x, x[0, :])), axis=0)
@@ -64,8 +65,9 @@ ydiff = np.diff(np.vstack((y, y[0, :])), axis=0)
 dist = np.linalg.norm(np.array([xdiff, ydiff]), axis=0)
 arc = np.cumsum(dist, axis=0)
 
-# Integrate Poynting vector magnitude for all angles and plot against sigma
-Stot = np.trapz(normS, x=arc, axis=0)
+# Integrate normal component of Poynting vector for all angles and plot
+# against the angle between wave vectors
+Stot = np.trapz(perpS, x=arc, axis=0)
 
 plt.figure()
 plt.grid()
@@ -80,18 +82,17 @@ if(savefigs):
     plt.savefig('../Text/Report/fig/cond-power.pgf')
 
 # dBm version
-if(dBm):
-    plt.figure()
-    plt.grid()
-    plt.plot(sigs, 10*np.log10(Stot/1e-3), '.-')
-    plt.title('Total scattered power')
-    plt.xlabel('$\sigma$ [S/m]')
-    plt.ylabel('$P_\\mathrm{sc}$ [dBm]')
+plt.figure()
+plt.grid()
+plt.plot(sigs, 10*np.log10(Stot/1e-3), '.-')
+plt.title('Total scattered power')
+plt.xlabel('$\sigma$ [S/m]')
+plt.ylabel('$P_\\mathrm{sc}$ [dBm]')
 
-    # Save as pgf
-    if(savefigs):
-        plt.rcParams['axes.unicode_minus'] = False
-        plt.savefig('../Text/Report/fig/cond-dBm.pgf')
+# Save as pgf
+if(savefigs):
+    plt.rcParams['axes.unicode_minus'] = False
+    plt.savefig('../Text/Report/fig/cond-dBm.pgf')
 
 # %% Plotting using propagation angle and not observation angle
 

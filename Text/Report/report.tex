@@ -50,9 +50,9 @@
 \begin{document}
 	
 	% Add custom todocommands, use 'disable' inside the square brackets for any of the commands to hide that type of todo's from the pdf
-	\newcommand{\addref}{\todo[color=red!40]{Citation needed!}}
+	\newcommand{\addref}{\todo[color=red!40, disable]{Citation needed!}}
 	\newcommand{\todoext}[1]{\todo[inline, color=yellow]{#1}}
-	\newcommand{\todoint}[2][]{\todo[#1]{#2}}
+	\newcommand{\todoint}[2][]{\todo[#1, disable]{#2}}
 	
 	% Add typographic commands
 	\newcommand{\mrm}[1]{\mathrm{#1}}
@@ -60,8 +60,8 @@
 	\newcommand{\iu}{\mrm{i}}
 	
 	% Shows all todos
-	\listoftodos
-	\pagebreak
+	%\listoftodos
+	%\pagebreak
 	
 	\Title{Acousto-Electromagnetic Interaction in Materials for Aerospace Composites}
 	\Author{Niklas Wingren\\\texttt{tfy13nwi@student.lu.se}}
@@ -73,7 +73,9 @@
 	\frontmatter    % Page numbering for front pages (small roman)
 	
 	\chapter*{Abstract}
-	\todoext{Write this}
+	Nondestructive testing (NDT) is a vital part of aerospace manufacturing due to high demands for quality and safety. Advances in materials science have given rise to aerospace composites with highly improved properties compared to traditional materials. To ensure that materials can be used safely, NDT techniques are continuously improved to follow advances in materials. This has also spurred development of new NDT techniques. One suggestion for improving NDT techniques is based on combining several phenomena. One such combination is acoustics and electromagnetics, such as ultrasound and mm-waves. This work explores interaction between acoustic and electromagnetic waves and attempts to connect this with possibilities for novel NDT techniques. The focus is on photoelastic interaction, meaning that an acoustic wave alters dielectric properties of a medium which in turn scatters electromagnetic waves. Existing techniques such as acousto-optics and Radio Acoustic Sounding System are used as a starting point for exploring this interaction mechanism.
+	
+	Analytical models for photoelastic interaction are developed from basic electromagnetism and photoelasticity theory. Two important results are a phase matching condition for maximum scattering and a frequency shift of scattered waves, both of which are also present in acousto-optics. Numerical simulations are used to verify the phase matching condition and compare scattering power with analytical models. Defects with electric or acoustic contrast are simulated to explore NDT possibilities. Both types of contrast are shown to affect the interaction, which could be an advantage over some existing NDT techniques. However, more work is required to determine the utility for NDT.
 	
 	\chapter*{Acknowledgments}
 	\todoext{Write this}
@@ -82,6 +84,7 @@
 	\tableofcontents
 	%\listoffigures
 	\chapter*{List of Abbreviations}
+	\todoint[inline]{Check if this list is complete and correct}
 	\begin{itemize}
 		\item Ac. - Acoustic
 		\item Acousto-EM - Acousto-Electromagnetic
@@ -104,7 +107,7 @@
 	\end{itemize}
 	
 	\chapter*{List of Symbols}
-	\todoext{Tries to collect important symbols, needs to be updated as more material is included in the report. Also tries to gather symbols by phenomena. Symbols need to be checked in the report so they are standardized.}
+	\todoint[inline]{Check if this list is complete and correct. Formatting?}
 		Electromagnetics
 		\begin{itemize}
 			\item $\bm{E}$ - Electric field
@@ -166,14 +169,14 @@
 	\chapter{Introduction \label{ch:intro}}
 	
 	\section{Background}
-	\todoext{Introduce the subject from a starting point in non-destructive testing and aerospace materials. Bring up the two separate fields of ultrasonic testing and microwave imaging. Different acousto-electromagnetism perspectives such as acousto-optics, RASS, micro-Doppler effect in radar (for vibrations).}
-	Aerospace materials are some of the most demanding in terms of quality and safety, so inspection is crucial to guarantee defect-free components \addref. Since defects can be located inside of materials it is necessary to detect these without having to compromise the structural integrity of the components \addref. For this task non-destructive testing (NDT) has been utilized in aerospace manufacturing since \todo{since when?}. Some of the earliest NDT techniques are radiographic testing using x-rays and ultrasonic testing \addref \todo{More methods?}. Modern materials science has supplied many new types of composites useful in aerospace construction. Stronger, lighter and lower radar cross-section are just some examples of better material properties for civilian and military aerospace applications \addref. To still be able to keep reliability high, NDT techniques are required to keep up with the advances in materials science \addref. Some techniques have struggled with modern materials such as radiographic testing which is more suitable to traditional aluminum components \addref.
+	\todoext{This section is not finished}
+	Aerospace materials are some of the most demanding in terms of quality and safety, so inspection is crucial to guarantee defect-free components \addref. Since defects can be located inside of materials it is necessary to detect these without having to compromise the structural integrity of the components \addref. For this task non-destructive testing (NDT) has been utilized in aerospace manufacturing since \todoint{since when?}. Some of the earliest NDT techniques are radiographic testing using x-rays and ultrasonic testing \addref \todoint{More methods?}. Modern materials science has supplied many new types of composites useful in aerospace construction. Stronger, lighter and lower radar cross-section are just some examples of better material properties for civilian and military aerospace applications \addref. To still be able to keep reliability high, NDT techniques are required to keep up with the advances in materials science \addref. Some techniques have struggled with modern materials such as radiographic testing which is more suitable to traditional aluminum components \addref.
 	
-	One NDT technique which has become more popular relatively recently is microwave and mm-wave imaging \addref. Technical advances in microwave electronics together with better data processing performance has made this field increasingly attractive \addref. \todo{Relation to aerospace}
+	One NDT technique which has become more popular relatively recently is microwave and mm-wave imaging \addref. Technical advances in microwave electronics together with better data processing performance has made this field increasingly attractive \addref. \todoint{Relation to aerospace}
 	
-	The combination of multiple NDT techniques has been proposed as a way of improving performance. In particular, \todo{Fink (multiwave), Buerkle, vibro-acoustography, maybe even more? Search for combinations of phenomena}
+	The combination of multiple NDT techniques has been proposed as a way of improving performance. In particular, \todoint{Fink (multiwave), Buerkle, vibro-acoustography, maybe even more? Search for combinations of phenomena}
 	
-	Interaction between acoustic and electromagnetic phenomena \todo{Introduce how long acousto-EM interaction has been known for, where it is used etc.}
+	Interaction between acoustic and electromagnetic phenomena \todoint{Introduce how long acousto-EM interaction has been known for, where it is used etc.}
 	
 	\section{Related Work}	
 	A mm-wave imaging system was developed and tested on composite panels at the Department of Electrical and Information Technology, Lund University \cite{Helander2017}. While not directly connected, the current work is inspired by the mm-wave imaging work made at the department. Additionally, the simulations and experiments described in the paper were highly useful for understanding properties of a mm-wave NDT system and relevant test materials. For an overview of microwave and mm-wave imaging for use in NDT, \cite{Kharkovsky2007} and \cite{Dobmann2012} introduce techniques and applications while not delving too deep into specifics.
@@ -197,15 +200,15 @@
 	\end{enumerate}
 	The goals were not written in a very specific way due to them being decided before a thorough review of the literature. However, during the literature review process more information was obtained and the goals were appended with more specific questions and sub-goals.
 	
-	\section{Structure of Report}
-	\todoext{Write this}
+	\section{Outline}
+	There are 7 chapters and an appendix in this thesis. This chapter served as a background to the subject and purpose of the thesis. Chapter \ref{ch:tech} will give a background on some pieces of technology with relation to the subject. Chapter \ref{ch:theory} will describe the theory required for the rest of the thesis. Chapter \ref{ch:analytical} will present an analytical model based on the theory from \ref{ch:theory}. Chapter \ref{ch:sim} will describe numerical simulations used in part to verify models from \ref{ch:analytical}. Chapter \ref{ch:res-disc} will present results from \ref{ch:analytical} and \ref{ch:sim} and discuss these and conclusions will be drawn. Chapter \ref{ch:future} will present some possible ways of continuing this work. Appendix \ref{ch:derivations} will present full derivations for the models in \ref{ch:analytical}.
 	
-	\chapter{Technology \label{sh:tech}}
+	\chapter{Technology \label{ch:tech}}
 	\todoext{Introduce chapter}
+	\todoext{This chapter is not finished. It should be quite short though}
 	
 	\section{Nondestructive Testing Techniques}
 	Nondestructive testing has been ... In industries with high demands for quality and safety, NDT is often a necessity. Aerospace is such an industry and has utilized NDT for a long time. \addref Modern aircraft increasingly use composite materials due to superior properties such as low weight \cite{Katunin2015}. The difference of these materials when compared with traditional metal structures requires changes in the NDT procedures \cite{Riegert2006}. One old technique which is used widely for aerospace composites is ultrasonic testing \cite{Garnier2011}. Another technique which has been developed more recently than ultrasonic testing is microwave/mm-wave imaging, which may hold promises in various NDT applications \cite{Kharkovsky2007}.
-	\todoext{Not finished}
 	
 	\subsection{Ultrasonic Testing}
 	
@@ -240,19 +243,21 @@
 	
 	\subsection{Target Boundary Perturbation}
 	This mechanism is based on a discrete target under acoustic resonance. The resonance of the target leads to vibration, which is seen as a time-dependent boundary perturbation \cite{Buerkle2007}. This is seen in the scattered signal as a frequency shift by the vibration frequency \cite{Sarabandi2003}.
-	\todoext{There should be a little more details here. Also a description on why this is not used later on in the work.}
+	\todoint[inline]{There should be a little more details here. Also a description on why this is not used later on in the work.}
+	\todoext{There should be a little more material in this subsection}
 	
 	\subsection{Localized Harmonic Motion}
-	\todoext{This part should be larger than those of other interaction mechanisms since it is only presented here.}
+	\todoext{This subsection is not finished}
+	\todoint[inline]{This part should be larger than those of other interaction mechanisms since it is only presented here.}
 	Interaction based on Localized Harmonic Motion is similar to the previous one based on boundary perturbation in that it uses scattering from harmonic motion. The difference is that harmonic motion is introduced in a bulk material instead of a resonating discrete target. The acoustic part of the mechanism has been utilized in the medical methods of vibro-acoustography and harmonic motion imaging \cite{Wang2018}. Both techniques use amplitude modulated ultrasound to produce a time-harmonic acoustic radiation force in a localized region of a sample. This force then generates time-harmonic displacement, or vibration. In the acoustic methods the vibrating region emits acoustic waves which can be detected \cite{Fatemi1998}\cite{Konofagou2003}.
 	
 	An electromagnetic wave incident towards the vibrating region will scatter with a frequency shift which corresponds to the frequency of vibration \cite{Top2014}. This is very similar to the boundary perturbation mechanism described before.
 	
 	\subsubsection{Acoustic Radiation Force}
-	\todoext{Description on how acoustic radiation force works and how it is possible to cause vibrations inside an object using this}
+	\todoint[inline]{Description on how acoustic radiation force works and how it is possible to cause vibrations inside an object using this}
 	
 	\subsubsection{The Micro-Doppler Effect}
-	\todoext{This needs to be rewritten quite a bit}
+	\todoext{This needs to be rewritten}
 	The frequency shift mentioned earlier is due to the micro-Doppler effect, which describes effects of targets with rotation or vibration \cite{Buerkle2007}. A vibrating target then causes frequency modulation of the scattered electromagnetic wave. \cite{Chen2006}. For a stationary target this corresponds to a signal with a strong frequency component at $f_\mrm{c}$ and weaker sidebands at $f_\mrm{c} \pm n f_\mrm{v}$ where $n=1$ are the strongest (carrier frequency $f_\mrm{c}$, variation frequency $f_\mrm{v}$, positive integers $n$). The amplitudes of the spectral lines are given by Bessel functions $J_n(B)$, where $B \sim (4\pi/\lambda)D_\mrm{v}$ \cite{Chen2006}. $D_\mrm{v}$ is the amplitude of vibration which is usually small (on the order of $\mu$m) \cite{Buerkle2007}\cite{Top2014}. For small values of $B$ the central component will dominate, and the first Doppler component will be much more prominent than the others. Therefore it makes sense that this first component is the one considered in the literature \cite{Buerkle2007}.
 	
 %	There are two methods of generating radiation force locally. The first method uses amplitude modulated focused ultrasound with its focus on the region of interest \cite{Top2016}. Since amplitude modulated ultrasound exists throughout the beam a force is generated in that entire region. However, the intensity is much higher in the focus so the force is stronger there. The second method instead uses two single-frequency ultrasonic beams which intersect at the region of interest. The frequencies of the two beams differ by a small amount $\Delta \Omega$. Superposition at the intersection will then generate localized amplitude modulation by half the difference frequency $\Delta \Omega/2$. However, the acoustic radiation force is determined by the energy density of the wave. This is proportional to the square of the acoustic field, which changes the frequency of interest by a factor 2. The frequency of the acoustic radiation force is then the difference frequency $\Delta \Omega$ \cite{Fatemi1998}.
@@ -274,8 +279,7 @@
 	For this work, a mechanism needs to be relevant at microwave frequencies to be considered. The assumption on which the theory rests is that of dynamic multiple light scattering \cite{Leutz1995}. In the existing mm-wave imaging system there is an assumption of sparse defects being the only scatterers \cite{Helander2017}. This is in complete contrast to the theory of dynamic multiple light scattering, which is based on a large number of moving scatterers \cite{Leutz1995}. Since the basic assumptions of the problem and theory are in such stark contrast, it seems likely that this interaction mechanism holds little relevance to the problem at hand.
 	
 	\subsection{Main Subjects of Interest}
-	\todoext{Not correct since localized harmonic motion was moved up to only be in the overview}
-	The mechanisms presented above were the major ones found in a wide search of the literature. Of the four presented, two could be ruled out for not being applicable to the problem of interest. The ``Localized Harmonic Motion'' and ``Acousto-Optics'' interaction mechanisms are presented in further detail later in this chapter.
+	The mechanisms presented above were the major ones found in a wide search of the literature. Of the four presented, two could be ruled out for not being applicable to the problem of interest. The ``Localized Harmonic Motion'' and ``Acousto-Optics'' interaction mechanisms were considered to be relevant to the NDT problem. However, due to time constraints the ''Acousto-Optics`` mechanism was given the main focus. Therefore, the rest of this work is mostly dedicated to this interaction mechanism.
 	
 	\section{Ultrasonic Wave Propagation}
 	\todoint[inline]{Maybe write about how the word acoustics is sometimes used for wave propagation in both fluids and solids. And sometimes it is only considered to be the fluid case, while the solid case is called elastodynamics, elastic waves or something like that}
@@ -310,7 +314,7 @@
 	where $I_\mrm{s,ref}$ is a reference intensity which is defined as $10^{-12}$ W/m$^2$ in air \cite{Rossing2014}.
 	
 	\subsection{Propagation in a Solid Medium \label{sec:th-prop-solid}}
-	\todoext{Might be good to add a brief introduction to the quantities of continuum mechanics and how they are related to each other}
+	\todoint[inline]{Might be good to add a brief introduction to the quantities of continuum mechanics and how they are related to each other}
 	In an elastic medium the acoustic model is no longer sufficient. The linear acoustic model considers only pressure since one main assumption for volume elements in the fluid is that they only transmit force in the direction of the force \cite{Kaufman2000}. The volume elements in an elastic solid are more strongly coupled to each other, and this assumption does not hold anymore \cite{Kaufman2005}. The equations for elastic waves are instead based on solid mechanics. There is no simple wave equation as in acoustics, instead the model is described by Navier's equations
 	\begin{equation*}
 		\mu \nabla^2 \bm{u} + (\lambda+\mu) \nabla (\nabla \cdot \bm{u}) + \bm{f} = \rho_0 \frac{\partial^2 \bm{u}}{\partial t^2}
@@ -760,7 +764,7 @@
 	where $y'$ is the coordinate $-y$ (since the electromagnetic aperture is fixed at $\phi = \pi$). The propagation constant was set to the wavenumber in the material using ``emw.k''.
 	
 	\subsection{Modeling of Acoustic Aperture}
-	The qualities of beam width and space usage for the electromagnetic aperture were also taken into consideration in the design of the acoustic aperture. The model used a ``Normal Acceleration'' boundary condition on a boundary segment with length $D = 8\Lambda$. The acceleration was set to ``Inward acceleration''. The value of the acceleration amplitude was calculated from a displacement amplitude $u_\mrm{p}$ using $a_0 = \Omega^2 u_\mrm{p}$ \addref. The displacement amplitude was set to 5 nm \todo{Why? Show some reasonable order of magnitude}. The acceleration was tapered as
+	The qualities of beam width and space usage for the electromagnetic aperture were also taken into consideration in the design of the acoustic aperture. The model used a ``Normal Acceleration'' boundary condition on a boundary segment with length $D = 8\Lambda$. The acceleration was set to ``Inward acceleration''. The value of the acceleration amplitude was calculated from a displacement amplitude $u_\mrm{p}$ using $a_0 = \Omega^2 u_\mrm{p}$ \addref. The displacement amplitude was set to 5 nm \todoint{Why? Show some reasonable order of magnitude}. The acceleration was tapered as
 	\begin{equation*}
 		a_\mrm{n} = a_0 \eu^{-(4(x\sin{\alpha} - y\cos{\alpha})/D)^2}
 	\end{equation*}
@@ -848,19 +852,19 @@
 	
 	To demonstrate the effect of density change, the density was swept between 100 and 400 kg/m$^3$ in steps of 25 kg/m$^3$. The angle $\alpha$ was fixed at $40^\circ$ with $\lambda$ matched to $\Lambda$ and this angle.
 	
-	\chapter{Results and Discussion}
+	\chapter{Results and Discussion} \label{ch:res-disc}
 	\todoext{Introduce chapter}
 	
 	\section{Numerical Simulation Results}
 	In this section, the results from the numerical simulations described in chapter \ref{ch:sim} are shown and described. Comparisons are made with the analytical models from chapter \ref{ch:analytical}.
-	\todoext{Resize figures (so they fit inside page margins) and change font size of legends etc. Also add selected surface plots from COMSOL for easier understanding of how the incident and scattered beams look (really only for qualitative results and visualization, but that is also important).}
+	\todoint[inline]{Resize figures (so they fit inside page margins) and change font size of legends etc. Also add selected surface plots from COMSOL for easier understanding of how the incident and scattered beams look (really only for qualitative results and visualization, but that is also important).}
 	
 	\subsection{Sweep of angle $\alpha$}
 	The results from the sweep of the angle between wavevectors $\alpha$ are shown in figures \ref{fig:res-angle-sweep-peak} - \ref{fig:res-angle-sweep-power} for both the (+) and (-) scattering cases.
 	
 	Figure \ref{fig:res-angle-sweep-peak} shows that the peak photoelastically scattered Poynting vector magnitude was maximized at an angle $\alpha = 40^\circ$ for (-) scattering (negative frequency shift) and at $\alpha = 140^\circ$ for (+) scattering (positive frequency shift). The analytical comparisons are shown for the cuboid and parallelogram geometries. It can be seen that the peak of the curves is at the same angle $\alpha$ for the simulated values and the cuboid analytical model. Since the wavelengths were selected such that these angles would maximize the scattering (using equation \eqref{eq:an-bragg-alpha}), this would be expected. The parallelogram analytical model has its maximum at another angle $\alpha$, but as discussed in section \ref{sec:analytical-radar-refined} there could be a slight change in this angle $\alpha$. The predicted change was that the angle $\alpha$ of maximum scattering would shift down for (-) scattering and up for (+) scattering, which is what can be seen in figure \ref{fig:res-angle-sweep-peak}.
 	
-	If the analytical curves for (+) and (-) scattering are compared, the levels of power density are the same. For the simulated values however, the (+) scattering power density levels are lower than those for (-) scattering. This can be explained using the width of the scattered beams. In figure \ref{fig:res-angle-sweep-power} it can be seen that the total scattered power is the same for both (+) and (-). A lower power density of the (+) beam would require a wider scattered beam, which can be observed to be the case \todo{COMSOL figure}.
+	If the analytical curves for (+) and (-) scattering are compared, the levels of power density are the same. For the simulated values however, the (+) scattering power density levels are lower than those for (-) scattering. This can be explained using the width of the scattered beams. In figure \ref{fig:res-angle-sweep-power} it can be seen that the total scattered power is the same for both (+) and (-). A lower power density of the (+) beam would require a wider scattered beam, which can be observed to be the case \todoint{COMSOL figure}.
 	
 	\begin{figure}[H]
 		\centering
@@ -883,7 +887,7 @@
 	
 	Another reason for the difference in the shape of the curves in figure \ref{fig:res-angle-sweep-peak} might be that the analytical model is based entirely on plane waves. This means that a suboptimal angle $\alpha$ should not lead to much interaction. The simulation, on the other hand, uses more realistic wave propagation with cylindrical waves. A cylindrical wave can be decomposed into a sum of plane waves with different propagation direction. This essentially means that the condition in equation \eqref{eq:an-bragg-alpha} is satisfied for every angle $\alpha$ for some combination of plane wave components. However, the plane wave components have different amplitudes and the strongest components are the ones with the same propagation direction as the original beams. This causes the Poynting vector magnitude to be smaller for suboptimal $\alpha$, but still larger than if there had been no Bragg matched components at all.
 	
-	Nevertheless, the peaks for simulation, cuboid and parallelogram cases in figure \ref{fig:res-angle-sweep-peak} are at angles $\alpha$ fairly close to each other and all values for $\left| \left< \bm{S}_\mrm{sc} \right> \right|_\mrm{max}$ are in the same order of magnitude. This is the case even though geometric parameters used in the analytical models could have been selected with more care. \todo{Maybe more?}
+	Nevertheless, the peaks for simulation, cuboid and parallelogram cases in figure \ref{fig:res-angle-sweep-peak} are at angles $\alpha$ fairly close to each other and all values for $\left| \left< \bm{S}_\mrm{sc} \right> \right|_\mrm{max}$ are in the same order of magnitude. This is the case even though geometric parameters used in the analytical models could have been selected with more care. \todoint{Maybe more?}
 	
 	\begin{figure}[H]
 		\centering
@@ -967,7 +971,7 @@
 		\caption{\label{fig:res-cond-power} Poynting vector magnitude integrated over measurement boundary for different conductivity $\sigma$ of defect. Normalized by maximum value.}
 	\end{figure}
 	
-	The reasons behind the decrease in scattered power can be explained by looking at the electric field for different defect conductivities \todo{figures from comsol?}. The field is affected by conductivity in two ways: first, the field is pushed out of the defect as conductivity increases. Second, the field is also scattered against the defect which causes the electromagnetic beam to drastically change in appearance when compared to a defect-free case. One crucial effect is the altered propagation directions of the beam after the defect. This directly influences the Bragg condition, and then also the photoelastic scattering.
+	The reasons behind the decrease in scattered power can be explained by looking at the electric field for different defect conductivities \todoint{figures from comsol?}. The field is affected by conductivity in two ways: first, the field is pushed out of the defect as conductivity increases. Second, the field is also scattered against the defect which causes the electromagnetic beam to drastically change in appearance when compared to a defect-free case. One crucial effect is the altered propagation directions of the beam after the defect. This directly influences the Bragg condition, and then also the photoelastic scattering.
 	
 	As figure \ref{fig:res-cond-power} shows, there is a plateauing effect in that the decrease in power is not as large at high conductivities as it is at lower conductivities. This can be explained by the electric field being pushed out of the defect region. As the field is pushed out, the defect behaves increasingly as a PEC sphere. As such, the total scattering power also approaches the level obtained when the defect is a PEC sphere, and cannot decrease any further than this.
 	
@@ -990,9 +994,9 @@
 		\caption{\label{fig:res-mech-power} Poynting vector magnitude integrated over measurement boundary for different density $\rho_0$ of defect. Normalized by maximum value.}
 	\end{figure}
 	
-	One interesting detail is that the maximum of the scattered power is not obtained at a defect density of 250 kg/m$^3$, but instead slightly higher at 275 kg/m$^3$. This can be understood by observing the pressure field from COMSOL \todo{Add COMSOL figures?}. At a defect density slightly above the background density the acoustic beam is focused into a more plane wave than before. This can be understood by viewing the defect as an acoustic lens. In geometrical optics, a lens is typically a region with higher refractive index than its surroundings bounded by spherical surfaces \cite{Saleh2007}. A higher refractive index in optics corresponds to a lower wave speed. In acoustics, the wave speed is defined as $v = \sqrt{K/\rho_0}$, so an increase in density also has the effect of lowering wave speed. The properties of the circular defect with a higher density than the background should then give it some lens properties. A significant difference between typical lenses and the case here is that the lens size is usually much larger than the wavelength, while they are in the same order of magnitude here. This case is very far from geometrical optics, and the physics required to explain focusing is vastly different \cite{Fletcher2001}.
+	One interesting detail is that the maximum of the scattered power is not obtained at a defect density of 250 kg/m$^3$, but instead slightly higher at 275 kg/m$^3$. This can be understood by observing the pressure field from COMSOL \todoint{Add COMSOL figures?}. At a defect density slightly above the background density the acoustic beam is focused into a more plane wave than before. This can be understood by viewing the defect as an acoustic lens. In geometrical optics, a lens is typically a region with higher refractive index than its surroundings bounded by spherical surfaces \cite{Saleh2007}. A higher refractive index in optics corresponds to a lower wave speed. In acoustics, the wave speed is defined as $v = \sqrt{K/\rho_0}$, so an increase in density also has the effect of lowering wave speed. The properties of the circular defect with a higher density than the background should then give it some lens properties. A significant difference between typical lenses and the case here is that the lens size is usually much larger than the wavelength, while they are in the same order of magnitude here. This case is very far from geometrical optics, and the physics required to explain focusing is vastly different \cite{Fletcher2001}.
 	
-	The lensing effect increases the scattered power for a small increase in defect density as the beam spread is counteracted. However, for even higher defect densities other effects instead cause a decrease in scattered power. A diffraction pattern appears behind the defect where regions of the wave with different propagation direction are separated by nodal lines \todo{COMSOL images?}.
+	The lensing effect increases the scattered power for a small increase in defect density as the beam spread is counteracted. However, for even higher defect densities other effects instead cause a decrease in scattered power. A diffraction pattern appears behind the defect where regions of the wave with different propagation direction are separated by nodal lines \todoint{COMSOL images?}.
 	
 	One thing to note is that the increase in scattered power from this lensing phenomenon is not very large as the power at background density is less than 0.1 dB below the peak power. Additionally, this effect is highly dependent on geometry as the circular shape of the defect causes the increase in power. This effect should probably not be expected in general, but since it can exist for some geometries it is good to be aware of.
 	
@@ -1009,16 +1013,17 @@
 	
 	One possible way an acousto-electromagnetic system might outperform acoustic or electromagnetic systems is due to its ability to detect both electric and acoustic contrast. Directly, it allows for detection of more types of defects than existing systems by themselves. However, the possibility of different types of contrast leading to combined effects might be even more promising. The main mechanism allowing detection using photoelastic interaction was determined to be defects disrupting the incident beams, in turn leading to less advantageous conditions for the interaction. If a defect has both electric and acoustic contrast, the effect would be disruption of both the electromagnetic and acoustic beams. This should lead to a larger effect on the photoelastically scattered field than for just one mode of contrast. Due to this combination effect, it might be possible to detect a region with weak acoustic and electric contrasts with the same performance as a strong single contrast. If this is possible for acoustic and electric contrasts which are weak enough, an acousto-electromagnetic system might outperform a system using only one phenomenon for this type of defects. However, the photoelastic scattering against a combination of contrasts was not simulated in this work.
 	
-	A possible issue with photoelastic interaction in NDT is related to resolution. One crucial factor affecting the interaction strength is the size of the interaction region. To obtain a high photoelastically scattered power, this region should be as large as possible. On the other hand, the possible resolution of the system should decrease with large interaction regions. \todo{Might be ways to use very large interaction regions but still have resolution. A defect inside of the interaction region would only affect scattering after the defect. There should therefore be a dip in received power after the defect when looking from the start to the end of the scattered beam. Difficult to describe though, and this is also only a hypothesis}
+	A possible issue with photoelastic interaction in NDT is related to resolution. One crucial factor affecting the interaction strength is the size of the interaction region. To obtain a high photoelastically scattered power, this region should be as large as possible. On the other hand, the possible resolution of the system should decrease with large interaction regions. \todoint{Might be ways to use very large interaction regions but still have resolution. A defect inside of the interaction region would only affect scattering after the defect. There should therefore be a dip in received power after the defect when looking from the start to the end of the scattered beam. Difficult to describe though, and this is also only a hypothesis}
 	\todoext{The discussion on NDT might be expanded}
 	
 	\section{Future experiments}
-	\todoext{Experiments - simple verification of the photoelastic interaction mechanism at the specific combination of ultrasound/microwave or ultrasound/mm-wave frequencies. Primarily, the Bragg condition would be the most interesting thing to verify. Both the angle and frequency requirements and shifts are interesting.}
+	\todoint[inline]{Experiments - simple verification of the photoelastic interaction mechanism at the specific combination of ultrasound/microwave or ultrasound/mm-wave frequencies. Primarily, the Bragg condition would be the most interesting thing to verify. Both the angle and frequency requirements and shifts are interesting.}
+	\todoext{This section is not finished}
 	The next logical step after analytical modeling and numerical simulations is experimental testing to compare with the analytical and numerical results. Two important interaction properties to measure are the Bragg condition for incident/scattering angles (equations \eqref{eq:an-bragg-theta}, \eqref{eq:an-bragg-phi} and \eqref{eq:an-bragg-alpha}) and the frequency shift of scattered waves. The other important property to measure would be the received scattering power. However, measurement of the Bragg condition and frequency shift should be more robust to variation in the test environment than the received power. Bragg condition and frequency shift measurements  could then be important for verifying the analytical and/or simulation results. Specific measurement values for received power might be useful for understanding the order of magnitude of the interaction strength. However, comparison of received power at different angles, frequencies etc. should be more interesting when comparing experiments with analytical and simulation results.
 	
 	Some parts in the analytical models and numerical simulations can be identified at this stage to be less certain than others. One in particular, the photoelastic model is important to test experimentally since the model itself could not be verified in COMSOL. The coupling between acoustic pressure and relative permittivity was done entirely using equations \eqref{eq:th-PE-scalar-p} and \eqref{eq:th-PE-liquid-model}, which were admittedly very simplified when compared to the full tensor model. Thorough experimentation would give more insight to how accurate the simple model used here really is, and where its main drawbacks might lie. Some points worth looking into are the assumption of isotropy in the photoelastic tensor, the assumption of $p_{11} = p_{12}$ in the isotropic photoelastic tensor and the model for the photoelastic constant in equation \eqref{eq:th-PE-liquid-model}. All of these have connections to each other, so experiments should be designed with this in mind.
 	
-	A part which might be lacking in the analytical models and numerical simulations is that of ultrasonic wave propagation. Most of the analytical modeling was based on pure p-wave propagation, which might not be the case in reality. If also a more complicated photoelastic model is reuired, using a photoelastic tensor instead of the simplified photoelastic constant in equation \eqref{eq:th-PE-scalar-p}, s-waves would affect the interaction in a way not modeled analytically. Numerical simulations were even more simplistic when it came to ultrasonic wave propagation, assuming a negligible shear modulus. The result of this is that the wave speed equation is equal to that in fluid acoustics, which was used to model phenomena in the COMSOL "pressure acoustics" interface. However, for a non-negligible shear modulus the true p-wave speed is higher than that given by fluid acoustics. \todoext{Refer to equations or write them directly.}
+	A part which might be lacking in the analytical models and numerical simulations is that of ultrasonic wave propagation. Most of the analytical modeling was based on pure p-wave propagation, which might not be the case in reality. If also a more complicated photoelastic model is reuired, using a photoelastic tensor instead of the simplified photoelastic constant in equation \eqref{eq:th-PE-scalar-p}, s-waves would affect the interaction in a way not modeled analytically. Numerical simulations were even more simplistic when it came to ultrasonic wave propagation, assuming a negligible shear modulus. The result of this is that the wave speed equation is equal to that in fluid acoustics, which was used to model phenomena in the COMSOL "pressure acoustics" interface. However, for a non-negligible shear modulus the true p-wave speed is higher than that given by fluid acoustics. \todoint[inline]{Refer to equations or write them directly.}
 	
 	\subsection{Example calculations}
 	\todoext{Present example calculations for two common materials and different transducer types (Air with cheap 40 kHz speaker and polystyrene with medical transducer using coupling agent)}
@@ -1038,7 +1043,7 @@
 	
 	The third question was discussed previously in this chapter. One main way photoelastic interaction might be useful for improving NDT of composites is by allowing detection of both acoustic and electric contrast. However, it has not been discussed how a mm-wave imaging system might be improved using photoelastic interaction with ultrasound. Models presented in this work were entirely based on two crossing beams, which might be difficult to integrate with mm-wave imaging. A possible issue with photoelastic interaction was discussed as good interaction strength might be detrimental to resolution in a system. It might also be the case that photoelastic interaction is not the most effective way of combining mm-waves and ultrasound. Further investigation of localized harmonic motion should be undertaken to understand the possibilities better.
 	
-	\chapter{Future Work}
+	\chapter{Future Work} \label{ch:future}
 	One issue which became apparent was related to the assumption of plane waves in analytical models. This was discussed as being a possible reason for discrepancies between simulated and analytical values. An idea for improving analytical results is to utilize the fact that all waves can be decomposed into a sum of plane waves with varying propagation directions. Using the same equations as before, it might be possible to use more realistic incident beams by decomposing them into plane waves before using the analytical equations.
 	
 	More refined simulations would be interesting for future work. Some areas with room for improvement are modeling of the electromagnetic antenna and ultrasonic transducer, interfaces between wave sources and the test object, modeling of laminations around the composite core and modeling of elastic waves instead of fluid acoustics. Most of these require more information on the physics involved than what was used in this work. For use of COMSOL, most possible refinements in the acoustic area would benefit from the ''Acoustics Module`` and ''Structural Mechanics Module``, although it would be possible to enter the required equations and boundary conditions manually with only the basic COMSOL distribution.
@@ -1054,7 +1059,7 @@
 	
 	\appendix
 	
-	\chapter{Full Derivations}
+	\chapter{Full Derivations} \label{ch:derivations}
 	
 	\section{Derivation of scattering integral for perturbed dielectrics \label{sec:app-derivations-scatter}}
 	Here follows a formal derivation of the scattering of electromagnetic waves against a perturbation in relative permittivity. This is useful in photoelastic interaction since an acoustic wave in that case causes a periodic dielectric perturbation. Most of this derivation is based on a similar derivation by Tatarskii which considers scattering from turbulence in air \cite{Tatarskii1971}.

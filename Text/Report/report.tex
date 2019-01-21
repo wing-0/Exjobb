@@ -50,9 +50,9 @@
 \begin{document}
 	
 	% Add custom todocommands, use 'disable' inside the square brackets for any of the commands to hide that type of todo's from the pdf
-	\newcommand{\addref}{\todo[color=red!40, disable]{Citation needed!}}
+	\newcommand{\addref}{\todo[color=red!40]{Citation needed!}}
 	\newcommand{\todoext}[1]{\todo[inline, color=yellow]{#1}}
-	\newcommand{\todoint}[2][]{\todo[#1, disable]{#2}}
+	\newcommand{\todoint}[2][]{\todo[#1]{#2}}
 	
 	% Add typographic commands
 	\newcommand{\mrm}[1]{\mathrm{#1}}
@@ -170,9 +170,9 @@
 	
 	\section{Background}
 	\todoext{This section is not finished}
-	Aerospace materials are some of the most demanding in terms of quality and safety, so inspection is crucial to guarantee defect-free components \addref. Since defects can be located inside of materials it is necessary to detect these without having to compromise the structural integrity of the components \addref. For this task non-destructive testing (NDT) has been utilized in aerospace manufacturing since \todoint{since when?}. Some of the earliest NDT techniques are radiographic testing using x-rays and ultrasonic testing \addref \todoint{More methods?}. Modern materials science has supplied many new types of composites useful in aerospace construction. Stronger, lighter and lower radar cross-section are just some examples of better material properties for civilian and military aerospace applications \addref. To still be able to keep reliability high, NDT techniques are required to keep up with the advances in materials science \addref. Some techniques have struggled with modern materials such as radiographic testing which is more suitable to traditional aluminum components \addref.
+	Aerospace materials are some of the most demanding in terms of quality and safety, so inspection is crucial to guarantee defect-free components \addref. Since defects can be located inside of materials it is necessary to detect these without having to compromise the structural integrity of the components \addref. For this task non-destructive testing (NDT) has been utilized in aerospace manufacturing since \todoint{since when?}. Some of the earliest NDT techniques are radiographic testing using x-rays and ultrasonic testing \addref \todoint{Check methods! More methods?}. Aircraft construction has traditionally utilized aluminum alloys heavily, but this has increasingly been replaced by composite materials \cite{Saha2016}. The advantages of using composites are many, such as higher strength, lighter weight and resistance to corrosion to mention a few \cite{Saha2016}. However, the possible modes of failure are different in composites than for aluminum alloys which puts other demands on NDT, both during production and in service \cite{Saha2016, Katunin2015}. To be able to keep reliability high, many NDT techniques have been developed for composites \cite{Katunin2015, Gholizadeh2016}.
 	
-	One NDT technique which has become more popular relatively recently is microwave and mm-wave imaging \addref. Technical advances in microwave electronics together with better data processing performance has made this field increasingly attractive \addref. \todoint{Relation to aerospace}
+	One NDT technique which has become more popular relatively recently is microwave and mm-wave imaging \cite{Kharkovsky2007, Dobmann2012}. Better microwave electronics due to advances in semiconductor devices has made this field increasingly attractive \cite{Dobmann2012}. \todoint{Relation to aerospace}
 	
 	The combination of multiple NDT techniques has been proposed as a way of improving performance. In particular, \todoint{Fink (multiwave), Buerkle, vibro-acoustography, maybe even more? Search for combinations of phenomena}
 	
@@ -187,7 +187,7 @@
 	
 	A type of acousto-electromagnetic phenomena where the wavelengths involved are on the same order of magnitude is described in the RASS literature. Early work in \cite{Tonning1957} contains electromagnetic derivations related to the problem. Good descriptions of functional RASS systems can be found in \cite{Marshall1972} and \cite{May1990}, although they do not present much theoretical background. A good reference deriving basic theory for RASS performance is \cite{Gurvich1987}, which describes the problem with a beginning in basic electromagnetic scattering. An earlier work related to this is the book by Tatarskii \cite{Tatarskii1971} which is focused on turbulence and wave propagation. Much of the theory it presents regarding the effect of turbulence on electromagnetic waves is easily transferable to the acousto-electromagnetic problem, and chapter 2 of the book was heavily used for parts of this work.
 	
-	Another acousto-electromagnetic interaction mechanism is based on acoustically exciting radar targets. This was investigated as a way of detecting land mines by Scott and Martin \cite{Scott1999}. More mathematical modeling of this problem was performed by Buerkle, Sarabandi and Lawrence in \cite{Lawrence2001}, \cite{Buerkle2008}, \cite{Buerkle2009} where the last one relates the mechanism to NDT. The thesis by Buerkle \cite{Buerkle2007} provides a good summary of this interaction mechanism, possible applications and techniques.
+	Another acousto-electromagnetic interaction mechanism is based on acoustically exciting radar targets. This was investigated as a way of detecting land mines by Scott and Martin \cite{Scott1999}. More mathematical modeling of this problem was performed by Buerkle, Sarabandi and Lawrence in \cite{Lawrence2001}, \cite{Buerkle2008} and \cite{Buerkle2009} where the last one relates the mechanism to NDT. The thesis by Buerkle \cite{Buerkle2007} provides a good summary of this interaction mechanism, possible applications and techniques.
 	
 	Vibrations can also be caused inside an object by using through acoustic radiation pressure. This has been used in multiple medical imaging methods described in \cite{Wang2018}. One well-known method using ultrasound to cause vibrations in tissue is vibro-acoustography, which was introduced by Fatemi and Greenleaf \cite{Fatemi1998}. A method combining acoustic radiation pressure and microwave imaging, Harmonic Motion Microwave Doppler Imaging (HMMDI), was proposed by Top and Gençer as a way of  to improve breast cancer detection \cite{Top2014}. The method was tested successfully on imaging phantoms (artificial model of human tissue) in \cite{Top2016} and \cite{Tafreshi2017}.
 	

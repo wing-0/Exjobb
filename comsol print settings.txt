@@ -1,0 +1,6 @@
+png
+200mm x 149 mm
+300 dpi
+no antialiasing
+include color legend, axes
+font size 11

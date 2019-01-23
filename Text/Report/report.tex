@@ -79,7 +79,9 @@
 	
 	\chapter*{Acknowledgments}
 	\todoext{Write this}
-	Firstly, I would like to thank my advisor Daniel Sjöberg for guidance and support during the thesis. I would also like to thank Mats Gustafsson, Torleif Martin, Christer Larsson, Jakob Helander and Johan Lundgren...
+	Firstly, I would like to thank my supervisor Daniel Sjöberg for guidance and support during the thesis and for introducing me to the subject. I would also like to thank Mats Gustafsson, Torleif Martin, Christer Larsson, Jakob Helander and Johan Lundgren for valuable discussions during project meetings. 
+	
+	Finally, I would like to thank my family and friends for their support during my studies.
 	
 	%\chapter*{Popular Science Summary}
 	\tableofcontents
@@ -231,7 +233,7 @@
 	A fulfilled Bragg condition then leads to the electromagnetic wave being backscattered. The mechanism allowing for temperature measurement is that the acoustic wavelength depends on temperature, which affects the Bragg condition \cite{Marshall1972}. For given acoustic and electromagnetic frequencies, the Bragg condition therefore only holds at a specific temperature. There are multiple ways of measuring the temperature at certain heights using this fact, using different types of acoustic excitation \cite{May1990}. For example, one method is based on modulating the acoustic frequency continuously, giving different acoustic frequency at different heights. A pulsed radar system is then used to detect the altitude at where the Bragg condition is fulfilled, and since the acoustic frequency is known at every altitude the speed of sound can be determined \cite{May1990}.
 	
 	\chapter{Theory \label{ch:theory}}
-	\todoext{Introduce chapter}
+	This chapter presents some of the theory required to analytically derive a model for acousto-electromagnetic interaction. Some different interaction mechanisms between the two phenomena are presented in the beginning, but the rest of the theory is mostly related to the mechanism actually used in the analytical model.
 	
 	\section{Overview of Interaction Mechanisms}
 	To introduce the subject, four types of interaction mechanisms between acoustic and electromagnetic waves are presented. This is by no means a complete list of possible ways of combining the phenomena. Instead, these mechanisms are those which could be found in the literature relatively easily.
@@ -509,7 +511,7 @@
 	Thus, the simple model presented here shows good agreement with another model from the literature in air.
 	
 	\chapter{Analytical Modeling \label{ch:analytical}}
-	\todoext{Introduce chapter}
+	This chapter utilizes the theory of photoelasticity together with electromagnetics to derive a model for the scattering of an electromagnetic wave against a photoelastic perturbation. First, a general equation is derived from Maxwell's equations, and later this is used in a simple geometry to arrive at a radar equation. What is presented here is fairly condensed, with the full derivations being presented in appendix \ref{ch:derivations}.
 	
 	\section{Scattering in a perturbed dielectric \label{sec:analytical-scatter}}
 	Scattering of electromagnetic waves in a dielectric perturbation is now considered in general. A full derivation can be found in appendix \ref{sec:app-derivations-scatter}, and only the main results are shown here. The starting point is Maxwell's equations for a linear, non-magnetic, source-free, isotropic dielectric. Note that the permittivity is not homogeneous.
@@ -689,7 +691,7 @@
 	
 	
 	\chapter{Numerical Simulation} \label{ch:sim}
-	\todoext{Introduce chapter}
+	This chapter describes the numerical simulations used to verify analytical models and understand the problem better. Some general characteristics for all simulations are described first, with specifics for the individual studies presented later.
 	
 	\section{General Information}
 	The problem was simulated in COMSOL Multiphysics for verification and further investigation of more complex scenarios than the one modeled analytically. The two physics interfaces used were the ``Pressure Acoustics, Frequency Domain'' from the basic COMSOL Multiphysics and ``Electromagnetic Waves, Frequency Domain'' from the RF Module. Models were built in 2D for computational speed. One simulation required 1 acoustic and 2 electromagnetic frequency domain simulations to be run, and parameter sweeps would multiply the number required. It was decided that 3D simulations would be too time consuming with little gain when compared with 2D.
@@ -840,7 +842,7 @@
 	To demonstrate the effect of density change, the density was swept between 100 and 400 kg/m$^3$ in steps of 25 kg/m$^3$. The angle $\alpha$ was fixed at $40^\circ$ with $\lambda$ matched to $\Lambda$ and this angle.
 	
 	\chapter{Results and Discussion} \label{ch:res-disc}
-	\todoext{Introduce chapter}
+	This chapter presents results from the numerical simulations with comparisons to the analytical models. These are discussed  and related to the problem of NDT. Discussions for possible experiments in the future are also presented here, with some examples of power estimates related to these. Finally, the work is summarized and conclusions are drawn.
 	
 	\section{Numerical Simulation Results}
 	In this section, the results from the numerical simulations described in chapter \ref{ch:sim} are shown and described. Comparisons are made with the analytical models from chapter \ref{ch:analytical}.
@@ -1010,7 +1012,7 @@
 	
 	Some parts in the analytical models and numerical simulations can be identified at this stage to be less certain than others. One in particular, the photoelastic model is important to test experimentally since the model itself could not be verified in COMSOL. The coupling between acoustic pressure and relative permittivity was done entirely using equations \eqref{eq:th-PE-scalar-p} and \eqref{eq:th-PE-liquid-model}, which were admittedly very simplified when compared to the full tensor model. Thorough experimentation would give more insight to how accurate the simple model used here really is, and where its main drawbacks might lie. Some points worth looking into are the assumption of isotropy in the photoelastic tensor, the assumption of $p_{11} = p_{12}$ in the isotropic photoelastic tensor and the model for the photoelastic constant in equation \eqref{eq:th-PE-liquid-model}. All of these have connections to each other, so experiments should be designed with this in mind.
 	
-	A part which might be lacking in the analytical models and numerical simulations is that of ultrasonic wave propagation. Most of the analytical modeling was based on pure p-wave propagation, which might not be the case in reality. If also a more complicated photoelastic model is reuired, using a photoelastic tensor instead of the simplified photoelastic constant in equation \eqref{eq:th-PE-scalar-p}, s-waves would affect the interaction in a way not modeled analytically. Numerical simulations were even more simplistic when it came to ultrasonic wave propagation, assuming a negligible shear modulus. The result of this is that the wave speed equation is equal to that in fluid acoustics, which was used to model phenomena in the COMSOL pressure acoustics interface. However, for a non-negligible shear modulus the true p-wave speed is higher than that given by fluid acoustics. \todoint[inline]{Refer to equations or write them directly.}
+	A part which might be lacking in the analytical models and numerical simulations is that of ultrasonic wave propagation. Most of the analytical modeling was based on pure p-wave propagation, which might not be the case in reality. If also a more complicated photoelastic model is required, using a photoelastic tensor instead of the simplified photoelastic constant in equation \eqref{eq:th-PE-scalar-p}, s-waves would affect the interaction in a way not modeled analytically. Numerical simulations were even more simplistic when it came to ultrasonic wave propagation, assuming a negligible shear modulus. The result of this is that the wave speed equation is equal to that in fluid acoustics, which was used to model phenomena in the COMSOL pressure acoustics interface. However, for a non-negligible shear modulus the true p-wave speed is higher than that given by fluid acoustics. \todoint[inline]{Refer to equations or write them directly.}
 	
 	\subsection{Example calculations}
 	\todoext{Present example calculations for two common materials and different transducer types (Air with cheap 40 kHz speaker and polystyrene with medical transducer using coupling agent)}

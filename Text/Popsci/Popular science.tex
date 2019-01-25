@@ -1,0 +1,71 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Symbols
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{cases}
+
+% Graphics
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{arrows.meta}
+\usepackage{pgf}
+\usepackage{subcaption}
+
+% Language localization
+\usepackage[english]{babel}
+
+% Improves float behavior (e.g. enables [H]) and puts captions on top
+\usepackage{float}
+\floatstyle{plaintop}
+
+% Includes todo-notes
+\usepackage{todonotes}
+\setlength{\marginparwidth}{0.8in}
+
+% Makes caption identifiers (i.e. Figure X:) bold
+\usepackage[labelfont=bf]{caption}
+
+% Gives \ref and \cite hyperlinks to what they refer to
+\usepackage[hidelinks]{hyperref}
+
+% Enables \begin{comment} comments
+\usepackage{comment}
+
+% Bold math style, useful for vectors
+\usepackage{bm}
+
+\usepackage{multicol}
+\usepackage{geometry}
+\geometry{paper=a4paper,
+	body={125mm,200mm},
+	left=29.5mm,
+	vmarginratio=1:1}
+
+% Generates lorem ipsum dummy text
+\usepackage{lipsum}
+
+\begin{document}
+	
+	\begingroup
+		\centering
+		\LARGE \textbf{Towards Better Inspection of Aircraft Parts with the Combined Power of Ultrasound and Microwaves} \par
+		\vspace{1.0cm}
+	\endgroup
+	
+	\begin{multicols}{2}
+		\noindent
+		\textbf{
+			In the aerospace industry, new materials are constantly being investigated for their promise in being lighter, stronger and overall better. At the same time it is very important that those materials are reliable since they go into parts which keep the aircraft flying. Because of this, methods for inspecting parts for defects without bad effects on the parts themselves are used. One possible way of improving such methods is to combine two existing methods which use ultrasound and microwaves.
+		}
+		
+		\noindent
+		\lipsum[2-3]
+	\end{multicols}
+	
+\end{document}

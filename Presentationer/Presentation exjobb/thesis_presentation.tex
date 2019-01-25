@@ -1,0 +1,353 @@
+\documentclass[11pt, final]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Graphics
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+% Language localization
+\usepackage[english]{babel}
+
+% Symbols
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% Bold math style, useful for vectors
+\usepackage{bm}
+
+% For supressing caption "Figure X" text
+\usepackage{caption}
+
+\usepackage{ulem}
+
+\usepackage{subcaption}
+
+\usepackage{todonotes}
+
+\usetheme{Madrid}
+\setbeamertemplate{navigation symbols}{}
+
+\begin{document}
+	
+	% Add typographic commands
+	\newcommand{\mrm}[1]{\mathrm{#1}}
+	\newcommand{\eu}{\mrm{e}}
+	\newcommand{\iu}{\mrm{i}}	
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% Räkna 5 min bakgrund, 6 min teori, 6 min simuleringar, 3 min diskussion
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\author{Niklas Wingren}
+	\title[Acousto-Electromagnetic Interaction]{Acousto-Electromagnetic Interaction in Materials for Aerospace Composites}
+	\subtitle{Master's Thesis in Electrical and Information Technology}
+	\date{2019-01-29}
+	\frame[plain]{\maketitle}
+	
+	\begin{frame}{Overview}
+		\tableofcontents
+	\end{frame}
+	
+	\AtBeginSection[]{
+		\begin{frame}{Overview}
+			\tableofcontents[currentsection]
+		\end{frame}
+	}
+	
+	\section{Background}
+	
+	\begin{frame}{Background}{Composites in aerospace}
+		\begin{itemize}
+			\item Composite materials attractive in aerospace due to light weight, high strength, no corrosion and more
+			\begin{figure}
+				\includegraphics[width=0.4\textwidth]{Glare_honeycomb.jpg}
+			\end{figure}
+			\pause
+			\item Non-destructive testing (NDT) is a crucial part of manufacturing and servicing
+			\item Detection and evaluation of flaws in material without negative effects
+			\pause
+			\item Many methods
+			\begin{itemize}
+				\item Ultrasonic testing
+				\item Microwave/mm-wave imaging
+			\end{itemize}
+		\end{itemize}
+		
+	\end{frame}
+	
+	\begin{frame}{Background}{Combination of methods}
+		\begin{itemize}
+			\item Combination of methods might give improved detection
+			\item Knowledge on possible interaction mechanisms required
+			\pause
+			\item Purpose of thesis
+			\begin{itemize}
+				\item Investigate mechanisms behind acousto-electromagnetic interaction
+				\item Identify relevant properties of the wave phenomena
+				\item Could this be used to improve NDT?
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Background}{Acousto-optics}
+		\begin{columns}
+			\begin{column}{0.6\textwidth}
+				\begin{itemize}
+					\item<1-> Interaction between ultrasound and laser
+					\item<1-> Ultrasonic wave causes periodic perturbation in refractive index
+					\item<2-> Phase matching at specific condition (Bragg condition)
+					\begin{equation*}
+						\sin{\theta_B} = \frac{\lambda}{2\Lambda}
+					\end{equation*}
+					\item<3-> Used in photonics for manipulation of laser beams
+				\end{itemize}
+			\end{column}
+			\begin{column}{0.4\textwidth}
+				\uncover<2->{
+					\resizebox{\textwidth}{!}{
+						\input{../../Text/Report/fig/acousto-optics.tikz}
+					}
+				}
+			\end{column}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}{Background}{RASS}
+		\begin{itemize}
+			\item Radio Acoustic Sounding System
+			\item Meteorological method for measuring atmospheric teperature
+			\pause
+			\item Interaction mechanism is the same as in acousto-optics
+			\item Frequency order of magnitude: audible sound and radio (MHz - GHz)
+		\end{itemize}
+	\end{frame}
+	
+	\section{Theory}
+	
+	\begin{frame}{Theory}{Photoelasticity}
+		\begin{itemize}
+			\item Strain in material affecting dielectric properties
+			\pause
+			\item Simple photoelastic model
+			\begin{equation*}
+				\varepsilon = \varepsilon_0 (\varepsilon_\mrm{r} + \varepsilon_1), \qquad \varepsilon_1 = \frac{\varepsilon_\mrm{r}^2 \mathfrak{p}}{K} \,p
+			\end{equation*}
+			\begin{equation*}
+				\mathfrak{p} = \frac{(\varepsilon_\mrm{r} - 1)(\varepsilon_\mrm{r} + 2)}{3\varepsilon_\mrm{r}^2}
+			\end{equation*}
+			\pause
+			\item Dielectric perturbation proportional to acoustic pressure
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Theory}{Scattering against dielectric perturbation}
+		\begin{itemize}
+			\item Maxwell's equations
+			\begin{align*}
+				&\nabla \times \bm{E} = \iu\omega \mu_0 \bm{H} - \mu_0 \frac{\partial \bm{H}}{\partial t} \\
+				&\nabla \times \bm{H} = -\iu\omega \varepsilon \bm{E} + \mu_0 \frac{\partial (\varepsilon \bm{E})}{\partial t} \\
+				&\nabla \cdot (\varepsilon \bm{E}) = 0 \\
+				&\nabla \cdot \bm{H} = 0
+			\end{align*}
+			\pause
+			\item Small dielectric perturbation $\varepsilon_1$
+			\begin{equation*}
+				\varepsilon = \varepsilon_0(\varepsilon_\mrm{r} + \varepsilon_1)
+			\end{equation*}
+			\item Electric field divided into incident and small scattered field
+			\begin{equation*}
+				\bm{E} = \bm{E}_\mrm{i} + \bm{E}_\mrm{sc}
+			\end{equation*}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Theory}{Scattering against dielectric perturbation}
+		\begin{itemize}
+			\item Inhomogeneous Helmholtz equation
+			\footnotesize
+			\begin{equation*}
+				\nabla^2\bm{E}_\mrm{sc} + k^2 \bm{E}_\mrm{sc} =	-k^2 \frac{\varepsilon_1}{\varepsilon_\mrm{r}} \bm{E}_\mrm{i} -\frac{1}{\varepsilon_\mrm{r}}\nabla(\bm{E}_\mrm{i} \cdot \nabla \varepsilon_1) - \frac{2\iu k}{c\varepsilon_0\varepsilon_\mrm{r}} \frac{\partial (\varepsilon \bm{E}_\mrm{i})}{\partial t} + \frac{1}{c^2 \varepsilon_0 \varepsilon_\mrm{r}} \frac{\partial^2 (\varepsilon \bm{E}_\mrm{i})}{\partial t^2}
+			\end{equation*}
+			\pause
+			\normalsize
+			\item Solution in 3D
+			\footnotesize
+			\begin{equation*}
+				\bm{E}_\mrm{sc}(\bm{r},t) = \frac{1}{4\pi\varepsilon_\mrm{r}} \int_{V_\mrm{sc}} \frac{\eu^{\iu k |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \left( k^2 \bm{E}_\mrm{i} (\bm{r'},t) \varepsilon_1 (\bm{r'},t) + \nabla (\bm{E}_\mrm{i} (\bm{r'},t) \cdot \nabla \varepsilon_1 (\bm{r'},t)) \right) \mathrm{d}v'
+			\end{equation*}
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}{Theory}{Plane wave solution}
+		\resizebox{!}{0.6\textheight}{
+			\input{../../Text/Report/fig/scatteringgeom.tikz}
+		}
+		
+	Plane waves in simple interaction region
+	\end{frame}
+	
+	\begin{frame}{Theory}{Plane wave solution}
+		\begin{itemize}
+			\item Scattering integral solution
+			\small
+			\begin{equation*}
+				\bm{E}_\mrm{sc} (\bm{r},t) = \bm{E}_{\mrm{i}0} \left( E_\mrm{A}^+ (\bm{r},t) + E_\mrm{A}^- (\bm{r},t) \right)
+			\end{equation*}
+			\begin{equation*}
+				E_\mrm{A}^\pm (\bm{r},t) = \frac{\varepsilon_\mrm{r}k^2 \eu^{\iu kr} \mathfrak{p} p_0}{8\pi r K} L_{x} L_{y} L_{z} e^{\mp \iu \Omega t} \Phi^\pm (\theta,\phi)
+			\end{equation*}
+			\begin{equation*}
+			\begin{split}
+				\Phi^\pm(\theta,\phi) =& \text{sinc} \left( \frac{L_{x}}{2\pi} \left( k - k\sin{\theta}\cos{\phi} \pm q\cos{\alpha} \right) \right) \\
+				\cdot& \text{sinc} \left( \frac{L_{y}}{2\pi} \left( -k\sin{\theta}\sin{\phi} \pm q\sin{\alpha} \right) \right)
+				\cdot \text{sinc} \left( -\frac{L_{z}}{2\pi} k\cos{\theta} \right)
+			\end{split}
+			\end{equation*}
+			\pause
+			\normalsize
+			\item Frequency of scattered wave shifted by $\pm \Omega$
+			\item Phase matching given by Bragg condition
+		\end{itemize}
+	\end{frame}
+
+	\section{Numerical Simulation}
+	
+	\begin{frame}{Numerical Simulation}{Preparations}
+		\begin{itemize}
+			\item COMSOL Multiphysics
+			\pause
+			\item Circular geometry in 2D
+			\item Boundary condition simulating open boundary
+			\pause
+			\item Frequencies selected for phase matching at $\alpha = 40^\circ$ (-) and $\alpha = 140^\circ$ (+)
+			\pause
+			\item Studies:
+			\begin{itemize}
+				\item Sweep of angle $\alpha$
+				\item Defect with electric contrast
+				\item Defect with acoustic contrast
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Numerical Simulation}{$\alpha = 40^\circ$, Frequency shift $-\Omega$}
+		\begin{figure}
+			\centering
+			\begin{subfigure}{0.5\textheight}
+				\includegraphics[width=\textwidth]{../../Text/Report/fig/anglesweep(-)_nolabel_p.png}
+			\end{subfigure}
+			\begin{subfigure}{0.5\textheight}
+				\includegraphics[width=\textwidth]{../../Text/Report/fig/anglesweep(-)_nolabel_Ez.png}
+			\end{subfigure}
+			\begin{subfigure}{0.5\textheight}
+				\includegraphics[width=\textwidth]{../../Text/Report/fig/anglesweep(-)_nolabel_diff.png}
+			\end{subfigure}
+			\begin{subfigure}{0.5\textheight}
+				\includegraphics[width=\textwidth]{../../Text/Report/fig/anglesweep(-)_nolabel_power.png}
+			\end{subfigure}
+		\end{figure}
+	\end{frame}
+	
+	\begin{frame}{Numerical Simulation}{$\alpha = 140^\circ$, Frequency shift $+\Omega$}
+		\begin{figure}
+			\centering
+			\begin{subfigure}{0.5\textheight}
+				\includegraphics[width=\textwidth]{../../Text/Report/fig/anglesweep(+)_nolabel_p.png}
+			\end{subfigure}
+			\begin{subfigure}{0.5\textheight}
+				\includegraphics[width=\textwidth]{../../Text/Report/fig/anglesweep(+)_nolabel_Ez.png}
+			\end{subfigure}
+			\begin{subfigure}{0.5\textheight}
+				\includegraphics[width=\textwidth]{../../Text/Report/fig/anglesweep(+)_nolabel_diff.png}
+			\end{subfigure}
+			\begin{subfigure}{0.5\textheight}
+				\includegraphics[width=\textwidth]{../../Text/Report/fig/anglesweep(+)_nolabel_power.png}
+			\end{subfigure}
+		\end{figure}
+	\end{frame}
+	
+	\begin{frame}{Numerical Simulation}{Sweep of angle $\alpha$, total scattered power}
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\begin{figure}
+					\centering
+					\resizebox{\textwidth}{!}{\input{../../Text/Report/fig/angle-sweep-power-an(-).pgf}}
+					\caption*{Frequency shift $-\Omega$}
+				\end{figure}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{figure}
+					\centering
+					\resizebox{\textwidth}{!}{\input{../../Text/Report/fig/angle-sweep-power-an(+).pgf}}
+					\caption*{Frequency shift $+ \Omega$}
+				\end{figure}
+			\end{column}
+		\end{columns}
+	\end{frame}
+		
+	\begin{frame}{Numerical Simulation}{Defect with electric contrast, $\sigma = 10$ S/m}
+		\begin{figure}
+			\centering
+			\begin{subfigure}{0.5\textheight}
+				\includegraphics[width=\textwidth]{../../Text/Report/fig/cond_nolabel_p.png}
+			\end{subfigure}
+			\begin{subfigure}{0.5\textheight}
+				\includegraphics[width=\textwidth]{../../Text/Report/fig/cond_nolabel_Ez.png}
+			\end{subfigure}
+			\begin{subfigure}{0.5\textheight}
+				\includegraphics[width=\textwidth]{../../Text/Report/fig/cond_nolabel_diff.png}
+			\end{subfigure}
+			\begin{subfigure}{0.5\textheight}
+				\includegraphics[width=\textwidth]{../../Text/Report/fig/cond_nolabel_power.png}
+			\end{subfigure}
+		\end{figure}
+	\end{frame}
+	
+	\begin{frame}{Numerical Simulation}{Defect with acoustic contrast, $\rho_0 = 100$ kg/m$^3$}
+		\begin{figure}
+			\centering
+			\begin{subfigure}{0.5\textheight}
+				\includegraphics[width=\textwidth]{../../Text/Report/fig/mech_nolabel_100_p.png}
+			\end{subfigure}
+			\begin{subfigure}{0.5\textheight}
+				\includegraphics[width=\textwidth]{../../Text/Report/fig/mech_nolabel_100_Ez.png}
+			\end{subfigure}
+			\begin{subfigure}{0.5\textheight}
+				\includegraphics[width=\textwidth]{../../Text/Report/fig/mech_nolabel_100_diff.png}
+			\end{subfigure}
+			\begin{subfigure}{0.5\textheight}
+				\includegraphics[width=\textwidth]{../../Text/Report/fig/mech_nolabel_100_power.png}
+			\end{subfigure}
+		\end{figure}
+	\end{frame}
+	
+	\section{Discussion}
+	
+	\begin{frame}{Discussion}
+		\begin{itemize}
+			\item Analytical model gives correct phase matching condition
+			\pause
+			\item Both electric and acoustic contrast affect interaction and scattering
+			\pause
+			\item Defect with combination of contrasts interesting
+			\pause
+			\item Resolution might be an issue
+			\pause
+			\item Future work
+			\begin{itemize}
+				\item Experiments
+				\item Refinement and research on other interaction mechanisms
+				\item Possibilities for NDT
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\centering \huge
+		Thank you!
+	\end{frame}
+
+\end{document}

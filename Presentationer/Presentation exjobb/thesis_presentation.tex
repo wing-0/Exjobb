@@ -22,6 +22,9 @@
 % For supressing caption "Figure X" text
 \usepackage{caption}
 
+% Left align subfigure captions
+\captionsetup[subfigure]{justification=justified,singlelinecheck=false}
+
 \usepackage{ulem}
 
 \usepackage{subcaption}
@@ -43,7 +46,7 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\author{Niklas Wingren}
 	\title[Acousto-Electromagnetic Interaction]{Acousto-Electromagnetic Interaction in Materials for Aerospace Composites}
-	\subtitle{Master's Thesis in Electrical and Information Technology}
+	\subtitle{Master Thesis in Electrical and Information Technology}
 	\date{2019-01-29}
 	\frame[plain]{\maketitle}
 	
@@ -208,7 +211,7 @@
 			\end{equation*}
 			\pause
 			\normalsize
-			\item Frequency of scattered wave shifted by $\pm \Omega$
+			\item Angular frequency of scattered wave shifted by $\pm \Omega$
 			\item Phase matching given by Bragg condition
 		\end{itemize}
 	\end{frame}
@@ -222,7 +225,7 @@
 			\item Circular geometry in 2D
 			\item Boundary condition simulating open boundary
 			\pause
-			\item Frequencies selected for phase matching at $\alpha = 40^\circ$ (-) and $\alpha = 140^\circ$ (+)
+			\item Frequencies for phase matching at $\alpha = 40^\circ$ (-) and $\alpha = 140^\circ$ (+)
 			\pause
 			\item Studies:
 			\begin{itemize}
@@ -233,38 +236,68 @@
 		\end{itemize}
 	\end{frame}
 	
-	\begin{frame}{Numerical Simulation}{$\alpha = 40^\circ$, Frequency shift $-\Omega$}
+	\begin{frame}{Numerical Simulation}{$\alpha = 40^\circ$, Negative frequency shift}
 		\begin{figure}
 			\centering
-			\begin{subfigure}{0.5\textheight}
+			\begin{subfigure}[t]{0.5\textheight}
+				\vspace{-1cm}
+				\caption*{\hspace{0.5cm}Acoustic pressure}
+				\vspace{-0.2cm}
 				\includegraphics[width=\textwidth]{../../Text/Report/fig/anglesweep(-)_nolabel_p.png}
 			\end{subfigure}
-			\begin{subfigure}{0.5\textheight}
+			\begin{subfigure}[t]{0.5\textheight}
+				\vspace{-1cm}
+				\caption*{\hspace{0.5cm}Incident electric field}
+				\vspace{-0.2cm}
 				\includegraphics[width=\textwidth]{../../Text/Report/fig/anglesweep(-)_nolabel_Ez.png}
 			\end{subfigure}
-			\begin{subfigure}{0.5\textheight}
+		\end{figure}
+		
+		\begin{figure}
+			\centering
+			\vspace{-0.4cm}
+			\begin{subfigure}[t]{0.5\textheight}
 				\includegraphics[width=\textwidth]{../../Text/Report/fig/anglesweep(-)_nolabel_diff.png}
+				\vspace{-0.1cm}
+				\caption*{\hspace{0.5cm}Scattered electric field}
 			\end{subfigure}
-			\begin{subfigure}{0.5\textheight}
+			\begin{subfigure}[t]{0.5\textheight}
 				\includegraphics[width=\textwidth]{../../Text/Report/fig/anglesweep(-)_nolabel_power.png}
+				\vspace{-0.1cm}
+				\caption*{\hspace{0.5cm}Scattered power density}
 			\end{subfigure}
 		\end{figure}
 	\end{frame}
 	
-	\begin{frame}{Numerical Simulation}{$\alpha = 140^\circ$, Frequency shift $+\Omega$}
+	\begin{frame}{Numerical Simulation}{$\alpha = 140^\circ$, Positive frequency shift}
 		\begin{figure}
 			\centering
-			\begin{subfigure}{0.5\textheight}
+			\begin{subfigure}[t]{0.5\textheight}
+				\vspace{-1cm}
+				\caption*{\hspace{0.5cm}Acoustic pressure}
+				\vspace{-0.2cm}
 				\includegraphics[width=\textwidth]{../../Text/Report/fig/anglesweep(+)_nolabel_p.png}
 			\end{subfigure}
-			\begin{subfigure}{0.5\textheight}
+			\begin{subfigure}[t]{0.5\textheight}
+				\vspace{-1cm}
+				\caption*{\hspace{0.5cm}Incident electric field}
+				\vspace{-0.2cm}
 				\includegraphics[width=\textwidth]{../../Text/Report/fig/anglesweep(+)_nolabel_Ez.png}
 			\end{subfigure}
-			\begin{subfigure}{0.5\textheight}
+		\end{figure}
+		
+		\begin{figure}
+			\centering
+			\vspace{-0.4cm}
+			\begin{subfigure}[t]{0.5\textheight}
 				\includegraphics[width=\textwidth]{../../Text/Report/fig/anglesweep(+)_nolabel_diff.png}
+				\vspace{-0.1cm}
+				\caption*{\hspace{0.5cm}Scattered electric field}
 			\end{subfigure}
-			\begin{subfigure}{0.5\textheight}
+			\begin{subfigure}[t]{0.5\textheight}
 				\includegraphics[width=\textwidth]{../../Text/Report/fig/anglesweep(+)_nolabel_power.png}
+				\vspace{-0.1cm}
+				\caption*{\hspace{0.5cm}Scattered power density}
 			\end{subfigure}
 		\end{figure}
 	\end{frame}
@@ -275,14 +308,14 @@
 				\begin{figure}
 					\centering
 					\resizebox{\textwidth}{!}{\input{../../Text/Report/fig/angle-sweep-power-an(-).pgf}}
-					\caption*{Frequency shift $-\Omega$}
+					\caption*{Negative frequency shift}
 				\end{figure}
 			\end{column}
 			\begin{column}{0.5\textwidth}
 				\begin{figure}
 					\centering
 					\resizebox{\textwidth}{!}{\input{../../Text/Report/fig/angle-sweep-power-an(+).pgf}}
-					\caption*{Frequency shift $+ \Omega$}
+					\caption*{Positive frequency shift}
 				\end{figure}
 			\end{column}
 		\end{columns}
@@ -291,17 +324,32 @@
 	\begin{frame}{Numerical Simulation}{Defect with electric contrast, $\sigma = 10$ S/m}
 		\begin{figure}
 			\centering
-			\begin{subfigure}{0.5\textheight}
+			\begin{subfigure}[t]{0.5\textheight}
+				\vspace{-1cm}
+				\caption*{\hspace{0.5cm}Acoustic pressure}
+				\vspace{-0.2cm}
 				\includegraphics[width=\textwidth]{../../Text/Report/fig/cond_nolabel_p.png}
 			\end{subfigure}
-			\begin{subfigure}{0.5\textheight}
+			\begin{subfigure}[t]{0.5\textheight}
+				\vspace{-1cm}
+				\caption*{\hspace{0.5cm}Incident electric field}
+				\vspace{-0.2cm}
 				\includegraphics[width=\textwidth]{../../Text/Report/fig/cond_nolabel_Ez.png}
 			\end{subfigure}
-			\begin{subfigure}{0.5\textheight}
+		\end{figure}
+		
+		\begin{figure}
+			\centering
+			\vspace{-0.4cm}
+			\begin{subfigure}[t]{0.5\textheight}
 				\includegraphics[width=\textwidth]{../../Text/Report/fig/cond_nolabel_diff.png}
+				\vspace{-0.1cm}
+				\caption*{\hspace{0.5cm}Scattered electric field}
 			\end{subfigure}
-			\begin{subfigure}{0.5\textheight}
+			\begin{subfigure}[t]{0.5\textheight}
 				\includegraphics[width=\textwidth]{../../Text/Report/fig/cond_nolabel_power.png}
+				\vspace{-0.1cm}
+				\caption*{\hspace{0.5cm}Scattered power density}
 			\end{subfigure}
 		\end{figure}
 	\end{frame}
@@ -309,17 +357,32 @@
 	\begin{frame}{Numerical Simulation}{Defect with acoustic contrast, $\rho_0 = 100$ kg/m$^3$}
 		\begin{figure}
 			\centering
-			\begin{subfigure}{0.5\textheight}
+			\begin{subfigure}[t]{0.5\textheight}
+				\vspace{-1cm}
+				\caption*{\hspace{0.5cm}Acoustic pressure}
+				\vspace{-0.2cm}
 				\includegraphics[width=\textwidth]{../../Text/Report/fig/mech_nolabel_100_p.png}
 			\end{subfigure}
-			\begin{subfigure}{0.5\textheight}
+			\begin{subfigure}[t]{0.5\textheight}
+				\vspace{-1cm}
+				\caption*{\hspace{0.5cm}Incident electric field}
+				\vspace{-0.2cm}
 				\includegraphics[width=\textwidth]{../../Text/Report/fig/mech_nolabel_100_Ez.png}
 			\end{subfigure}
-			\begin{subfigure}{0.5\textheight}
+		\end{figure}
+		
+		\begin{figure}
+			\centering
+			\vspace{-0.4cm}
+			\begin{subfigure}[t]{0.5\textheight}
 				\includegraphics[width=\textwidth]{../../Text/Report/fig/mech_nolabel_100_diff.png}
+				\vspace{-0.1cm}
+				\caption*{\hspace{0.5cm}Scattered electric field}
 			\end{subfigure}
-			\begin{subfigure}{0.5\textheight}
+			\begin{subfigure}[t]{0.5\textheight}
 				\includegraphics[width=\textwidth]{../../Text/Report/fig/mech_nolabel_100_power.png}
+				\vspace{-0.1cm}
+				\caption*{\hspace{0.5cm}Scattered power density}
 			\end{subfigure}
 		\end{figure}
 	\end{frame}

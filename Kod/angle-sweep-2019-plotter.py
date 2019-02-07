@@ -101,7 +101,7 @@ plt.xticks(aloc, alab)
 plt.figure()
 plt.grid()
 plt.plot(alpha, 10*np.log10(Stot/1e-3), '.-')
-plt.title('Total scattered power, (' + pmchar + ') case')
+plt.title('Total scattered power, ($' + pmchar + '$) case')
 plt.xlabel('$\\alpha$')
 plt.ylabel('$P_\\mathrm{sc}$ [dBm]')
 
@@ -194,7 +194,7 @@ Sn_p = (0.5/wi * Ei0**2 * er**2*k**3*ph**2*p0**2/8/np.pi/r/kbm**2 *
 
 # Compensation factor for transforming peak amplitude to equivalent plane
 # wave power. This is multiplied to the Poynting vectors
-gamma = np.pi/256
+gamma = np.pi/32
 Sn_c = gamma*Sn_c
 Sn_p = gamma*Sn_p
 
@@ -210,7 +210,7 @@ plt.grid()
 plt.plot(alpha, 10*np.log10(Stot/1e-3), '.-')
 plt.plot(angles_an, 10*np.log10(Ptot_c/1e-3), '--')
 plt.plot(angles_an, 10*np.log10(Ptot_p/1e-3), ':')
-plt.title('Total scattered power, (' + pmchar + ') case')
+plt.title('Total scattered power, ($' + pmchar + '$) case')
 plt.xlabel('$\\alpha$')
 plt.ylabel('$P_\\mathrm{sc}$ [dBm]')
 plt.legend(['Simulated', 'Cuboid', 'Parallelogram'])
@@ -231,7 +231,7 @@ plt.grid()
 plt.plot(alpha, normS.max(axis=0), '.-')
 plt.plot(angles_an, Sn_c.max(axis=0), '--')
 plt.plot(angles_an, Sn_p.max(axis=0), ':')
-plt.title('Maximum of the Poynting vector, (' + pmchar + ') case')
+plt.title('Maximum of the Poynting vector, ($' + pmchar + '$) case')
 plt.xlabel('$\\alpha$')
 plt.ylabel('$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> \\right|$' +
            '$_\\mathrm{max}$ [W/m$^2$]')
@@ -269,8 +269,8 @@ plt.figure()
 plt.grid()
 plt.plot(alpha, np.degrees(wavgang), '.-')
 plt.title('Weighted avg. of propagation angle (weighted by ' +
-          '$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> \\right|$), (' +
-          pmchar + ') case')
+          '$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> \\right|$), ($' +
+          pmchar + '$) case')
 plt.xlabel('$\\alpha$')
 plt.ylabel('$\\overline{\\phi}_\\mathrm{prop}$')
 
@@ -293,10 +293,10 @@ plt.polar(propang, normS/normS.max())
 plt.polar(np.radians((180 - pm*2*opta))*np.ones(2),
           np.arange(2), 'k:')
 plt.ylim([0, 1])
-plt.title('Normalized poynting vector magnitude ' +
+plt.title('Normalized Poynting vector magnitude ' +
           '$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> \\right|$ / ' +
           '$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> ' +
-          '\\right|_\\mathrm{max}$, (' + pmchar + ') case\n')
+          '\\right|_\\mathrm{max}$, ($' + pmchar + '$) case\n')
 plt.xlabel('$\\phi_\\mathrm{prop}$')
 plt.legend([str(a) + '$^\\circ$' for a in alpha], title='$\\alpha$',
            bbox_to_anchor=(1.1, 0.5), loc='center left')

@@ -527,13 +527,23 @@
 	
 	The electric field is split up into an incident field $\bm{E}_\mrm{i}$ and a scattered field $\bm{E}_\mrm{sc}$ such that $\bm{E} = \bm{E}_\mrm{i} + \bm{E}_\mrm{sc}$. If the scattered field is considered to be small compared to the incident field (Born approximation), Maxwell's equations in this perturbed dielectric can be rewritten as (see appendix \ref{sec:app-derivations-scatter-general}-\ref{sec:app-derivations-scatter-born})
 	\begin{equation*}
-		\nabla^2\bm{E}_\mrm{sc} + k^2 \bm{E}_\mrm{sc} =	-k^2 \frac{\varepsilon_1}{\varepsilon_\mrm{r}} \bm{E}_\mrm{i} -\frac{1}{\varepsilon_\mrm{r}}\nabla(\bm{E}_\mrm{i} \cdot \nabla \varepsilon_1) - \frac{2\iu k}{c\varepsilon_0\varepsilon_\mrm{r}} \frac{\partial (\varepsilon \bm{E}_\mrm{i})}{\partial t} + \frac{1}{c^2 \varepsilon_0 \varepsilon_\mrm{r}} \frac{\partial^2 (\varepsilon \bm{E}_\mrm{i})}{\partial t^2}
+		\nabla^2\bm{E}_\mrm{sc} + k^2 \bm{E}_\mrm{sc} =	-k^2 \frac{\varepsilon_1}{\varepsilon_\mrm{r}} \bm{E}_\mrm{i} -\frac{1}{\varepsilon_\mrm{r}}\nabla(\bm{E}_\mrm{i} \cdot \nabla \varepsilon_1) - \frac{k^2}{\varepsilon_\mrm{r}} \bm{E}_\mrm{di}
 	\end{equation*}
-	where $k = \omega/c$ is the wavenumber and $c = 1/\sqrt{\mu_0 \varepsilon_0 \varepsilon_\mrm{r}} = c_0/\sqrt{\varepsilon_\mrm{r}}$ is the speed of light in the material. The two last terms can be neglected if $v/c \ll |\varepsilon_1|/\varepsilon_\mrm{r}$, (for the speed of sound $v$) and an integral form is written as (see appendix \ref{sec:app-derivations-scatter-born}-\ref{sec:app-derivations-scatter-approx})
+	where $k = \omega/c$ is the wavenumber, $c = 1/\sqrt{\mu_0 \varepsilon_0 \varepsilon_\mrm{r}} = c_0/\sqrt{\varepsilon_\mrm{r}}$ is the speed of light in the material and $\bm{E}_\mrm{di}$ contains terms with time derivatives. An integral form is written as (see appendix \ref{sec:app-derivations-scatter-born})
 	\begin{equation}
-		\bm{E}_\mrm{sc}(\bm{r},t) = \frac{1}{4\pi\varepsilon_\mrm{r}} \int_{V_\mrm{sc}} \frac{\eu^{\iu k |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \left( k^2 \bm{E}_\mrm{i} (\bm{r'},t) \varepsilon_1 (\bm{r'},t) + \nabla (\bm{E}_\mrm{i} (\bm{r'},t) \cdot \nabla \varepsilon_1 (\bm{r'},t)) \right) \mathrm{d}v'
-		\label{eq:an-scatter-int}
+	\begin{split}
+		\bm{E}_\mrm{sc}(\bm{r},t) =& \frac{1}{4\pi \varepsilon_\mrm{r}} \int_{V_\mrm{sc}} \frac{\eu^{\iu k |\bm{r}-\bm{r'}| }}{|\bm{r}-\bm{r'}|} \\
+		& \cdot \left( k^2 \varepsilon_1(\bm{r}',t) \bm{E}_\mrm{i}(\bm{r}',t) + \nabla \left(\bm{E}_\mrm{i}(\bm{r}',t) \cdot \nabla \varepsilon_1(\bm{r}',t) \right) + k^2 \bm{E}_\mrm{di}(\bm{r}',t) \right) \mathrm{d}v'
+	\end{split}
+	\label{eq:an-scatter-int}
 	\end{equation}
+	where
+	\begin{equation*}
+	\begin{split}
+		\bm{E}_\mrm{di}(\bm{r}',t) =& \frac{2 \iu \varepsilon_\mrm{r}}{\omega} \frac{\partial}{\partial t} \left( \bm{E}_\mrm{i}(\bm{r}',t) \right) + \frac{2 \iu}{\omega} \frac{\partial}{\partial t} \left( \varepsilon_1(\bm{r}',t) \bm{E}_\mrm{i}(\bm{r}',t) \right) \\
+		&- \frac{\varepsilon_\mrm{r}}{\omega^2} \frac{\partial^2}{\partial t^2} \left( \bm{E}_\mrm{i}(\bm{r}',t) \right) - \frac{1}{\omega^2} \frac{\partial^2}{\partial t^2} \left( \varepsilon_1(\bm{r}',t) \bm{E}_\mrm{i}(\bm{r}',t) \right)
+	\end{split}
+	\end{equation*}
 	This gives the scattered field due to a small perturbation $\varepsilon_1$ in a single-scattering (Born) approximation.
 	
 	\section{Radar equation for simple photoelastic interaction \label{sec:analytical-radar}}
@@ -552,7 +562,7 @@
 	\end{align*}
 	Here, $\bm{E}_{\mrm{i}0}$ is the complex field amplitude at the origin ($-\iu\omega t$ time-dependence separated) and $\bm{k}$ is the electromagnetic wavevector. The scalar photoelastic relation from equation \eqref{eq:th-PE-scalar-p} has been used, where $\mathfrak{p}$ is the photoelastic constant, $p_0$ is the acoustic pressure amplitude at the origin, $K$ is the bulk modulus, $\bm{q}$ is the acoustic wavevector and $\Omega$ the acoustic frequency.
 	
-	The electromagnetic polarization is assumed to be in z, $\bm{E}_{\mrm{i}0} \parallel \bm{\hat{z}}$. For this problem, equation \eqref{eq:an-scatter-int} is written as (see appendix \ref{sec:app-derivations-radar-sol})
+	The electromagnetic polarization is assumed to be in z, $\bm{E}_{\mrm{i}0} \parallel \bm{\hat{z}}$, far-field is assumed and the condition $\Omega \ll \omega$ is assumed to hold. For this problem, equation \eqref{eq:an-scatter-int} is written as (see appendix \ref{sec:app-derivations-radar-sol})
 	\begin{equation*}
 	\begin{split}
 		\bm{E}_\mrm{sc}(\bm{r},t) =& \frac{\varepsilon_\mrm{r}k^2 \eu^{\iu kr} \bm{E}_{\mrm{i}0} \mathfrak{p} p_0}{8\pi r K} \\
@@ -841,7 +851,7 @@
 	This chapter presents results from the numerical simulations with comparisons to the analytical models. These are discussed  and related to the problem of NDT. Discussions for possible experiments in the future are also presented here, with some examples of power estimates related to these. Finally, the work is summarized and conclusions are drawn.
 	
 	\section{Numerical Simulation Results}
-	In this section, the results from the numerical simulations described in chapter \ref{ch:sim} are shown and described. Comparisons are made with the analytical models from chapter \ref{ch:analytical}.
+	In this section, the results from the numerical simulations described in chapter \ref{ch:sim} are shown and described. Comparisons are made with the analytical models from chapter \ref{ch:analytical}. These analytical models were all based on the assumption that $\Omega \ll \omega$, which is the case for the frequencies 450 kHz and 61.29 GHz which were used.
 	
 	\subsection{Sweep of angle $\alpha$}
 	The results from the sweep of the angle between wavevectors $\alpha$ are shown in figures \ref{fig:res-angle-sweep-fields(-)} - \ref{fig:res-angle-sweep-power} for both negative ($-$) and positive (+) frequency shifts. Figure \ref{fig:res-angle-sweep-fields(-)} and \ref{fig:res-angle-sweep-fields(+)} show the incident waves, scattered wave and Poynting vector for the entire domain and for both ($-$) and (+). These are shown mostly to visualize the interaction qualitatively while the results from post-processing of values at the measurement boundary are more useful for quantitative results.
@@ -1168,7 +1178,14 @@
 	This is now used to obtain
 	\begin{equation*}
 		\nabla^2\bm{E} + k^2 \bm{E} = \\
-		-k^2 \frac{\varepsilon_1}{\varepsilon_\mrm{r}} \bm{E} -\frac{1}{\varepsilon_\mrm{r}}\nabla(\bm{E} \cdot \nabla \varepsilon_1) - \frac{2\iu k}{c\varepsilon_0\varepsilon_\mrm{r}} \frac{\partial (\varepsilon \bm{E})}{\partial t} + \frac{1}{c^2 \varepsilon_0 \varepsilon_\mrm{r}} \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2}
+		-k^2 \frac{\varepsilon_1}{\varepsilon_\mrm{r}} \bm{E} -\frac{1}{\varepsilon_\mrm{r}}\nabla(\bm{E} \cdot \nabla \varepsilon_1) - \frac{k^2}{\varepsilon_\mrm{r}} \bm{E}_\mrm{d}
+	\end{equation*}
+	where $\bm{E}_\mrm{d}$ contains the time derivatives and is written as
+	\begin{equation*}
+	\begin{split}
+		\bm{E}_\mrm{d} &= \frac{2\iu}{c k \varepsilon_0} \frac{\partial (\varepsilon \bm{E})}{\partial t} - \frac{1}{c^2 k^2 \varepsilon_0} \frac{\partial^2 (\varepsilon \bm{E})}{\partial t^2} \\
+		&= \frac{2 \iu \varepsilon_\mrm{r}}{\omega} \frac{\partial \bm{E}}{\partial t} + \frac{2 \iu}{\omega} \frac{\partial ( \varepsilon_1 \bm{E} )}{\partial t} - \frac{\varepsilon_\mrm{r}}{\omega^2} \frac{\partial^2 \bm{E}}{\partial t^2} - \frac{1}{\omega^2} \frac{\partial^2 (\varepsilon_1 \bm{E})}{\partial t^2}
+	\end{split}
 	\end{equation*}
 	
 	\subsection{Born approximation and solution \label{sec:app-derivations-scatter-born}}
@@ -1178,77 +1195,26 @@
 	\end{equation*}
 	If this is subtracted from the total equation and $\bm{E}_\mrm{sc}$ is neglected in the RHS the resulting equation is
 	\begin{equation*}
-		\nabla^2\bm{E}_\mrm{sc} + k^2 \bm{E}_\mrm{sc} =	-k^2 \frac{\varepsilon_1}{\varepsilon_\mrm{r}} \bm{E}_\mrm{i} -\frac{1}{\varepsilon_\mrm{r}}\nabla(\bm{E}_\mrm{i} \cdot \nabla \varepsilon_1) - \frac{2\iu k}{c\varepsilon_0\varepsilon_\mrm{r}} \frac{\partial (\varepsilon \bm{E}_\mrm{i})}{\partial t} + \frac{1}{c^2 \varepsilon_0 \varepsilon_\mrm{r}} \frac{\partial^2 (\varepsilon \bm{E}_\mrm{i})}{\partial t^2}
+		\nabla^2\bm{E}_\mrm{sc} + k^2 \bm{E}_\mrm{sc} =	-k^2 \frac{\varepsilon_1}{\varepsilon_\mrm{r}} \bm{E}_\mrm{i} -\frac{1}{\varepsilon_\mrm{r}}\nabla(\bm{E}_\mrm{i} \cdot \nabla \varepsilon_1) - \frac{k^2}{\varepsilon_\mrm{r}} \bm{E}_\mrm{di}
 	\end{equation*}
 	This is an inhomogeneous Helmholtz equation which in three dimensions, and under a Sommerfeld radiation condition, has the solution \cite{Kristensson2008, Engquist2018}
 	\begin{equation*}
 	\begin{split}
-		\bm{E}_\mrm{sc}(\bm{r},t) =& \int_{V_\mrm{sc}} \frac{\eu^{\iu k |\bm{r}-\bm{r'}| }}{4\pi |\bm{r}-\bm{r'}|} \\
-		&\cdot \left( k^2 \frac{\varepsilon_1}{\varepsilon_\mrm{r}} \bm{E}_\mrm{i} +\frac{1}{\varepsilon_\mrm{r}}\nabla(\bm{E}_\mrm{i} \cdot \nabla \varepsilon_1) + \frac{2\iu k}{c\varepsilon_0\varepsilon_\mrm{r}} \frac{\partial (\varepsilon \bm{E}_\mrm{i})}{\partial t} - \frac{1}{c^2 \varepsilon_0 \varepsilon_\mrm{r}} \frac{\partial^2 (\varepsilon \bm{E}_\mrm{i})}{\partial t^2} \right) \mathrm{d}v'
+		\bm{E}_\mrm{sc}(\bm{r},t) =& \frac{1}{4\pi \varepsilon_\mrm{r}} \int_{V_\mrm{sc}} \frac{\eu^{\iu k |\bm{r}-\bm{r'}| }}{|\bm{r}-\bm{r'}|} \\
+		& \cdot \left( k^2 \varepsilon_1(\bm{r}',t) \bm{E}_\mrm{i}(\bm{r}',t) + \nabla \left(\bm{E}_\mrm{i}(\bm{r}',t) \cdot \nabla \varepsilon_1(\bm{r}',t) \right) + k^2 \bm{E}_\mrm{di}(\bm{r}',t) \right) \mathrm{d}v'
+	\end{split}
+	\end{equation*}
+	where
+	\begin{equation*}
+	\begin{split}
+		\bm{E}_\mrm{di}(\bm{r}',t) =& \frac{2 \iu \varepsilon_\mrm{r}}{\omega} \frac{\partial}{\partial t} \left( \bm{E}_\mrm{i}(\bm{r}',t) \right) + \frac{2 \iu}{\omega} \frac{\partial}{\partial t} \left( \varepsilon_1(\bm{r}',t) \bm{E}_\mrm{i}(\bm{r}',t) \right) \\
+		&- \frac{\varepsilon_\mrm{r}}{\omega^2} \frac{\partial^2}{\partial t^2} \left( \bm{E}_\mrm{i}(\bm{r}',t) \right) - \frac{1}{\omega^2} \frac{\partial^2}{\partial t^2} \left( \varepsilon_1(\bm{r}',t) \bm{E}_\mrm{i}(\bm{r}',t) \right)
 	\end{split}
 	\end{equation*}
 	This equation provides the scattered electric field when using the Born approximation.
 	
-	\subsection{Approximation of the integral \label{sec:app-derivations-scatter-approx}}
-	To simplify this equation even more, approximations concerning the nature of the perturbation can be done. The dielectric perturbation is thus assumed to have the following behavior:
-	\begin{equation*}
-		\varepsilon_1 (\bm{r},t) = |\varepsilon_1| \cos(\bm{q} \cdot \bm{r} - \Omega t)
-	\end{equation*}
-	where $|\varepsilon_1|$ is the amplitude, $\bm{q}$ is the acoustic wavevector and $\Omega$ is the acoustic angular frequency. Furthermore, the relations between wavenumbers and wavelengths are introduced as $k = 2\pi/\lambda$ for electromagnetics and $q = |\bm{q}| = 2\pi/\Lambda$ for acoustics.
-	
-	Now the terms inside of the parenthesis in the integral are estimated to see which terms are dominant. The terms are denoted $T_n$ where $n$ begins at 1 and is the order in which they appear. Note that these estimations are only to find orders of magnitude. For the first term:
-	\begin{equation*}
-		T_1 \sim \frac{|\varepsilon_1| |\bm{E}|}{\varepsilon_\mrm{r} \lambda^2}
-	\end{equation*}
-	For term 2 $\nabla \varepsilon_1 \sim \Lambda^{-1} |\varepsilon_1| \bm{v}$ where $\bm{v}$ is a vector with components $\sim \sin(\bm{q} \cdot \bm{r} - \Omega t)$. Then $\nabla (\bm{E} \cdot \bm{v}) \sim \nabla(|\bm{E}| \sin(\bm{q} \cdot \bm{r} - \Omega t)) \sim \nabla(|\bm{E}|) + \nabla(\sin(\bm{q} \cdot \bm{r} - \Omega t)) \sim \lambda^{-1} + \Lambda^{-1}$. The resulting estimation of the term is then
-	\begin{equation*}
-		T_2 \sim \frac{|\varepsilon_1| |\bm{E}|}{\varepsilon_\mrm{r} \Lambda} \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right)
-	\end{equation*}
-	Term 3 can be expanded using the perturbation definition and the chain rule:
-	\begin{equation*}
-	\begin{split}
-		T_3 \sim \frac{k}{c\varepsilon_0\varepsilon_\mrm{r}} \frac{\partial (\varepsilon \bm{E})}{\partial t} &= \frac{k}{c\varepsilon_0\varepsilon_\mrm{r}} \left( \varepsilon_0\varepsilon_\mrm{r} \frac{\partial \bm{E}}{\partial t} + \varepsilon_0\varepsilon_1 \frac{\partial \bm{E}}{\partial t} + \varepsilon_0\bm{E} \frac{\partial \varepsilon_1}{\partial t}\right) \\
-		&\sim \frac{1}{c\lambda} \left( \frac{\partial \bm{E}}{\partial t} + \frac{\varepsilon_1}{\varepsilon_\mrm{r}} \frac{\partial \bm{E}}{\partial t} + \frac{\bm{E}}{\varepsilon_\mrm{r}} \frac{\partial \varepsilon_1}{\partial t} \right)
-	\end{split}
-	\end{equation*}
-	The derivatives can be approximated as
-	\begin{align*}
-		\frac{\partial \varepsilon_1}{\partial t} &\sim |\varepsilon_1|\Omega \sim \frac{|\varepsilon_1| v}{\Lambda} \\
-		\frac{\partial \bm{E}}{\partial t} &\sim \bm{E} v \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right)
-	\end{align*}
-	where $v$ is the speed of sound in the material. The second equation comes from a similar equation in \cite{Tatarskii1971} which takes into account the Doppler effect and changes in $\varepsilon_1$. These are inserted to give
-	\begin{equation*}
-	\begin{split}
-		T_3 &\sim \frac{1}{c\lambda} \left( |\bm{E}| v \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right) \left( 1 + \frac{|\varepsilon_1|}{\varepsilon_\mrm{r}} \right) + \frac{|\bm{E}| |\varepsilon_1| v}{\varepsilon_\mrm{r} \Lambda} \right) \\
-		&= \frac{|\bm{E}| |\varepsilon_1| v}{c\lambda} \left( \left( 1 + \frac{|\varepsilon_1|}{\varepsilon_\mrm{r}} \right) \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right) + \frac{|\varepsilon_1|}{\varepsilon_\mrm{r} \Lambda} \right)
-	\end{split}
-	\end{equation*}
-	Now, the condition $|\varepsilon_1| \ll \varepsilon_\mrm{r}$, or equivalently, $|\varepsilon_1|/\varepsilon_\mrm{r} \ll 1$ is used to write the the term as
-	\begin{equation*}
-		T_3 \sim \frac{|\bm{E}| |\varepsilon_1| v}{c\lambda} \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right)
-	\end{equation*}
-	Term 3 can now be compared with term 1 and 2 to determine the relative sizes.
-	\begin{align*}
-		\frac{T_3}{T_1} &= \frac{|\bm{E}| |\varepsilon_1| v}{c\lambda} \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right)
-		\bigg/
-		\frac{|\varepsilon_1| |\bm{E}|}{\varepsilon_\mrm{r} \lambda^2} =
-		\frac{v}{c} \frac{\varepsilon_\mrm{r}}{|\varepsilon_1|} \left( 1 + \frac{\lambda}{\Lambda} \right) \\
-		\frac{T_3}{T_2} &= \frac{|\bm{E}| |\varepsilon_1| v}{c\lambda} \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right)
-		\bigg/
-		\frac{|\varepsilon_1| |\bm{E}|}{\varepsilon_\mrm{r} \Lambda} \left( \frac{1}{\Lambda} + \frac{1}{\lambda} \right) =
-		\frac{v}{c} \frac{\varepsilon_\mrm{r}}{|\varepsilon_1|} \frac{\Lambda}{\lambda}
-	\end{align*}
-	Inspection of these fractions reveals that the condition required for $T_3$ to be neglected is
-	\begin{equation*}
-		\frac{v}{c} \ll \frac{|\varepsilon_1|}{\varepsilon_\mrm{r}}
-	\end{equation*}
-	This holds for any ratio between $\lambda$ and $\Lambda$. If $\lambda \gg \Lambda$, $T_2$ will dominate $T_3$. If $\Lambda \gg \lambda$, $T_1$ will dominate $T_3$. If $\lambda \sim \Lambda$, both $T_1$ and $T_2$ will dominate $T_3$. The fourth term on the RHS is similar to the third, but contains a factor $(v/c)^2$. Thus, if $T_3$ can be neglected, so can $T_4$.	The simplified equation if the condition $v/c \ll |\varepsilon_1|/\varepsilon_\mrm{r}$ holds is shown below:
-	\begin{equation*}
-		\bm{E}_\mrm{sc}(\bm{r},t) = \frac{1}{4\pi\varepsilon_\mrm{r}} \int_{V_\mrm{sc}} \frac{\eu^{\iu k |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \left( k^2 \bm{E}_\mrm{i} (\bm{r'},t) \varepsilon_1 (\bm{r'},t) + \nabla (\bm{E}_\mrm{i} (\bm{r'},t) \cdot \nabla \varepsilon_1 (\bm{r'},t)) \right) \mathrm{d}v'
-	\end{equation*}
-	
 	\section{Derivation of radar equation for simple photoelasticity \label{sec:app-derivations-radar}}
-	The scattering integral derived in appendix \ref{sec:app-derivations-scatter-approx} is now solved for a simple geometry and material model to obtain a radar equation.
+	The scattering integral derived in appendix \ref{sec:app-derivations-scatter-born} is now solved for a simple geometry and material model to obtain a radar equation.
 	
 	\subsection{Geometry and solution of scattering integral \label{sec:app-derivations-radar-sol}}
 	First, the geometry is defined as shown in figure \ref{fig:app-radar-geom}.
@@ -1268,21 +1234,38 @@
 	
 	For simplicity, the electromagnetic polarization is assumed to be in z, $\bm{E}_{\mrm{i}0} \parallel \bm{\hat{z}}$. This is also in part done to avoid polarization changes in the scattered field \cite{Korpel1988}. Due to this $\nabla(\bm{E}_\mrm{i} \cdot \nabla \varepsilon_1) = \bm{0}$ which simplifies the scattering integral to
 	\begin{equation*}
-		\bm{E}_\mrm{sc}(\bm{r},t) = \frac{k^2}{4\pi\varepsilon_\mrm{r}} \int_{V_\mrm{sc}} \frac{\eu^{\iu k |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \bm{E}_\mrm{i} (\bm{r'},t) \varepsilon_1 (\bm{r'},t) \mathrm{d}v'
+		\bm{E}_\mrm{sc}(\bm{r},t) = \frac{k^2}{4\pi \varepsilon_\mrm{r}} \int_{V_\mrm{sc}} \frac{\eu^{\iu k |\bm{r}-\bm{r'}| }}{|\bm{r}-\bm{r'}|} \left( \varepsilon_1(\bm{r}',t) \bm{E}_\mrm{i}(\bm{r}',t) + \bm{E}_\mrm{di}(\bm{r}',t) \right) \mathrm{d}v'
+	\end{equation*}
+	Since the incident electric field is time-independent, the term $\bm{E}_\mrm{di}$ can be simplified to
+	\begin{equation*}
+	\bm{E}_{di}(\bm{r}',t) = \frac{2 \iu \bm{E}_\mrm{i}(\bm{r}')}{\omega} \frac{\partial}{\partial t} \left( \varepsilon_1(\bm{r}',t) \right) - \frac{\bm{E}_\mrm{i}(\bm{r}')}{\omega^2} \frac{\partial^2}{\partial t^2} \left( \varepsilon_1(\bm{r}',t) \right)
 	\end{equation*}
 	Insertion of equation \eqref{eq:app-radar-planeE} and \eqref{eq:app-radar-planeEps} gives
 	\begin{equation*}
-		\bm{E}_\mrm{sc}(\bm{r},t) = \frac{k^2}{4\pi\varepsilon_\mrm{r}} \int_{V_\mrm{sc}} \frac{\eu^{\iu k |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \bm{E}_{\mrm{i}0} \eu^{\iu \bm{k} \cdot \bm{r}'} \frac{\varepsilon_\mrm{r}^2 \mathfrak{p}}{K} p_0 \cos(\bm{q} \cdot \bm{r}' - \Omega t) \mathrm{d}v'
+		\bm{E}_\mrm{sc}(\bm{r},t) = \frac{k^2}{4\pi\varepsilon_\mrm{r}} \int_{V_\mrm{sc}} \frac{\eu^{\iu k |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \bm{E}_{\mrm{i}0} \eu^{\iu \bm{k} \cdot \bm{r}'} \frac{\varepsilon_\mrm{r}^2 \mathfrak{p}}{K} p_0 f(\bm{r}', t) \mathrm{d}v'
 	\end{equation*}
-	Assuming far-field gives an approximation for the Green-function as \cite{Kristensson2008}
+	where
+	\begin{equation*}
+		f(\bm{r}', t) = \cos(\bm{q} \cdot \bm{r}' - \Omega t) + \frac{2 \iu \Omega}{\omega} \sin(\bm{q} \cdot \bm{r}' - \Omega t) + \frac{\Omega^2}{\omega^2} \cos(\bm{q} \cdot \bm{r}' - \Omega t)
+	\end{equation*}
+	Assuming far-field gives an approximation for the Green's function as \cite{Kristensson2008}
 	\begin{equation*}
 		\frac{\eu^{\iu k |\bm{r}-\bm{r'}| }}{ |\bm{r}-\bm{r'}|} \approx \frac{\eu^{\iu kr}}{r} \eu^{-\iu k \bm{\hat{r}} \cdot \bm{r}'}
 	\end{equation*}
 	where $r = |\bm{r}|$ and $\bm{\hat{r}} = \bm{r}/r$. The scattering integral is now written as
 	\begin{equation*}
-		\bm{E}_\mrm{sc}(\bm{r},t) = \frac{\varepsilon_\mrm{r}k^2 \eu^{\iu kr} \bm{E}_{\mrm{i}0} \mathfrak{p} p_0}{4\pi r K} \int_{V_\mrm{sc}} \eu^{\iu k ( \bm{\hat{k}} - \bm{\hat{r}} ) \cdot \bm{r}'} \cos(\bm{q} \cdot \bm{r}' - \Omega t) \mathrm{d}v'
+		\bm{E}_\mrm{sc}(\bm{r},t) = \frac{\varepsilon_\mrm{r}k^2 \eu^{\iu kr} \bm{E}_{\mrm{i}0} \mathfrak{p} p_0}{4\pi r K} \int_{V_\mrm{sc}} \eu^{\iu k ( \bm{\hat{k}} - \bm{\hat{r}} ) \cdot \bm{r}'} f(\bm{r}', t) \mathrm{d}v'
 	\end{equation*}
-	The cosine is now written as complex exponentials giving
+	The function $f(\bm{r}', t)$ can now be rewritten as complex exponentials giving
+	\begin{equation*}
+	\begin{split}
+		f(\bm{r}', t) &= \frac{1}{2} \left( \eu^{\iu (\bm{q} \cdot \bm{r}' - \Omega t)} + \eu^{-\iu (\bm{q} \cdot \bm{r}' - \Omega t)} \right) + \frac{\Omega}{\omega} \left( \eu^{\iu (\bm{q} \cdot \bm{r}' - \Omega t)} - \eu^{-\iu (\bm{q} \cdot \bm{r}' - \Omega t)} \right) \\
+		&+ \frac{\Omega^2}{2\omega^2} \left( \eu^{\iu (\bm{q} \cdot \bm{r}' - \Omega t)} + \eu^{-\iu (\bm{q} \cdot \bm{r}' - \Omega t)} \right) \\
+		&= \eu^{\iu (\bm{q} \cdot \bm{r}' - \Omega t)} \frac{\omega^2 + 2\omega\Omega + \Omega^2}{2\omega^2} + \eu^{-\iu (\bm{q} \cdot \bm{r}' - \Omega t)} \frac{\omega^2 - 2\omega\Omega + \Omega^2}{2\omega^2} \\
+		&= \frac{1}{2} \left( \left( 1 + \Omega/\omega \right)^2 \eu^{\iu (\bm{q} \cdot \bm{r}' - \Omega t)} + \left( 1 - \Omega/\omega \right)^2 \eu^{-\iu (\bm{q} \cdot \bm{r}' - \Omega t)} \right)
+	\end{split}
+	\end{equation*}
+	If it is assumed that $\Omega \ll \omega$, the scattered field can be written as
 	\begin{equation*}
 	\begin{split}
 			\bm{E}_\mrm{sc}(\bm{r},t) =& \frac{\varepsilon_\mrm{r}k^2 \eu^{\iu kr} \bm{E}_{\mrm{i}0} \mathfrak{p} p_0}{8\pi r K} \\
@@ -1548,21 +1531,31 @@
 	As stated before, these equations are quite similar to those from the cuboid geometry.
 	
 	\subsection{2D derivations} \label{sec:app-derivations-radar-2d}
-	The derivations leading to the radar equation in appendix \ref{sec:app-derivations-scatter} and \ref{sec:app-derivations-radar-sol}-\ref{sec:app-derivations-radar-power} are based on the assumption of three dimensional space. While this is reasonable for modeling reality, simulations are often done in two dimensions for computational speed and simplicity. If the analytical model is to be compared with 2D simulation results, a 2D analytical model is necessary. The first thing to identify in order to achieve this goal is where the first assumption of 3D space is done. This is in the solution of the inhomogeneous Helmholtz equation, so that is where this 2D derivation must start. It is assumed that the condition $v/c \ll |\varepsilon_1|/\varepsilon_\mrm{r}$ holds, which allows for some terms to be ignored (see appendix \ref{sec:app-derivations-scatter-approx}), giving
+	The derivations leading to the radar equation in appendix \ref{sec:app-derivations-scatter} and \ref{sec:app-derivations-radar-sol}-\ref{sec:app-derivations-radar-power} are based on the assumption of three dimensional space. While this is reasonable for modeling reality, simulations are often done in two dimensions for computational speed and simplicity. If the analytical model is to be compared with 2D simulation results, a 2D analytical model is necessary. The first thing to identify in order to achieve this goal is where the first assumption of 3D space is done. This is in the solution of the inhomogeneous Helmholtz equation, so that is where this 2D derivation must start. The equation is written as (see appendix \ref{sec:app-derivations-scatter-born})
 	\begin{equation*}
-		\nabla^2\bm{E}_\mrm{sc} + k^2 \bm{E}_\mrm{sc} = \\
-		-k^2 \frac{\varepsilon_1}{\varepsilon_\mrm{r}} \bm{E}_\mrm{i} -\frac{1}{\varepsilon_\mrm{r}}\nabla(\bm{E}_\mrm{i} \cdot \nabla \varepsilon_1)
+		\nabla^2\bm{E}_\mrm{sc} + k^2 \bm{E}_\mrm{sc} =	-k^2 \frac{\varepsilon_1}{\varepsilon_\mrm{r}} \bm{E}_\mrm{i} -\frac{1}{\varepsilon_\mrm{r}}\nabla(\bm{E}_\mrm{i} \cdot \nabla \varepsilon_1) - \frac{k^2}{\varepsilon_\mrm{r}} \bm{E}_\mrm{di}
 	\end{equation*}
 	This has a similar solution in 2D as in 3D, but with a different Green's function. The solution to this in two dimensions, and under a Sommerfeld radiation condition is instead \cite{Kristensson2008, Engquist2018}
 	\begin{equation*}
 	\begin{split}
-		\bm{E}_\mrm{sc,2D}(\bm{r},t) = \frac{1}{\varepsilon_\mrm{r}} \int_{S_\mrm{sc}} & \frac{\iu}{4} H_0^{(1)}( k |\bm{r}-\bm{r'}|) \\
-		&\cdot \left( k^2 \bm{E}_\mrm{i} (\bm{r'},t) \varepsilon_1 (\bm{r'},t) + \nabla (\bm{E}_\mrm{i} (\bm{r'},t) \cdot \nabla \varepsilon_1 (\bm{r'},t)) \right) \mathrm{d}s'
+		\bm{E}_\mrm{sc,2D}(\bm{r},t) =& \frac{1}{\varepsilon_\mrm{r}} \int_{S_\mrm{sc}} \frac{\iu}{4} H_0^{(1)}( k |\bm{r}-\bm{r'}|) \\
+		&\cdot \left( k^2 \varepsilon_1(\bm{r}',t) \bm{E}_\mrm{i}(\bm{r}',t) + \nabla \left(\bm{E}_\mrm{i}(\bm{r}',t) \cdot \nabla \varepsilon_1(\bm{r}',t) \right) + k^2 \bm{E}_\mrm{di}(\bm{r}',t) \right) \mathrm{d}s'
 	\end{split}
 	\end{equation*}
-	where $H_0^{(1)}$ is a Hankel function. The same geometry as in \ref{sec:app-derivations-radar-sol} can now be used to calculate the scattered field (see figure \ref{fig:app-radar-geom}). The change is that the interaction region is now limited to the $xy$-plane, as are coordinates for the observation point. The incident fields are defined as in equations \eqref{eq:app-radar-planeE} and \eqref{eq:app-radar-planeEps}, but with the coordinates $\bm{r}'$ being 2D, i.e. $\bm{r}' = x'\bm{\hat{x}} + y'\bm{\hat{y}}$. The polarization of the incident electric field, however, is still in z regardless of the 2D geometry otherwise used. This can be done since it is not dependent on the coordinate $z$, only the unit vector $\bm{\hat{z}}$. Insertion of the incident fields now gives
+	where $H_0^{(1)}$ is a Hankel function and
 	\begin{equation*}
-		\bm{E}_\mrm{sc,2D}(\bm{r},t) = \frac{k^2}{\varepsilon_\mrm{r}} \int_{S_\mrm{sc}} \frac{\iu}{4} H_0^{(1)}( k |\bm{r}-\bm{r'}|) \bm{E}_{\mrm{i}0} \eu^{\iu \bm{k} \cdot \bm{r}'} \frac{\varepsilon_\mrm{r}^2 \mathfrak{p}}{K} p_0 \cos(\bm{q} \cdot \bm{r}' - \Omega t) \mathrm{d}s'
+	\begin{split}
+		\bm{E}_\mrm{di}(\bm{r}',t) =& \frac{2 \iu \varepsilon_\mrm{r}}{\omega} \frac{\partial}{\partial t} \left( \bm{E}_\mrm{i}(\bm{r}',t) \right) + \frac{2 \iu}{\omega} \frac{\partial}{\partial t} \left( \varepsilon_1(\bm{r}',t) \bm{E}_\mrm{i}(\bm{r}',t) \right) \\
+		&- \frac{\varepsilon_\mrm{r}}{\omega^2} \frac{\partial^2}{\partial t^2} \left( \bm{E}_\mrm{i}(\bm{r}',t) \right) - \frac{1}{\omega^2} \frac{\partial^2}{\partial t^2} \left( \varepsilon_1(\bm{r}',t) \bm{E}_\mrm{i}(\bm{r}',t) \right)
+	\end{split}
+	\end{equation*}	
+	The same geometry as in \ref{sec:app-derivations-radar-sol} can now be used to calculate the scattered field (see figure \ref{fig:app-radar-geom}). The change is that the interaction region is now limited to the $xy$-plane, as are coordinates for the observation point. The incident fields are defined as in equations \eqref{eq:app-radar-planeE} and \eqref{eq:app-radar-planeEps}, but with the coordinates $\bm{r}'$ being 2D, i.e. $\bm{r}' = x'\bm{\hat{x}} + y'\bm{\hat{y}}$. The polarization of the incident electric field, however, is still in z regardless of the 2D geometry otherwise used. This can be done since it is not dependent on the coordinate $z$, only the unit vector $\bm{\hat{z}}$. Insertion of the incident fields now gives
+	\begin{equation*}
+		\bm{E}_\mrm{sc,2D}(\bm{r},t) = \frac{k^2}{\varepsilon_\mrm{r}} \int_{S_\mrm{sc}} \frac{\iu}{4} H_0^{(1)}( k |\bm{r}-\bm{r'}|) \bm{E}_{\mrm{i}0} \eu^{\iu \bm{k} \cdot \bm{r}'} \frac{\varepsilon_\mrm{r}^2 \mathfrak{p}}{K} p_0 f(\bm{r}', t) \mathrm{d}s'
+	\end{equation*}
+	where
+	\begin{equation*}
+		f(\bm{r}', t) = \cos(\bm{q} \cdot \bm{r}' - \Omega t) + \frac{2 \iu \Omega}{\omega} \sin(\bm{q} \cdot \bm{r}' - \Omega t) + \frac{\Omega^2}{\omega^2} \cos(\bm{q} \cdot \bm{r}' - \Omega t)
 	\end{equation*}
 	Assumption of far-field can be used to approximate the Hankel function. This is done by adapting the method for the 3D Green's function in \cite{Kristensson2008} while using the approximation from (9.2.3), p.364 in \cite{Abramowitz1964}.
 	\begin{equation*}
@@ -1570,9 +1563,9 @@
 	\end{equation*}
 	which is inserted in the integral, giving
 	\begin{equation*}
-		\bm{E}_\mrm{sc,2D}(\bm{r},t) = \frac{\varepsilon_\mrm{r}k^2 \eu^{\iu (kr + \pi/4)} \bm{E}_{\mrm{i}0} \mathfrak{p} p_0}{K \sqrt{8\pi kr}} \int_{S_\mrm{sc}} \eu^{\iu k ( \bm{\hat{k}} - \bm{\hat{r}} ) \cdot \bm{r}'} \cos(\bm{q} \cdot \bm{r}' - \Omega t) \mathrm{d}s'
+		\bm{E}_\mrm{sc,2D}(\bm{r},t) = \frac{\varepsilon_\mrm{r}k^2 \eu^{\iu (kr + \pi/4)} \bm{E}_{\mrm{i}0} \mathfrak{p} p_0}{K \sqrt{8\pi kr}} \int_{S_\mrm{sc}} \eu^{\iu k ( \bm{\hat{k}} - \bm{\hat{r}} ) \cdot \bm{r}'} f(\bm{r}', t) \mathrm{d}s'
 	\end{equation*}
-	Inspection of this equation shows that it is the same integral as the one solved in section \ref{sec:app-derivations-radar-sol}, but in 2D instead of 3D. All other differences are in the factor in front of the integral. Thus, the scattered field can be written as
+	Inspection of this equation shows that it is the same integral as the one solved in section \ref{sec:app-derivations-radar-sol}, but in 2D instead of 3D. All other differences are in the factor in front of the integral. If it is assumed that $\Omega \ll \omega$, the scattered field can be written as
 	\begin{equation*}
 		\bm{E}_\mrm{sc,2D} (\bm{r},t) = \bm{E}_{\mrm{i}0} \left( E_\mrm{A,2D}^+ (\bm{r},t) + E_\mrm{A,2D}^- (\bm{r},t) \right)
 	\end{equation*}

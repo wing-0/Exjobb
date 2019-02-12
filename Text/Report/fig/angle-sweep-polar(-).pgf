@@ -2602,7 +2602,7 @@
 \pgfusepath{stroke}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[x=0.582259in,y=4.678754in,left,base]{\sffamily\fontsize{12.000000}{14.400000}\selectfont Normalized poynting vector magnitude \(\displaystyle \left| \left<\mathbf{S}_\mathrm{sc}\right> \right|\) / \(\displaystyle \left| \left<\mathbf{S}_\mathrm{sc}\right> \right|_\mathrm{max}\), (-) case}%
+\pgftext[x=0.553129in,y=4.678754in,left,base]{\sffamily\fontsize{12.000000}{14.400000}\selectfont Normalized Poynting vector magnitude \(\displaystyle \left| \left<\mathbf{S}_\mathrm{sc}\right> \right|\) / \(\displaystyle \left| \left<\mathbf{S}_\mathrm{sc}\right> \right|_\mathrm{max}\), (\(\displaystyle -\)) case}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgftext[x=3.280000in,y=4.476617in,left,base]{\sffamily\fontsize{12.000000}{14.400000}\selectfont }%

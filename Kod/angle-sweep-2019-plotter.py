@@ -228,9 +228,9 @@ if(savefigs):
 # Plot maximum Poynting magnitude in W/m2 for sim, cuboid and parallelogram
 plt.figure()
 plt.grid()
-plt.plot(alpha, normS.max(axis=0), '.-')
-plt.plot(angles_an, Sn_c.max(axis=0), '--')
-plt.plot(angles_an, Sn_p.max(axis=0), ':')
+plt.semilogy(alpha, normS.max(axis=0), '.-')
+plt.semilogy(angles_an, Sn_c.max(axis=0), '--')
+plt.semilogy(angles_an, Sn_p.max(axis=0), ':')
 plt.title('Maximum of the Poynting vector, ($' + pmchar + '$) case')
 plt.xlabel('$\\alpha$')
 plt.ylabel('$\\left| \\left<\\mathbf{S}_\\mathrm{sc}\\right> \\right|$' +

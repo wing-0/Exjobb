@@ -42,10 +42,10 @@
 
 \usepackage{multicol}
 \usepackage{geometry}
-\geometry{paper=a4paper,
-	body={125mm,200mm},
-	left=29.5mm,
-	vmarginratio=1:1}
+%\geometry{paper=a4paper,
+%	body={125mm,200mm},
+%	left=29.5mm,
+%	vmarginratio=1:1}
 
 % Generates lorem ipsum dummy text
 \usepackage{lipsum}
@@ -55,7 +55,10 @@
 	\begingroup
 		\centering
 		\LARGE \textbf{Towards Better Inspection of Aircraft Parts with the Combined Power of Ultrasound and Microwaves} \par
-		\vspace{1.0cm}
+		\vspace{0.5cm}
+		\centering
+		\normalsize By Niklas Wingren \par
+		\vspace{0.5cm}
 	\endgroup
 	
 	\noindent
@@ -72,7 +75,19 @@
 		
 		It turns out that strong interaction between the two waves only happens at a very specific condition. This states that the two waves must propagate with a certain angle between them. The angle is determined purely from the wavelengths of the two waves. If this condition is not fulfilled, the electromagnetic wave will continue mostly unaffected by the acoustic wave. Another interesting detail is that the deflected electromagnetic wave will have another frequency than the original wave. This can be a help in measurements as the deflected electromagnetic wave is alone with this new frequency.
 		
-		But how can this interaction be used for non-destructive testing? Anything which causes either the acoustic or electromagnetic wave to change direction can disturb the interaction between waves. There are many things which could cause a wave to change direction, but an example is a defect in the material. With computer simulations it could be seen that defects would be able to affect the two waves in a way that also affected the interaction between them. This shows some promise when it comes to possible applications. Of course, much work remains to be done before this could be used anywhere near an aircraft, but it might at least be a first step.
+		But how can this interaction be used for non-destructive testing? Anything which causes either the acoustic or electromagnetic wave to change direction can disturb the interaction between waves. There are many things which could cause a wave to change direction, but an example is a defect in the material. With computer simulations it could be seen that defects would be able to affect the two waves in a way that also affected the interaction between them. Figure \ref{fig:nodefect} shows a simulation of the deflected electromagnetic wave without a defect. If a small defect is added to the simulation, the electromagnetic wave takes on a form as in figure \ref{fig:conddefect}, which is clearly different. This shows some promise when it comes to possible applications. Of course, much work remains to be done before this could be used anywhere near an aircraft, but it might at least be a first step.
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.48\textwidth]{../Report/fig/anglesweep(-)_nolabel_diff.png}
+			\caption{\label{fig:nodefect} Deflected electromagnetic wave without defect.}
+		\end{figure}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.48\textwidth]{../Report/fig/cond_nolabel_diff.png}
+			\caption{\label{fig:conddefect} Deflected electromagnetic wave with a defect.}
+		\end{figure}
 		
 	\end{multicols}
 	

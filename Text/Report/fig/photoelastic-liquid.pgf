@@ -168,7 +168,7 @@
 \pgftext[x=4.323864in,y=0.342778in,,top]{\sffamily\fontsize{10.000000}{12.000000}\selectfont 10}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[x=2.562500in,y=0.152809in,,top]{\sffamily\fontsize{10.000000}{12.000000}\selectfont er}%
+\pgftext[x=2.562500in,y=0.152809in,,top]{\sffamily\fontsize{10.000000}{12.000000}\selectfont \(\displaystyle \varepsilon_\mathrm{r}\)}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetbuttcap%

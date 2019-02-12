@@ -10,7 +10,7 @@ import scipy.constants as con
 
 # Material properties (air)
 rho_0 = 1.293               # Density (273 K)
-v = 344                     # Speed of sound (293 K)
+v = 331.1                   # Speed of sound (273 K)
 er = 1.00059                # Relative permittivity
 
 # Bulk modulus (fluid)
@@ -28,7 +28,7 @@ d_ref = 30e-2               # Reference distance for SPL measurment
 apa = 25.1e-3               # Ac. aperture from datasheet
 
 # EM antenna properties
-fe = 18e9                   # Frequency
+fe = 24e9                   # Frequency
 le = con.c/np.sqrt(er)/fe   # Wavelength
 k = 2*np.pi/le              # Wave number
 G = 10**(20/10)             # Transmitter & Receiver gain
